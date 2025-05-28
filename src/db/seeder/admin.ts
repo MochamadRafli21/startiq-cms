@@ -2,7 +2,9 @@ import { db } from "@/db/client";
 import { users } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import bcrypt from "bcrypt";
-import "dotenv/config"; // ensure env vars load
+import dotenv from "dotenv";
+
+dotenv.config();
 
 async function seedAdmin() {
   const email = "admin@example.com";
