@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { toast } from "sonner";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -27,8 +28,11 @@ export default function LoginPage() {
 
     if (res?.ok) {
       router.push("/admin");
+      toast.success("Welcome Back!");
     } else {
-      alert("Invalid credentials");
+      toast.error("Invalid credentials", {
+        description: "Please make sure your email and password are correct",
+      });
     }
   };
 
