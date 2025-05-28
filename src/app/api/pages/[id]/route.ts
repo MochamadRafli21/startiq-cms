@@ -42,7 +42,10 @@ export async function PUT(
   return Response.json(page);
 }
 
-export async function DELETE({ params }: { params: { id: string } }) {
+export async function DELETE(
+  _req: Request,
+  { params }: { params: { id: string } },
+) {
   const id = Number(params.id);
 
   await db.delete(pages).where(eq(pages.id, id));

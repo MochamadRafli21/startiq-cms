@@ -10,18 +10,29 @@ import {
   TableRow,
   TableCell,
 } from "@/components/ui/table";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { toast } from "sonner";
+import { Ellipsis, PenSquare, Trash } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import Link from "next/link";
 import type { Page } from "@/types/page.type";
+import { useRouter } from "next/navigation";
 
 export default function PagesTable() {
   const [search, setSearch] = useState("");
   const [pages, setPages] = useState<Page[]>([]);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
+  const [refetchTrigger, setRefetchTrigger] = useState(0);
   const limit = 10;
+  const router = useRouter();
 
   useEffect(() => {
     const loadPages = async () => {
@@ -33,7 +44,27 @@ export default function PagesTable() {
       setTotal(data.total);
     };
     loadPages();
-  }, [search, page]);
+  }, [search, page, refetchTrigger]);
+
+  const handleDelete = async (id?: number) => {
+    if (!id) return;
+
+    const res = await fetch(`/api/pages/${id}`, {
+      method: "Delete",
+    });
+
+    if (res.ok) {
+      setRefetchTrigger((prev) => prev + 1);
+      toast.success("Success on deleting page");
+    } else {
+      toast.error("Failed on deleting page");
+    }
+  };
+
+  const onOpenPage = (id?: number) => {
+    if (!id) return;
+    router.push(`/pages/${id}/edit`);
+  };
 
   return (
     <Card className="w-full h-fit shadow-xl rounded-2xl">
@@ -65,7 +96,8 @@ export default function PagesTable() {
               <TableRow>
                 <TableHead>Title</TableHead>
                 <TableHead>Slug</TableHead>
-                <TableHead className="text-right">Created</TableHead>
+                <TableHead>Created</TableHead>
+                <TableHead></TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -73,8 +105,25 @@ export default function PagesTable() {
                 <TableRow key={page.id}>
                   <TableCell>{page.title}</TableCell>
                   <TableCell>{page.slug}</TableCell>
-                  <TableCell className="text-right">
+                  <TableCell>
                     {new Date(page.createdAt).toLocaleDateString()}
+                  </TableCell>
+                  <TableCell className="text-right">
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Ellipsis />
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="end" className="w-48">
+                        <DropdownMenuItem onClick={() => handleDelete(page.id)}>
+                          <Trash color="red" />
+                          Delete
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => onOpenPage(page.id)}>
+                          <PenSquare color="green" />
+                          Edit
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
                   </TableCell>
                 </TableRow>
               ))}
