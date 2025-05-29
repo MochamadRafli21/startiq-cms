@@ -69,7 +69,7 @@ export default function PagesTable() {
   return (
     <Card className="w-full h-fit shadow-xl rounded-2xl">
       <CardContent>
-        <div className="space-y-4 w-full min-h-48">
+        <div className="space-y-4 w-full">
           <div className="flex justify-between items-center">
             <h1 className="text-xl font-semibold">Pages</h1>
             <div className="flex flex-row items-center gap-2">
@@ -91,7 +91,7 @@ export default function PagesTable() {
             </div>
           </div>
 
-          <Table className="min-h-64">
+          <Table>
             <TableHeader>
               <TableRow>
                 <TableHead>Title</TableHead>

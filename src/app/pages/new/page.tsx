@@ -4,12 +4,12 @@ import { useState } from "react";
 import { toast } from "sonner";
 import dynamic from "next/dynamic";
 const PageEditor = dynamic(
-  () => import("@/components/organisms/pages-editor"),
+  () => import("@/components/organisms/pages/pages-editor"),
   {
     ssr: false,
   },
 );
-import PageInfo from "@/components/organisms/pages-info";
+import PageInfo from "@/components/organisms/pages/pages-info";
 import { Button } from "@/components/ui/button";
 import { Save } from "lucide-react";
 

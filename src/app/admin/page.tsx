@@ -1,4 +1,4 @@
-import PagesTable from "@/components/organisms/pages-table";
+import PagesTable from "@/components/organisms/pages/pages-table";
 
 export default function AdminPage() {
   return (
