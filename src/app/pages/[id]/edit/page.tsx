@@ -1,6 +1,7 @@
 "use client";
 
 import PageInfo from "@/components/organisms/pages/pages-info";
+import { LoadingPage } from "@/components/molecule/loading-page";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { Save, ChevronsLeft, PanelsTopLeft, Trash } from "lucide-react";
@@ -95,7 +96,7 @@ export default function EditPage() {
     }
   };
 
-  if (!pageData) return <div>Loading page...</div>;
+  if (!pageData) return <LoadingPage isLoading={!pageData} />;
 
   const handleContentChange = (content: Record<string, any>) => {
     setPageData({
@@ -164,11 +165,7 @@ export default function EditPage() {
           onContentChange={handleContentChange}
         />
       </div>
-      {saving && (
-        <div className="bg-gray-700 opacity-70 absolute z-[99] w-full min-h-screen">
-          <p className="text-slate-500 mt-2">Saving...</p>
-        </div>
-      )}
+      {saving && <LoadingPage isLoading={saving} />}
     </div>
   );
 }

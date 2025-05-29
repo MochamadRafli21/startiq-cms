@@ -1,4 +1,5 @@
 "use client";
+import { LoadingPage } from "@/components/molecule/loading-page";
 import { validateSlugViaApi, validateSlug } from "@/utils/pages/slugs";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -127,11 +128,7 @@ export default function NewPage() {
           onContentChange={handleContentChange}
         />
       </div>
-      {saving && (
-        <div className="bg-gray-700 opacity-70 absolute z-[99] w-full min-h-screen">
-          <p className="text-slate-500 mt-2">Saving...</p>
-        </div>
-      )}
+      {saving && <LoadingPage isLoading={saving} />}
     </div>
   );
 }
