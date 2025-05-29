@@ -44,6 +44,7 @@ export default function PageInfo({ page, onChange }: PageEditorProps) {
     if (onChange) {
       onChange({
         ...page,
+        title: data,
         slug: data,
       });
     }

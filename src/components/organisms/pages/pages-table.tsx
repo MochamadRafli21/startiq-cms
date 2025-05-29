@@ -17,8 +17,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { toast } from "sonner";
-import { Ellipsis, PenSquare, Trash } from "lucide-react";
+import { Ellipsis, Eye, PenSquare, Trash, Upload } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import Link from "next/link";
@@ -61,6 +62,36 @@ export default function PagesTable() {
     }
   };
 
+  const handlePublish = async (id?: number) => {
+    if (!id) return;
+
+    const page = pages.find((page) => page.id === id);
+    if (!page) return;
+
+    const res = await fetch(`/api/pages/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        ...page,
+        isPublic: true,
+      }),
+    });
+
+    if (res.ok) {
+      setRefetchTrigger((prev) => prev + 1);
+      toast.success("Success on Publishing page");
+    } else {
+      toast.error("Failed on Publishing page");
+    }
+  };
+
+  const openPreview = (id?: number) => {
+    const page = pages.find((page) => page.id === id);
+    if (!page) return;
+
+    router.push(`/preview/${page.slug}`);
+  };
+
   const onOpenPage = (id?: number) => {
     if (!id) return;
     router.push(`/pages/${id}/edit`);
@@ -96,6 +127,7 @@ export default function PagesTable() {
               <TableRow>
                 <TableHead>Title</TableHead>
                 <TableHead>Slug</TableHead>
+                <TableHead>Publish Status</TableHead>
                 <TableHead>Created</TableHead>
                 <TableHead></TableHead>
               </TableRow>
@@ -106,6 +138,17 @@ export default function PagesTable() {
                   <TableCell>{page.title}</TableCell>
                   <TableCell>{page.slug}</TableCell>
                   <TableCell>
+                    {page.isPublic ? (
+                      <Badge className="bg-green-200 text-green-800">
+                        Publish
+                      </Badge>
+                    ) : (
+                      <Badge className="bg-yellow-200 text-yellow-600">
+                        Not Publish
+                      </Badge>
+                    )}
+                  </TableCell>
+                  <TableCell>
                     {page.createdAt &&
                       new Date(page.createdAt).toLocaleDateString()}
                   </TableCell>
@@ -115,12 +158,27 @@ export default function PagesTable() {
                         <Ellipsis />
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="end" className="w-48">
+                        {page.isPublic ? (
+                          <DropdownMenuItem
+                            onClick={() => openPreview(page.id)}
+                          >
+                            <Eye color="green" />
+                            Open Preview
+                          </DropdownMenuItem>
+                        ) : (
+                          <DropdownMenuItem
+                            onClick={() => handlePublish(page.id)}
+                          >
+                            <Upload color="green" />
+                            Publish
+                          </DropdownMenuItem>
+                        )}
                         <DropdownMenuItem onClick={() => handleDelete(page.id)}>
                           <Trash color="red" />
                           Delete
                         </DropdownMenuItem>
                         <DropdownMenuItem onClick={() => onOpenPage(page.id)}>
-                          <PenSquare color="green" />
+                          <PenSquare color="blue" />
                           Edit
                         </DropdownMenuItem>
                       </DropdownMenuContent>
