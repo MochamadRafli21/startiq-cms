@@ -32,6 +32,7 @@ export async function GET(req: Request) {
 
 export async function POST(req: Request) {
   const body = await req.json();
+  console.log(body);
 
   const [{ id }] = await db
     .insert(pages)

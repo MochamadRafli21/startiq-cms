@@ -120,3 +120,183 @@
     @apply bg-background text-foreground;
   }
 }
+
+:root {
+  --gjs-primary-color: #333333; /* Dark gray for primary elements */
+  --gjs-primary-color-light: #555555;
+  --gjs-secondary-color: #555555; /* Light gray for secondary elements */
+  --gjs-two: #555555; /* Light gray for secondary elements */
+  --gjs-tertiary-color: #4f7780;
+  --gjs-quaternary-color: #78cad2;
+  --gjs-text-color: #1a1a1a; /* Black for text */
+  --gjs-bg-color: #ffffff; /* White background */
+  --gjs-border-color: #cccccc; /* Light gray for borders */
+  --gjs-hover-color: #f8f8f8; /* Light hover background */
+  --gjs-active-color: #e8e8e8; /* Slightly darker active background */
+  --gjs-font-color: #1a1a1a; /* Ensure text is black */
+
+  /* You might need to identify more specific GrapesJS CSS variables
+     by inspecting the editor in your browser's dev tools. */
+
+  /* Example for the main editor background */
+  .gjs-two-color {
+    color: var(--gjs-text-color);
+  }
+
+  .gjs-one-bg {
+    background-color: var(--gjs-bg-color);
+  }
+
+  .gjs-editor {
+    background-color: var(--gjs-bg-color);
+  }
+
+  /* Example for panel backgrounds */
+  .gjs-pn-panel {
+    background-color: var(--gjs-bg-color);
+    border-color: var(--gjs-border-color);
+  }
+
+  /* Example for buttons */
+  .gjs-btn {
+    background-color: var(--gjs-primary-color);
+    color: var(--gjs-text-color); /* Text on button */
+    border-color: var(--gjs-primary-color);
+  }
+
+  .gjs-btn:hover {
+    background-color: var(--gjs-hover-color);
+  }
+
+  /* Example for selected states */
+  .gjs-selected,
+  .gjs-highlighted {
+    outline-color: var(
+      --gjs-primary-color
+    ); /* Use a darker color for outline */
+  }
+
+  /* Adjusting text color for specific elements if needed */
+  .gjs-label,
+  .gjs-field-label {
+    color: var(--gjs-text-color);
+  }
+
+  /* Override specific component styles */
+  .gjs-block {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    color: #1a1a1a;
+  }
+  .gjs-block:hover {
+    background-color: #f8f8f8;
+  }
+}
+
+/* If GrapesJS uses specific classes that are not directly mapped to CSS variables,
+   you can target them directly with Tailwind classes. */
+.gjs-some-specific-panel-class {
+  @apply bg-white text-black border border-gray-300;
+}
+
+.gjs-some-other-element {
+  @apply bg-gray-100 text-gray-800;
+}
+
+:root {
+  /* Main background for editor, panels, etc. */
+  --gjs-bg: #ffffff;
+  --gjs-bg-alt: #f8f8f8; /* Slightly off-white for secondary backgrounds */
+  --gjs-bg-h: #f0f0f0; /* Hover background */
+  --gjs-bg-s: #e8e8e8; /* Selected background */
+
+  /* Primary action/accent colors (e.g., buttons, active tabs) */
+  --gjs-primary-color: #333333; /* Dark gray/black */
+  --gjs-primary-color-light: #555555;
+  --gjs-primary-color-dark: #1a1a1a;
+  --gjs-primary-color-h: #111111; /* Hover for primary */
+
+  /* Secondary accent colors (less prominent elements) */
+  --gjs-secondary-color: #cccccc; /* Light gray */
+  --gjs-secondary-color-light: #e0e0e0;
+  --gjs-secondary-color-dark: #999999;
+
+  /* Text colors */
+  --gjs-font-color: #1a1a1a; /* Black for main text */
+  --gjs-font-color-alt: #555555; /* Dark gray for secondary text */
+  --gjs-font-color-h: #000000; /* Black for hover text */
+
+  /* Border colors */
+  --gjs-border-color: #d0d0d0; /* Light gray for borders */
+  --gjs-border-color-alt: #e0e0e0;
+
+  /* Shadow colors */
+  --gjs-shadow-color: rgba(0, 0, 0, 0.1);
+  --gjs-shadow-color-big: rgba(0, 0, 0, 0.05);
+
+  /* Specific UI element colors */
+  --gjs-header-bg: #fdfdfd; /* Top header background */
+  --gjs-toolbar-bg: #fdfdfd; /* Toolbar background */
+  --gjs-blocks-bg: #ffffff; /* Blocks panel background */
+  --gjs-panels-bg: #ffffff; /* General panel background */
+  --gjs-fieldset-bgr: #f8f8f8; /* Background for trait fields */
+  --gjs-input-bg: #ffffff; /* Input field background */
+  --gjs-input-color: #1a1a1a; /* Input text color */
+  --gjs-input-border-color: #cccccc; /* Input border */
+  --gjs-link-color: #007bff; /* Link color */
+  --gjs-icon-color: #555555; /* Icon color */
+  --gjs-icon-color-h: #1a1a1a; /* Icon hover color */
+  --gjs-active-color: #e0e0e0; /* Active state background for tabs/buttons */
+}
+
+/* Direct CSS Class Overrides (if needed) */
+/* For elements that don't fully respect CSS variables, or for specific tweaks */
+
+/* Example: Adjusting the main editor container background */
+.gjs-editor {
+  background-color: var(
+    --gjs-bg
+  ) !important; /* Use !important if necessary for overriding */
+}
+
+/* Example: Styling the main canvas background */
+.gjs-cv-canvas {
+  background-color: #ffffff; /* Explicitly set canvas background to white */
+}
+
+/* Example: Styling the traits panel */
+.gjs-traits-c {
+  background-color: var(--gjs-panels-bg);
+  color: var(--gjs-font-color);
+  border-left: 1px solid var(--gjs-border-color);
+}
+
+/* Example: Styling a specific block in the blocks panel */
+.gjs-block {
+  background-color: var(--gjs-bg-alt);
+  color: var(--gjs-font-color);
+  border: 1px solid var(--gjs-border-color);
+}
+.gjs-block:hover {
+  background-color: var(--gjs-bg-h);
+}
+
+/* More specific overrides for toolbars, buttons, etc. */
+.gjs-pn-btn {
+  background-color: transparent;
+  color: var(--gjs-icon-color);
+}
+
+.gjs-pn-btn.gjs-pn-active,
+.gjs-pn-btn:hover {
+  background-color: var(--gjs-active-color);
+  color: var(--gjs-primary-color);
+}
+
+/* For specific components that might not use vars */
+/* For instance, if you notice an element is still purple,
+   inspect it and apply a direct override here. */
+.gjs-some-purple-element-class {
+  background-color: #ffffff !important;
+  color: #1a1a1a !important;
+}

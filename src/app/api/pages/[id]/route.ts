@@ -6,9 +6,13 @@ export async function GET(
   req: Request,
   { params }: { params: { id: string } },
 ) {
-  const id = Number(params.id);
+  const { id } = await params;
 
-  const [page] = await db.select().from(pages).where(eq(pages.id, id)).limit(1);
+  const [page] = await db
+    .select()
+    .from(pages)
+    .where(eq(pages.id, Number(id)))
+    .limit(1);
 
   if (!page) {
     return new Response(JSON.stringify({ error: "Page not found" }), {
@@ -23,7 +27,7 @@ export async function PUT(
   req: Request,
   { params }: { params: { id: string } },
 ) {
-  const id = Number(params.id);
+  const { id } = await params;
   const body = await req.json();
 
   await db
@@ -35,9 +39,13 @@ export async function PUT(
       isPublic: body.isPublic,
       content: body.content,
     })
-    .where(eq(pages.id, id));
+    .where(eq(pages.id, Number(id)));
 
-  const [page] = await db.select().from(pages).where(eq(pages.id, id)).limit(1);
+  const [page] = await db
+    .select()
+    .from(pages)
+    .where(eq(pages.id, Number(id)))
+    .limit(1);
 
   return Response.json(page);
 }

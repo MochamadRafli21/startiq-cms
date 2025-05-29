@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { toast } from "sonner";
 import dynamic from "next/dynamic";
 const PageEditor = dynamic(
   () => import("@/components/organisms/pages-editor"),
@@ -39,8 +40,13 @@ export default function NewPage() {
       }),
     });
 
-    const page = await res.json();
-    router.push(`/pages/${page.id}/edit`);
+    if (res.ok) {
+      const page = await res.json();
+      router.push(`/pages/${page.id}/edit`);
+      toast.success("Success on creating page");
+    } else {
+      toast.error("Failed on creating page");
+    }
   };
 
   const handleContentChange = (content: Record<string, any>) => {
@@ -51,7 +57,6 @@ export default function NewPage() {
   };
 
   const handleInfoChange = (info: Page) => {
-    console.log(info);
     setPageData(info);
   };
 

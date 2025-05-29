@@ -27,14 +27,14 @@ export default function EditPage() {
       .then(setPageData);
   }, [id]);
 
-  const handleSave = async (content: any) => {
+  const handleSave = async () => {
     if (!pageData) return;
     setSaving(true);
 
     await fetch(`/api/pages/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...pageData, content }),
+      body: JSON.stringify(pageData),
     });
 
     setSaving(false);
