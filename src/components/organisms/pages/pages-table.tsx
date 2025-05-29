@@ -106,7 +106,8 @@ export default function PagesTable() {
                   <TableCell>{page.title}</TableCell>
                   <TableCell>{page.slug}</TableCell>
                   <TableCell>
-                    {new Date(page.createdAt).toLocaleDateString()}
+                    {page.createdAt &&
+                      new Date(page.createdAt).toLocaleDateString()}
                   </TableCell>
                   <TableCell className="text-right">
                     <DropdownMenu>

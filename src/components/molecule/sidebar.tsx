@@ -20,7 +20,15 @@ export function Sidebar() {
 
   return (
     <aside className="w-64 bg-white border-r shadow-sm">
-      <div className="p-4 text-lg font-semibold">Admin Panel</div>
+      <div className="p-4 text-lg font-semibold">
+        <Link
+          href={"/admin"}
+          className="flex items-center gap-2 p-2 rounded hover:bg-gray-100 text-sm"
+        >
+          <Home />
+          Admin Panel
+        </Link>
+      </div>
       <nav className="flex flex-col gap-1 p-2">
         {navItems.map((item) => (
           <Link
