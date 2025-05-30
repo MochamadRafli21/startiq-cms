@@ -134,13 +134,22 @@
   --gjs-hover-color: #f8f8f8; /* Light hover background */
   --gjs-active-color: #e8e8e8; /* Slightly darker active background */
   --gjs-font-color: #1a1a1a; /* Ensure text is black */
-
+  --gjs-left-width: 30%;
   /* You might need to identify more specific GrapesJS CSS variables
      by inspecting the editor in your browser's dev tools. */
 
   /* Example for the main editor background */
   .gjs-two-color {
     color: var(--gjs-text-color);
+  }
+
+  .gjs-field {
+    background-color: #cccccc !important;
+    color: #333333 !important;
+  }
+
+  .gjs-pn-views-container {
+    min-width: 170px;
   }
 
   .gjs-one-bg {
@@ -299,4 +308,17 @@
 .gjs-some-purple-element-class {
   background-color: #ffffff !important;
   color: #1a1a1a !important;
+}
+
+.gjs-field-checkbox input:checked + .gjs-chk-icon {
+  border: 2px solid #00000080 !important;
+  border-width: 0 2px 2px 0 !important;
+}
+
+.carousel-zoom-hover {
+  transition: transform 0.3s ease;
+}
+.carousel-zoom-hover:hover {
+  transform: scale(1.05) !important;
+  z-index: 3;
 }
