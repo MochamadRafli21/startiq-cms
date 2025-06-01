@@ -1,9 +1,10 @@
 "use client";
 import React, { useEffect, useRef } from "react";
 import ReactDOM from "react-dom/client";
-import grapesjs from "grapesjs";
+import grapesjs, { Component, Trait, TraitProperties } from "grapesjs";
 import "grapesjs/dist/css/grapes.min.css";
 import { Carousel } from "@/components/organisms/grapesjs/carousel";
+import { InfiniteSlides } from "@/components/organisms/grapesjs/infinite-slides";
 interface PageEditorProps {
   content?: Record<string, any>;
   onContentChange?: (data: Record<string, any>) => void;
@@ -46,9 +47,6 @@ export default function PageEditor({
         height: "100vh",
         fromElement: false,
         storageManager: false,
-        canvas: {
-          styles: ["https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"],
-        },
         plugins: [
           basicBlocks,
           flexbox,
@@ -94,11 +92,346 @@ export default function PageEditor({
         link.rel = "stylesheet";
         link.href =
           "https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css";
-        head?.appendChild(link);
+
+        const animationCSS = `
+          @keyframes scroll-left {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+          }
+          @keyframes scroll-right {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(50%); }
+          }
+          .animate-scroll-left {
+            animation-name: scroll-left;
+          }
+          .animate-scroll-right {
+            animation-name: scroll-right;
+          }
+        `;
+        if (head) {
+          const styleEl = document.createElement("style");
+          styleEl.innerHTML = animationCSS;
+          head.appendChild(styleEl);
+          head.appendChild(link);
+        }
       });
 
       editorRef.current = editor;
+      // --- 1. Define Custom Trait: AssetManagerOpenerTrait ---
+      editor.TraitManager.addType("selected-images-viewer", {
+        createInput(this: any) {
+          const container = document.createElement("div");
 
+          container.className = "gjs-selected-images-container";
+
+          // Initialize empty content
+          container.innerHTML = '<p style="color: #888;">Loading images...</p>';
+
+          return container;
+        },
+        // `onUpdate` is crucial: it updates the trait's UI whenever the component's 'images' property changes
+
+        onUpdate(
+          this: any,
+          {
+            component,
+            elInput,
+            trait,
+          }: { component: Component; elInput: HTMLElement; trait: Trait },
+        ) {
+          const container = elInput;
+          const images: string[] = component.get("images") || [];
+
+          container.innerHTML = ""; // Clear it first
+
+          if (images.length === 0) {
+            container.innerHTML =
+              '<p style="font-size: 0.9em; color: #888;">No images selected yet.</p>';
+            return;
+          }
+
+          if (images.length === 0) {
+            container.innerHTML =
+              '<p style="font-size: 0.9em; color: #888; margin: 0;">No images selected yet.</p>';
+            return;
+          }
+
+          images.forEach((url: string, index: number) => {
+            // Added type annotations for url, index
+            const imgItem = document.createElement("div");
+            imgItem.className = "gjs-selected-image-item";
+            imgItem.style.cssText = `
+              display: flex;
+              align-items: center;
+              margin-bottom: 5px;
+              border: 1px solid #eee;
+              padding: 5px;
+              background-color: #fff;
+              border-radius: 3px;
+              box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            `;
+
+            const img = document.createElement("img");
+            img.src = url;
+            img.alt = `Selected Image ${index + 1}`;
+            img.style.cssText = `
+              width: 40px;
+              height: 40px;
+              object-fit: cover;
+              margin-right: 10px;
+              border-radius: 2px;
+            `;
+            imgItem.appendChild(img);
+
+            const removeBtn = document.createElement("button");
+            removeBtn.className =
+              "gjs-remove-image gjs-btn-prim gjs-btn-button"; // Add a unique class for event listener
+            removeBtn.innerHTML = "&times;";
+            removeBtn.title = "Remove image";
+            removeBtn.setAttribute("data-index", String(index)); // Store index for removal
+            removeBtn.style.cssText = `
+              margin-left: 10px;
+              background-color: #dc3545;
+              border: none;
+              color: white;
+              width: 25px;
+              height: 25px;
+              line-height: 1;
+              border-radius: 3px;
+              cursor: pointer;
+              font-weight: bold;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              padding: 0;
+            `;
+            const currentComponent = component; // Capture component reference
+            const currentTrait = trait; // Capture trait reference
+
+            removeBtn.onclick = (e) => {
+              e.stopPropagation(); // Prevent potential bubbling issues
+
+              const target = e.target as HTMLElement;
+              const indexToRemove = parseInt(
+                target.getAttribute("data-index") || "-1",
+                10,
+              );
+
+              if (!isNaN(indexToRemove) && indexToRemove >= 0) {
+                const currentImages: string[] =
+                  currentComponent.get("images") || [];
+                const newImages = currentImages.filter(
+                  (_, idx) => idx !== indexToRemove,
+                );
+
+                // This still triggers onUpdate, so the UI will refresh
+                currentComponent.set("images", newImages);
+
+                // If you implemented undo, you'd call it like:
+                // (currentTrait as any).handleUndoLogic(currentComponent, prevImages, removedImage, indexToRemove);
+              }
+            };
+            imgItem.appendChild(removeBtn);
+
+            container.appendChild(imgItem);
+          });
+        },
+        // Event handler for removing an image
+        onRemoveImage(this: Trait, event: Event) {
+          // Added type annotation for event
+          const target = event.target as HTMLElement; // Cast to HTMLElement for attribute access
+          const indexToRemove = parseInt(
+            target.getAttribute("data-index") || "-1",
+            10,
+          );
+          const component = this.target; // The component associated with this trait
+          let images: string[] = component.get("images") || [];
+
+          if (indexToRemove >= 0 && indexToRemove < images.length) {
+            images.splice(indexToRemove, 1); // Remove the image at the given index
+            // Crucially, set a new array to trigger GrapesJS reactivity
+            component.set("images", [...images]);
+          }
+        },
+
+        // Helper function (private-like convention with underscore)
+        _truncateUrl(this: Trait, url: string, maxLength: number): string {
+          // Added type annotations
+          if (url.length <= maxLength) {
+            return url;
+          }
+          const start = url.lastIndexOf("/") + 1;
+          const filename = url.substring(start);
+          if (filename.length <= maxLength) {
+            return filename;
+          }
+          return "..." + filename.substring(filename.length - maxLength + 3);
+        },
+      } as TraitProperties); // Cast to TraitProperties
+
+      //adding custom command to open multi select asset manager
+      editor.Commands.add("open-assets-multiple", {
+        run(editor) {
+          const selected = editor.getSelected();
+          if (!selected || selected.get("type") !== "infinite-slides") {
+            editor.Modal.open({
+              title: "Select the Infinite Slides component first",
+              content:
+                "Please select an 'Infinite Slides' component before adding images.",
+            });
+            return;
+          }
+
+          const selectedAssets: string[] = [];
+
+          editor.AssetManager.open({
+            select: (asset, complete) => {
+              const src = asset.get("src");
+              if (!selectedAssets.includes(src)) {
+                selectedAssets.push(src);
+              }
+
+              if (complete && selectedAssets.length > 0) {
+                const prev = selected.get("images");
+                selected.set("images", [...prev, ...selectedAssets]);
+              }
+            },
+          });
+        },
+      });
+      //register infinite image slides
+      editor.DomComponents.addType("infinite-slides", {
+        model: {
+          defaults: {
+            tagName: "div", // The HTML tag that will wrap the React component
+            stylable: true, // Allow styling
+            draggable: true,
+            droppable: false,
+            attributes: {
+              // Default attributes for the component
+              "data-gjs-type": "infinite-slides", // Custom type attribute for GrapesJS
+            },
+            speed: 30, // Default speed
+            images: [
+              "https://placehold.co/150x80/FF5733/FFFFFF?text=Default+A",
+              "https://placehold.co/150x80/33FF57/FFFFFF?text=Default+B",
+            ],
+            imageList: [
+              "https://placehold.co/150x80/FF5733/FFFFFF?text=Default+A",
+              "https://placehold.co/150x80/33FF57/FFFFFF?text=Default+B",
+            ],
+            // Define traits for the component
+            traits: [
+              {
+                type: "selected-images-viewer", // This is the key
+                label: "Manage Slider Images",
+                name: "imageList",
+                changeProp: true, // IMPORTANT: This trait needs to update when 'images' property changes
+                // It doesn't modify a prop directly, but `onUpdate` relies on prop changes.
+              },
+              {
+                type: "button", // This is the key
+                name: "images",
+                label: "Select Images",
+                text: "Open Asset Manager",
+                full: true, // Make it full width
+                command: "open-assets-multiple", // Custom command to open asset manager
+                changeProp: true, // IMPORTANT: This trait needs to update when 'images' property changes
+              },
+
+              {
+                type: "number",
+                label: "Speed",
+                name: "speed",
+                placeholder: "3000",
+                min: 1,
+                max: 100,
+                changeProp: true, // Update property on change
+              },
+            ],
+          },
+        },
+        view: defaultView.extend({
+          tagName: "div",
+          className: "gjs-infinite-slides-react-wrapper", // Class for the GrapesJS wrapper element
+          root: null, // To store the React root for React 18+
+
+          // Method to render/re-render the React component
+          // Using useCallback to memoize to prevent unnecessary re-creations
+          renderReactSlider() {
+            // Use `function` to ensure `this` context
+            const el = this.el; // The DOM element managed by GrapesJS for this component
+            const model = this.model;
+
+            const imagesArray = model.get("images");
+            const speed = parseInt(model.get("speed"), 10) || 100;
+            // Initialize or update the React root
+            if (!this.root) {
+              this.root = ReactDOM.createRoot(el);
+            }
+            model.set("imageList", imagesArray);
+            this.root.render(
+              <InfiniteSlides
+                speed={speed}
+                images={imagesArray}
+                direction="left"
+              />,
+            );
+          },
+
+          // This initializes the view and sets up event listeners
+          initialize() {
+            defaultView.prototype.initialize.apply(this, arguments);
+
+            // Listen to changes in specific traits (autoplay, interval)
+            this.listenTo(
+              this.model,
+              "change:speed change:direction change:images",
+              this.renderReactSlider,
+            );
+
+            // Listen to changes in the components collection (children added/removed)
+            // 'add', 'remove', 'reset' are events on the components collection itself
+            this.listenTo(
+              this.model.get("components"),
+              "add remove reset",
+              this.renderReactSlider,
+            );
+
+            // Listen for general updates to any child component's content/style
+            // This ensures if a child component's inner HTML changes (e.g., text content edited),
+            // the carousel re-renders to reflect that.
+            this.listenTo(
+              this.model.get("components"),
+              "change",
+              this.renderReactSlider,
+            );
+
+            // Initial render of the React component
+            this.renderReactSlider();
+          },
+
+          // onRender is called frequently (e.g., when component is selected)
+          // We moved the actual rendering and listener setup to initialize()
+          // and renderReactCarousel(). So, onRender doesn't need to do much.
+          onRender() {
+            return this;
+          },
+
+          // Cleanup: unmount React component and remove listeners
+          onRemove() {
+            if (this.root) {
+              this.root.unmount(); // Unmount React component from the DOM
+              this.root = null;
+            }
+            this.stopListening(); // Removes all listeners attached with this.listenTo
+            defaultView.prototype.onRemove.apply(this, arguments); // Call super's onRemove
+          },
+        }),
+      });
+
+      // register custom carousel
       editor.DomComponents.addType("carousel-react", {
         model: {
           defaults: {
@@ -314,6 +647,17 @@ export default function PageEditor({
           `,
         content: {
           type: "carousel-react",
+        },
+      });
+
+      editor.BlockManager.add("infinite-slides", {
+        label: "Infinite Image Slides",
+        category: "Custom",
+        media: `
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-gallery-horizontal-end-icon lucide-gallery-horizontal-end"><path d="M2 7v10"/><path d="M6 5v14"/><rect width="12" height="18" x="10" y="3" rx="2"/></svg>
+          `,
+        content: {
+          type: "infinite-slides",
         },
       });
 
