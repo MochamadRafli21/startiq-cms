@@ -29,6 +29,7 @@ export default function NewPage() {
   const router = useRouter();
 
   const onValidateSlug = async () => {
+    console.log(pageData.slug);
     if (!pageData.slug) {
       setSlugError("Slug cant be empty");
 
@@ -36,7 +37,7 @@ export default function NewPage() {
     }
 
     const error = validateSlug(pageData.slug);
-
+    console.log(error);
     if (error) {
       setSlugError(error);
 
@@ -51,6 +52,7 @@ export default function NewPage() {
       return false;
     }
 
+    console.log(apiError);
     if (slugError) {
       setSlugError("");
     }
