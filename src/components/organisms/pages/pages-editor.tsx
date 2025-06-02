@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom/client";
 import grapesjs, { Component, Trait, TraitProperties } from "grapesjs";
 import "grapesjs/dist/css/grapes.min.css";
@@ -8,18 +8,21 @@ import { InfiniteSlides } from "@/components/organisms/grapesjs/infinite-slides"
 interface PageEditorProps {
   content?: Record<string, any>;
   onContentChange?: (data: Record<string, any>) => void;
+  isPreview?: boolean;
 }
 
 export default function PageEditor({
   content,
   onContentChange,
+  isPreview = false,
 }: PageEditorProps) {
   const editorRef = useRef<any>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [renderedHtml, setRenderedHtml] = useState<string>("");
+  const [renderedCss, setRenderedCss] = useState<string>("");
 
   useEffect(() => {
     if (!containerRef.current || editorRef.current) return;
-
     // Dynamically import all plugins here
     const loadPlugins = async () => {
       const basicBlocks = (await import("grapesjs-blocks-basic")).default;
@@ -45,15 +48,18 @@ export default function PageEditor({
       const editor = grapesjs.init({
         container: containerRef.current,
         height: "100vh",
+        headless: isPreview,
         fromElement: false,
         storageManager: false,
-        assetManager: {
-          upload: "/api/upload",
-          uploadName: "file",
-          autoAdd: true,
-          multiUpload: false,
-          assets: [],
-        },
+        assetManager: !isPreview
+          ? {
+              upload: "/api/upload",
+              uploadName: "file",
+              autoAdd: true,
+              multiUpload: false,
+              assets: [],
+            }
+          : {},
         plugins: [
           basicBlocks,
           flexbox,
@@ -83,8 +89,21 @@ export default function PageEditor({
           },
         },
       });
+      console.log(content);
       if (content) {
         editor.loadProjectData(content);
+        console.log(isPreview);
+        if (isPreview) {
+          // ONLY for preview mode
+          const html = editor.getHtml();
+          const css = editor.getCss();
+          console.log(html);
+          console.log(css);
+          setRenderedHtml(html);
+          setRenderedCss(css || "");
+          editor.destroy(); // Destroy the editor instance after extracting
+          editorRef.current = null; // Clear the ref
+        }
       }
 
       const domComponents = editor.DomComponents;
@@ -872,10 +891,19 @@ export default function PageEditor({
 
     loadPlugins();
   }, [content]);
-
-  return (
-    <div className="overflow-hidden min-h-screen w-full flex flex-col">
-      <div ref={containerRef} className="grow relative" />
-    </div>
-  );
+  if (isPreview) {
+    return (
+      <div className="grapesjs-public-page-wrapper">
+        <style>{renderedCss}</style>
+        <div dangerouslySetInnerHTML={{ __html: renderedHtml }} />
+        <div ref={containerRef} />
+      </div>
+    );
+  } else {
+    return (
+      <div className="overflow-hidden min-h-screen w-full flex flex-col">
+        <div ref={containerRef} className="grow relative" />
+      </div>
+    );
+  }
 }
