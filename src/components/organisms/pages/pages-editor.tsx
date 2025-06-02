@@ -47,6 +47,13 @@ export default function PageEditor({
         height: "100vh",
         fromElement: false,
         storageManager: false,
+        assetManager: {
+          upload: "/api/upload",
+          uploadName: "file",
+          autoAdd: true,
+          multiUpload: false,
+          assets: [],
+        },
         plugins: [
           basicBlocks,
           flexbox,
