@@ -2,6 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom/client";
 import grapesjs, { Component, Trait, TraitProperties } from "grapesjs";
+import tailwindPlugin from "grapesjs-tailwindcss-plugin"; // Import the plugin
 import "grapesjs/dist/css/grapes.min.css";
 import { Carousel } from "@/components/organisms/grapesjs/carousel";
 import { InfiniteSlides } from "@/components/organisms/grapesjs/infinite-slides";
@@ -62,6 +63,7 @@ export default function PageEditor({
           : {},
         plugins: [
           basicBlocks,
+          tailwindPlugin,
           flexbox,
           countdown,
           customCode,
@@ -103,9 +105,10 @@ export default function PageEditor({
       }
 
       const domComponents = editor.DomComponents;
-      const defaultType = domComponents.getType("default");
+      if (!domComponents) return;
+      const defaultType = domComponents?.getType("default");
       //const defaultModel = defaultType.model;
-      const defaultView = defaultType.view;
+      const defaultView = defaultType?.view;
 
       editor.on("load", () => {
         const iframe = editor.Canvas.getFrameEl();
@@ -179,7 +182,6 @@ export default function PageEditor({
           {
             component,
             elInput,
-            trait,
           }: { component: Component; elInput: HTMLElement; trait: Trait },
         ) {
           const container = elInput;
@@ -249,7 +251,6 @@ export default function PageEditor({
               padding: 0;
             `;
             const currentComponent = component; // Capture component reference
-            const currentTrait = trait; // Capture trait reference
 
             removeBtn.onclick = (e) => {
               e.stopPropagation(); // Prevent potential bubbling issues
@@ -335,12 +336,36 @@ export default function PageEditor({
               }
 
               if (complete && selectedAssets.length > 0) {
-                const prev = selected.get("images");
-                selected.set("images", [...prev, ...selectedAssets]);
+                selected.set("images", selectedAssets);
               }
             },
           });
         },
+      });
+
+      //register partner sections
+
+      editor.BlockManager.add("horizontal-scroll-logos", {
+        label: "Partner Logos",
+        category: "Sections",
+        content: `
+          <div style="overflow-x: scroll; white-space: nowrap; padding: 10px; background: #eee;">
+            <div style="display: inline-flex; gap: 40px; align-items: center;">
+              <div style="display: inline-flex; flex-direction: row; align-items: center;">
+                <img src="logo1.png" style="height: 40px;" />
+                <span style="font-weight: bold;">Scholarvein</span>
+              </div>
+              <div style="display: inline-flex; flex-direction: row; align-items: center;">
+                <img src="logo2.png" style="height: 40px;" />
+                <span style="font-weight: bold;">Reviewer Track</span>
+              </div>
+              <div style="display: inline-flex; flex-direction: row; align-items: center;">
+                <img src="logo3.png" style="height: 40px;" />
+                <span style="font-weight: bold;">Research Synergy Institute</span>
+              </div>
+            </div>
+          </div>
+        `,
       });
 
       //register default navbar
@@ -479,32 +504,33 @@ export default function PageEditor({
       });
 
       // register count up card component
-      editor.BlockManager.add("countup-card", {
+      editor.BlockManager.add("countup", {
         label: "Count Up",
         category: "Basic",
         content: `
-            <div data-gjs-type="count-up" class="p-6 bg-gray-100 rounded-xl shadow-md flex flex-col gap-2 text-center w-48">
-              <div class="flex items-center justify-between text-gray-600 text-sm">
-                <div data-gjs-editable="true">Participants</div>
-                <div data-gjs-editable="true">
-                  <svg class="h-6 w-6 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M5.121 17.804A11.954 11.954 0 0112 15c2.21 0 4.26.635 5.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                </div>
-              </div>
-              <div class="text-2xl font-bold">
-                <span class="count" data-target="35000" data-gjs-editable="true">0</span>+
-              </div>
-            </div>
-        `,
+    <span class="count" data-target="35000">0</span>+
+  `,
       });
 
       editor.DomComponents.addType("count-up", {
         model: {
           defaults: {
+            tagName: "div", // Or whatever wrapper tag you prefer for your component
+            components: '<span class="count" data-target="35000">0</span>+', // Moved content here
+            traits: [
+              {
+                type: "number", // Type of the input field in the settings panel
+                label: "Target Value", // Label for the setting
+                name: "data-target", // The attribute to be edited
+                min: 0, // Optional: minimum value
+                placeholder: "e.g., 50000", // Optional: placeholder text
+              },
+            ],
             script: function () {
               const el = this.querySelector(".count");
+              // Ensure the element exists before trying to access its attributes
+              if (!el) return;
+
               const rawTarget =
                 el.getAttribute("data-target") ||
                 el.innerText.replace(/\D/g, "");
@@ -523,8 +549,25 @@ export default function PageEditor({
                 }
               }
 
+              // Reset the animation when data-target changes
+              this.on("change:data-target", () => {
+                current = 0; // Reset current to restart animation
+                requestAnimationFrame(update);
+              });
+
+              // Initial run
               requestAnimationFrame(update);
             },
+          },
+        },
+        view: {
+          init() {
+            // This ensures the script runs when the component is rendered in the editor
+            this.listenTo(
+              this.model,
+              "change:data-target",
+              (this.model as any).script,
+            );
           },
         },
       });

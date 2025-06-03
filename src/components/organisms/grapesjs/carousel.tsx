@@ -136,13 +136,13 @@ export const Carousel: React.FC<Props> = ({
       id="unique"
       onMouseEnter={() => setHovering(true)}
       onMouseLeave={() => setHovering(false)}
-      className="group relative w-full max-w-2xl mx-auto overflow-hidden shadow-lg"
+      className="group relative w-full max-w-2xl h-max mx-auto overflow-hidden shadow-lg"
       style={{ minHeight: "250px", perspective: "1000px" }}
     >
       <div
         ref={slotRef}
         data-carousel-slot
-        className="relative w-full h-full flex items-center justify-center p-3"
+        className="relative w-full h-max flex items-center justify-center p-3"
       >
         {children}
       </div>

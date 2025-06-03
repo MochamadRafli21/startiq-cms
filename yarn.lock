@@ -1097,6 +1097,11 @@
     postcss "^8.4.41"
     tailwindcss "4.1.7"
 
+"@tarekraafat/autocomplete.js@^10.2.9":
+  version "10.2.9"
+  resolved "https://registry.yarnpkg.com/@tarekraafat/autocomplete.js/-/autocomplete.js-10.2.9.tgz#316b2b1f8171f21737fdcbadda74c2cfae00f840"
+  integrity sha512-A7OP3iJDTWeO85M3Vxu391acu9SmDguormHpMZ13khuyM180dKl9O1gAXSDA322XwkYuUU1Ad7WchW1TQNNuDw==
+
 "@tsconfig/node10@^1.0.7":
   version "1.0.11"
   resolved "https://registry.yarnpkg.com/@tsconfig/node10/-/node10-1.0.11.tgz#6ee46400685f130e278128c7b38b7e031ff5b2f2"
@@ -2768,6 +2773,14 @@ grapesjs-tabs@^1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/grapesjs-tabs/-/grapesjs-tabs-1.0.6.tgz#d45377935c04e043325a65ddc695b0cd8fd0b9b6"
   integrity sha512-Xmdte7jMvmGDHIL29t8jlGWL/oSmXOEgswmlKSaYKc7z4ZJEfF0Vr+YTfF6MZq/FFYjzk+0kOad6dnS3TDgZ5Q==
+
+grapesjs-tailwindcss-plugin@^0.1.9:
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/grapesjs-tailwindcss-plugin/-/grapesjs-tailwindcss-plugin-0.1.9.tgz#0ddd681c7f57fb816501287aaec1ee5bacdac9d2"
+  integrity sha512-duE9Cmhn3CS7T17gyoeZlE5vFqBjv6QNYpJ9PW30K/Qrj0jmWady9Gbq6BZnBiyiN5pHHxnFrpXFAbiZfJQKzw==
+  dependencies:
+    "@tarekraafat/autocomplete.js" "^10.2.9"
+    tailwindcss "^4.1.7"
 
 grapesjs-tooltip@^0.1.8:
   version "0.1.8"
