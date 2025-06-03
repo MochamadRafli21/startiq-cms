@@ -13,6 +13,7 @@ export async function POST(req: NextRequest) {
   }
 
   const buffer = Buffer.from(await file.arrayBuffer());
+  // The path to your public folder for uploads
   const uploadDir = path.join(process.cwd(), "public", "uploads");
 
   await mkdir(uploadDir, { recursive: true });
@@ -39,6 +40,23 @@ export async function POST(req: NextRequest) {
     );
   }
 
+  // IMPORTANT: Construct the full URL for GrapesJS
+  // In a Next.js public folder, files are served directly from the root.
+  // So, if your app is at `http://localhost:3000`,
+  // and the file is in `public/uploads/myimage.webp`,
+  // the URL will be `http://localhost:3000/uploads/myimage.webp`.
   const fileUrl = `/uploads/${webpFilename}`;
-  return NextResponse.json({ url: fileUrl });
+
+  // *** MODIFICATION HERE ***
+  // Return in the format GrapesJS expects for asset uploads
+  return NextResponse.json({
+    data: [
+      {
+        src: fileUrl, // The URL must be accessible from the browser
+        name: webpFilename, // Optional: display name in Asset Manager
+        type: "image", // Optional: explicit type
+        // You can add other properties like width, height if you extract them
+      },
+    ],
+  });
 }

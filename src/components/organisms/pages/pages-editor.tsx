@@ -53,7 +53,7 @@ export default function PageEditor({
         storageManager: false,
         assetManager: !isPreview
           ? {
-              upload: "/api/upload",
+              upload: "/api/uploads",
               uploadName: "file",
               autoAdd: true,
               multiUpload: false,
@@ -89,16 +89,12 @@ export default function PageEditor({
           },
         },
       });
-      console.log(content);
       if (content) {
         editor.loadProjectData(content);
-        console.log(isPreview);
         if (isPreview) {
           // ONLY for preview mode
           const html = editor.getHtml();
           const css = editor.getCss();
-          console.log(html);
-          console.log(css);
           setRenderedHtml(html);
           setRenderedCss(css || "");
           editor.destroy(); // Destroy the editor instance after extracting
@@ -144,6 +140,26 @@ export default function PageEditor({
       });
 
       editorRef.current = editor;
+      // load images data
+      editor.on("load", () => {
+        fetch("/api/assets") // Call your new API route
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+          })
+          .then((assets) => {
+            if (assets && assets.length > 0) {
+              // Add the fetched assets to the GrapesJS Asset Manager
+              editor.AssetManager.add(assets);
+            }
+          })
+          .catch((error) =>
+            console.error("Error fetching existing assets:", error),
+          );
+      });
+
       // --- 1. Define Custom Trait: AssetManagerOpenerTrait ---
       editor.TraitManager.addType("selected-images-viewer", {
         createInput(this: any) {
@@ -335,7 +351,7 @@ export default function PageEditor({
     <header data-gjs-type="custom-navbar" class="w-full bg-white shadow-md">
       <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
         <div class="flex items-center gap-4">
-          <img src="https://via.placeholder.com/40x40?text=Logo" alt="Logo" class="h-10 w-10"/>
+          <img src="/uploads/logo-rsf-transparant.webp" alt="Logo" class="h-10 w-10"/>
           <nav class="hidden md:flex gap-6 text-sm font-medium">
             <a href="#" class="relative text-blue-900 after:absolute after:left-0 after:-bottom-1 after:h-1 after:w-full after:bg-yellow-400">Home</a>
             <a href="#">About</a>
