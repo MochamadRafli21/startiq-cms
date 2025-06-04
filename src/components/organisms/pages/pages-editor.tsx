@@ -1109,6 +1109,13 @@ export default function PageEditor({
           .join(" ")
       : "";
 
+    const classes = component?.classes
+      ?.map((cls: string | { name: string }) =>
+        typeof cls === "string" ? cls : cls.name,
+      )
+      .filter(Boolean)
+      .join(" ");
+
     if (component?.type === "video") {
       component.type = "iframe";
       attrs = `${attrs} src=${component?.src}`;
@@ -1123,7 +1130,7 @@ export default function PageEditor({
       .map(([k, v]) => `${k}:${v}`)
       .join(";");
 
-    return `<${component.type || "div"} ${attrs} style=${styleString || ""}>${inner}</${component.type || "div"}>`;
+    return `<${component.type || "div"} ${attrs} style="${styleString || ""}" class="${classes || ""}">${inner}</${component.type || "div"}>`;
   }
 
   const renderCarousel = () => {
