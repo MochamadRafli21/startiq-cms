@@ -699,6 +699,9 @@ export default function PageEditor({
             tagName: "div",
             draggable: true,
             droppable: true,
+            attributes: {
+              "data-gjs-type": "carousel-react", // Custom type attribute for GrapesJS
+            },
             traits: [
               {
                 type: "checkbox",
@@ -972,14 +975,12 @@ export default function PageEditor({
     return null;
   }
 
-  useEffect(() => {
-    // render infinite-slides
-    if (content) {
-      const sliders = document.querySelectorAll(
-        '[data-gjs-type="infinite-slides"]',
-      );
-      if (sliders) {
-        const animationCSS = `
+  const renderSlider = () => {
+    const sliders = document.querySelectorAll(
+      '[data-gjs-type="infinite-slides"]',
+    );
+    if (sliders) {
+      const animationCSS = `
           @keyframes scroll-left {
             0% { transform: translateX(0%); }
             100% { transform: translateX(-50%); }
@@ -995,29 +996,108 @@ export default function PageEditor({
             animation-name: scroll-right;
           }
         `;
-        const head = document.getElementsByTagName("head")[0];
-        if (head) {
-          const styleEl = document.createElement("style");
-          styleEl.innerHTML = animationCSS;
-          head.appendChild(styleEl);
-        }
+      const head = document.getElementsByTagName("head")[0];
+      if (head) {
+        const styleEl = document.createElement("style");
+        styleEl.innerHTML = animationCSS;
+        head.appendChild(styleEl);
       }
-      // find model inside content
-      sliders.forEach((slider) => {
-        const id = slider.id;
-        const component = findComponentById(content?.pages[0].frames, id);
-        const images = component?.images || component?.imageList;
-        const speed = component?.speed;
+    }
+    // find model inside content
+    sliders.forEach((slider) => {
+      const id = slider.id;
+      const component = findComponentById(content?.pages[0].frames, id);
+      const images = component?.images || component?.imageList;
+      const speed = component?.speed;
 
-        const root = ReactDOM.createRoot(slider);
-        root.render(
-          <InfiniteSlides
-            speed={speed || 100}
-            images={images}
-            direction="left"
-          />,
-        );
-      });
+      const root = ReactDOM.createRoot(slider);
+      root.render(
+        <InfiniteSlides
+          speed={speed || 100}
+          images={images}
+          direction="left"
+        />,
+      );
+    });
+  };
+
+  function componentToHTML(component: any): string {
+    // Handle text node directly
+    if (component.type === "textnode") {
+      return component.content || "";
+    }
+
+    let attrs = component.attributes
+      ? Object.entries(component.attributes)
+          .map(([key, value]) => `${key}="${value}"`)
+          .join(" ")
+      : "";
+
+    if (component?.type === "video") {
+      component.type = "iframe";
+      attrs = `${attrs} src=${component?.src}`;
+    }
+
+    const inner = (component.components || [])
+      .map((child: any) => componentToHTML(child))
+      .join("");
+
+    return `<${component.type} ${attrs}>${inner}</${component.type}>`;
+  }
+
+  const renderCarousel = () => {
+    const carousels = document.querySelectorAll(
+      '[data-gjs-type="carousel-react"]',
+    );
+    // find model inside content
+    carousels.forEach((carousel) => {
+      const id = carousel.id;
+      const component = findComponentById(content?.pages[0].frames, id);
+
+      const autoplay = component?.autoplay === "true";
+      const showIndicators = component?.showIndicators === "true";
+      const showNavigation = component?.showNavigation;
+      const zoomOnHover = component?.zoomOnHover === "true";
+      const pauseOnHover = component?.pauseOnHover === "true";
+      const animationType = component?.animationType;
+      const interval = parseInt(component?.interval, 10) || 3000;
+
+      // Map each GrapesJS component (slide) to a React element
+      const childrenReactElements =
+        component?.components?.map((comp: any, index: any) => {
+          const componentHtml = componentToHTML(comp); // Get the HTML of the GrapesJS component
+          // Wrap the HTML in a React element using dangerouslySetInnerHTML
+          return React.createElement("div", {
+            key: comp.cid || `gjs-carousel-slide-${index}`, // Unique key for React list rendering
+            // You can pass GrapesJS classes if needed
+            dangerouslySetInnerHTML: { __html: componentHtml },
+          });
+        }) || [];
+
+      const root = ReactDOM.createRoot(carousel);
+      root.render(
+        <Carousel
+          autoplay={autoplay}
+          interval={interval}
+          animation={animationType}
+          showIndicators={showIndicators}
+          navButtons={showNavigation}
+          pauseOnHover={pauseOnHover}
+          zoomOnHover={zoomOnHover}
+        >
+          {childrenReactElements}
+        </Carousel>,
+      );
+    });
+  };
+
+  useEffect(() => {
+    if (content) {
+      // render infinite-slides
+      renderSlider();
+
+      // render carousel
+      renderCarousel();
     }
   }, [renderedHtml]);
 
