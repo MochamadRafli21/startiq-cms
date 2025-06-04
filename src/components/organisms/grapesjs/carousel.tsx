@@ -44,6 +44,7 @@ export const Carousel: React.FC<Props> = ({
       slide.style.width = "100%";
       slide.style.height = "100%";
       slide.style.pointerEvents = i === index ? "auto" : "none";
+      slide.style.objectFit = "contain";
 
       if (animation === "slide") {
         slide.style.transition = "transform 0.5s ease-in-out";
@@ -54,8 +55,6 @@ export const Carousel: React.FC<Props> = ({
         slide.style.transform = `rotateY(${(i - index) * 180}deg)`;
         slide.style.zIndex = i === index ? "1" : "0";
       } else if (animation === "coverflow") {
-        const perspective = 1000;
-
         slides.forEach((slide, i) => {
           slide.style.transition = "transform 0.5s ease, opacity 0.5s ease";
           slide.style.transformOrigin = "center center";
@@ -83,7 +82,6 @@ export const Carousel: React.FC<Props> = ({
             const translateX = offset * 40;
             const scale = 0.8;
             slide.style.transform = `
-        perspective(${perspective}px)
         translateX(${translateX}%)
         rotateY(${angle}deg)
         scale(${scale})
@@ -136,8 +134,8 @@ export const Carousel: React.FC<Props> = ({
       id="unique"
       onMouseEnter={() => setHovering(true)}
       onMouseLeave={() => setHovering(false)}
-      className="group relative w-full max-w-2xl h-max mx-auto overflow-hidden shadow-lg"
-      style={{ minHeight: "250px", perspective: "1000px" }}
+      className="group max-w-screen relative aspect-video overflow-hidden w-full min-h-max mx-auto p-3"
+      style={{ minHeight: "250px" }}
     >
       <div
         ref={slotRef}

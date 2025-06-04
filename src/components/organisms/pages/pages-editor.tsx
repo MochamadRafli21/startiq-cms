@@ -1026,7 +1026,9 @@ export default function PageEditor({
     if (component.type === "textnode") {
       return component.content || "";
     }
-
+    const style = content?.styles?.find((style: any) =>
+      style.selectors.includes(`#${component?.attributes?.id}`),
+    );
     let attrs = component.attributes
       ? Object.entries(component.attributes)
           .map(([key, value]) => `${key}="${value}"`)
@@ -1042,7 +1044,12 @@ export default function PageEditor({
       .map((child: any) => componentToHTML(child))
       .join("");
 
-    return `<${component.type} ${attrs}>${inner}</${component.type}>`;
+    const styleObj = style?.style || {};
+    const styleString = Object.entries(styleObj)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";");
+
+    return `<${component.type || "div"} ${attrs} style=${styleString || ""}>${inner}</${component.type || "div"}>`;
   }
 
   const renderCarousel = () => {
@@ -1056,7 +1063,7 @@ export default function PageEditor({
 
       const autoplay = component?.autoplay === "true";
       const showIndicators = component?.showIndicators === "true";
-      const showNavigation = component?.showNavigation;
+      const showNavigation = component?.showNavigation || "always";
       const zoomOnHover = component?.zoomOnHover === "true";
       const pauseOnHover = component?.pauseOnHover === "true";
       const animationType = component?.animationType;
