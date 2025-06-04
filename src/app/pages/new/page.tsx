@@ -68,7 +68,6 @@ export default function NewPage() {
 
   const handleSave = async () => {
     setSaving(true);
-    console.log(pageData.slug);
     const isValid = await onValidateSlug();
     if (!isValid) {
       setSaving(false);
@@ -112,7 +111,6 @@ export default function NewPage() {
   };
 
   const handleInfoChange = (info: Page) => {
-    console.log(info);
     setPageData(info);
   };
 

@@ -493,74 +493,148 @@ export default function PageEditor({
       });
 
       // register count up card component
-      editor.BlockManager.add("countup", {
-        label: "Count Up",
-        category: "Basic",
-        content: `
-    <span class="count" data-target="35000">0</span>+
-  `,
-      });
 
-      editor.DomComponents.addType("count-up", {
+      editor.Components.addType("count-up", {
         model: {
           defaults: {
-            tagName: "div", // Or whatever wrapper tag you prefer for your component
-            components: '<span class="count" data-target="35000">0</span>+', // Moved content here
+            tagName: "div",
+            droppable: false,
+            endValue: 1000,
+            duration: 2000,
+            attributes: {
+              class: "count-up",
+              "data-gjs-type": "count-up", // Custom type attribute for GrapesJS
+            },
             traits: [
               {
-                type: "number", // Type of the input field in the settings panel
-                label: "Target Value", // Label for the setting
-                name: "data-target", // The attribute to be edited
-                min: 0, // Optional: minimum value
-                placeholder: "e.g., 50000", // Optional: placeholder text
+                type: "number",
+                label: "End Value",
+                name: "endValue",
+                placeholder: "e.g. 1000",
+                changeProp: true,
+              },
+              {
+                type: "number",
+                label: "Duration (ms)",
+                name: "duration",
+                placeholder: "e.g. 2000",
+                changeProp: true,
               },
             ],
             script: function () {
-              const el = this.querySelector(".count");
-              // Ensure the element exists before trying to access its attributes
-              if (!el) return;
+              const el: any = this;
+              const endValue = parseInt(el?.getAttribute("endvalue") || "100");
+              const duration = parseInt(el?.getAttribute("duration") || "2000");
 
-              const rawTarget =
-                el.getAttribute("data-target") ||
-                el.innerText.replace(/\D/g, "");
-              const target = parseInt(rawTarget, 10) || 0;
-              let current = 0;
-              const duration = 1500;
-              const increment = Math.ceil(target / (duration / 16));
+              const animateCount = () => {
+                const startTime = performance.now();
 
-              function update() {
-                current += increment;
-                if (current >= target) {
-                  el.innerText = target.toLocaleString();
-                } else {
-                  el.innerText = current.toLocaleString();
-                  requestAnimationFrame(update);
-                }
-              }
+                const step = (timestamp: number) => {
+                  const progress = Math.min(
+                    (timestamp - startTime) / duration,
+                    1,
+                  );
+                  const current = Math.floor(progress * endValue);
+                  el.innerHTML = current.toLocaleString();
+                  if (progress < 1) requestAnimationFrame(step);
+                };
 
-              // Reset the animation when data-target changes
-              this.on("change:data-target", () => {
-                current = 0; // Reset current to restart animation
-                requestAnimationFrame(update);
-              });
+                requestAnimationFrame(step);
+              };
 
-              // Initial run
-              requestAnimationFrame(update);
+              // Lazy animation on enter view
+              const observer = new IntersectionObserver(
+                (entries) => {
+                  if (entries[0].isIntersecting) {
+                    animateCount();
+                    observer.disconnect();
+                  }
+                },
+                { threshold: 0.6 },
+              );
+              observer.observe(el);
             },
           },
-        },
-        view: {
+
           init() {
-            // This ensures the script runs when the component is rendered in the editor
+            this.on("change:endValue change:duration", () => {
+              const el: any = this.view?.el;
+              if (el && typeof el.__grapesjs_script === "function") {
+                el.__grapesjs_script.call(el);
+              }
+            });
+          },
+        },
+
+        view: {
+          renderCountUp() {
+            const { el, model } = this;
+            const endValue = parseInt(model?.get("endValue") || "100");
+            const duration = parseInt(model?.get("duration") || "2000");
+
+            const animateCount = () => {
+              const startTime = performance.now();
+
+              const step = (timestamp: number) => {
+                const progress = Math.min(
+                  (timestamp - startTime) / duration,
+                  1,
+                );
+                const current = Math.floor(progress * endValue);
+                el.innerHTML = current.toLocaleString();
+                if (progress < 1) requestAnimationFrame(step);
+              };
+
+              requestAnimationFrame(step);
+            };
+
+            // Lazy animation on enter view
+            const observer = new IntersectionObserver(
+              (entries) => {
+                if (entries[0].isIntersecting) {
+                  animateCount();
+                  observer.disconnect();
+                }
+              },
+              { threshold: 0.6 },
+            );
+            observer.observe(el);
+          },
+          initialize() {
+            defaultView.prototype.initialize.apply(this, arguments);
+
+            // Listen to changes in specific traits (autoplay, interval)
             this.listenTo(
               this.model,
-              "change:data-target",
-              (this.model as any).script,
+              "change:duration change:endValue",
+              this.renderCountUp,
             );
+          },
+
+          onRender() {
+            const { el, model } = this;
+            const endValue = model.get("endValue") || 100;
+            const duration = model.get("duration") || 2000;
+
+            el.setAttribute("endvalue", endValue);
+            el.setAttribute("duration", duration);
+
+            el.innerHTML = `0`;
           },
         },
       });
 
+      editor.Blocks.add("count-up", {
+        label: "Count Up",
+        category: "Basic",
+        content: {
+          type: "count-up",
+          attributes: {
+            endValue: 1000,
+            duration: 2000,
+          },
+        },
+      });
       //register infinite image slides
       editor.DomComponents.addType("infinite-slides", {
         model: {
@@ -1098,6 +1172,42 @@ export default function PageEditor({
     });
   };
 
+  const renderCountUp = () => {
+    const counts = document.querySelectorAll('[data-gjs-type="count-up"]');
+    // find model inside content
+    counts.forEach((count) => {
+      const id = count.id;
+      const component = findComponentById(content?.pages[0].frames, id);
+      const duration =
+        component?.duration || component?.attributes?.duration || 2000;
+      const endValue =
+        component?.endValue || component?.attributes?.duration || 2000;
+      const animateCount = () => {
+        const startTime = performance.now();
+
+        const step = (timestamp: number) => {
+          const progress = Math.min((timestamp - startTime) / duration, 1);
+          const current = Math.floor(progress * endValue);
+          count.innerHTML = current.toLocaleString();
+          if (progress < 1) requestAnimationFrame(step);
+        };
+
+        requestAnimationFrame(step);
+      };
+
+      // Lazy animation on enter view
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting) {
+            animateCount();
+            observer.disconnect();
+          }
+        },
+        { threshold: 0.6 },
+      );
+      observer.observe(count);
+    });
+  };
   useEffect(() => {
     if (content) {
       // render infinite-slides
@@ -1105,6 +1215,9 @@ export default function PageEditor({
 
       // render carousel
       renderCarousel();
+
+      // render count up
+      renderCountUp();
     }
   }, [renderedHtml]);
 
