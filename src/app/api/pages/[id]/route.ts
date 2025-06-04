@@ -38,6 +38,9 @@ export async function PUT(
       tags: body.tags,
       isPublic: body.isPublic,
       content: body.content,
+      metaImage: body.metaImage,
+      metaTitle: body.metaTitle,
+      metaDescription: body.metaDescription,
     })
     .where(eq(pages.id, Number(id)));
 

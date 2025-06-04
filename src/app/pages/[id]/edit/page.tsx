@@ -1,8 +1,10 @@
 "use client";
 
 import PageInfo from "@/components/organisms/pages/pages-info";
+import PageMeta from "@/components/organisms/pages/pages-meta";
 import { LoadingPage } from "@/components/molecule/loading-page";
 import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
 import {
   Save,
@@ -165,8 +167,19 @@ export default function EditPage() {
           </Button>
         </div>
         <div className="flex flex-col" hidden={minimizeInfo}>
-          <PageInfo page={pageData} onChange={handleInfoChange} />
-          <div className="w-full">
+          <Tabs defaultValue="general" className="w-full">
+            <TabsList className="w-full">
+              <TabsTrigger value="general">General</TabsTrigger>
+              <TabsTrigger value="meta">Meta</TabsTrigger>
+            </TabsList>
+            <TabsContent value="general">
+              <PageInfo page={pageData} onChange={handleInfoChange} />
+            </TabsContent>
+            <TabsContent value="meta">
+              <PageMeta page={pageData} onChange={handleInfoChange} />
+            </TabsContent>
+          </Tabs>
+          <div className="w-full mt-4">
             <Button
               variant="ghost"
               className="w-full py-3 px-2 flex flex-row items-center justify-center"

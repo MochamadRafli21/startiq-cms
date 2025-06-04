@@ -12,7 +12,9 @@ const PageEditor = dynamic(
 );
 import Link from "next/link";
 import PageInfo from "@/components/organisms/pages/pages-info";
+import PageMeta from "@/components/organisms/pages/pages-meta";
 import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Save,
   ChevronsLeft,
@@ -36,7 +38,6 @@ export default function NewPage() {
   const router = useRouter();
 
   const onValidateSlug = async () => {
-    console.log(pageData.slug);
     if (!pageData.slug) {
       setSlugError("Slug cant be empty");
 
@@ -44,7 +45,6 @@ export default function NewPage() {
     }
 
     const error = validateSlug(pageData.slug);
-    console.log(error);
     if (error) {
       setSlugError(error);
 
@@ -59,7 +59,6 @@ export default function NewPage() {
       return false;
     }
 
-    console.log(apiError);
     if (slugError) {
       setSlugError("");
     }
@@ -86,6 +85,9 @@ export default function NewPage() {
         tags: [],
         isPublic: pageData.isPublic,
         content: pageData.content,
+        metaTitle: pageData.metaTitle,
+        metaDescription: pageData.metaDescription,
+        metaImage: pageData.metaImage,
       }),
     });
 
@@ -108,6 +110,7 @@ export default function NewPage() {
   };
 
   const handleInfoChange = (info: Page) => {
+    console.log(info);
     setPageData(info);
   };
 
@@ -139,8 +142,19 @@ export default function NewPage() {
           </Button>
         </div>
         <div className="flex flex-col" hidden={minimizeInfo}>
-          <PageInfo page={pageData} onChange={handleInfoChange} />
-          <div className="w-full">
+          <Tabs defaultValue="general" className="w-full">
+            <TabsList className="w-full">
+              <TabsTrigger value="general">General</TabsTrigger>
+              <TabsTrigger value="meta">Meta</TabsTrigger>
+            </TabsList>
+            <TabsContent value="general">
+              <PageInfo page={pageData} onChange={handleInfoChange} />
+            </TabsContent>
+            <TabsContent value="meta">
+              <PageMeta page={pageData} onChange={handleInfoChange} />
+            </TabsContent>
+          </Tabs>
+          <div className="w-full mt-4">
             <Button
               variant="ghost"
               className="w-full py-3 px-2 flex flex-row items-center justify-center"

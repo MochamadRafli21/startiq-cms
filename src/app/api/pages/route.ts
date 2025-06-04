@@ -33,7 +33,6 @@ export async function GET(req: Request) {
 export async function POST(req: Request) {
   const body = await req.json();
   console.log(body);
-
   const [{ id }] = await db
     .insert(pages)
     .values({
@@ -42,6 +41,9 @@ export async function POST(req: Request) {
       tags: body.tags,
       isPublic: body.isPublic,
       content: body.content,
+      metaImage: body.metaImage,
+      metaTitle: body.metaTitle,
+      metaDescription: body.metaDescription,
     })
     .$returningId();
 
