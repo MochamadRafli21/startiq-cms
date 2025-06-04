@@ -1,27 +1,41 @@
-"use client";
+// app/pages/[slug]/page.tsx
+import { Metadata } from "next";
+import { notFound } from "next/navigation";
+import PublicPageClient from "@/components/organisms/pages/pages-public";
 
-import { LoadingPage } from "@/components/molecule/loading-page";
+async function getPageData() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/public/*`, {
+    cache: "no-store",
+  });
 
-import { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
+  if (!res.ok) return null;
+  return res.json();
+}
 
-const PageEditor = dynamic(
-  () => import("@/components/organisms/pages/pages-editor"),
-  {
-    ssr: false,
-  },
-);
+export async function generateMetadata(): Promise<Metadata> {
+  const pageData = await getPageData();
+  if (!pageData) return { title: "Page Not Found" };
 
-export default function RootPublicPage() {
-  const [pageData, setPageData] = useState<any>(null);
+  return {
+    title: pageData.metaTitle || pageData.title,
+    description: pageData.metaDescription || "",
+    openGraph: {
+      title: pageData.metaTitle || pageData.title,
+      description: pageData.metaDescription || "",
+      images: pageData.metaImage ? [{ url: pageData.metaImage }] : [],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: pageData.metaTitle || pageData.title,
+      description: pageData.metaDescription || "",
+      images: pageData.metaImage ? [pageData.metaImage] : [],
+    },
+  };
+}
 
-  useEffect(() => {
-    fetch(`/api/public/*`)
-      .then((res) => res.json())
-      .then(setPageData);
-  }, []);
+export default async function Page() {
+  const pageData = await getPageData();
+  if (!pageData) return notFound();
 
-  if (!pageData) return <LoadingPage isLoading={!pageData} />;
-
-  return <PageEditor content={pageData.content} isPreview={true} />;
+  return <PublicPageClient pageData={pageData} />;
 }
