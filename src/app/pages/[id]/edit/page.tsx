@@ -109,9 +109,10 @@ export default function EditPage() {
   if (!pageData) return <LoadingPage isLoading={!pageData} />;
 
   const handleContentChange = (content: Record<string, any>) => {
-    setPageData({
-      ...pageData,
-      content,
+    setPageData((prev: Page) => {
+      const updated = { ...prev, content };
+      handleInfoChange(updated);
+      return updated;
     });
   };
 

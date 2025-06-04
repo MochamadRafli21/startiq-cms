@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
@@ -13,79 +13,54 @@ interface PageEditorProps {
 }
 
 export default function PageInfo({ page, onChange }: PageEditorProps) {
-  const [title, setTitle] = useState(page?.title);
-  const [slug, setSlug] = useState(page?.slug);
+  const [title, setTitle] = useState(page?.title || "");
+  const [slug, setSlug] = useState(page?.slug || "");
   const [slugError, setSlugError] = useState("");
-  const [isPublic, setIsPublic] = useState(page?.isPublic);
+  const [isPublic, setIsPublic] = useState(page?.isPublic || false);
 
-  const onTitleChange = (data: string) => {
-    setTitle(data);
-    if (onChange) {
-      onChange({
-        ...page,
-        title: data,
-      });
-    }
-
-    const slugFromTitle = slugify(data);
-    setSlug(slugFromTitle);
-    if (onChange) {
-      onChange({
-        ...page,
-        title: data,
-        slug: slugFromTitle,
-      });
-    }
-    onValidateSlug();
-  };
-
-  const onSlugChange = (data: string) => {
-    setSlug(data);
-    if (onChange) {
-      onChange({
-        ...page,
-        title,
-        slug: data,
-      });
-    }
-  };
-
-  const onIsPublicChange = (data: boolean) => {
-    setIsPublic(data);
+  useEffect(() => {
     if (onChange) {
       onChange({
         ...page,
         title,
         slug,
-        isPublic: data,
+        isPublic,
       });
     }
+  }, [title, slug, isPublic]);
+
+  const handleTitleChange = (value: string) => {
+    setTitle(value);
+    const generatedSlug = slugify(value);
+    setSlug(generatedSlug);
+    setSlugError(""); // reset error on edit
+  };
+
+  const handleSlugChange = (value: string) => {
+    setSlug(value);
+    setSlugError("");
+  };
+
+  const handlePublicToggle = (value: boolean) => {
+    setIsPublic(value);
   };
 
   const onValidateSlug = async () => {
     if (!slug) {
-      setSlugError("Slug cant be empty");
-
+      setSlugError("Slug can't be empty");
       return;
     }
 
     const error = validateSlug(slug);
-
     if (error) {
       setSlugError(error);
-
       return;
     }
 
     const { valid, error: apiError } = await validateSlugViaApi(slug);
-
     if (!valid || apiError) {
-      setSlugError(apiError || "Slug is already used by other page");
-
-      return;
-    }
-
-    if (slugError) {
+      setSlugError(apiError || "Slug is already used by another page");
+    } else {
       setSlugError("");
     }
   };
@@ -100,10 +75,11 @@ export default function PageInfo({ page, onChange }: PageEditorProps) {
           required
           id="title"
           value={title}
-          onChange={(e) => onTitleChange(e.target.value)}
-          placeholder="Title"
+          onChange={(e) => handleTitleChange(e.target.value)}
+          placeholder="Page Title"
         />
       </div>
+
       <div>
         <Label htmlFor="slug" className="text-xs pb-2">
           Slug
@@ -111,22 +87,21 @@ export default function PageInfo({ page, onChange }: PageEditorProps) {
         <Input
           required
           id="slug"
+          value={slug}
           className={slugError ? "border-red-600" : ""}
           onBlur={onValidateSlug}
-          value={slug}
-          onChange={(e) => onSlugChange(e.target.value)}
-          placeholder="/landing-page"
+          onChange={(e) => handleSlugChange(e.target.value)}
+          placeholder="page-slug"
         />
-        <span
-          hidden={slugError.length > 0}
-          className="text-xs text-wrap max-w-48 text-gray-400"
-        >
-          Your page will be access from : /{slug}
-        </span>
-        <span hidden={slugError.length === 0} className="text-xs text-red-600">
-          {slugError}
-        </span>
+        {slugError ? (
+          <span className="text-xs text-red-600">{slugError}</span>
+        ) : (
+          <span className="text-xs text-gray-400">
+            Your page will be accessible at: /{slug}
+          </span>
+        )}
       </div>
+
       <div>
         <Label htmlFor="isPublic" className="text-xs pb-2">
           Status
@@ -135,7 +110,7 @@ export default function PageInfo({ page, onChange }: PageEditorProps) {
           <Switch
             id="isPublic"
             checked={isPublic}
-            onCheckedChange={onIsPublicChange}
+            onCheckedChange={handlePublicToggle}
           />
           <span>Public</span>
         </div>
