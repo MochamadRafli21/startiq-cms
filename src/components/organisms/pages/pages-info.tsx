@@ -44,6 +44,7 @@ export default function PageInfo({ page, onChange }: PageEditorProps) {
     if (onChange) {
       onChange({
         ...page,
+        title,
         slug: data,
       });
     }
@@ -54,6 +55,8 @@ export default function PageInfo({ page, onChange }: PageEditorProps) {
     if (onChange) {
       onChange({
         ...page,
+        title,
+        slug,
         isPublic: data,
       });
     }
