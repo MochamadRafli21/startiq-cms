@@ -648,6 +648,7 @@ export default function PageEditor({
               "data-gjs-type": "infinite-slides", // Custom type attribute for GrapesJS
             },
             speed: 30, // Default speed
+            direction: "left", // Default speed
             images: [
               "https://placehold.co/150x80/FF5733/FFFFFF?text=Default+A",
               "https://placehold.co/150x80/33FF57/FFFFFF?text=Default+B",
@@ -674,7 +675,16 @@ export default function PageEditor({
                 command: "open-assets-multiple", // Custom command to open asset manager
                 changeProp: true, // IMPORTANT: This trait needs to update when 'images' property changes
               },
-
+              {
+                type: "select",
+                label: "Direction",
+                name: "direction",
+                options: [
+                  { id: "left", label: "Left" },
+                  { id: "right", label: "Right" },
+                ],
+                changeProp: true,
+              },
               {
                 type: "number",
                 label: "Speed",
@@ -700,6 +710,7 @@ export default function PageEditor({
             const model = this.model;
 
             const imagesArray = model.get("images");
+            const direction = model.get("direction") === "right";
             const speed = parseInt(model.get("speed"), 10) || 100;
             // Initialize or update the React root
             if (!this.root) {
@@ -711,7 +722,7 @@ export default function PageEditor({
               <InfiniteSlides
                 speed={speed}
                 images={imagesArray}
-                direction="left"
+                direction={direction ? "right" : "left"}
               />,
             );
           },
@@ -1082,6 +1093,7 @@ export default function PageEditor({
       const id = slider.id;
       const component = findComponentById(content?.pages[0].frames, id);
       const images = component?.images || component?.imageList;
+      const direction = component?.direction === "right";
       const speed = component?.speed;
 
       const root = ReactDOM.createRoot(slider);
@@ -1089,7 +1101,7 @@ export default function PageEditor({
         <InfiniteSlides
           speed={speed || 100}
           images={images}
-          direction="left"
+          direction={direction ? "right" : "left"}
         />,
       );
     });
