@@ -4,7 +4,14 @@ import PageInfo from "@/components/organisms/pages/pages-info";
 import { LoadingPage } from "@/components/molecule/loading-page";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import { Save, ChevronsLeft, PanelsTopLeft, Trash } from "lucide-react";
+import {
+  Save,
+  ChevronsLeft,
+  PanelsTopLeft,
+  Trash,
+  SquareChevronDown,
+  SquareChevronUp,
+} from "lucide-react";
 import { validateSlugViaApi, validateSlug } from "@/utils/pages/slugs";
 import { useRouter } from "next/navigation";
 
@@ -23,6 +30,7 @@ const PageEditor = dynamic(
 
 export default function EditPage() {
   const { id } = useParams();
+  const [minimizeInfo, setMinimizeInfo] = useState<any>(null);
   const [pageData, setPageData] = useState<any>(null);
   const [slugError, setSlugError] = useState("");
   const [saving, setSaving] = useState(false);
@@ -131,18 +139,42 @@ export default function EditPage() {
 
   return (
     <div className="flex w-full">
-      <div className="flex flex-col">
-        <div className="flex items-center gap-2 font-semibold p-4 border-b border-gray-200">
-          <Link href="/admin">
-            <Button size="icon">
-              <ChevronsLeft />
-            </Button>
-          </Link>
-          <PanelsTopLeft />
-          <h6>Page Editor</h6>
+      <div
+        className={
+          minimizeInfo ? "absolute flex flex-col" : "relative flex flex-col"
+        }
+      >
+        <div className="flex flex-col border-b border-gray-200">
+          <div className="flex items-center gap-2 font-semibold p-4">
+            <Link href="/admin">
+              <Button size="sm">
+                <ChevronsLeft size="sm" />
+              </Button>
+            </Link>
+            <PanelsTopLeft />
+            <h6>Page Editor</h6>
+          </div>
+
+          <Button
+            hidden={!minimizeInfo}
+            size="sm"
+            className="absolute bottom-[-24] rounded-none z-[1000] w-full py-1 px-1 flex flex-row items-center justify-center"
+            onClick={() => setMinimizeInfo(false)}
+          >
+            <SquareChevronDown /> Expand Info
+          </Button>
         </div>
-        <div className="flex gap-2">
+        <div className="flex flex-col" hidden={minimizeInfo}>
           <PageInfo page={pageData} onChange={handleInfoChange} />
+          <div className="w-full">
+            <Button
+              variant="ghost"
+              className="w-full py-3 px-2 flex flex-row items-center justify-center"
+              onClick={() => setMinimizeInfo(true)}
+            >
+              <SquareChevronUp /> Minimize Info
+            </Button>
+          </div>
         </div>
       </div>
       <div className="flex flex-col w-full">
@@ -160,10 +192,18 @@ export default function EditPage() {
             Save
           </Button>
         </div>
-        <PageEditor
-          content={pageData.content}
-          onContentChange={handleContentChange}
-        />
+        <div
+          className={
+            minimizeInfo
+              ? "w-full min-h-screen hover:absolute hover:z-[1001] hover:bottom-[-48]"
+              : "w-full min-h-screen"
+          }
+        >
+          <PageEditor
+            content={pageData.content}
+            onContentChange={handleContentChange}
+          />
+        </div>
       </div>
       {saving && <LoadingPage isLoading={saving} />}
     </div>
