@@ -91,18 +91,6 @@ export default function PageEditor({
           },
         },
       });
-      if (content) {
-        editor.loadProjectData(content);
-        if (isPreview) {
-          // ONLY for preview mode
-          const html = editor.getHtml();
-          const css = editor.getCss();
-          setRenderedHtml(html);
-          setRenderedCss(css || "");
-          editor.destroy(); // Destroy the editor instance after extracting
-          editorRef.current = null; // Clear the ref
-        }
-      }
 
       const domComponents = editor.DomComponents;
       if (!domComponents) return;
@@ -336,7 +324,8 @@ export default function PageEditor({
               }
 
               if (complete && selectedAssets.length > 0) {
-                selected.set("images", selectedAssets);
+                const prev = selected.get("images");
+                selected.set("images", [...selectedAssets, ...prev]);
               }
             },
           });
@@ -643,6 +632,7 @@ export default function PageEditor({
               this.root = ReactDOM.createRoot(el);
             }
             model.set("imageList", imagesArray);
+            model.set("speed", speed);
             this.root.render(
               <InfiniteSlides
                 speed={speed}
@@ -679,7 +669,6 @@ export default function PageEditor({
               "change",
               this.renderReactSlider,
             );
-
             // Initial render of the React component
             this.renderReactSlider();
           },
@@ -940,6 +929,19 @@ export default function PageEditor({
         }
       };
 
+      if (content) {
+        editor.loadProjectData(content);
+        if (isPreview) {
+          // ONLY for preview mode
+          const html = editor.getHtml();
+          const css = editor.getCss();
+          setRenderedHtml(html);
+          setRenderedCss(css || "");
+          editor.destroy(); // Destroy the editor instance after extracting
+          editorRef.current = null; // Clear the ref
+        }
+      }
+
       editor.on("update", handleUpdate);
 
       return () => {
@@ -950,12 +952,81 @@ export default function PageEditor({
 
     loadPlugins();
   }, [content]);
+
+  function findComponentById(components: any, targetId: string) {
+    for (const comp of components) {
+      // Some components may nest under `component.components`
+      const current = comp.component || comp;
+
+      // Check current component's attributes
+      if (current.attributes?.id === targetId) {
+        return current;
+      }
+
+      // Recurse into children
+      const children = current.components || [];
+      const result: any = findComponentById(children, targetId);
+      if (result) return result;
+    }
+
+    return null;
+  }
+
+  useEffect(() => {
+    // render infinite-slides
+    if (content) {
+      const sliders = document.querySelectorAll(
+        '[data-gjs-type="infinite-slides"]',
+      );
+      if (sliders) {
+        const animationCSS = `
+          @keyframes scroll-left {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+          }
+          @keyframes scroll-right {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(50%); }
+          }
+          .animate-scroll-left {
+            animation-name: scroll-left;
+          }
+          .animate-scroll-right {
+            animation-name: scroll-right;
+          }
+        `;
+        const head = document.getElementsByTagName("head")[0];
+        if (head) {
+          const styleEl = document.createElement("style");
+          styleEl.innerHTML = animationCSS;
+          head.appendChild(styleEl);
+        }
+      }
+      // find model inside content
+      sliders.forEach((slider) => {
+        const id = slider.id;
+        const component = findComponentById(content?.pages[0].frames, id);
+        const images = component?.images || component?.imageList;
+        const speed = component?.speed;
+
+        const root = ReactDOM.createRoot(slider);
+        root.render(
+          <InfiniteSlides
+            speed={speed || 100}
+            images={images}
+            direction="left"
+          />,
+        );
+      });
+    }
+  }, [renderedHtml]);
+
   if (isPreview) {
     return (
       <div className="grapesjs-public-page-wrapper">
         <style>{renderedCss}</style>
-        <div dangerouslySetInnerHTML={{ __html: renderedHtml }} />
-        <div ref={containerRef} />
+        <div id="root" dangerouslySetInnerHTML={{ __html: renderedHtml }} />
+        <div hidden ref={containerRef} />
       </div>
     );
   } else {
