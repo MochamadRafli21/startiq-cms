@@ -41,10 +41,15 @@ export const Carousel: React.FC<Props> = ({
       slide.style.position = "absolute";
       slide.style.top = "0";
       slide.style.left = "0";
+      slide.style.bottom = "0";
+      slide.style.right = "0";
       slide.style.width = "100%";
       slide.style.height = "100%";
       slide.style.pointerEvents = i === index ? "auto" : "none";
       slide.style.objectFit = "contain";
+      slide.style.display = "flex";
+      slide.style.justifyContent = "center";
+      slide.style.alignItems = "center";
 
       if (animation === "slide") {
         slide.style.transition = "transform 0.5s ease-in-out";
@@ -134,18 +139,18 @@ export const Carousel: React.FC<Props> = ({
       id="unique"
       onMouseEnter={() => setHovering(true)}
       onMouseLeave={() => setHovering(false)}
-      className="group max-w-screen relative aspect-video overflow-hidden w-full min-h-max mx-auto p-3"
-      style={{ minHeight: "250px" }}
+      className="group max-w-screen relative aspect-video overflow-hidden w-full  mx-auto p-3"
+      style={{ minHeight: "100%" }}
     >
       <div
         ref={slotRef}
         data-carousel-slot
-        className="relative w-full h-max flex items-center justify-center p-3"
+        className="relative w-full h-full flex items-center justify-center p-3"
       >
         {children}
       </div>
       {showIndicators && (
-        <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-2">
+        <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex gap-2">
           {slides.map((_, i) => (
             <button
               key={i}
@@ -159,7 +164,7 @@ export const Carousel: React.FC<Props> = ({
       {navButtons !== "none" && (
         <>
           <button
-            className={`absolute top-1/2 left-2 -translate-y-1/2 ${
+            className={`absolute top-1/2 left-2 -translate-y-1/2 bg-white rounded-full p-1 ${
               navButtons === "hover"
                 ? "opacity-0 group-hover:opacity-100 transition"
                 : ""
@@ -172,7 +177,7 @@ export const Carousel: React.FC<Props> = ({
           </button>
           <button
             onClick={() => setIndex((i) => (i + 1) % slides.length)}
-            className={`absolute top-1/2 right-2 -translate-y-1/2 ${
+            className={`absolute top-1/2 right-2 -translate-y-1/2 bg-white rounded-full p-1 ${
               navButtons === "hover"
                 ? "opacity-0 group-hover:opacity-100 transition"
                 : ""

@@ -784,6 +784,8 @@ export default function PageEditor({
             tagName: "div",
             draggable: true,
             droppable: true,
+            resizeable: true,
+            stylable: true,
             attributes: {
               "data-gjs-type": "carousel-react", // Custom type attribute for GrapesJS
             },
