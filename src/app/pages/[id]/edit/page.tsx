@@ -22,6 +22,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import { ConfirmationModal } from "@/components/molecule/confirmation-modal";
 
 const PageEditor = dynamic(
   () => import("@/components/organisms/pages/pages-editor"),
@@ -193,14 +194,11 @@ export default function EditPage() {
       </div>
       <div className="flex flex-col w-full">
         <div className="flex justify-end font-semibold gap-2 p-3 border-b border-l border-gray-200">
-          <Button
-            onClick={onDelete}
-            variant={"outline"}
-            size="icon"
-            className="text-red-600"
-          >
-            <Trash />
-          </Button>
+          <ConfirmationModal onConfirm={() => onDelete()}>
+            <Button variant={"outline"} size="icon" className="text-red-600">
+              <Trash />
+            </Button>
+          </ConfirmationModal>
           <Button onClick={handleSave} size={"sm"}>
             <Save />
             Save

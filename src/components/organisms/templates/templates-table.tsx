@@ -3,6 +3,16 @@
 import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogClose,
+  DialogFooter,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import {
   Table,
   TableBody,
   TableHead,
@@ -108,25 +118,48 @@ export default function TemplatesTable() {
                       new Date(template.createdAt).toLocaleDateString()}
                   </TableCell>
                   <TableCell className="text-right">
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Ellipsis />
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end" className="w-48">
-                        <DropdownMenuItem
-                          onClick={() => handleDelete(template.id)}
-                        >
-                          <Trash color="red" />
-                          Delete
-                        </DropdownMenuItem>
-                        <DropdownMenuItem
-                          onClick={() => onOpenTemplate(template.id)}
-                        >
-                          <PenSquare color="blue" />
-                          Edit
-                        </DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
+                    <Dialog>
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <Ellipsis />
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end" className="w-48">
+                          <DialogTrigger asChild>
+                            <DropdownMenuItem>
+                              <Trash color="red" />
+                              Delete
+                            </DropdownMenuItem>
+                          </DialogTrigger>
+                          <DropdownMenuItem
+                            onClick={() => onOpenTemplate(template.id)}
+                          >
+                            <PenSquare color="blue" />
+                            Edit
+                          </DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                      <DialogContent className="sm:max-w-[425px]">
+                        <DialogHeader>
+                          <DialogTitle>
+                            Are You Sure You Want to delete this template
+                          </DialogTitle>
+                          <DialogDescription>
+                            If you do this actions there wont be moving back!
+                          </DialogDescription>
+                        </DialogHeader>
+                        <DialogFooter>
+                          <DialogClose>
+                            <Button variant="outline">Cancel</Button>
+                          </DialogClose>
+                          <Button
+                            variant="destructive"
+                            onClick={() => handleDelete(template.id)}
+                          >
+                            Confirm
+                          </Button>
+                        </DialogFooter>
+                      </DialogContent>
+                    </Dialog>
                   </TableCell>
                 </TableRow>
               ))}

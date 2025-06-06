@@ -3,6 +3,16 @@
 import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogClose,
+  DialogFooter,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import {
   Table,
   TableBody,
   TableHead,
@@ -17,13 +27,13 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { CreatePageModal } from "./create-page-modal";
+import { ConfirmationModal } from "@/components/molecule/confirmation-modal";
 import { toast } from "sonner";
 import { Ellipsis, Eye, PenSquare, Trash, Upload } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
-import Link from "next/link";
 import type { Page } from "@/types/page.type";
 import { useRouter } from "next/navigation";
 
@@ -154,36 +164,61 @@ export default function PagesTable() {
                       new Date(page.createdAt).toLocaleDateString()}
                   </TableCell>
                   <TableCell className="text-right">
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Ellipsis />
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end" className="w-48">
-                        {page.isPublic ? (
-                          <DropdownMenuItem
-                            onClick={() => openPreview(page.id)}
-                          >
-                            <Eye color="green" />
-                            Open Preview
+                    <Dialog>
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <Ellipsis />
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end" className="w-48">
+                          {page.isPublic ? (
+                            <DropdownMenuItem
+                              onClick={() => openPreview(page.id)}
+                            >
+                              <Eye color="green" />
+                              Open Preview
+                            </DropdownMenuItem>
+                          ) : (
+                            <DropdownMenuItem
+                              onClick={() => handlePublish(page.id)}
+                            >
+                              <Upload color="green" />
+                              Publish
+                            </DropdownMenuItem>
+                          )}
+                          <DialogTrigger asChild>
+                            <DropdownMenuItem>
+                              <Trash color="red" />
+                              Delete
+                            </DropdownMenuItem>
+                          </DialogTrigger>
+                          <DropdownMenuItem onClick={() => onOpenPage(page.id)}>
+                            <PenSquare color="blue" />
+                            Edit
                           </DropdownMenuItem>
-                        ) : (
-                          <DropdownMenuItem
-                            onClick={() => handlePublish(page.id)}
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                      <DialogContent className="sm:max-w-[425px]">
+                        <DialogHeader>
+                          <DialogTitle>
+                            Are You Sure You Want to delete this page
+                          </DialogTitle>
+                          <DialogDescription>
+                            If you do this actions there wont be moving back!
+                          </DialogDescription>
+                        </DialogHeader>
+                        <DialogFooter>
+                          <DialogClose>
+                            <Button variant="outline">Cancel</Button>
+                          </DialogClose>
+                          <Button
+                            variant="destructive"
+                            onClick={() => handleDelete(page.id)}
                           >
-                            <Upload color="green" />
-                            Publish
-                          </DropdownMenuItem>
-                        )}
-                        <DropdownMenuItem onClick={() => handleDelete(page.id)}>
-                          <Trash color="red" />
-                          Delete
-                        </DropdownMenuItem>
-                        <DropdownMenuItem onClick={() => onOpenPage(page.id)}>
-                          <PenSquare color="blue" />
-                          Edit
-                        </DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
+                            Confirm
+                          </Button>
+                        </DialogFooter>
+                      </DialogContent>
+                    </Dialog>
                   </TableCell>
                 </TableRow>
               ))}

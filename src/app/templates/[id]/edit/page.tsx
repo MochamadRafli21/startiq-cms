@@ -19,6 +19,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import { ConfirmationModal } from "@/components/molecule/confirmation-modal";
 
 const TemplateEditor = dynamic(
   () => import("@/components/organisms/pages/pages-editor"),
@@ -88,7 +89,7 @@ export default function EditTemplate() {
 
     if (res.ok) {
       toast.success("Success on deleting template");
-      router.push("/admin");
+      router.push("/admin/templates");
     } else {
       setRefetchTrigger((prev) => prev + 1);
       toast.error("Failed on deleting template");
@@ -137,14 +138,11 @@ export default function EditTemplate() {
       </div>
       <div className="flex flex-col w-full">
         <div className="flex justify-end font-semibold gap-2 p-3 border-b border-l border-gray-200">
-          <Button
-            onClick={onDelete}
-            variant={"outline"}
-            size="icon"
-            className="text-red-600"
-          >
-            <Trash />
-          </Button>
+          <ConfirmationModal onConfirm={onDelete}>
+            <Button variant={"outline"} size="icon" className="text-red-600">
+              <Trash />
+            </Button>
+          </ConfirmationModal>
           <Button onClick={handleSave} size={"sm"}>
             <Save />
             Save
