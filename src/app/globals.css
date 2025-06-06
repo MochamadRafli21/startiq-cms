@@ -322,3 +322,13 @@
   transform: scale(1.05) !important;
   z-index: 3;
 }
+
+.gjs-sm-field input,
+.gjs-clm-field input,
+.gjs-clm-select input,
+.gjs-sm-field select,
+.gjs-clm-field select,
+.gjs-clm-select select,
+.gjs-sm-stack #gjs-sm-add {
+  color: #000000 !important;
+}
