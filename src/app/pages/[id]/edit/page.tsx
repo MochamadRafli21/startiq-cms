@@ -83,6 +83,13 @@ export default function EditPage() {
     if (!pageData) return;
     setSaving(true);
 
+    if (!pageData.content) {
+      setSaving(false);
+      toast.error("Failed on saving page, Content cant be empty");
+
+      return;
+    }
+
     const isValid = await onValidateSlug();
     if (!isValid) {
       setSaving(false);

@@ -92,6 +92,13 @@ export default function NewPage() {
       return;
     }
 
+    if (!pageData.content) {
+      setSaving(false);
+      toast.error("Failed on saving page, Content cant be empty");
+
+      return;
+    }
+
     const res = await fetch("/api/pages", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

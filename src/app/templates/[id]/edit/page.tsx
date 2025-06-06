@@ -46,6 +46,13 @@ export default function EditTemplate() {
     if (!templateData) return;
     setSaving(true);
 
+    if (!templateData.content) {
+      setSaving(false);
+      toast.error("Failed on saving template, Content cant be empty");
+
+      return;
+    }
+
     const res = await fetch(`/api/templates/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },

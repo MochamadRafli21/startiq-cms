@@ -34,6 +34,13 @@ export default function NewTemplate() {
   const handleSave = async () => {
     setSaving(true);
 
+    if (!templateData.content) {
+      setSaving(false);
+      toast.error("Failed on saving template, Content cant be empty");
+
+      return;
+    }
+
     const res = await fetch("/api/templates", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
