@@ -2,17 +2,26 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import PublicPageClient from "@/components/organisms/pages/pages-public";
 
-async function getPageData() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/public/*`, {
-    cache: "no-store",
-  });
+async function getPageData(slug: string) {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SITE_URL}/api/public/slug?slug=${slug}`,
+    {
+      cache: "no-store",
+    },
+  );
 
   if (!res.ok) return null;
   return res.json();
 }
 
-export async function generateMetadata(): Promise<Metadata> {
-  const pageData = await getPageData();
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string[] }>;
+}): Promise<Metadata> {
+  const resolvedParams = await params;
+  const fullSlug = resolvedParams.slug?.join("/") ?? "";
+  const pageData = await getPageData(fullSlug);
   if (!pageData) return { title: "Page Not Found" };
 
   return {
@@ -32,8 +41,14 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function Page() {
-  const pageData = await getPageData();
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ slug: string[] }>;
+}) {
+  const resolvedParams = await params;
+  const fullSlug = resolvedParams.slug?.join("/") ?? "";
+  const pageData = await getPageData(fullSlug);
   if (!pageData) return notFound();
 
   return <PublicPageClient pageData={pageData} />;
