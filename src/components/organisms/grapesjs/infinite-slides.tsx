@@ -18,7 +18,7 @@ export function InfiniteSlides({
   }, [duplicatedImages.length, speed]);
 
   return (
-    <div className="relative w-full max-w-6xl overflow-hidden bg-white shadow-lg rounded-xl p-4">
+    <div className="relative w-full overflow-hidden bg-white shadow-lg rounded-xl">
       <div
         className={`
           flex items-center whitespace-nowrap 
