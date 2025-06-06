@@ -104,7 +104,7 @@ export default function EditTemplate() {
       >
         <div className="flex flex-col border-b border-gray-200">
           <div className="flex items-center gap-2 font-semibold p-4">
-            <Link href="/admin">
+            <Link href="/admin/templates">
               <Button size="sm">
                 <ChevronsLeft size="sm" />
               </Button>

@@ -29,7 +29,7 @@ export default function TemplatesTable() {
   const [search, setSearch] = useState("");
   const [templates, setTemplates] = useState<Template[]>([]);
   const [total, setTotal] = useState(0);
-  const [template, setTemplate] = useState(1);
+  const [page, setPage] = useState(1);
   const [refetchTrigger, setRefetchTrigger] = useState(0);
   const limit = 10;
   const router = useRouter();
@@ -37,14 +37,14 @@ export default function TemplatesTable() {
   useEffect(() => {
     const loadTemplates = async () => {
       const res = await fetch(
-        `/api/templates?search=${search}&template=${template}&limit=${limit}`,
+        `/api/templates?search=${search}&page=${page}&limit=${limit}`,
       );
       const data = await res.json();
       setTemplates(data.templates);
       setTotal(data.total);
     };
     loadTemplates();
-  }, [search, template, refetchTrigger]);
+  }, [search, page, refetchTrigger]);
 
   const handleDelete = async (id?: number) => {
     if (!id) return;
@@ -78,7 +78,7 @@ export default function TemplatesTable() {
                 value={search}
                 onChange={(e) => {
                   setSearch(e.target.value);
-                  setTemplate(1);
+                  setPage(1);
                 }}
                 className="w-64"
               />
@@ -135,23 +135,23 @@ export default function TemplatesTable() {
 
           <div className="flex justify-between items-center pt-4">
             <div className="text-sm text-muted-foreground">
-              Showing {(template - 1) * limit + 1}–
-              {Math.min(template * limit, total)} of {total}
+              Showing {(page - 1) * limit + 1}–{Math.min(page * limit, total)}{" "}
+              of {total}
             </div>
             <div className="space-x-2">
               <Button
                 size="sm"
                 variant="outline"
-                onClick={() => setTemplate((p) => Math.max(1, p - 1))}
-                disabled={template === 1}
+                onClick={() => setPage((p) => Math.max(1, p - 1))}
+                disabled={page === 1}
               >
                 Previous
               </Button>
               <Button
                 size="sm"
                 variant="outline"
-                onClick={() => setTemplate((p) => p + 1)}
-                disabled={template * limit >= total}
+                onClick={() => setPage((p) => p + 1)}
+                disabled={page * limit >= total}
               >
                 Next
               </Button>

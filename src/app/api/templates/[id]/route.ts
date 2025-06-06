@@ -15,7 +15,7 @@ export async function GET(
     .limit(1);
 
   if (!template) {
-    return new Response(JSON.stringify({ error: "Page not found" }), {
+    return new Response(JSON.stringify({ error: "Template not found" }), {
       status: 404,
     });
   }

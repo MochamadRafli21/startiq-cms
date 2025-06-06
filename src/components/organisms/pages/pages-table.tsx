@@ -16,6 +16,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { CreatePageModal } from "./create-page-modal";
 import { toast } from "sonner";
 import { Ellipsis, Eye, PenSquare, Trash, Upload } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
@@ -113,12 +114,12 @@ export default function PagesTable() {
                 }}
                 className="w-64"
               />
-              <Link href="/pages/new">
+              <CreatePageModal>
                 <Button>
                   <Plus />
                   New Page
                 </Button>
-              </Link>
+              </CreatePageModal>
             </div>
           </div>
 

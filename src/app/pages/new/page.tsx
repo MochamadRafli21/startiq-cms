@@ -1,7 +1,7 @@
 "use client";
 import { LoadingPage } from "@/components/molecule/loading-page";
 import { validateSlugViaApi, validateSlug } from "@/utils/pages/slugs";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "sonner";
 import dynamic from "next/dynamic";
 const PageEditor = dynamic(
@@ -24,9 +24,12 @@ import {
 } from "lucide-react";
 
 import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { Page } from "@/types/page.type";
+import { Template } from "@/types/template.type";
 
 export default function NewPage() {
+  const searchParams = useSearchParams();
   const [minimizeInfo, setMinimizeInfo] = useState<any>(null);
   const [saving, setSaving] = useState(false);
   const [slugError, setSlugError] = useState("");
@@ -36,6 +39,19 @@ export default function NewPage() {
     isPublic: false,
   } as Page);
   const router = useRouter();
+
+  const templateId = searchParams.get("template");
+
+  useEffect(() => {
+    fetch(`/api/templates/${templateId}`)
+      .then((res) => res.json())
+      .then((template: Template) => {
+        setPageData({
+          ...pageData,
+          content: template.content,
+        });
+      });
+  }, [templateId]);
 
   const onValidateSlug = async () => {
     if (!pageData.slug) {
@@ -114,6 +130,8 @@ export default function NewPage() {
     setPageData(info);
   };
 
+  if (!pageData.content && templateId)
+    return <LoadingPage isLoading={!pageData.content} />;
   return (
     <div className="flex w-full">
       <div
