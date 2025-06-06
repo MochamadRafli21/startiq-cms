@@ -7,12 +7,7 @@ import { Home, Book, Speaker } from "lucide-react";
 
 const navItems = [
   { href: "/admin", label: "Pages", icon: <Home size={18} /> },
-  { href: "/admin/article", label: "Article", icon: <Book size={18} /> },
-  {
-    href: "/admin/conferences",
-    label: "Conferences",
-    icon: <Speaker size={18} />,
-  },
+  { href: "/admin/templates", label: "Template", icon: <Book size={18} /> },
 ];
 
 export function Sidebar() {
