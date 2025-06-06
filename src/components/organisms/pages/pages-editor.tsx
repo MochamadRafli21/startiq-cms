@@ -6,6 +6,8 @@ import tailwindPlugin from "grapesjs-tailwindcss-plugin"; // Import the plugin
 import "grapesjs/dist/css/grapes.min.css";
 import { Carousel } from "@/components/organisms/grapesjs/carousel";
 import { InfiniteSlides } from "@/components/organisms/grapesjs/infinite-slides";
+import type { Page } from "@/types/page.type";
+
 interface PageEditorProps {
   content?: Record<string, any>;
   onContentChange?: (data: Record<string, any>) => void;
@@ -357,6 +359,137 @@ export default function PageEditor({
         `,
       });
 
+      // add article list component
+      // 1. Register the block
+      editor.BlockManager.add("article-list", {
+        label: "Article List",
+        category: "Custom",
+        attributes: {
+          class: "article-list",
+          "data-gjs-type": "article-list",
+        },
+        content: `
+          <section data-gjs-type="article-list" class="w-full max-w-6xl mx-auto py-10 px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 article-list-container">
+              <p class="col-span-full text-center text-gray-500">Loading articles...</p>
+            </div>
+          </section>
+        `,
+      });
+
+      // 2. Register the component type with fetching logic
+      editor.DomComponents.addType("article-list", {
+        model: {
+          defaults: {
+            script: function () {
+              const container = this.querySelector(".article-list-container");
+              container.innerHTML =
+                '<p class="col-span-full text-center text-gray-500">Loading articles...</p>';
+
+              fetch("/api/public?page=1&limit=5&tags=article")
+                .then((res) => res.json())
+                .then((articles: { pages: Page; total: number }) => {
+                  container.innerHTML = "";
+                  if (
+                    !Array.isArray(articles?.pages) ||
+                    articles?.total === 0
+                  ) {
+                    const msg = document.createElement("p");
+                    msg.className =
+                      "col-span-full text-center text-gray-400 italic";
+                    msg.textContent = "No articles found.";
+                    container.appendChild(msg);
+                    return;
+                  }
+
+                  const firstArticle = articles?.pages?.at(0);
+                  const firstCard = document.createElement("div");
+                  firstCard.className =
+                    "lg:col-span-1 bg-white rounded-lg shadow-md p-4";
+
+                  if (firstArticle.metaImage) {
+                    const img = document.createElement("img");
+                    img.src = firstArticle.metaImage;
+                    img.alt =
+                      firstArticle.metaTitle || firstArticle.title || "";
+                    img.className = "w-full h-48 object-cover rounded-md mb-4";
+                    firstCard.appendChild(img);
+                  }
+
+                  const title = document.createElement("h3");
+                  title.textContent =
+                    firstArticle.metaTitle || firstArticle.title || "";
+                  title.className = "text-lg font-semibold mb-2";
+                  firstCard.appendChild(title);
+
+                  const excerpt = document.createElement("p");
+                  excerpt.textContent = firstArticle.metaDescription || "";
+                  excerpt.className = "text-sm text-gray-600";
+                  firstCard.appendChild(excerpt);
+
+                  if (firstArticle.slug) {
+                    const btn = document.createElement("a");
+                    btn.href = `/preview/${firstArticle.slug}`;
+                    btn.textContent = "Read More";
+                    btn.className =
+                      "mt-auto inline-block text-sm font-semibold hover:underline font-medium rounded-full bg-yellow-400 px-2 py-1";
+                    firstCard.appendChild(btn);
+                  }
+
+                  container.appendChild(firstCard);
+                  if (articles?.pages?.length > 1) {
+                    const secondCard = document.createElement("div");
+                    secondCard.className = "lg:col-span-1";
+                    articles.pages.forEach((article: Page, index) => {
+                      if (index === 0) {
+                        return;
+                      }
+                      const card = document.createElement("div");
+                      card.className = "bg-white rounded-lg shadow-md p-4";
+
+                      if (article.metaImage) {
+                        const img = document.createElement("img");
+                        img.src = article.metaImage;
+                        img.alt = article.metaTitle || article.title || "";
+                        img.className =
+                          "w-full h-48 object-cover rounded-md mb-4";
+                        card.appendChild(img);
+                      }
+
+                      const title = document.createElement("h3");
+                      title.textContent =
+                        article.metaTitle || article.title || "";
+                      title.className = "text-lg font-semibold mb-2";
+                      card.appendChild(title);
+
+                      const excerpt = document.createElement("p");
+                      excerpt.textContent = article.metaDescription || "";
+                      excerpt.className = "text-sm text-gray-600";
+                      card.appendChild(excerpt);
+
+                      if (article.slug) {
+                        const btn = document.createElement("a");
+                        btn.href = `/preview/${article.slug}`;
+                        btn.textContent = "Read More";
+                        btn.className =
+                          "mt-auto inline-block text-sm font-semibold hover:underline font-medium rounded-full bg-yellow-400 px-2 py-1";
+                        card.appendChild(btn);
+                      }
+                      secondCard.appendChild(card);
+                    });
+                    container.appendChild(secondCard);
+                  }
+                })
+                .catch((error) => {
+                  container.innerHTML =
+                    '<p class="col-span-full text-center text-red-500">Failed to load articles.</p>';
+                  console.error(error);
+                });
+            },
+          },
+        },
+      });
+
       //register default navbar
       editor.BlockManager.add("custom-navbar", {
         label: "Navbar",
@@ -429,7 +562,6 @@ export default function PageEditor({
       });
 
       //register default footer
-      //
       editor.BlockManager.add("custom-footer", {
         label: "Footer",
         category: "Basic",
@@ -1229,6 +1361,109 @@ export default function PageEditor({
       observer.observe(count);
     });
   };
+
+  const renderArticleList = () => {
+    const containers = document.querySelectorAll(".article-list-container");
+    if (!containers) return;
+    containers.forEach((container) => {
+      container.innerHTML =
+        '<p class="col-span-full text-center text-gray-500">Loading articles...</p>';
+
+      fetch("/api/public?page=1&limit=5&tags=article")
+        .then((res) => res.json())
+        .then((articles: { pages: Page; total: number }) => {
+          container.innerHTML = "";
+          if (!Array.isArray(articles?.pages) || articles?.total === 0) {
+            const msg = document.createElement("p");
+            msg.className = "col-span-full text-center text-gray-400 italic";
+            msg.textContent = "No articles found.";
+            container.appendChild(msg);
+            return;
+          }
+
+          const firstArticle = articles?.pages?.at(0);
+          const firstCard = document.createElement("div");
+          firstCard.className =
+            "lg:col-span-1 bg-white rounded-lg shadow-md p-4";
+
+          if (firstArticle.metaImage) {
+            const img = document.createElement("img");
+            img.src = firstArticle.metaImage;
+            img.alt = firstArticle.metaTitle || firstArticle.title || "";
+            img.className = "w-full h-48 object-cover rounded-md mb-4";
+            firstCard.appendChild(img);
+          }
+
+          const title = document.createElement("h3");
+          title.textContent =
+            firstArticle.metaTitle || firstArticle.title || "";
+          title.className = "text-lg font-semibold mb-2";
+          firstCard.appendChild(title);
+
+          const excerpt = document.createElement("p");
+          excerpt.textContent = firstArticle.metaDescription || "";
+          excerpt.className = "text-sm text-gray-600";
+          firstCard.appendChild(excerpt);
+
+          if (firstArticle.slug) {
+            const btn = document.createElement("a");
+            btn.href = `/preview/${firstArticle.slug}`;
+            btn.textContent = "Read More";
+            btn.className =
+              "mt-auto inline-block text-sm font-semibold hover:underline font-medium rounded-full bg-yellow-400 px-2 py-1";
+            firstCard.appendChild(btn);
+          }
+
+          container.appendChild(firstCard);
+          if (articles?.pages?.length > 1) {
+            const secondCard = document.createElement("div");
+            secondCard.className = "lg:col-span-1";
+            articles.pages.forEach((article: Page, index) => {
+              if (index === 0) {
+                return;
+              }
+              const card = document.createElement("div");
+              card.className = "bg-white rounded-lg shadow-md p-4";
+
+              if (article.metaImage) {
+                const img = document.createElement("img");
+                img.src = article.metaImage;
+                img.alt = article.metaTitle || article.title || "";
+                img.className = "w-full h-48 object-cover rounded-md mb-4";
+                card.appendChild(img);
+              }
+
+              const title = document.createElement("h3");
+              title.textContent = article.metaTitle || article.title || "";
+              title.className = "text-lg font-semibold mb-2";
+              card.appendChild(title);
+
+              const excerpt = document.createElement("p");
+              excerpt.textContent = article.metaDescription || "";
+              excerpt.className = "text-sm text-gray-600";
+              card.appendChild(excerpt);
+
+              if (article.slug) {
+                const btn = document.createElement("a");
+                btn.href = `/preview/${article.slug}`;
+                btn.textContent = "Read More";
+                btn.className =
+                  "mt-auto inline-block text-sm font-semibold hover:underline font-medium rounded-full bg-yellow-400 px-2 py-1";
+                card.appendChild(btn);
+              }
+              secondCard.appendChild(card);
+            });
+            container.appendChild(secondCard);
+          }
+        })
+        .catch((error) => {
+          container.innerHTML =
+            '<p class="col-span-full text-center text-red-500">Failed to load articles.</p>';
+          console.error(error);
+        });
+    });
+  };
+
   useEffect(() => {
     if (content) {
       // render infinite-slides
@@ -1239,6 +1474,9 @@ export default function PageEditor({
 
       // render count up
       renderCountUp();
+
+      // render article list
+      renderArticleList();
     }
   }, [renderedHtml]);
 
