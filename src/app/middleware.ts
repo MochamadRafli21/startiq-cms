@@ -20,5 +20,6 @@ export const config = {
     "/pages/:path*",
     "/api/pages/:path*",
     "/api/uploads/:path*",
+    "/api/templates/:path*",
   ],
 };

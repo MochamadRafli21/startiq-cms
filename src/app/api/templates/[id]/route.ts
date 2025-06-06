@@ -1,5 +1,5 @@
 import { db } from "@/db/client";
-import { pages } from "@/db/schema";
+import { templates } from "@/db/schema";
 import { eq } from "drizzle-orm";
 
 export async function GET(
@@ -8,19 +8,19 @@ export async function GET(
 ) {
   const { id } = await params;
 
-  const [page] = await db
+  const [template] = await db
     .select()
-    .from(pages)
-    .where(eq(pages.id, Number(id)))
+    .from(templates)
+    .where(eq(templates.id, Number(id)))
     .limit(1);
 
-  if (!page) {
+  if (!template) {
     return new Response(JSON.stringify({ error: "Page not found" }), {
       status: 404,
     });
   }
 
-  return Response.json(page);
+  return Response.json(template);
 }
 
 export async function PUT(
@@ -31,26 +31,20 @@ export async function PUT(
   const body = await req.json();
 
   await db
-    .update(pages)
+    .update(templates)
     .set({
       title: body.title,
-      slug: body.slug,
-      tags: body.tags,
-      isPublic: body.isPublic,
       content: body.content,
-      metaImage: body.metaImage,
-      metaTitle: body.metaTitle,
-      metaDescription: body.metaDescription,
     })
-    .where(eq(pages.id, Number(id)));
+    .where(eq(templates.id, Number(id)));
 
-  const [page] = await db
+  const [template] = await db
     .select()
-    .from(pages)
-    .where(eq(pages.id, Number(id)))
+    .from(templates)
+    .where(eq(templates.id, Number(id)))
     .limit(1);
 
-  return Response.json(page);
+  return Response.json(template);
 }
 
 export async function DELETE(
@@ -59,7 +53,7 @@ export async function DELETE(
 ) {
   const id = Number(params.id);
 
-  await db.delete(pages).where(eq(pages.id, id));
+  await db.delete(templates).where(eq(templates.id, id));
 
   return Response.json({ success: true });
 }
