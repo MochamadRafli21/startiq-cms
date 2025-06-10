@@ -15,16 +15,16 @@ export default function PublicPageClient({ pageData }: { pageData: Page }) {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    if (pageData.metaImage) {
+    if (pageData.iconImage) {
       const link =
         document.querySelector("link[rel='icon']") ||
         document.createElement("link");
       link.setAttribute("rel", "icon");
-      link.setAttribute("href", pageData.metaImage);
+      link.setAttribute("href", pageData.iconImage);
       link.setAttribute("type", "image/png");
       document.head.appendChild(link);
     }
-  }, [pageData.metaImage]);
+  }, [pageData.iconImage]);
 
   useEffect(() => {
     setReady(true);

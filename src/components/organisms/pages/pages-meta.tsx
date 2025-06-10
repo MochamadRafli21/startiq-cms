@@ -19,6 +19,8 @@ export default function PageInfo({ page, onChange }: PageEditorProps) {
   );
   const [metaImage, setMetaImage] = useState(page?.metaImage ?? "");
   const [uploading, setUploading] = useState(false);
+  const [iconImage, setIconImage] = useState(page?.iconImage ?? "");
+  const [uploadingIcon, setUploadingIcon] = useState(false);
 
   const handleUpdate = (updated: Partial<Page>) => {
     const updatedPage: Page = {
@@ -43,6 +45,36 @@ export default function PageInfo({ page, onChange }: PageEditorProps) {
 
     try {
       const res = await fetch("/api/uploads", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!res.ok) throw new Error("Upload failed");
+
+      const { data } = await res.json();
+      const url = data?.at(0)?.src;
+      setMetaImage(url);
+      handleUpdate({ metaImage: url });
+    } catch (err) {
+      console.error("Image upload failed:", err);
+      // Optionally show an error toast here
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const onIconImageFileChange = async (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append("file", file);
+    setUploading(true);
+
+    try {
+      const res = await fetch("/api/uploads/file", {
         method: "POST",
         body: formData,
       });
@@ -114,6 +146,33 @@ export default function PageInfo({ page, onChange }: PageEditorProps) {
           disabled={uploading}
         />
         {uploading && (
+          <p className="text-xs text-muted-foreground">Uploading...</p>
+        )}
+
+        {iconImage && (
+          <div className="mb-2">
+            <Image
+              src={iconImage}
+              alt="Icon Image"
+              width={200}
+              height={100}
+              className="rounded-md"
+            />
+          </div>
+        )}
+      </div>
+      <div>
+        <Label htmlFor="iconImage" className="text-xs pb-2">
+          Icon Image
+        </Label>
+        <Input
+          type="file"
+          id="iconImage"
+          accept="image/png, .ico"
+          onChange={onIconImageFileChange}
+          disabled={uploadingIcon}
+        />
+        {uploadingIcon && (
           <p className="text-xs text-muted-foreground">Uploading...</p>
         )}
       </div>

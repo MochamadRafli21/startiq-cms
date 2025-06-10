@@ -44,7 +44,13 @@ export async function GET(req: Request) {
     .where(whereClause);
 
   const results = await db
-    .select()
+    .select({
+      id: pages.id,
+      title: pages.title,
+      slug: pages.slug,
+      isPublic: pages.isPublic,
+      createdAt: pages.createdAt,
+    })
     .from(pages)
     .where(whereClause)
     .orderBy(pages.createdAt)

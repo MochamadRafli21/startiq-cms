@@ -1,4 +1,4 @@
-const reservedSlugs = ["article", "conferences", "admin"];
+const reservedSlugs = ["admin", "login"];
 
 export function validateSlug(input: string): string | null {
   const slug = input.trim().toLowerCase();

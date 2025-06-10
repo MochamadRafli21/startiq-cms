@@ -3,7 +3,7 @@ import { pages } from "@/db/schema";
 import { and, eq, ne } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
-const reservedSlugs = ["article", "conferences"];
+const reservedSlugs = ["admin", "login"];
 
 export async function POST(req: Request) {
   const { slug, pageId } = await req.json();

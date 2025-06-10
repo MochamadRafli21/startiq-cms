@@ -6,6 +6,7 @@ export interface Page {
   metaTitle?: string;
   metaDescription?: string;
   metaImage?: string;
+  iconImage?: string;
   isPublic?: boolean;
   createdAt?: string | Date;
 }
