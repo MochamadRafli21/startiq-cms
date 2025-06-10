@@ -37,3 +37,14 @@ export const templates = mysqlTable("templates", {
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow().onUpdateNow(),
 });
+
+export const links = mysqlTable("links", {
+  id: serial("id").primaryKey(),
+  title: varchar("title", { length: 255 }).notNull(),
+  descriptions: varchar("descriptions", { length: 500 }),
+  banner: varchar("banner", { length: 500 }),
+  tags: json("tags").default([]).notNull(),
+  attributes: json("attributes").default({}).notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow().onUpdateNow(),
+});
