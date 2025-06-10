@@ -496,17 +496,17 @@ export default function PageEditor({
         category: "Basic",
         content: `
     <header data-gjs-type="custom-navbar" class="w-full bg-white shadow-md">
-      <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-        <div class="flex items-center gap-4">
-          <img src="/uploads/logo-rsf-transparant.webp" alt="Logo" class="h-10 w-10"/>
+      <div class="max-w-screen mx-auto px-4 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-4 overflow-x-scroll">
+          <img src="/uploads/logo-rsf-transparant.webp" alt="Logo" class="h-10"/>
           <nav class="hidden md:flex gap-6 text-sm font-medium">
-            <a href="#" class="relative text-blue-900 after:absolute after:left-0 after:-bottom-1 after:h-1 after:w-full after:bg-yellow-400">Home</a>
-            <a href="#">About</a>
-            <a href="#">Membership</a>
-            <a href="#">Conferences</a>
-            <a href="#">Publication</a>
-            <a href="#">Learning</a>
-            <a href="#">Updates</a>
+            <a href="https://globalresearchecosystem.com/" class="relative text-blue-900 after:absolute after:left-0 after:-bottom-1 after:h-1 after:w-full after:bg-yellow-400">Home</a>
+            <a href="/about">About</a>
+            <a href="">Membership</a>
+            <a href="/conferences">Conferences</a>
+            <a href="/publications">Publication</a>
+            <a href="/learnings">Learning</a>
+            <a href="/articles">Updates</a>
           </nav>
         </div>
         <div class="hidden md:flex items-center gap-4">
