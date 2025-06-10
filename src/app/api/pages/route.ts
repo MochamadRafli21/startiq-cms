@@ -69,6 +69,7 @@ export async function POST(req: Request) {
       content: body.content,
       metaImage: body.metaImage,
       metaTitle: body.metaTitle,
+      iconImage: body.iconImage,
       metaDescription: body.metaDescription,
     })
     .$returningId();

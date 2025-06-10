@@ -41,6 +41,7 @@ export async function PUT(
       metaImage: body.metaImage,
       metaTitle: body.metaTitle,
       metaDescription: body.metaDescription,
+      iconImage: body.iconImage,
     })
     .where(eq(pages.id, Number(id)));
 

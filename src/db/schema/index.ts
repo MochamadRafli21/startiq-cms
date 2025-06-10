@@ -23,6 +23,7 @@ export const pages = mysqlTable("pages", {
   metaTitle: varchar("meta_title", { length: 255 }),
   metaDescription: varchar("meta_description", { length: 500 }),
   metaImage: varchar("meta_image", { length: 500 }),
+  iconImage: varchar("icon_image", { length: 500 }),
   isPublic: boolean("is_public").default(false).notNull(),
   content: json("content").notNull(),
   createdAt: timestamp("created_at").defaultNow(),
