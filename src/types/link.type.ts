@@ -4,6 +4,7 @@ export interface Link {
   descriptions?: string;
   banner?: string;
   target?: string;
+  attributes?: Record<string, string>;
   tags?: string[];
   createdAt?: string | Date;
 }

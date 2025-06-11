@@ -43,6 +43,7 @@ export function UpdateLinkPage({ linkId }: { linkId: string }) {
         tags: linkData.tags,
         target: linkData.target,
         descriptions: linkData.descriptions,
+        attributes: linkData.attributes,
         banner: linkData.banner,
       }),
     });

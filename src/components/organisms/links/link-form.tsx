@@ -22,6 +22,7 @@ export default function LinkForm({ link, onChange }: PageEditorProps) {
   const [descriptions, setDescriptions] = useState(link?.descriptions || "");
   const [target, setTarget] = useState(link?.target || "");
   const [banner, setBanner] = useState(link?.banner || "");
+  const [attributes, setAttributes] = useState(link?.attributes || {});
   const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
@@ -31,11 +32,12 @@ export default function LinkForm({ link, onChange }: PageEditorProps) {
         title,
         descriptions,
         tags: (tags || []) as string[],
+        attributes,
         banner,
         target,
       });
     }
-  }, [title, descriptions, banner, target, tags]);
+  }, [title, descriptions, banner, target, tags, attributes]);
 
   const handleTitleChange = (value: string) => {
     setTitle(value);
@@ -80,6 +82,37 @@ export default function LinkForm({ link, onChange }: PageEditorProps) {
 
   const handleDescriptionsChange = (value: string) => {
     setDescriptions(value);
+  };
+
+  const handleAddAttribute = () => {
+    setAttributes({
+      ...attributes,
+      Key: "Value",
+    });
+  };
+
+  const handleAttributeKeyChange = (key: string, originalKey: string) => {
+    setAttributes((prev) => {
+      const oldValue = prev[originalKey];
+      const newAttrs = { ...prev, [key]: oldValue };
+      delete newAttrs[originalKey];
+      return newAttrs;
+    });
+  };
+
+  const handleAttributeValueChange = (value: string, originalKey: string) => {
+    setAttributes((prev) => {
+      const newAttrs = { ...prev, [originalKey]: value };
+      return newAttrs;
+    });
+  };
+
+  const handleRemoveAttributeKey = (key: string) => {
+    setAttributes((prev) => {
+      const newAttrs = { ...prev };
+      delete newAttrs[key];
+      return newAttrs;
+    });
   };
 
   return (
@@ -190,6 +223,41 @@ export default function LinkForm({ link, onChange }: PageEditorProps) {
           })}
         </div>
       </div>
+      <Button
+        onClick={handleAddAttribute}
+        variant="secondary"
+        className="w-full"
+      >
+        Add Attributes
+      </Button>
+      {Object.keys(attributes).map((attribute) => {
+        return (
+          <div className="flex items-center gap-2">
+            <Input
+              value={attribute}
+              onChange={(e) =>
+                handleAttributeKeyChange(e.target.value, attribute)
+              }
+            />
+            =
+            <Input
+              value={attributes[`${attribute}`]}
+              onChange={(e) =>
+                handleAttributeValueChange(e.target.value, attribute)
+              }
+            />
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => {
+                handleRemoveAttributeKey(attribute);
+              }}
+            >
+              <X />
+            </Button>
+          </div>
+        );
+      })}
     </div>
   );
 }

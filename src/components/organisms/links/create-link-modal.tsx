@@ -45,6 +45,7 @@ export function CreateLinkModal({
         tags: linkData.tags,
         target: linkData.target,
         descriptions: linkData.descriptions,
+        attributes: linkData.attributes,
         banner: linkData.banner,
       }),
     });
