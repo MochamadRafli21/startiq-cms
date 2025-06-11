@@ -41,6 +41,7 @@ export const templates = mysqlTable("templates", {
 export const links = mysqlTable("links", {
   id: serial("id").primaryKey(),
   title: varchar("title", { length: 255 }).notNull(),
+  target: varchar("target", { length: 255 }).notNull(),
   descriptions: varchar("descriptions", { length: 500 }),
   banner: varchar("banner", { length: 500 }),
   tags: json("tags").default([]).notNull(),

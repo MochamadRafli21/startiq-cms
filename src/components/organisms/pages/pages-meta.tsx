@@ -71,7 +71,7 @@ export default function PageInfo({ page, onChange }: PageEditorProps) {
 
     const formData = new FormData();
     formData.append("file", file);
-    setUploading(true);
+    setUploadingIcon(true);
 
     try {
       const res = await fetch("/api/uploads/file", {
@@ -83,13 +83,13 @@ export default function PageInfo({ page, onChange }: PageEditorProps) {
 
       const { data } = await res.json();
       const url = data?.at(0)?.src;
-      setMetaImage(url);
+      setIconImage(url);
       handleUpdate({ metaImage: url });
     } catch (err) {
       console.error("Image upload failed:", err);
       // Optionally show an error toast here
     } finally {
-      setUploading(false);
+      setUploadingIcon(false);
     }
   };
 

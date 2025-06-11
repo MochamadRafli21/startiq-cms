@@ -27,7 +27,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { CreatePageModal } from "./create-page-modal";
-import { ConfirmationModal } from "@/components/molecule/confirmation-modal";
 import { toast } from "sonner";
 import { Ellipsis, Eye, PenSquare, Trash, Upload } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
