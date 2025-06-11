@@ -175,8 +175,8 @@ export default function LinksList() {
                       })}
                     </div>
 
-                    <div className="min-h-8 max-w-full">
-                      <p className="truncate text-wrap text-ellipsis">
+                    <div className="min-h-8 max-w-full mt-2">
+                      <p className="truncate text-wrap text-sm text-ellipsis">
                         {link.descriptions}
                       </p>
                     </div>
