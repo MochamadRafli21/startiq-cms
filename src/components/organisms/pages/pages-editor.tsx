@@ -153,6 +153,50 @@ export default function PageEditor({
           );
       });
 
+      editor.TraitManager.addType("tags-selector", {
+        createInput() {
+          const el = document.createElement("select");
+          el.multiple = true;
+          el.style.minHeight = "80px";
+          el.style.width = "100%";
+          el.style.padding = "4px";
+
+          fetch("/api/pages/tags")
+            .then((res) => res.json())
+            .then((body: { tags: string[] }) => {
+              const tags = body.tags;
+              tags.forEach((tag) => {
+                const opt = document.createElement("option");
+                opt.value = tag;
+                opt.textContent = tag;
+                el.appendChild(opt);
+              });
+            })
+            .catch((err) => {
+              console.error("Failed to load tags:", err);
+            });
+          return el;
+        },
+        onEvent({
+          elInput,
+          component,
+        }: {
+          elInput: any;
+          component: Component;
+        }) {
+          const input = elInput as HTMLSelectElement;
+          const selectedTags = Array.from(input.selectedOptions).map(
+            (opt) => opt.value,
+          );
+          component.set("tags", selectedTags.join(","));
+          component.addAttributes({ "data-tags": selectedTags.join(",") });
+
+          // Re-run script
+          const script = component.get("script");
+          component.set("script", "");
+          component.set("script", script);
+        },
+      });
       // --- 1. Define Custom Trait: AssetManagerOpenerTrait ---
       editor.TraitManager.addType("selected-images-viewer", {
         createInput(this: any) {
@@ -361,15 +405,15 @@ export default function PageEditor({
 
       // add article list component
       // 1. Register the block
-      editor.BlockManager.add("article-list", {
+      editor.BlockManager.add("page-list", {
         label: "Article List",
         category: "Custom",
         content: `
-          <section data-gjs-type="article-list" class="w-full max-w-6xl mx-auto py-10 px-4">
+          <section data-gjs-type="page-list" class="w-full max-w-6xl mx-auto py-10 px-4">
             <div class="mb-4 flex justify-between items-center">
               <input type="text" placeholder="Search articles..." class="article-search border px-3 py-1 rounded w-full max-w-xs" />
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 article-list-container">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 page-list-container">
               <p class="col-span-full text-center text-gray-500">Loading articles...</p>
             </div>
             <div class="mt-6 flex justify-center gap-2 article-pagination">
@@ -380,14 +424,15 @@ export default function PageEditor({
       });
 
       // 2. Register the component type with fetching logic
-      editor.DomComponents.addType("article-list", {
+      editor.DomComponents.addType("page-list", {
         model: {
           defaults: {
             attributes: {
-              class: "article-list",
-              "data-gjs-type": "article-list",
-              "data-show-search": true,
-              "data-show-pagination": true,
+              class: "page-list",
+              "data-gjs-type": "page-list",
+              "data-show-search": false,
+              "data-show-pagination": false,
+              "data-tags": "",
             },
             traits: [
               {
@@ -402,11 +447,18 @@ export default function PageEditor({
                 name: "showPagination",
                 changeProp: true,
               },
+              {
+                type: "tags-selector",
+                label: "Filter by Tags",
+                name: "tags",
+                changeProp: true,
+              },
             ],
-            showSearch: true,
-            showPagination: true,
+            showSearch: "false",
+            showPagination: "false",
+            tags: "",
             script: function () {
-              const container = this.querySelector(".article-list-container");
+              const container = this.querySelector(".page-list-container");
               const paginationContainer = this.querySelector(
                 ".article-pagination",
               );
@@ -418,6 +470,8 @@ export default function PageEditor({
                 this.getAttribute("data-show-search") === "true";
               const showPagination =
                 this.getAttribute("data-show-pagination") === "true";
+              const tags = this.getAttribute("data-tags");
+
               if (!showSearch && searchInput) {
                 searchInput.style.display = "none";
               } else {
@@ -431,7 +485,7 @@ export default function PageEditor({
                 const query = new URLSearchParams({
                   page: currentPage.toString(),
                   limit: "5",
-                  tags: "article",
+                  tags,
                 });
 
                 if (showSearch && searchQuery) {
@@ -573,10 +627,11 @@ export default function PageEditor({
             this.on("change:showSearch change:showPagination", () => {
               const showSearch = this.get("showSearch");
               const showPagination = this.get("showPagination");
-
+              const tags = this.get("tags");
               this.addAttributes({
                 "data-show-search": `${showSearch}`,
                 "data-show-pagination": `${showPagination}`,
+                "data-tags": `${tags}`,
               });
 
               if (
@@ -1464,104 +1519,170 @@ export default function PageEditor({
   };
 
   const renderArticleList = () => {
-    const containers = document.querySelectorAll(".article-list-container");
+    const containers = document.querySelectorAll('[data-gjs-type="page-list"]');
     if (!containers) return;
     containers.forEach((container) => {
-      container.innerHTML =
-        '<p class="col-span-full text-center text-gray-500">Loading articles...</p>';
+      const id = container.id;
+      const component = findComponentById(content?.pages[0].frames, id);
+      const pageContainer = container.querySelector(".page-list-container");
+      const paginationContainer = container.querySelector(
+        ".article-pagination",
+      );
+      const searchInput = container.querySelector(
+        ".article-search",
+      ) as HTMLInputElement;
+      let currentPage = 1;
+      let totalPages = 1;
+      const tags = component.tags;
+      let searchQuery = "";
+      const showSearch = component.showSearch;
+      const showPagination = component.showPagination;
+      if (!showSearch && searchInput) {
+        searchInput.style.display = "none";
+      } else if (searchInput) {
+        searchInput.style.display = "block";
+      }
 
-      fetch("/api/public?page=1&limit=5&tags=article")
-        .then((res) => res.json())
-        .then((articles: { pages: Page; total: number }) => {
-          container.innerHTML = "";
-          if (!Array.isArray(articles?.pages) || articles?.total === 0) {
-            const msg = document.createElement("p");
-            msg.className = "col-span-full text-center text-gray-400 italic";
-            msg.textContent = "No articles found.";
-            container.appendChild(msg);
-            return;
-          }
+      const renderArticles = () => {
+        if (!pageContainer) return;
+        pageContainer.innerHTML =
+          '<p class="col-span-full text-center text-gray-500">Loading articles...</p>';
 
-          const firstArticle = articles?.pages?.at(0);
-          const firstCard = document.createElement("div");
-          firstCard.className =
-            "lg:col-span-2 bg-white rounded-lg shadow-md p-4";
-
-          if (firstArticle.metaImage) {
-            const img = document.createElement("img");
-            img.src = firstArticle.metaImage;
-            img.alt = firstArticle.metaTitle || firstArticle.title || "";
-            img.className = "w-full h-48 object-cover rounded-md mb-4";
-            firstCard.appendChild(img);
-          }
-
-          const title = document.createElement("h3");
-          title.textContent =
-            firstArticle.metaTitle || firstArticle.title || "";
-          title.className = "text-lg font-semibold mb-2";
-          firstCard.appendChild(title);
-
-          const excerpt = document.createElement("p");
-          excerpt.textContent = firstArticle.metaDescription || "";
-          excerpt.className = "text-sm text-gray-600";
-          firstCard.appendChild(excerpt);
-
-          if (firstArticle.slug) {
-            const btn = document.createElement("a");
-            btn.href = `/preview/${firstArticle.slug}`;
-            btn.textContent = "Read More";
-            btn.className =
-              "mt-2 inline-block text-sm font-semibold hover:underline font-medium rounded-full bg-yellow-400 px-2 py-1";
-            firstCard.appendChild(btn);
-          }
-
-          container.appendChild(firstCard);
-          if (articles?.pages?.length > 1) {
-            const secondCard = document.createElement("div");
-            secondCard.className = "lg:col-span-1";
-            articles.pages.forEach((article: Page, index) => {
-              if (index === 0) {
-                return;
-              }
-              const card = document.createElement("div");
-              card.className = "bg-white rounded-lg shadow-md p-4";
-
-              if (article.metaImage) {
-                const img = document.createElement("img");
-                img.src = article.metaImage;
-                img.alt = article.metaTitle || article.title || "";
-                img.className = "w-full h-48 object-cover rounded-md mb-4";
-                card.appendChild(img);
-              }
-
-              const title = document.createElement("h3");
-              title.textContent = article.metaTitle || article.title || "";
-              title.className = "text-lg font-semibold mb-2";
-              card.appendChild(title);
-
-              const excerpt = document.createElement("p");
-              excerpt.textContent = article.metaDescription || "";
-              excerpt.className = "text-sm text-gray-600";
-              card.appendChild(excerpt);
-
-              if (article.slug) {
-                const btn = document.createElement("a");
-                btn.href = `/preview/${article.slug}`;
-                btn.textContent = "Read More";
-                btn.className =
-                  "mt-2 inline-block text-sm font-semibold hover:underline font-medium rounded-full bg-yellow-400 px-2 py-1";
-                card.appendChild(btn);
-              }
-              secondCard.appendChild(card);
-            });
-            container.appendChild(secondCard);
-          }
-        })
-        .catch((error) => {
-          container.innerHTML =
-            '<p class="col-span-full text-center text-red-500">Failed to load articles.</p>';
-          console.error(error);
+        const query = new URLSearchParams({
+          page: currentPage.toString(),
+          limit: "5",
         });
+
+        if (showSearch && searchQuery) {
+          query.set("search", searchQuery);
+        }
+
+        if (tags) {
+          query.set("tags", tags);
+        }
+
+        fetch(`/api/public?${query.toString()}`)
+          .then((res) => res.json())
+          .then((articles) => {
+            if (!pageContainer) return;
+            pageContainer.innerHTML = "";
+            if (!Array.isArray(articles?.pages) || articles.total === 0) {
+              pageContainer.innerHTML =
+                '<p class="col-span-full text-center text-gray-400 italic">No articles found.</p>';
+              return;
+            }
+
+            totalPages = Math.ceil(articles.total / 5);
+
+            const pages = articles.pages;
+            const firstArticle = pages[0];
+
+            const firstCard = document.createElement("div");
+            firstCard.className =
+              "md:col-span-2 bg-white rounded-lg shadow-md p-4";
+            if (firstArticle.metaImage) {
+              const img = document.createElement("img");
+              img.src = firstArticle.metaImage;
+              img.alt = firstArticle.metaTitle || firstArticle.title || "";
+              img.className = "w-full h-48 object-cover rounded-md mb-4";
+              firstCard.appendChild(img);
+            }
+            const title = document.createElement("h3");
+            title.textContent =
+              firstArticle.metaTitle || firstArticle.title || "";
+            title.className = "text-lg font-semibold mb-2";
+            firstCard.appendChild(title);
+
+            const excerpt = document.createElement("p");
+            excerpt.textContent = firstArticle.metaDescription || "";
+            excerpt.className = "text-sm text-gray-600";
+            firstCard.appendChild(excerpt);
+
+            if (firstArticle.slug) {
+              const btn = document.createElement("a");
+              btn.href = `/preview/${firstArticle.slug}`;
+              btn.textContent = "Read More";
+              btn.className =
+                "mt-2 inline-block text-sm font-semibold hover:underline font-medium rounded-full bg-yellow-400 px-2 py-1";
+              firstCard.appendChild(btn);
+            }
+
+            pageContainer.appendChild(firstCard);
+
+            if (pages.length > 1) {
+              const secondCard = document.createElement("div");
+              secondCard.className = "lg:col-span-1";
+
+              pages.slice(1).forEach((article: Page) => {
+                const card = document.createElement("div");
+                card.className = "bg-white rounded-lg shadow-md p-4";
+
+                if (article.metaImage) {
+                  const img = document.createElement("img");
+                  img.src = article.metaImage;
+                  img.alt = article.metaTitle || article.title || "";
+                  img.className = "w-full h-48 object-cover rounded-md mb-4";
+                  card.appendChild(img);
+                }
+
+                const title = document.createElement("h3");
+                title.textContent = article.metaTitle || article.title || "";
+                title.className = "text-lg font-semibold mb-2";
+                card.appendChild(title);
+
+                const excerpt = document.createElement("p");
+                excerpt.textContent = article.metaDescription || "";
+                excerpt.className = "text-sm text-gray-600";
+                card.appendChild(excerpt);
+
+                if (article.slug) {
+                  const btn = document.createElement("a");
+                  btn.href = `/preview/${article.slug}`;
+                  btn.textContent = "Read More";
+                  btn.className =
+                    "mt-2 inline-block text-sm font-semibold hover:underline font-medium rounded-full bg-yellow-400 px-2 py-1";
+                  card.appendChild(btn);
+                }
+
+                secondCard.appendChild(card);
+              });
+
+              pageContainer.appendChild(secondCard);
+            }
+
+            // Only render pagination if enabled
+            if (paginationContainer) {
+              paginationContainer.innerHTML = "";
+              if (showPagination && totalPages > 1) {
+                for (let i = 1; i <= totalPages; i++) {
+                  const btn = document.createElement("button");
+                  btn.textContent = i.toString();
+                  btn.className = `px-3 py-1 border rounded ${i === currentPage ? "bg-yellow-400" : "bg-white"}`;
+                  btn.addEventListener("click", () => {
+                    currentPage = i;
+                    renderArticles();
+                  });
+                  paginationContainer.appendChild(btn);
+                }
+              }
+            }
+          })
+          .catch((err) => {
+            pageContainer.innerHTML =
+              '<p class="col-span-full text-center text-red-500">Failed to load articles.</p>';
+            console.error(err);
+          });
+      };
+
+      if (showSearch && searchInput) {
+        searchInput.addEventListener("input", (e: any) => {
+          searchQuery = e.target?.value;
+          currentPage = 1;
+          renderArticles();
+        });
+      }
+
+      renderArticles();
     });
   };
 
