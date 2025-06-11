@@ -36,6 +36,7 @@ export async function PUT(
       title: body.title,
       target: body.target,
       tags: body.tags,
+      attributes: body.attributes,
       banner: body.banner,
       descriptions: body.descriptions,
     })
