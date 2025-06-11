@@ -34,6 +34,7 @@ export async function PUT(
     .update(links)
     .set({
       title: body.title,
+      target: body.target,
       tags: body.tags,
       banner: body.banner,
       descriptions: body.descriptions,

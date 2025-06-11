@@ -47,6 +47,8 @@ export async function GET(req: Request) {
     .select({
       id: links.id,
       title: links.title,
+      target: links.target,
+      tags: links.tags,
       banner: links.banner,
       descriptions: links.descriptions,
       createdAt: links.createdAt,
@@ -69,6 +71,7 @@ export async function POST(req: Request) {
     .insert(links)
     .values({
       title: body.title,
+      target: body.target,
       descriptions: body.descriptions,
       banner: body.banner,
       tags: body.tags,
