@@ -208,7 +208,7 @@ export default function LinkForm({ link, onChange }: PageEditorProps) {
           {tags.map((tag) => {
             return (
               <Badge variant="outline" key={tag}>
-                {tag}{" "}
+                {tag}
                 <Button
                   variant="ghost"
                   size="icon"

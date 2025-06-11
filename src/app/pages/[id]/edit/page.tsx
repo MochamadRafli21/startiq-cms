@@ -34,7 +34,7 @@ const PageEditor = dynamic(
 export default function EditPage() {
   const { id } = useParams();
   const [minimizeInfo, setMinimizeInfo] = useState<any>(null);
-  const [pageData, setPageData] = useState<any>(null);
+  const [pageData, setPageData] = useState<Page | null>(null);
   const [slugError, setSlugError] = useState("");
   const [saving, setSaving] = useState(false);
   const [refetchTrigger, setRefetchTrigger] = useState(0);
@@ -47,7 +47,7 @@ export default function EditPage() {
   }, [id, refetchTrigger]);
 
   const onValidateSlug = async () => {
-    if (!pageData.slug) {
+    if (!pageData?.slug) {
       setSlugError("Slug cant be empty");
 
       return false;
@@ -117,7 +117,7 @@ export default function EditPage() {
   if (!pageData) return <LoadingPage isLoading={!pageData} />;
 
   const handleContentChange = (content: Record<string, any>) => {
-    setPageData((prev: Page) => {
+    setPageData((prev: Page | null) => {
       const updated = { ...prev, content };
       handleInfoChange(updated);
       return updated;

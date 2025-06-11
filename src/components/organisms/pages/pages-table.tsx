@@ -41,6 +41,7 @@ export default function PagesTable() {
   const [pages, setPages] = useState<Page[]>([]);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
+  const [tags, setTags] = useState([] as string[]);
   const [refetchTrigger, setRefetchTrigger] = useState(0);
   const limit = 10;
   const router = useRouter();
@@ -56,6 +57,15 @@ export default function PagesTable() {
     };
     loadPages();
   }, [search, page, refetchTrigger]);
+
+  useEffect(() => {
+    const loadTags = async () => {
+      const res = await fetch(`/api/pages/tags`);
+      const data = await res.json();
+      setTags(data.tags);
+    };
+    loadTags();
+  }, [refetchTrigger]);
 
   const handleDelete = async (id?: number) => {
     if (!id) return;
@@ -112,7 +122,23 @@ export default function PagesTable() {
       <CardContent>
         <div className="space-y-4 w-full">
           <div className="flex justify-between items-center">
-            <h1 className="text-xl font-semibold">Pages</h1>
+            <div>
+              <h1 className="text-xl font-semibold">Pages</h1>
+              {tags.length > 0 && (
+                <div className="flex gap-2 bg-gray-300 rounded-lg divide-x-2 divide-gray-500">
+                  <div className="px-2 py-1 hover:bg-gray-400 rounded-lg">
+                    All
+                  </div>
+                  {tags.map((tag) => {
+                    return (
+                      <div className="px-2 py-1 hover:bg-gray-400 rounded-lg">
+                        {tag}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
             <div className="flex flex-row items-center gap-2">
               <Input
                 placeholder="Search pages..."

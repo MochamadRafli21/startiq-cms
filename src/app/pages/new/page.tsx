@@ -105,7 +105,7 @@ export default function NewPage() {
       body: JSON.stringify({
         title: pageData.title,
         slug: pageData.slug,
-        tags: [],
+        tags: pageData.tags,
         isPublic: pageData.isPublic,
         content: pageData.content,
         metaTitle: pageData.metaTitle,

@@ -2,6 +2,7 @@ export interface Page {
   id?: number;
   title?: string;
   slug?: string;
+  tags?: string[];
   content?: Record<string, any>;
   metaTitle?: string;
   metaDescription?: string;

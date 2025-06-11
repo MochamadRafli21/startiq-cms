@@ -1,9 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
+import { X } from "lucide-react";
 import { validateSlugViaApi, validateSlug, slugify } from "@/utils/pages/slugs";
 import type { Page } from "@/types/page.type";
 
@@ -17,6 +20,8 @@ export default function PageInfo({ page, onChange }: PageEditorProps) {
   const [slug, setSlug] = useState(page?.slug || "");
   const [slugError, setSlugError] = useState("");
   const [isPublic, setIsPublic] = useState(page?.isPublic || false);
+  const [newTag, setNewTag] = useState("");
+  const [tags, setTags] = useState(page?.tags || []);
 
   useEffect(() => {
     if (onChange) {
@@ -24,10 +29,17 @@ export default function PageInfo({ page, onChange }: PageEditorProps) {
         ...page,
         title,
         slug,
+        tags,
         isPublic,
       });
     }
-  }, [title, slug, isPublic]);
+  }, [title, slug, tags, isPublic]);
+
+  const handleTagsPush = (value: string) => {
+    if (!value) return;
+    const newTags = Array.from(new Set([...tags, value]));
+    setTags(newTags);
+  };
 
   const handleTitleChange = (value: string) => {
     setTitle(value);
@@ -100,6 +112,48 @@ export default function PageInfo({ page, onChange }: PageEditorProps) {
             Your page will be accessible at: /{slug}
           </span>
         )}
+      </div>
+
+      <div>
+        <Label htmlFor="tags" className="text-xs pb-2">
+          Tags
+        </Label>
+        <div className="flex gap-1 justify-between items-center">
+          <Input
+            required
+            id="tags"
+            value={newTag}
+            onChange={(e) => setNewTag(e.target.value)}
+            placeholder="publication"
+          />
+          <Button
+            onClick={() => {
+              handleTagsPush(newTag);
+              setNewTag("");
+            }}
+            variant="secondary"
+          >
+            Add New Tag
+          </Button>
+        </div>
+        <div className="flex flex-wrap gap-1 mt-2">
+          {tags.map((tag) => {
+            return (
+              <Badge variant="outline" key={tag}>
+                {tag}
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => {
+                    setTags(tags.filter((oldTag) => oldTag !== tag));
+                  }}
+                >
+                  <X />
+                </Button>
+              </Badge>
+            );
+          })}
+        </div>
       </div>
 
       <div>
