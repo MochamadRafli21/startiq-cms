@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, ChangeEvent } from "react";
 import ReactDOM from "react-dom/client";
 import grapesjs, { Component, Trait, TraitProperties } from "grapesjs";
 import tailwindPlugin from "grapesjs-tailwindcss-plugin"; // Import the plugin
@@ -364,14 +364,16 @@ export default function PageEditor({
       editor.BlockManager.add("article-list", {
         label: "Article List",
         category: "Custom",
-        attributes: {
-          class: "article-list",
-          "data-gjs-type": "article-list",
-        },
         content: `
           <section data-gjs-type="article-list" class="w-full max-w-6xl mx-auto py-10 px-4">
+            <div class="mb-4 flex justify-between items-center">
+              <input type="text" placeholder="Search articles..." class="article-search border px-3 py-1 rounded w-full max-w-xs" />
+            </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 article-list-container">
               <p class="col-span-full text-center text-gray-500">Loading articles...</p>
+            </div>
+            <div class="mt-6 flex justify-center gap-2 article-pagination">
+              <!-- Pagination buttons injected by script -->
             </div>
           </section>
         `,
@@ -381,111 +383,210 @@ export default function PageEditor({
       editor.DomComponents.addType("article-list", {
         model: {
           defaults: {
+            attributes: {
+              class: "article-list",
+              "data-gjs-type": "article-list",
+              "data-show-search": true,
+              "data-show-pagination": true,
+            },
+            traits: [
+              {
+                type: "checkbox",
+                label: "Show Search Input",
+                name: "showSearch",
+                changeProp: true,
+              },
+              {
+                type: "checkbox",
+                label: "Show Pagination",
+                name: "showPagination",
+                changeProp: true,
+              },
+            ],
+            showSearch: true,
+            showPagination: true,
             script: function () {
               const container = this.querySelector(".article-list-container");
-              container.innerHTML =
-                '<p class="col-span-full text-center text-gray-500">Loading articles...</p>';
+              const paginationContainer = this.querySelector(
+                ".article-pagination",
+              );
+              const searchInput = this.querySelector(".article-search");
+              let currentPage = 1;
+              let totalPages = 1;
+              let searchQuery = "";
+              const showSearch =
+                this.getAttribute("data-show-search") === "true";
+              const showPagination =
+                this.getAttribute("data-show-pagination") === "true";
+              if (!showSearch && searchInput) {
+                searchInput.style.display = "none";
+              } else {
+                searchInput.style.display = "block";
+              }
 
-              fetch("/api/public?page=1&limit=5&tags=article")
-                .then((res) => res.json())
-                .then((articles: { pages: Page; total: number }) => {
-                  container.innerHTML = "";
-                  if (
-                    !Array.isArray(articles?.pages) ||
-                    articles?.total === 0
-                  ) {
-                    const msg = document.createElement("p");
-                    msg.className =
-                      "col-span-full text-center text-gray-400 italic";
-                    msg.textContent = "No articles found.";
-                    container.appendChild(msg);
-                    return;
-                  }
+              const renderArticles = () => {
+                container.innerHTML =
+                  '<p class="col-span-full text-center text-gray-500">Loading articles...</p>';
 
-                  const firstArticle = articles?.pages?.at(0);
-                  const firstCard = document.createElement("div");
-                  firstCard.className =
-                    "lg:col-span-1 bg-white rounded-lg shadow-md p-4";
-
-                  if (firstArticle.metaImage) {
-                    const img = document.createElement("img");
-                    img.src = firstArticle.metaImage;
-                    img.alt =
-                      firstArticle.metaTitle || firstArticle.title || "";
-                    img.className = "w-full h-48 object-cover rounded-md mb-4";
-                    firstCard.appendChild(img);
-                  }
-
-                  const title = document.createElement("h3");
-                  title.textContent =
-                    firstArticle.metaTitle || firstArticle.title || "";
-                  title.className = "text-lg font-semibold mb-2";
-                  firstCard.appendChild(title);
-
-                  const excerpt = document.createElement("p");
-                  excerpt.textContent = firstArticle.metaDescription || "";
-                  excerpt.className = "text-sm text-gray-600";
-                  firstCard.appendChild(excerpt);
-
-                  if (firstArticle.slug) {
-                    const btn = document.createElement("a");
-                    btn.href = `/preview/${firstArticle.slug}`;
-                    btn.textContent = "Read More";
-                    btn.className =
-                      "mt-auto inline-block text-sm font-semibold hover:underline font-medium rounded-full bg-yellow-400 px-2 py-1";
-                    firstCard.appendChild(btn);
-                  }
-
-                  container.appendChild(firstCard);
-                  if (articles?.pages?.length > 1) {
-                    const secondCard = document.createElement("div");
-                    secondCard.className = "lg:col-span-1";
-                    articles.pages.forEach((article: Page, index) => {
-                      if (index === 0) {
-                        return;
-                      }
-                      const card = document.createElement("div");
-                      card.className = "bg-white rounded-lg shadow-md p-4";
-
-                      if (article.metaImage) {
-                        const img = document.createElement("img");
-                        img.src = article.metaImage;
-                        img.alt = article.metaTitle || article.title || "";
-                        img.className =
-                          "w-full h-48 object-cover rounded-md mb-4";
-                        card.appendChild(img);
-                      }
-
-                      const title = document.createElement("h3");
-                      title.textContent =
-                        article.metaTitle || article.title || "";
-                      title.className = "text-lg font-semibold mb-2";
-                      card.appendChild(title);
-
-                      const excerpt = document.createElement("p");
-                      excerpt.textContent = article.metaDescription || "";
-                      excerpt.className = "text-sm text-gray-600";
-                      card.appendChild(excerpt);
-
-                      if (article.slug) {
-                        const btn = document.createElement("a");
-                        btn.href = `/preview/${article.slug}`;
-                        btn.textContent = "Read More";
-                        btn.className =
-                          "mt-auto inline-block text-sm font-semibold hover:underline font-medium rounded-full bg-yellow-400 px-2 py-1";
-                        card.appendChild(btn);
-                      }
-                      secondCard.appendChild(card);
-                    });
-                    container.appendChild(secondCard);
-                  }
-                })
-                .catch((error) => {
-                  container.innerHTML =
-                    '<p class="col-span-full text-center text-red-500">Failed to load articles.</p>';
-                  console.error(error);
+                const query = new URLSearchParams({
+                  page: currentPage.toString(),
+                  limit: "5",
+                  tags: "article",
                 });
+
+                if (showSearch && searchQuery) {
+                  query.set("search", searchQuery);
+                }
+
+                fetch(`/api/public?${query.toString()}`)
+                  .then((res) => res.json())
+                  .then((articles) => {
+                    container.innerHTML = "";
+                    if (
+                      !Array.isArray(articles?.pages) ||
+                      articles.total === 0
+                    ) {
+                      container.innerHTML =
+                        '<p class="col-span-full text-center text-gray-400 italic">No articles found.</p>';
+                      return;
+                    }
+
+                    totalPages = Math.ceil(articles.total / 5);
+
+                    const pages = articles.pages;
+                    const firstArticle = pages[0];
+
+                    const firstCard = document.createElement("div");
+                    firstCard.className =
+                      "md:col-span-2 bg-white rounded-lg shadow-md p-4";
+                    if (firstArticle.metaImage) {
+                      const img = document.createElement("img");
+                      img.src = firstArticle.metaImage;
+                      img.alt =
+                        firstArticle.metaTitle || firstArticle.title || "";
+                      img.className =
+                        "w-full h-48 object-cover rounded-md mb-4";
+                      firstCard.appendChild(img);
+                    }
+                    const title = document.createElement("h3");
+                    title.textContent =
+                      firstArticle.metaTitle || firstArticle.title || "";
+                    title.className = "text-lg font-semibold mb-2";
+                    firstCard.appendChild(title);
+
+                    const excerpt = document.createElement("p");
+                    excerpt.textContent = firstArticle.metaDescription || "";
+                    excerpt.className = "text-sm text-gray-600";
+                    firstCard.appendChild(excerpt);
+
+                    if (firstArticle.slug) {
+                      const btn = document.createElement("a");
+                      btn.href = `/preview/${firstArticle.slug}`;
+                      btn.textContent = "Read More";
+                      btn.className =
+                        "mt-2 inline-block text-sm font-semibold hover:underline font-medium rounded-full bg-yellow-400 px-2 py-1";
+                      firstCard.appendChild(btn);
+                    }
+
+                    container.appendChild(firstCard);
+
+                    if (pages.length > 1) {
+                      const secondCard = document.createElement("div");
+                      secondCard.className = "lg:col-span-1";
+
+                      pages.slice(1).forEach((article: Page) => {
+                        const card = document.createElement("div");
+                        card.className = "bg-white rounded-lg shadow-md p-4";
+
+                        if (article.metaImage) {
+                          const img = document.createElement("img");
+                          img.src = article.metaImage;
+                          img.alt = article.metaTitle || article.title || "";
+                          img.className =
+                            "w-full h-48 object-cover rounded-md mb-4";
+                          card.appendChild(img);
+                        }
+
+                        const title = document.createElement("h3");
+                        title.textContent =
+                          article.metaTitle || article.title || "";
+                        title.className = "text-lg font-semibold mb-2";
+                        card.appendChild(title);
+
+                        const excerpt = document.createElement("p");
+                        excerpt.textContent = article.metaDescription || "";
+                        excerpt.className = "text-sm text-gray-600";
+                        card.appendChild(excerpt);
+
+                        if (article.slug) {
+                          const btn = document.createElement("a");
+                          btn.href = `/preview/${article.slug}`;
+                          btn.textContent = "Read More";
+                          btn.className =
+                            "mt-2 inline-block text-sm font-semibold hover:underline font-medium rounded-full bg-yellow-400 px-2 py-1";
+                          card.appendChild(btn);
+                        }
+
+                        secondCard.appendChild(card);
+                      });
+
+                      container.appendChild(secondCard);
+                    }
+
+                    // Only render pagination if enabled
+                    paginationContainer.innerHTML = "";
+                    if (showPagination && totalPages > 1) {
+                      for (let i = 1; i <= totalPages; i++) {
+                        const btn = document.createElement("button");
+                        btn.textContent = i.toString();
+                        btn.className = `px-3 py-1 border rounded ${i === currentPage ? "bg-yellow-400" : "bg-white"}`;
+                        btn.addEventListener("click", () => {
+                          currentPage = i;
+                          renderArticles();
+                        });
+                        paginationContainer.appendChild(btn);
+                      }
+                    }
+                  })
+                  .catch((err) => {
+                    container.innerHTML =
+                      '<p class="col-span-full text-center text-red-500">Failed to load articles.</p>';
+                    console.error(err);
+                  });
+              };
+
+              if (showSearch && searchInput) {
+                searchInput.addEventListener(
+                  "input",
+                  (e: ChangeEvent<HTMLInputElement>) => {
+                    searchQuery = e.target?.value;
+                    currentPage = 1;
+                    renderArticles();
+                  },
+                );
+              }
+
+              renderArticles();
             },
+          },
+          init() {
+            this.on("change:showSearch change:showPagination", () => {
+              const showSearch = this.get("showSearch");
+              const showPagination = this.get("showPagination");
+
+              this.addAttributes({
+                "data-show-search": `${showSearch}`,
+                "data-show-pagination": `${showPagination}`,
+              });
+
+              if (
+                this.attributes.script &&
+                typeof this.attributes.script === "function" &&
+                this.view?.el
+              ) {
+                this.attributes.script.call(this.view?.el);
+              }
+            });
           },
         },
       });
@@ -1384,7 +1485,7 @@ export default function PageEditor({
           const firstArticle = articles?.pages?.at(0);
           const firstCard = document.createElement("div");
           firstCard.className =
-            "lg:col-span-1 bg-white rounded-lg shadow-md p-4";
+            "lg:col-span-2 bg-white rounded-lg shadow-md p-4";
 
           if (firstArticle.metaImage) {
             const img = document.createElement("img");
@@ -1410,7 +1511,7 @@ export default function PageEditor({
             btn.href = `/preview/${firstArticle.slug}`;
             btn.textContent = "Read More";
             btn.className =
-              "mt-auto inline-block text-sm font-semibold hover:underline font-medium rounded-full bg-yellow-400 px-2 py-1";
+              "mt-2 inline-block text-sm font-semibold hover:underline font-medium rounded-full bg-yellow-400 px-2 py-1";
             firstCard.appendChild(btn);
           }
 
@@ -1448,7 +1549,7 @@ export default function PageEditor({
                 btn.href = `/preview/${article.slug}`;
                 btn.textContent = "Read More";
                 btn.className =
-                  "mt-auto inline-block text-sm font-semibold hover:underline font-medium rounded-full bg-yellow-400 px-2 py-1";
+                  "mt-2 inline-block text-sm font-semibold hover:underline font-medium rounded-full bg-yellow-400 px-2 py-1";
                 card.appendChild(btn);
               }
               secondCard.appendChild(card);

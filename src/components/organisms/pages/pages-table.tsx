@@ -139,7 +139,7 @@ export default function PagesTable() {
                   </div>
                   {tags.map((tag) => {
                     return (
-                      <div className="px-2 py-1">
+                      <div key={tag} className="px-2 py-1">
                         <Button
                           variant="secondary"
                           size="sm"
