@@ -10,7 +10,12 @@ export async function GET() {
     `,
   );
 
-  const tags = tagsResult.map((row: any) => row.tag).filter(Boolean);
+  const tags = tagsResult
+    .map((row: any) => {
+      const [tag] = row;
+      return tag.tag;
+    })
+    .filter(Boolean);
 
   return Response.json({ tags });
 }

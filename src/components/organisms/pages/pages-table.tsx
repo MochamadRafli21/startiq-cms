@@ -42,6 +42,7 @@ export default function PagesTable() {
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const [tags, setTags] = useState([] as string[]);
+  const [selectedTag, setSelectedTag] = useState("All");
   const [refetchTrigger, setRefetchTrigger] = useState(0);
   const limit = 10;
   const router = useRouter();
@@ -49,14 +50,14 @@ export default function PagesTable() {
   useEffect(() => {
     const loadPages = async () => {
       const res = await fetch(
-        `/api/pages?search=${search}&page=${page}&limit=${limit}`,
+        `/api/pages?search=${search}&page=${page}&limit=${limit}${selectedTag === "All" ? "" : "&tags=" + selectedTag}`,
       );
       const data = await res.json();
       setPages(data.pages);
       setTotal(data.total);
     };
     loadPages();
-  }, [search, page, refetchTrigger]);
+  }, [search, page, refetchTrigger, selectedTag]);
 
   useEffect(() => {
     const loadTags = async () => {
@@ -125,14 +126,28 @@ export default function PagesTable() {
             <div>
               <h1 className="text-xl font-semibold">Pages</h1>
               {tags.length > 0 && (
-                <div className="flex gap-2 bg-gray-300 rounded-lg divide-x-2 divide-gray-500">
-                  <div className="px-2 py-1 hover:bg-gray-400 rounded-lg">
-                    All
+                <div className="flex gap-2 bg-gray-100 rounded-lg divide-x-2 divide-gray-500">
+                  <div className="px-2 py-1">
+                    <Button
+                      variant="secondary"
+                      size="sm"
+                      className="hover:bg-gray-300"
+                      onClick={() => setSelectedTag("All")}
+                    >
+                      All
+                    </Button>
                   </div>
                   {tags.map((tag) => {
                     return (
-                      <div className="px-2 py-1 hover:bg-gray-400 rounded-lg">
-                        {tag}
+                      <div className="px-2 py-1">
+                        <Button
+                          variant="secondary"
+                          size="sm"
+                          className="hover:bg-gray-300"
+                          onClick={() => setSelectedTag(tag)}
+                        >
+                          {tag}
+                        </Button>
                       </div>
                     );
                   })}
