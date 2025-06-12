@@ -2,20 +2,16 @@ import { db } from "@/db/client";
 import { sql } from "drizzle-orm";
 
 export async function GET() {
-  const tagsResult = await db.execute(
+  const [tagsResult] = await db.execute(
     sql`
-      SELECT DISTINCT JSON_UNQUOTE(tag) as tag
-      FROM pages,
-      JSON_TABLE(pages.tags, '$[*]' COLUMNS(tag JSON PATH '$')) AS jt
-    `,
+    SELECT DISTINCT JSON_UNQUOTE(tag) as tag
+    FROM pages,
+    JSON_TABLE(pages.tags, '$[*]' COLUMNS(tag JSON PATH '$')) AS jt
+  `,
   );
-
-  const tags = tagsResult
-    .map((row: any) => {
-      const [tag] = row;
-      return tag.tag;
-    })
-    .filter(Boolean);
+  const tags = (tagsResult as unknown as { tag: string }[]).map(
+    (row) => row.tag,
+  );
 
   return Response.json({ tags });
 }
