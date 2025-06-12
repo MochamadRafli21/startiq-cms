@@ -1,6 +1,6 @@
 import { db } from "@/db/client";
 import { pages } from "@/db/schema";
-import { like, count, and, sql } from "drizzle-orm";
+import { like, count, and, sql, or } from "drizzle-orm";
 
 export const dynamic = "force-dynamic";
 
@@ -20,9 +20,14 @@ export async function GET(req: Request) {
     : [];
 
   const whereConditions = [];
-
   if (search) {
-    whereConditions.push(like(pages.title, `%${search}%`));
+    const searchLower = search.toLowerCase();
+    whereConditions.push(
+      or(
+        like(sql`LOWER(${pages.title})`, `%${searchLower}%`),
+        like(sql`LOWER(${pages.metaTitle})`, `%${searchLower}%`),
+      ),
+    );
   }
 
   if (tags.length > 0) {
@@ -30,9 +35,8 @@ export async function GET(req: Request) {
     const tagConditions = tags.map(
       (tag) => sql`JSON_CONTAINS(${pages.tags}, JSON_QUOTE(${tag}))`,
     );
-
     // Add all tag filters using AND (i.e. must match all tags)
-    whereConditions.push(and(...tagConditions));
+    whereConditions.push(or(...tagConditions));
   }
 
   const whereClause =
@@ -51,6 +55,7 @@ export async function GET(req: Request) {
       metaTitle: pages.metaTitle,
       metaDescription: pages.metaDescription,
       metaImage: pages.metaImage,
+      iconImage: pages.iconImage,
       isPublic: pages.isPublic,
       createdAt: pages.createdAt,
     })

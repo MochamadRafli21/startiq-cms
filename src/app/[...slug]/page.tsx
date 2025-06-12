@@ -23,8 +23,10 @@ export async function generateMetadata({
   const fullSlug = resolvedParams.slug?.join("/") ?? "";
   const pageData = await getPageData(fullSlug);
   if (!pageData) return { title: "Page Not Found" };
-
   return {
+    icons: {
+      icon: pageData.iconImage || pageData.metaImage,
+    },
     title: pageData.metaTitle || pageData.title,
     description: pageData.metaDescription || "",
     openGraph: {

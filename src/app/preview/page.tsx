@@ -16,6 +16,9 @@ export async function generateMetadata(): Promise<Metadata> {
   if (!pageData) return { title: "Page Not Found" };
 
   return {
+    icons: {
+      icon: pageData.iconImage,
+    },
     title: pageData.metaTitle || pageData.title,
     description: pageData.metaDescription || "",
     openGraph: {

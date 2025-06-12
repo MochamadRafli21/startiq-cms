@@ -14,8 +14,10 @@ async function getPageData() {
 export async function generateMetadata(): Promise<Metadata> {
   const pageData = await getPageData();
   if (!pageData) return { title: "Page Not Found" };
-
   return {
+    icons: {
+      icon: pageData.iconImage || pageData.metaImage,
+    },
     title: pageData.metaTitle || pageData.title,
     description: pageData.metaDescription || "",
     openGraph: {

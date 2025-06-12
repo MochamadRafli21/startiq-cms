@@ -1,6 +1,6 @@
 import { db } from "@/db/client";
 import { pages } from "@/db/schema";
-import { like, count, eq, and, sql } from "drizzle-orm";
+import { like, count, eq, and, sql, or } from "drizzle-orm";
 
 export const dynamic = "force-dynamic";
 
@@ -22,7 +22,15 @@ export async function GET(req: Request) {
   const whereConditions = [];
 
   if (search) {
-    whereConditions.push(like(pages.title, `%${search}%`));
+    const searchLower = search.toLowerCase();
+    whereConditions.push(
+      and(
+        or(
+          like(sql`LOWER(${pages.title})`, `%${searchLower}%`),
+          like(sql`LOWER(${pages.metaTitle})`, `%${searchLower}%`),
+        ),
+      ),
+    );
   }
 
   if (tags.length > 0) {

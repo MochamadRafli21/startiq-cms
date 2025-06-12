@@ -470,8 +470,8 @@ export default function PageEditor({
             ],
             tabs: JSON.stringify([{ label: "Tab 1" }, { label: "Tab 2" }]),
             script: function () {
-              const tabs = this.querySelectorAll(".tab-btn");
-              const panels = this.querySelectorAll(".tab-panel");
+              const tabs = this?.querySelectorAll(".tab-btn");
+              const panels = this?.querySelectorAll(".tab-panel");
 
               tabs.forEach((btn: HTMLButtonElement, idx: number) => {
                 btn.addEventListener("click", () => {
@@ -599,7 +599,7 @@ export default function PageEditor({
             <div class="mb-4 flex justify-between items-center">
               <input type="text" placeholder="Search links..." class="link-search border px-3 py-1 rounded w-full max-w-xs" />
             </div>
-            <div class="mb-4 flex justify-between items-center link-dynamic-filters">
+            <div class="mb-4 flex flex-col md:flex-row flex-wrap justify-between items-center link-dynamic-filters">
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 link-list-container">
               <p class="col-span-full text-center text-gray-500">Loading links...</p>
@@ -1131,8 +1131,8 @@ export default function PageEditor({
         label: "Navbar",
         category: "Basic",
         content: `
-    <header data-gjs-type="custom-navbar" class="w-full bg-white shadow-md">
-      <div class="max-w-screen mx-auto px-4 py-4 flex items-center justify-between">
+    <header data-gjs-type="custom-navbar" class="w-full shadow-md">
+      <div class="max-w-screen mx-auto px-4 py-4 flex items-center bg-gray-300 absolute top-0  justify-between">
         <div class="flex items-center gap-4 overflow-x-scroll">
           <img src="/uploads/logo-rsf-transparant.webp" alt="Logo" class="h-10"/>
           <nav class="hidden md:flex gap-6 text-sm font-medium">
@@ -1184,6 +1184,10 @@ export default function PageEditor({
       editor.DomComponents.addType("custom-navbar", {
         model: {
           defaults: {
+            attributes: {
+              class: "custom-navbar",
+              "data-gjs-type": "custom-navbar",
+            },
             script: function () {
               const burger = this.querySelector(".burger-btn");
               const menu = this.querySelector(".mobile-menu");
@@ -1831,7 +1835,7 @@ export default function PageEditor({
   }
 
   const renderSlider = () => {
-    const sliders = document.querySelectorAll(
+    const sliders = document?.querySelectorAll(
       '[data-gjs-type="infinite-slides"]',
     );
     if (sliders) {
@@ -1916,7 +1920,7 @@ export default function PageEditor({
   }
 
   const renderCarousel = () => {
-    const carousels = document.querySelectorAll(
+    const carousels = document?.querySelectorAll(
       '[data-gjs-type="carousel-react"]',
     );
     // find model inside content
@@ -1962,7 +1966,7 @@ export default function PageEditor({
   };
 
   const renderCountUp = () => {
-    const counts = document.querySelectorAll('[data-gjs-type="count-up"]');
+    const counts = document?.querySelectorAll('[data-gjs-type="count-up"]');
     // find model inside content
     counts.forEach((count) => {
       const id = count.id;
@@ -1999,7 +2003,9 @@ export default function PageEditor({
   };
 
   const renderPageList = () => {
-    const containers = document.querySelectorAll('[data-gjs-type="page-list"]');
+    const containers = document?.querySelectorAll(
+      '[data-gjs-type="page-list"]',
+    );
     if (!containers) return;
     containers.forEach((container) => {
       const id = container.id;
@@ -2164,7 +2170,9 @@ export default function PageEditor({
   };
 
   const renderLinkList = () => {
-    const containers = document.querySelectorAll('[data-gjs-type="link-list"]');
+    const containers = document?.querySelectorAll(
+      '[data-gjs-type="link-list"]',
+    );
     if (!containers) return;
     containers.forEach((children) => {
       const id = children.id;
@@ -2176,7 +2184,6 @@ export default function PageEditor({
         ".link-search",
       ) as HTMLInputElement;
       const dynamicFilters = children.querySelector(".link-dynamic-filters");
-      console.log(dynamicFilters);
       let currentPage = 1;
       let totalPages = 1;
       let searchQuery = "";
@@ -2373,7 +2380,7 @@ export default function PageEditor({
   };
 
   const renderTabs = () => {
-    const tabComponents = document.querySelectorAll(
+    const tabComponents = document?.querySelectorAll(
       '[data-gjs-type="custom-tabs"]',
     );
     // find model inside content
@@ -2453,6 +2460,106 @@ export default function PageEditor({
     });
   };
 
+  const renderNavbar = () => {
+    const navbars = document.querySelectorAll(
+      '[data-gjs-type="custom-navbar"]',
+    );
+    // find model inside content
+    if (!navbars) return;
+    navbars.forEach((navbar) => {
+      const burger = navbar.querySelector(".burger-btn");
+      const menu = navbar.querySelector(".mobile-menu");
+      if (burger && menu) {
+        burger.addEventListener("click", () => {
+          menu.classList.toggle("hidden");
+        });
+      }
+
+      const searchInputs = navbar.querySelectorAll(
+        'input[placeholder="Search"]',
+      );
+
+      const debounce = (fn: Function, delay: number) => {
+        let timeout: any;
+        return (...args: any[]) => {
+          clearTimeout(timeout);
+          timeout = setTimeout(() => fn(...args), delay);
+        };
+      };
+
+      const fetchResults = async (query: string, container: Element) => {
+        if (!query) {
+          container.innerHTML = "";
+          return;
+        }
+
+        const queryString = new URLSearchParams({
+          page: "1",
+          limit: "5",
+          tags: "article,conferences",
+        });
+
+        if (query) {
+          queryString.set("search", encodeURIComponent(query));
+        }
+        try {
+          const res = await fetch(`/api/public?${queryString}`);
+          const data = await res.json();
+          const pages = data.pages;
+          const total = data.total;
+
+          container.innerHTML = "";
+
+          if (!Array.isArray(pages) || total === 0) {
+            const noResult = document.createElement("div");
+            noResult.textContent = "No results found";
+            noResult.className = "px-2 py-1 text-gray-500 text-sm";
+            container.appendChild(noResult);
+            return;
+          }
+
+          pages.forEach((page: Page) => {
+            const link = document.createElement("a");
+            link.href = page.slug || "#";
+            link.textContent = page.metaTitle || page.title || "Untitled";
+            link.className = "block px-2 py-1 hover:bg-gray-100 text-sm";
+            container.appendChild(link);
+          });
+        } catch (error) {
+          container.innerHTML = `<div class="px-2 py-1 text-red-500 text-sm">Error loading results</div>`;
+        }
+      };
+
+      searchInputs.forEach((input) => {
+        const wrapper = document.createElement("div");
+        wrapper.className = "relative w-full";
+        input.parentNode?.insertBefore(wrapper, input);
+        wrapper.appendChild(input);
+
+        const resultsContainer = document.createElement("div");
+        resultsContainer.className =
+          "absolute left-0 right-0 top-full mt-1 z-50 bg-white border rounded shadow hidden";
+        wrapper.appendChild(resultsContainer);
+
+        input.addEventListener(
+          "input",
+          debounce((e: any) => {
+            const query = e.target.value.trim();
+            resultsContainer.classList.remove("hidden");
+            fetchResults(query, resultsContainer);
+          }, 300),
+        );
+
+        // Hide results on outside click
+        document.addEventListener("click", (e: any) => {
+          if (!wrapper.contains(e.target)) {
+            resultsContainer.classList.add("hidden");
+          }
+        });
+      });
+    });
+  };
+
   useEffect(() => {
     if (content) {
       // render tabs
@@ -2472,6 +2579,9 @@ export default function PageEditor({
 
       // render page list
       renderPageList();
+
+      // render navbar
+      renderNavbar();
     }
   }, [renderedHtml]);
 
