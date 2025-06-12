@@ -403,20 +403,20 @@ export default function PageEditor({
         `,
       });
 
-      // add article list component
+      // add page list component
       // 1. Register the block
       editor.BlockManager.add("page-list", {
-        label: "Article List",
+        label: "Page List",
         category: "Custom",
         content: `
           <section data-gjs-type="page-list" class="w-full max-w-6xl mx-auto py-10 px-4">
             <div class="mb-4 flex justify-between items-center">
-              <input type="text" placeholder="Search articles..." class="article-search border px-3 py-1 rounded w-full max-w-xs" />
+              <input type="text" placeholder="Search pages..." class="page-search border px-3 py-1 rounded w-full max-w-xs" />
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 page-list-container">
-              <p class="col-span-full text-center text-gray-500">Loading articles...</p>
+              <p class="col-span-full text-center text-gray-500">Loading pages...</p>
             </div>
-            <div class="mt-6 flex justify-center gap-2 article-pagination">
+            <div class="mt-6 flex justify-center gap-2 page-pagination">
               <!-- Pagination buttons injected by script -->
             </div>
           </section>
@@ -459,10 +459,9 @@ export default function PageEditor({
             tags: "",
             script: function () {
               const container = this.querySelector(".page-list-container");
-              const paginationContainer = this.querySelector(
-                ".article-pagination",
-              );
-              const searchInput = this.querySelector(".article-search");
+              const paginationContainer =
+                this.querySelector(".page-pagination");
+              const searchInput = this.querySelector(".page-search");
               let currentPage = 1;
               let totalPages = 1;
               let searchQuery = "";
@@ -478,9 +477,9 @@ export default function PageEditor({
                 searchInput.style.display = "block";
               }
 
-              const renderArticles = () => {
+              const renderPages = () => {
                 container.innerHTML =
-                  '<p class="col-span-full text-center text-gray-500">Loading articles...</p>';
+                  '<p class="col-span-full text-center text-gray-500">Loading pages...</p>';
 
                 const query = new URLSearchParams({
                   page: currentPage.toString(),
@@ -494,48 +493,44 @@ export default function PageEditor({
 
                 fetch(`/api/public?${query.toString()}`)
                   .then((res) => res.json())
-                  .then((articles) => {
+                  .then((body: { pages: Page[]; total: number }) => {
                     container.innerHTML = "";
-                    if (
-                      !Array.isArray(articles?.pages) ||
-                      articles.total === 0
-                    ) {
+                    if (!Array.isArray(body?.pages) || body.total === 0) {
                       container.innerHTML =
-                        '<p class="col-span-full text-center text-gray-400 italic">No articles found.</p>';
+                        '<p class="col-span-full text-center text-gray-400 italic">No pages found.</p>';
                       return;
                     }
 
-                    totalPages = Math.ceil(articles.total / 5);
+                    totalPages = Math.ceil(body.total / 5);
 
-                    const pages = articles.pages;
-                    const firstArticle = pages[0];
+                    const pages = body.pages;
+                    const firstPage = pages[0];
 
                     const firstCard = document.createElement("div");
                     firstCard.className =
                       "md:col-span-2 bg-white rounded-lg shadow-md p-4";
-                    if (firstArticle.metaImage) {
+                    if (firstPage.metaImage) {
                       const img = document.createElement("img");
-                      img.src = firstArticle.metaImage;
-                      img.alt =
-                        firstArticle.metaTitle || firstArticle.title || "";
+                      img.src = firstPage.metaImage;
+                      img.alt = firstPage.metaTitle || firstPage.title || "";
                       img.className =
                         "w-full h-48 object-cover rounded-md mb-4";
                       firstCard.appendChild(img);
                     }
                     const title = document.createElement("h3");
                     title.textContent =
-                      firstArticle.metaTitle || firstArticle.title || "";
+                      firstPage.metaTitle || firstPage.title || "";
                     title.className = "text-lg font-semibold mb-2";
                     firstCard.appendChild(title);
 
                     const excerpt = document.createElement("p");
-                    excerpt.textContent = firstArticle.metaDescription || "";
+                    excerpt.textContent = firstPage.metaDescription || "";
                     excerpt.className = "text-sm text-gray-600";
                     firstCard.appendChild(excerpt);
 
-                    if (firstArticle.slug) {
+                    if (firstPage.slug) {
                       const btn = document.createElement("a");
-                      btn.href = `/preview/${firstArticle.slug}`;
+                      btn.href = `/${firstPage.slug}`;
                       btn.textContent = "Read More";
                       btn.className =
                         "mt-2 inline-block text-sm font-semibold hover:underline font-medium rounded-full bg-yellow-400 px-2 py-1";
@@ -548,33 +543,32 @@ export default function PageEditor({
                       const secondCard = document.createElement("div");
                       secondCard.className = "lg:col-span-1";
 
-                      pages.slice(1).forEach((article: Page) => {
+                      pages.slice(1).forEach((page: Page) => {
                         const card = document.createElement("div");
                         card.className = "bg-white rounded-lg shadow-md p-4";
 
-                        if (article.metaImage) {
+                        if (page.metaImage) {
                           const img = document.createElement("img");
-                          img.src = article.metaImage;
-                          img.alt = article.metaTitle || article.title || "";
+                          img.src = page.metaImage;
+                          img.alt = page.metaTitle || page.title || "";
                           img.className =
                             "w-full h-48 object-cover rounded-md mb-4";
                           card.appendChild(img);
                         }
 
                         const title = document.createElement("h3");
-                        title.textContent =
-                          article.metaTitle || article.title || "";
+                        title.textContent = page.metaTitle || page.title || "";
                         title.className = "text-lg font-semibold mb-2";
                         card.appendChild(title);
 
                         const excerpt = document.createElement("p");
-                        excerpt.textContent = article.metaDescription || "";
+                        excerpt.textContent = page.metaDescription || "";
                         excerpt.className = "text-sm text-gray-600";
                         card.appendChild(excerpt);
 
-                        if (article.slug) {
+                        if (page.slug) {
                           const btn = document.createElement("a");
-                          btn.href = `/preview/${article.slug}`;
+                          btn.href = `/${page.slug}`;
                           btn.textContent = "Read More";
                           btn.className =
                             "mt-2 inline-block text-sm font-semibold hover:underline font-medium rounded-full bg-yellow-400 px-2 py-1";
@@ -596,7 +590,7 @@ export default function PageEditor({
                         btn.className = `px-3 py-1 border rounded ${i === currentPage ? "bg-yellow-400" : "bg-white"}`;
                         btn.addEventListener("click", () => {
                           currentPage = i;
-                          renderArticles();
+                          renderPages();
                         });
                         paginationContainer.appendChild(btn);
                       }
@@ -604,7 +598,7 @@ export default function PageEditor({
                   })
                   .catch((err) => {
                     container.innerHTML =
-                      '<p class="col-span-full text-center text-red-500">Failed to load articles.</p>';
+                      '<p class="col-span-full text-center text-red-500">Failed to load pages.</p>';
                     console.error(err);
                   });
               };
@@ -615,12 +609,12 @@ export default function PageEditor({
                   (e: ChangeEvent<HTMLInputElement>) => {
                     searchQuery = e.target?.value;
                     currentPage = 1;
-                    renderArticles();
+                    renderPages();
                   },
                 );
               }
 
-              renderArticles();
+              renderPages();
             },
           },
           init() {
@@ -1518,18 +1512,16 @@ export default function PageEditor({
     });
   };
 
-  const renderArticleList = () => {
+  const renderPageList = () => {
     const containers = document.querySelectorAll('[data-gjs-type="page-list"]');
     if (!containers) return;
     containers.forEach((container) => {
       const id = container.id;
       const component = findComponentById(content?.pages[0].frames, id);
       const pageContainer = container.querySelector(".page-list-container");
-      const paginationContainer = container.querySelector(
-        ".article-pagination",
-      );
+      const paginationContainer = container.querySelector(".page-pagination");
       const searchInput = container.querySelector(
-        ".article-search",
+        ".page-search",
       ) as HTMLInputElement;
       let currentPage = 1;
       let totalPages = 1;
@@ -1543,10 +1535,10 @@ export default function PageEditor({
         searchInput.style.display = "block";
       }
 
-      const renderArticles = () => {
+      const renderPages = () => {
         if (!pageContainer) return;
         pageContainer.innerHTML =
-          '<p class="col-span-full text-center text-gray-500">Loading articles...</p>';
+          '<p class="col-span-full text-center text-gray-500">Loading pages...</p>';
 
         const query = new URLSearchParams({
           page: currentPage.toString(),
@@ -1563,44 +1555,43 @@ export default function PageEditor({
 
         fetch(`/api/public?${query.toString()}`)
           .then((res) => res.json())
-          .then((articles) => {
+          .then((body: { pages: Page[]; total: number }) => {
             if (!pageContainer) return;
             pageContainer.innerHTML = "";
-            if (!Array.isArray(articles?.pages) || articles.total === 0) {
+            if (!Array.isArray(body?.pages) || body.total === 0) {
               pageContainer.innerHTML =
-                '<p class="col-span-full text-center text-gray-400 italic">No articles found.</p>';
+                '<p class="col-span-full text-center text-gray-400 italic">No pages found.</p>';
               return;
             }
 
-            totalPages = Math.ceil(articles.total / 5);
+            totalPages = Math.ceil(body.total / 5);
 
-            const pages = articles.pages;
-            const firstArticle = pages[0];
+            const pages = body.pages;
+            const firstPage = pages[0];
 
             const firstCard = document.createElement("div");
             firstCard.className =
               "md:col-span-2 bg-white rounded-lg shadow-md p-4";
-            if (firstArticle.metaImage) {
+            if (firstPage.metaImage) {
               const img = document.createElement("img");
-              img.src = firstArticle.metaImage;
-              img.alt = firstArticle.metaTitle || firstArticle.title || "";
+              img.src = firstPage.metaImage;
+              img.alt = firstPage.metaTitle || firstPage.title || "";
               img.className = "w-full h-48 object-cover rounded-md mb-4";
               firstCard.appendChild(img);
             }
             const title = document.createElement("h3");
-            title.textContent =
-              firstArticle.metaTitle || firstArticle.title || "";
+            title.textContent = firstPage.metaTitle || firstPage.title || "";
             title.className = "text-lg font-semibold mb-2";
             firstCard.appendChild(title);
 
             const excerpt = document.createElement("p");
-            excerpt.textContent = firstArticle.metaDescription || "";
+            excerpt.textContent = firstPage.metaDescription || "";
             excerpt.className = "text-sm text-gray-600";
             firstCard.appendChild(excerpt);
 
-            if (firstArticle.slug) {
+            if (firstPage.slug) {
               const btn = document.createElement("a");
-              btn.href = `/preview/${firstArticle.slug}`;
+              btn.href = `/${firstPage.slug}`;
               btn.textContent = "Read More";
               btn.className =
                 "mt-2 inline-block text-sm font-semibold hover:underline font-medium rounded-full bg-yellow-400 px-2 py-1";
@@ -1613,31 +1604,31 @@ export default function PageEditor({
               const secondCard = document.createElement("div");
               secondCard.className = "lg:col-span-1";
 
-              pages.slice(1).forEach((article: Page) => {
+              pages.slice(1).forEach((page: Page) => {
                 const card = document.createElement("div");
                 card.className = "bg-white rounded-lg shadow-md p-4";
 
-                if (article.metaImage) {
+                if (page.metaImage) {
                   const img = document.createElement("img");
-                  img.src = article.metaImage;
-                  img.alt = article.metaTitle || article.title || "";
+                  img.src = page.metaImage;
+                  img.alt = page.metaTitle || page.title || "";
                   img.className = "w-full h-48 object-cover rounded-md mb-4";
                   card.appendChild(img);
                 }
 
                 const title = document.createElement("h3");
-                title.textContent = article.metaTitle || article.title || "";
+                title.textContent = page.metaTitle || page.title || "";
                 title.className = "text-lg font-semibold mb-2";
                 card.appendChild(title);
 
                 const excerpt = document.createElement("p");
-                excerpt.textContent = article.metaDescription || "";
+                excerpt.textContent = page.metaDescription || "";
                 excerpt.className = "text-sm text-gray-600";
                 card.appendChild(excerpt);
 
-                if (article.slug) {
+                if (page.slug) {
                   const btn = document.createElement("a");
-                  btn.href = `/preview/${article.slug}`;
+                  btn.href = `/${page.slug}`;
                   btn.textContent = "Read More";
                   btn.className =
                     "mt-2 inline-block text-sm font-semibold hover:underline font-medium rounded-full bg-yellow-400 px-2 py-1";
@@ -1660,7 +1651,7 @@ export default function PageEditor({
                   btn.className = `px-3 py-1 border rounded ${i === currentPage ? "bg-yellow-400" : "bg-white"}`;
                   btn.addEventListener("click", () => {
                     currentPage = i;
-                    renderArticles();
+                    renderPages();
                   });
                   paginationContainer.appendChild(btn);
                 }
@@ -1669,7 +1660,7 @@ export default function PageEditor({
           })
           .catch((err) => {
             pageContainer.innerHTML =
-              '<p class="col-span-full text-center text-red-500">Failed to load articles.</p>';
+              '<p class="col-span-full text-center text-red-500">Failed to load pages.</p>';
             console.error(err);
           });
       };
@@ -1678,11 +1669,11 @@ export default function PageEditor({
         searchInput.addEventListener("input", (e: any) => {
           searchQuery = e.target?.value;
           currentPage = 1;
-          renderArticles();
+          renderPages();
         });
       }
 
-      renderArticles();
+      renderPages();
     });
   };
 
@@ -1697,8 +1688,8 @@ export default function PageEditor({
       // render count up
       renderCountUp();
 
-      // render article list
-      renderArticleList();
+      // render page list
+      renderPageList();
     }
   }, [renderedHtml]);
 

@@ -137,6 +137,7 @@ export const Carousel: React.FC<Props> = ({
     <div
       {...swipeHandlers}
       id="unique"
+      data-gjs-slot
       onMouseEnter={() => setHovering(true)}
       onMouseLeave={() => setHovering(false)}
       className="group max-w-screen relative aspect-video overflow-hidden w-full  mx-auto p-3"
