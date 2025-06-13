@@ -38,8 +38,10 @@ export async function GET(req: NextRequest) {
       .orderBy(forms.createdAt)
       .limit(limit)
       .offset(offset);
-
-    return NextResponse.json({ forms: results, total: totalResult });
+    return NextResponse.json({
+      forms: results,
+      total: Number(totalResult.count),
+    });
   } catch (err) {
     console.error("Error fetching forms:", err);
     return NextResponse.json({ message: "Server error" }, { status: 500 });

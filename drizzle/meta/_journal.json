@@ -43,6 +43,13 @@
       "when": 1749596014220,
       "tag": "0005_graceful_taskmaster",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1749785760683,
+      "tag": "0006_charming_lyja",
+      "breakpoints": true
     }
   ]
 }

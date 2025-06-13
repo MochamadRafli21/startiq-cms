@@ -10,9 +10,14 @@ export async function POST(
 ) {
   const { name } = await params;
 
-  const data = await req.json();
+  const data: any = {};
+  const formData = await req.formData();
 
-  const [{ id }] = await db
+  formData.forEach((value, key) => {
+    data[key] = value;
+  });
+
+  await db
     .insert(forms)
     .values({
       name,
@@ -20,7 +25,53 @@ export async function POST(
     })
     .$returningId();
 
-  const [form] = await db.select().from(forms).where(eq(forms.id, id)).limit(1);
+  const html = `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Form Submitted</title>
+      <style>
+        body {
+          font-family: sans-serif;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          height: 100vh;
+          margin: 0;
+          background-color: #f9f9f9;
+        }
+        h1 {
+          color: #1a1a1a;
+        }
+        button {
+          margin-top: 20px;
+          padding: 10px 20px;
+          background-color: #4f46e5;
+          color: white;
+          border: none;
+          border-radius: 6px;
+          cursor: pointer;
+          font-size: 16px;
+        }
+        button:hover {
+          background-color: #4338ca;
+        }
+      </style>
+    </head>
+    <body>
+      <h1>Thank you! Your form was submitted successfully.</h1>
+      <button onclick="history.back()">Go Back</button>
+    </body>
+    </html>
+  `;
 
-  return Response.json(form);
+  return new Response(html, {
+    status: 200,
+    headers: {
+      "Content-Type": "text/html",
+    },
+  });
 }
