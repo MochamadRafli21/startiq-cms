@@ -1,17 +1,37 @@
 "use client";
-import React, { useEffect, useRef, useState, ChangeEvent } from "react";
+import React, {
+  useEffect,
+  useRef,
+  useState,
+  ChangeEvent,
+  useCallback,
+} from "react";
 import ReactDOM from "react-dom/client";
-import grapesjs, { Component, Trait, TraitProperties } from "grapesjs";
+import grapesjs, {
+  Editor,
+  Component,
+  Trait,
+  TraitProperties,
+  ProjectData,
+} from "grapesjs";
 import tailwindPlugin from "grapesjs-tailwindcss-plugin"; // Import the plugin
 import "grapesjs/dist/css/grapes.min.css";
 import { Carousel } from "@/components/organisms/grapesjs/carousel";
 import { InfiniteSlides } from "@/components/organisms/grapesjs/infinite-slides";
 import type { Page } from "@/types/page.type";
 import type { Link } from "@/types/link.type";
+import type {
+  AnimationType,
+  DisplayType,
+} from "@/components/organisms/grapesjs/carousel";
+import type {
+  GjsComponent,
+  ScriptedElement,
+} from "@/types/grapesjs-extra.type";
 
 interface PageEditorProps {
-  content?: Record<string, any>;
-  onContentChange?: (data: Record<string, any>) => void;
+  content?: ProjectData;
+  onContentChange?: (data: ProjectData) => void;
   isPreview?: boolean;
 }
 
@@ -20,7 +40,7 @@ export default function PageEditor({
   onContentChange,
   isPreview = false,
 }: PageEditorProps) {
-  const editorRef = useRef<any>(null);
+  const editorRef = useRef<Editor>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [renderedHtml, setRenderedHtml] = useState<string>("");
   const [renderedCss, setRenderedCss] = useState<string>("");
@@ -187,10 +207,10 @@ export default function PageEditor({
           elInput,
           component,
         }: {
-          elInput: any;
+          elInput: HTMLInputElement;
           component: Component;
         }) {
-          const input = elInput as HTMLSelectElement;
+          const input = elInput as unknown as HTMLSelectElement;
           const selectedTags = Array.from(input.selectedOptions).map(
             (opt) => opt.value,
           );
@@ -231,10 +251,10 @@ export default function PageEditor({
           elInput,
           component,
         }: {
-          elInput: any;
+          elInput: HTMLInputElement;
           component: Component;
         }) {
-          const input = elInput as HTMLSelectElement;
+          const input = elInput as unknown as HTMLSelectElement;
           const selectedTags = Array.from(input.selectedOptions).map(
             (opt) => opt.value,
           );
@@ -249,7 +269,7 @@ export default function PageEditor({
       });
       // --- 1. Define Custom Trait: AssetManagerOpenerTrait ---
       editor.TraitManager.addType("selected-images-viewer", {
-        createInput(this: any) {
+        createInput(this) {
           const container = document.createElement("div");
 
           container.className = "gjs-selected-images-container";
@@ -262,7 +282,7 @@ export default function PageEditor({
         // `onUpdate` is crucial: it updates the trait's UI whenever the component's 'images' property changes
 
         onUpdate(
-          this: any,
+          this,
           {
             component,
             elInput,
@@ -704,8 +724,10 @@ export default function PageEditor({
                   input.className =
                     "block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm";
                   input.placeholder = `Enter ${key}`;
-                  input.addEventListener("input", (e: any) => {
-                    dynamicAttributes[key] = e.target.value;
+                  input.addEventListener("input", (e) => {
+                    dynamicAttributes[key] = (
+                      e.target as HTMLInputElement
+                    )?.value;
                     currentPage = 1;
                     renderLinks();
                   });
@@ -1333,7 +1355,7 @@ export default function PageEditor({
 
           init() {
             this.on("change:endValue change:duration", () => {
-              const el: any = this.view?.el;
+              const el = this.view?.el as ScriptedElement;
               if (el && typeof el.__grapesjs_script === "function") {
                 el.__grapesjs_script.call(el);
               }
@@ -1503,7 +1525,7 @@ export default function PageEditor({
           },
 
           // This initializes the view and sets up event listeners
-          initialize(...args: any[]) {
+          initialize(...args: unknown[]) {
             defaultView.prototype.initialize.apply(this, ...args);
 
             // Listen to changes in specific traits (autoplay, interval)
@@ -1541,7 +1563,7 @@ export default function PageEditor({
           },
 
           // Cleanup: unmount React component and remove listeners
-          onRemove(...args: any[]) {
+          onRemove(...args: unknown[]) {
             if (this.root) {
               this.root.unmount(); // Unmount React component from the DOM
               this.root = null;
@@ -1684,16 +1706,18 @@ export default function PageEditor({
 
             // Map each GrapesJS component (slide) to a React element
             const childrenReactElements =
-              model?.get("components")?.map((comp: any, index: any) => {
-                const componentHtml = comp.toHTML(); // Get the HTML of the GrapesJS component
-                // Wrap the HTML in a React element using dangerouslySetInnerHTML
-                return React.createElement("div", {
-                  key: comp.cid || `gjs-carousel-slide-${index}`, // Unique key for React list rendering
-                  // You can pass GrapesJS classes if needed
-                  "data-gjs-type": comp.get("type"), // Useful for debugging
-                  dangerouslySetInnerHTML: { __html: componentHtml },
-                });
-              }) || [];
+              model
+                ?.get("components")
+                ?.map((comp: Component, index: number) => {
+                  const componentHtml = comp.toHTML(); // Get the HTML of the GrapesJS component
+                  // Wrap the HTML in a React element using dangerouslySetInnerHTML
+                  return React.createElement("div", {
+                    key: comp.cid || `gjs-carousel-slide-${index}`, // Unique key for React list rendering
+                    // You can pass GrapesJS classes if needed
+                    "data-gjs-type": comp.get("type"), // Useful for debugging
+                    dangerouslySetInnerHTML: { __html: componentHtml },
+                  });
+                }) || [];
 
             // Initialize or update the React root
             if (!this.root) {
@@ -1715,7 +1739,7 @@ export default function PageEditor({
           },
 
           // This initializes the view and sets up event listeners
-          initialize(...args: any[]) {
+          initialize(...args: unknown[]) {
             defaultView.prototype.initialize.apply(this, ...args);
 
             // Listen to changes in specific traits (autoplay, interval)
@@ -1754,7 +1778,7 @@ export default function PageEditor({
           },
 
           // Cleanup: unmount React component and remove listeners
-          onRemove(...args: any[]) {
+          onRemove(...args: unknown[]) {
             if (this.root) {
               this.root.unmount(); // Unmount React component from the DOM
               this.root = null;
@@ -1818,26 +1842,32 @@ export default function PageEditor({
     loadPlugins();
   }, [content, isPreview, onContentChange]);
 
-  function findComponentById(components: any, targetId: string) {
-    for (const comp of components) {
-      // Some components may nest under `component.components`
-      const current = comp.component || comp;
+  const findComponentById = useCallback(
+    (components: GjsComponent[], targetId: string): GjsComponent | null => {
+      for (const comp of components) {
+        // Some components may nest under `component.components`
+        const current = comp.component || comp;
 
-      // Check current component's attributes
-      if (current.attributes?.id === targetId) {
-        return current;
+        // Check current component's attributes
+        if (current.attributes?.id === targetId) {
+          return current;
+        }
+
+        // Recurse into children
+        const children = current.components || [];
+        const result: GjsComponent | null = findComponentById(
+          children,
+          targetId,
+        );
+        if (result) return result;
       }
 
-      // Recurse into children
-      const children = current.components || [];
-      const result: any = findComponentById(children, targetId);
-      if (result) return result;
-    }
+      return null;
+    },
+    [],
+  );
 
-    return null;
-  }
-
-  const renderSlider = () => {
+  const renderSlider = useCallback(() => {
     const sliders = document?.querySelectorAll(
       '[data-gjs-type="infinite-slides"]',
     );
@@ -1869,9 +1899,9 @@ export default function PageEditor({
     sliders.forEach((slider) => {
       const id = slider.id;
       const component = findComponentById(content?.pages[0].frames, id);
-      const images = component?.images || component?.imageList;
+      const images = (component?.images || component?.imageList) as string[];
       const direction = component?.direction === "right";
-      const speed = component?.speed;
+      const speed = component?.speed as number;
 
       const root = ReactDOM.createRoot(slider);
       root.render(
@@ -1882,47 +1912,50 @@ export default function PageEditor({
         />,
       );
     });
-  };
+  }, [findComponentById, content?.pages]);
 
-  function componentToHTML(component: any): string {
-    // Handle text node directly
-    if (component.type === "textnode") {
-      return component.content || "";
-    }
-    const style = content?.styles?.find((style: any) =>
-      style.selectors.includes(`#${component?.attributes?.id}`),
-    );
-    let attrs = component.attributes
-      ? Object.entries(component.attributes)
-          .map(([key, value]) => `${key}="${value}"`)
-          .join(" ")
-      : "";
+  const componentToHTML = useCallback(
+    (component: GjsComponent): string => {
+      // Handle text node directly
+      if (component.type === "textnode") {
+        return (component.content || "") as string;
+      }
+      const style = content?.styles?.find((style: { selectors: string[] }) =>
+        style.selectors.includes(`#${component?.attributes?.id}`),
+      );
+      let attrs = component.attributes
+        ? Object.entries(component.attributes)
+            .map(([key, value]) => `${key}="${value}"`)
+            .join(" ")
+        : "";
 
-    const classes = component?.classes
-      ?.map((cls: string | { name: string }) =>
-        typeof cls === "string" ? cls : cls.name,
-      )
-      .filter(Boolean)
-      .join(" ");
+      const classes = (component?.classes as string[])
+        ?.map((cls: string | { name: string }) =>
+          typeof cls === "string" ? cls : cls.name,
+        )
+        .filter(Boolean)
+        .join(" ");
 
-    if (component?.type === "video") {
-      component.type = "iframe";
-      attrs = `${attrs} src=${component?.src}`;
-    }
+      if (component?.type === "video") {
+        component.type = "iframe";
+        attrs = `${attrs} src=${component?.src}`;
+      }
 
-    const inner = (component.components || [])
-      .map((child: any) => componentToHTML(child))
-      .join("");
+      const inner = (component.components || [])
+        .map((child) => componentToHTML(child))
+        .join("");
 
-    const styleObj = style?.style || {};
-    const styleString = Object.entries(styleObj)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";");
+      const styleObj = style?.style || {};
+      const styleString = Object.entries(styleObj)
+        .map(([k, v]) => `${k}:${v}`)
+        .join(";");
 
-    return `<${component.type || "div"} ${attrs} style="${styleString || ""}" class="${classes || ""}">${inner}</${component.type || "div"}>`;
-  }
+      return `<${component.type || "div"} ${attrs} style="${styleString || ""}" class="${classes || ""}">${inner}</${component.type || "div"}>`;
+    },
+    [content?.styles],
+  );
 
-  const renderCarousel = () => {
+  const renderCarousel = useCallback(() => {
     const carousels = document?.querySelectorAll(
       '[data-gjs-type="carousel-react"]',
     );
@@ -1933,19 +1966,20 @@ export default function PageEditor({
 
       const autoplay = component?.autoplay === "true";
       const showIndicators = component?.showIndicators === "true";
-      const showNavigation = component?.showNavigation || "always";
+      const showNavigation = (component?.showNavigation ||
+        "always") as DisplayType;
       const zoomOnHover = component?.zoomOnHover === "true";
       const pauseOnHover = component?.pauseOnHover === "true";
-      const animationType = component?.animationType;
-      const interval = parseInt(component?.interval, 10) || 3000;
+      const animationType = component?.animationType as AnimationType;
+      const interval = parseInt(component?.interval as string, 10) || 3000;
 
       // Map each GrapesJS component (slide) to a React element
       const childrenReactElements =
-        component?.components?.map((comp: any, index: any) => {
+        component?.components?.map((comp, index) => {
           const componentHtml = componentToHTML(comp); // Get the HTML of the GrapesJS component
           // Wrap the HTML in a React element using dangerouslySetInnerHTML
           return React.createElement("div", {
-            key: comp.cid || `gjs-carousel-slide-${index}`, // Unique key for React list rendering
+            key: (comp.cid as string) || `gjs-carousel-slide-${index}`, // Unique key for React list rendering
             // You can pass GrapesJS classes if needed
             dangerouslySetInnerHTML: { __html: componentHtml },
           });
@@ -1966,18 +2000,20 @@ export default function PageEditor({
         </Carousel>,
       );
     });
-  };
+  }, [componentToHTML, findComponentById, content?.pages]);
 
-  const renderCountUp = () => {
+  const renderCountUp = useCallback(() => {
     const counts = document?.querySelectorAll('[data-gjs-type="count-up"]');
     // find model inside content
     counts.forEach((count) => {
       const id = count.id;
       const component = findComponentById(content?.pages[0].frames, id);
-      const duration =
-        component?.duration || component?.attributes?.duration || 2000;
-      const endValue =
-        component?.endValue || component?.attributes?.duration || 2000;
+      const duration = (component?.duration ||
+        component?.attributes?.duration ||
+        2000) as number;
+      const endValue = (component?.endValue ||
+        component?.attributes?.duration ||
+        2000) as number;
       const animateCount = () => {
         const startTime = performance.now();
 
@@ -2003,9 +2039,9 @@ export default function PageEditor({
       );
       observer.observe(count);
     });
-  };
+  }, [findComponentById, content?.pages]);
 
-  const renderPageList = () => {
+  const renderPageList = useCallback(() => {
     const containers = document?.querySelectorAll(
       '[data-gjs-type="page-list"]',
     );
@@ -2013,6 +2049,7 @@ export default function PageEditor({
     containers.forEach((container) => {
       const id = container.id;
       const component = findComponentById(content?.pages[0].frames, id);
+      if (!component) return;
       const pageContainer = container.querySelector(".page-list-container");
       const paginationContainer = container.querySelector(".page-pagination");
       const searchInput = container.querySelector(
@@ -2020,7 +2057,7 @@ export default function PageEditor({
       ) as HTMLInputElement;
       let currentPage = 1;
       let totalPages = 1;
-      const tags = component.tags;
+      const tags = component.tags as string;
       let searchQuery = "";
       const showSearch = component.showSearch;
       const showPagination = component.showPagination;
@@ -2161,8 +2198,8 @@ export default function PageEditor({
       };
 
       if (showSearch && searchInput) {
-        searchInput.addEventListener("input", (e: any) => {
-          searchQuery = e.target?.value;
+        searchInput.addEventListener("input", (e) => {
+          searchQuery = (e.target as HTMLInputElement)?.value;
           currentPage = 1;
           renderPages();
         });
@@ -2170,9 +2207,9 @@ export default function PageEditor({
 
       renderPages();
     });
-  };
+  }, [findComponentById, content?.pages]);
 
-  const renderLinkList = () => {
+  const renderLinkList = useCallback(() => {
     const containers = document?.querySelectorAll(
       '[data-gjs-type="link-list"]',
     );
@@ -2181,7 +2218,7 @@ export default function PageEditor({
       const id = children.id;
       const component = findComponentById(content?.pages[0].frames, id);
       const container = children.querySelector(".link-list-container");
-      if (!container) return;
+      if (!container || !component) return;
       const paginationContainer = children.querySelector(".link-pagination");
       const searchInput = children.querySelector(
         ".link-search",
@@ -2192,11 +2229,18 @@ export default function PageEditor({
       let searchQuery = "";
       const dynamicAttributes: Record<string, string> = {};
 
-      const showSearch = component.attributes["data-show-search"] === "true";
-      const showPagination =
-        component.attributes["data-show-pagination"] === "true";
-      const tags = component.attributes["data-tags"];
-      const filterAttrs = component.attributes["data-filter-attributes"] || "";
+      const showSearch = component.attributes
+        ? component.attributes["data-show-search"] === "true"
+        : false;
+      const showPagination = component.attributes
+        ? component.attributes["data-show-pagination"] === "true"
+        : false;
+      const tags = component.attributes
+        ? component.attributes["data-tags"]
+        : "";
+      const filterAttrs = component.attributes
+        ? component.attributes["data-filter-attributes"]
+        : "";
       const filterKeys = filterAttrs
         .split(",")
         .map((k: string) => k.trim())
@@ -2226,8 +2270,8 @@ export default function PageEditor({
           input.className =
             "block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm";
           input.placeholder = `Enter ${key}`;
-          input.addEventListener("input", (e: any) => {
-            dynamicAttributes[key] = e.target.value;
+          input.addEventListener("input", (e) => {
+            dynamicAttributes[key] = (e.target as HTMLInputElement).value;
             currentPage = 1;
             renderLinks();
           });
@@ -2370,8 +2414,8 @@ export default function PageEditor({
       };
 
       if (showSearch && searchInput) {
-        searchInput.addEventListener("input", (e: any) => {
-          searchQuery = e.target?.value;
+        searchInput.addEventListener("input", (e) => {
+          searchQuery = (e.target as HTMLInputElement)?.value;
           currentPage = 1;
           renderLinks();
         });
@@ -2380,9 +2424,9 @@ export default function PageEditor({
       renderDynamicInputs();
       renderLinks();
     });
-  };
+  }, [findComponentById, content?.pages]);
 
-  const renderTabs = () => {
+  const renderTabs = useCallback(() => {
     const tabComponents = document?.querySelectorAll(
       '[data-gjs-type="custom-tabs"]',
     );
@@ -2391,9 +2435,9 @@ export default function PageEditor({
     tabComponents.forEach((tab) => {
       const id = tab.id;
       const component = findComponentById(content?.pages[0].frames, id);
-      const raw =
-        component.tabs ||
-        JSON.stringify([{ label: "Tab 1" }, { label: "Tab 2" }]);
+      if (!component) return;
+      const raw = (component.tabs ||
+        JSON.stringify([{ label: "Tab 1" }, { label: "Tab 2" }])) as string;
       let tabs;
 
       try {
@@ -2416,16 +2460,16 @@ export default function PageEditor({
                 `,
         )
         .join("");
-      const panels = component.components[1];
+      const panels = component.components ? component.components[1] : null;
       const tabPanels = tabs
         .map(
           (tab, idx) => `
                 <div class="tab-panel ${idx === 0 ? "" : "hidden"}" data-gjs-slot="tab-${idx}">
                   ${
                     componentToHTML(
-                      panels.components.find((c: any) => {
+                      panels?.components?.find((c) => {
                         return c.slot === `tab-${idx}`;
-                      }),
+                      }) as GjsComponent,
                     ) || `<span>Content for ${tab.label}</span>`
                   }
                 </div>
@@ -2461,9 +2505,9 @@ export default function PageEditor({
         });
       }, 0);
     });
-  };
+  }, [componentToHTML, findComponentById, content?.pages]);
 
-  const renderNavbar = () => {
+  const renderNavbar = useCallback(() => {
     const navbars = document.querySelectorAll(
       '[data-gjs-type="custom-navbar"]',
     );
@@ -2482,13 +2526,16 @@ export default function PageEditor({
         'input[placeholder="Search"]',
       );
 
-      const debounce = (fn: (...args: any[]) => void, delay: number) => {
-        let timeout: any;
-        return (...args: any[]) => {
+      function debounce<T extends (...args: unknown[]) => void>(
+        fn: T,
+        delay: number,
+      ) {
+        let timeout: NodeJS.Timeout;
+        return (...args: unknown[]) => {
           clearTimeout(timeout);
           timeout = setTimeout(() => fn(...args), delay);
         };
-      };
+      }
 
       const fetchResults = async (query: string, container: Element) => {
         if (!query) {
@@ -2547,22 +2594,24 @@ export default function PageEditor({
 
         input.addEventListener(
           "input",
-          debounce((e: any) => {
-            const query = e.target.value.trim();
+          debounce((e) => {
+            const query = (
+              (e as Event).target as HTMLInputElement
+            )?.value.trim();
             resultsContainer.classList.remove("hidden");
             fetchResults(query, resultsContainer);
           }, 300),
         );
 
         // Hide results on outside click
-        document.addEventListener("click", (e: any) => {
-          if (!wrapper.contains(e.target)) {
+        document.addEventListener("click", (e) => {
+          if (e && !wrapper.contains(e.target as HTMLButtonElement)) {
             resultsContainer.classList.add("hidden");
           }
         });
       });
     });
-  };
+  }, []);
 
   useEffect(() => {
     if (content) {
@@ -2587,7 +2636,17 @@ export default function PageEditor({
       // render navbar
       renderNavbar();
     }
-  }, [renderedHtml, content]);
+  }, [
+    renderedHtml,
+    content,
+    renderTabs,
+    renderSlider,
+    renderCarousel,
+    renderCountUp,
+    renderLinkList,
+    renderPageList,
+    renderNavbar,
+  ]);
 
   if (isPreview) {
     return (

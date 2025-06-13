@@ -17,9 +17,10 @@ async function getPageData(slug: string) {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const pageData = await getPageData(params.slug);
+  const { slug } = await params;
+  const pageData = await getPageData(slug);
   if (!pageData) return { title: "Page Not Found" };
   return {
     icons: {
@@ -41,8 +42,13 @@ export async function generateMetadata({
   };
 }
 
-export default async function Page({ params }: { params: { slug: string } }) {
-  const pageData = await getPageData(params.slug);
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const pageData = await getPageData(slug);
   if (!pageData) return notFound();
 
   return <PublicPageClient pageData={pageData} />;

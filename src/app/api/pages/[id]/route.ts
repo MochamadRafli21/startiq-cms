@@ -56,11 +56,11 @@ export async function PUT(
 
 export async function DELETE(
   _req: Request,
-  { params }: { params: { id: string } },
+  { params }: { params: Promise<{ id: string }> },
 ) {
-  const id = Number(params.id);
+  const { id } = await params;
 
-  await db.delete(pages).where(eq(pages.id, id));
+  await db.delete(pages).where(eq(pages.id, Number(id)));
 
   return Response.json({ success: true });
 }

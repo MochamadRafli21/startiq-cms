@@ -3,13 +3,13 @@
 import React, { useRef, useEffect, useState } from "react";
 import { useSwipeable } from "react-swipeable";
 
-type AnimationType = "none" | "slide" | "pan" | "flip" | "coverflow";
-
+export type AnimationType = "none" | "slide" | "pan" | "flip" | "coverflow";
+export type DisplayType = "always" | "hover" | "none";
 type Props = {
   children: React.ReactNode;
   autoplay?: boolean;
   showIndicators?: boolean;
-  navButtons?: "always" | "hover" | "none";
+  navButtons?: DisplayType;
   animation?: AnimationType;
   interval?: number;
   pauseOnHover?: boolean;

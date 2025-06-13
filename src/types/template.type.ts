@@ -1,7 +1,8 @@
+import { ProjectData } from "grapesjs";
+
 export interface Template {
   id?: number;
   title?: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  content?: Record<string, any>;
+  content?: ProjectData;
   createdAt?: string | Date;
 }
