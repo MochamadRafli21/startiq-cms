@@ -30,8 +30,8 @@ const TemplateEditor = dynamic(
 
 export default function EditTemplate() {
   const { id } = useParams();
-  const [minimizeInfo, setMinimizeInfo] = useState<any>(null);
-  const [templateData, setTemplateData] = useState<any>(null);
+  const [minimizeInfo, setMinimizeInfo] = useState<boolean>(false);
+  const [templateData, setTemplateData] = useState<Template | null>(null);
   const [saving, setSaving] = useState(false);
   const [refetchTrigger, setRefetchTrigger] = useState(0);
   const router = useRouter();
@@ -71,8 +71,8 @@ export default function EditTemplate() {
 
   if (!templateData) return <LoadingPage isLoading={!templateData} />;
 
-  const handleContentChange = (content: Record<string, any>) => {
-    setTemplateData((prev: Template) => {
+  const handleContentChange = (content: Record<string, object>) => {
+    setTemplateData((prev: Template | null) => {
       const updated = { ...prev, content };
       handleInfoChange(updated);
       return updated;

@@ -30,7 +30,7 @@ import { Template } from "@/types/template.type";
 
 export default function NewPage() {
   const searchParams = useSearchParams();
-  const [minimizeInfo, setMinimizeInfo] = useState<any>(null);
+  const [minimizeInfo, setMinimizeInfo] = useState<boolean>(false);
   const [saving, setSaving] = useState(false);
   const [slugError, setSlugError] = useState("");
   const [pageData, setPageData] = useState<Page>({
@@ -125,7 +125,7 @@ export default function NewPage() {
     }
   };
 
-  const handleContentChange = (content: Record<string, any>) => {
+  const handleContentChange = (content: Record<string, object>) => {
     setPageData((prev) => {
       const updated = { ...prev, content };
       handleInfoChange(updated);

@@ -24,7 +24,7 @@ import { useRouter } from "next/navigation";
 import { Template } from "@/types/template.type";
 
 export default function NewTemplate() {
-  const [minimizeInfo, setMinimizeInfo] = useState<any>(null);
+  const [minimizeInfo, setMinimizeInfo] = useState<boolean>(false);
   const [saving, setSaving] = useState(false);
   const [templateData, setTemplateData] = useState<Template>({
     title: "",
@@ -61,7 +61,7 @@ export default function NewTemplate() {
     }
   };
 
-  const handleContentChange = (content: Record<string, any>) => {
+  const handleContentChange = (content: Record<string, object>) => {
     setTemplateData((prev) => {
       const updated = { ...prev, content };
       handleInfoChange(updated);
