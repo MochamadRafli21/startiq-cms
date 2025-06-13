@@ -49,3 +49,11 @@ export const links = mysqlTable("links", {
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow().onUpdateNow(),
 });
+
+export const forms = mysqlTable("forms", {
+  id: int("id").primaryKey().autoincrement(),
+  name: varchar("name", { length: 255 }),
+  data: json("data").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow().onUpdateNow(),
+});
