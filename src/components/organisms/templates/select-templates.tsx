@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import type { Template } from "@/types/template.type";
 
@@ -11,7 +10,6 @@ export default function TemplatesSelect({
 }) {
   const [search, setSearch] = useState("");
   const [templates, setTemplates] = useState<Template[]>([]);
-  const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const limit = 10;
 
@@ -22,7 +20,6 @@ export default function TemplatesSelect({
       );
       const data = await res.json();
       setTemplates(data.templates);
-      setTotal(data.total);
     };
     loadTemplates();
   }, [search, page]);

@@ -124,7 +124,17 @@ export const Carousel: React.FC<Props> = ({
     return () => {
       if (timer) clearInterval(timer);
     };
-  }, [index, autoplay, interval, animation, children, hovering]);
+  }, [
+    index,
+    autoplay,
+    interval,
+    animation,
+    children,
+    hovering,
+    pauseOnHover,
+    slides,
+    zoomOnHover,
+  ]);
 
   const swipeHandlers = useSwipeable({
     onSwipedLeft: () => setIndex((i) => (i + 1) % slides.length),

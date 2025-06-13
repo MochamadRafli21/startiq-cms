@@ -1,8 +1,8 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { readdir } from "fs/promises";
 import path from "path";
 
-export async function GET(req: NextRequest) {
+export async function GET() {
   const uploadsDir = path.join(process.cwd(), "public", "uploads");
   let files = [];
 

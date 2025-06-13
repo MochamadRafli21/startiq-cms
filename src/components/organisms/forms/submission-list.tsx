@@ -30,14 +30,13 @@ export default function SubmissionsTable({ name }: { name?: string }) {
       const data = await res.json();
       setForms(data.forms);
       setTotal(data.total);
-      console.log(data.total);
       const firstForm = data?.forms?.at(0);
 
       const allKeys = firstForm?.data ? Object.keys(firstForm.data) : [];
       setKeys(allKeys);
     };
     loadForms();
-  }, [search, page]);
+  }, [search, page, name]);
 
   return (
     <Card className="w-full h-fit shadow-xl rounded-2xl">

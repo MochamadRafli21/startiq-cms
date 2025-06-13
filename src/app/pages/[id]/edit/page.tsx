@@ -33,7 +33,7 @@ const PageEditor = dynamic(
 
 export default function EditPage() {
   const { id } = useParams();
-  const [minimizeInfo, setMinimizeInfo] = useState<any>(null);
+  const [minimizeInfo, setMinimizeInfo] = useState<boolean>(false);
   const [pageData, setPageData] = useState<Page | null>(null);
   const [slugError, setSlugError] = useState("");
   const [saving, setSaving] = useState(false);
@@ -116,7 +116,7 @@ export default function EditPage() {
 
   if (!pageData) return <LoadingPage isLoading={!pageData} />;
 
-  const handleContentChange = (content: Record<string, any>) => {
+  const handleContentChange = (content: Record<string, object>) => {
     setPageData((prev: Page | null) => {
       const updated = { ...prev, content };
       handleInfoChange(updated);

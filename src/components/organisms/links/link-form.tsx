@@ -37,7 +37,7 @@ export default function LinkForm({ link, onChange }: PageEditorProps) {
         target,
       });
     }
-  }, [title, descriptions, banner, target, tags, attributes]);
+  }, [title, descriptions, banner, target, tags, attributes, link, onChange]);
 
   const handleTitleChange = (value: string) => {
     setTitle(value);

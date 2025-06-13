@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import Image from "next/image";
 
 export function InfiniteSlides({
   images,
@@ -38,7 +39,7 @@ export function InfiniteSlides({
             style={{ width: "150px", height: "80px" }}
             aria-hidden={index >= (images || []).length ? "true" : "false"}
           >
-            <img
+            <Image
               src={src}
               alt={`Partner logo ${index + 1}`}
               className="w-full h-full object-contain rounded-md"

@@ -373,7 +373,7 @@ export default function PageEditor({
             10,
           );
           const component = this.target; // The component associated with this trait
-          let images: string[] = component.get("images") || [];
+          const images: string[] = component.get("images") || [];
 
           if (indexToRemove >= 0 && indexToRemove < images.length) {
             images.splice(indexToRemove, 1); // Remove the image at the given index
@@ -665,7 +665,7 @@ export default function PageEditor({
               let currentPage = 1;
               let totalPages = 1;
               let searchQuery = "";
-              let dynamicAttributes: Record<string, string> = {};
+              const dynamicAttributes: Record<string, string> = {};
 
               const showSearch =
                 this.getAttribute("data-show-search") === "true";
@@ -1294,9 +1294,12 @@ export default function PageEditor({
               },
             ],
             script: function () {
-              const el: any = this;
-              const endValue = parseInt(el?.getAttribute("endvalue") || "100");
-              const duration = parseInt(el?.getAttribute("duration") || "2000");
+              const endValue = parseInt(
+                this?.getAttribute("endvalue") || "100",
+              );
+              const duration = parseInt(
+                this?.getAttribute("duration") || "2000",
+              );
 
               const animateCount = () => {
                 const startTime = performance.now();
@@ -1307,7 +1310,7 @@ export default function PageEditor({
                     1,
                   );
                   const current = Math.floor(progress * endValue);
-                  el.innerHTML = current.toLocaleString();
+                  this.innerHTML = current.toLocaleString();
                   if (progress < 1) requestAnimationFrame(step);
                 };
 
@@ -1324,7 +1327,7 @@ export default function PageEditor({
                 },
                 { threshold: 0.6 },
               );
-              observer.observe(el);
+              observer.observe(this as unknown as Element);
             },
           },
 
@@ -1372,8 +1375,8 @@ export default function PageEditor({
             );
             observer.observe(el);
           },
-          initialize() {
-            defaultView.prototype.initialize.apply(this, arguments);
+          initialize(...args) {
+            defaultView.prototype.initialize.apply(this, ...args);
 
             // Listen to changes in specific traits (autoplay, interval)
             this.listenTo(
@@ -1500,8 +1503,8 @@ export default function PageEditor({
           },
 
           // This initializes the view and sets up event listeners
-          initialize() {
-            defaultView.prototype.initialize.apply(this, arguments);
+          initialize(...args: any[]) {
+            defaultView.prototype.initialize.apply(this, ...args);
 
             // Listen to changes in specific traits (autoplay, interval)
             this.listenTo(
@@ -1538,13 +1541,13 @@ export default function PageEditor({
           },
 
           // Cleanup: unmount React component and remove listeners
-          onRemove() {
+          onRemove(...args: any[]) {
             if (this.root) {
               this.root.unmount(); // Unmount React component from the DOM
               this.root = null;
             }
             this.stopListening(); // Removes all listeners attached with this.listenTo
-            defaultView.prototype.onRemove.apply(this, arguments); // Call super's onRemove
+            defaultView.prototype.onRemove.apply(this, ...args); // Call super's onRemove
           },
         }),
       });
@@ -1712,8 +1715,8 @@ export default function PageEditor({
           },
 
           // This initializes the view and sets up event listeners
-          initialize() {
-            defaultView.prototype.initialize.apply(this, arguments);
+          initialize(...args: any[]) {
+            defaultView.prototype.initialize.apply(this, ...args);
 
             // Listen to changes in specific traits (autoplay, interval)
             this.listenTo(
@@ -1751,13 +1754,13 @@ export default function PageEditor({
           },
 
           // Cleanup: unmount React component and remove listeners
-          onRemove() {
+          onRemove(...args: any[]) {
             if (this.root) {
               this.root.unmount(); // Unmount React component from the DOM
               this.root = null;
             }
             this.stopListening(); // Removes all listeners attached with this.listenTo
-            defaultView.prototype.onRemove.apply(this, arguments); // Call super's onRemove
+            defaultView.prototype.onRemove.apply(this, ...args); // Call super's onRemove
           },
         }),
       });
@@ -1813,7 +1816,7 @@ export default function PageEditor({
     };
 
     loadPlugins();
-  }, [content]);
+  }, [content, isPreview, onContentChange]);
 
   function findComponentById(components: any, targetId: string) {
     for (const comp of components) {
@@ -2187,7 +2190,7 @@ export default function PageEditor({
       let currentPage = 1;
       let totalPages = 1;
       let searchQuery = "";
-      let dynamicAttributes: Record<string, string> = {};
+      const dynamicAttributes: Record<string, string> = {};
 
       const showSearch = component.attributes["data-show-search"] === "true";
       const showPagination =
@@ -2479,7 +2482,7 @@ export default function PageEditor({
         'input[placeholder="Search"]',
       );
 
-      const debounce = (fn: Function, delay: number) => {
+      const debounce = (fn: (...args: any[]) => void, delay: number) => {
         let timeout: any;
         return (...args: any[]) => {
           clearTimeout(timeout);
@@ -2526,6 +2529,7 @@ export default function PageEditor({
             container.appendChild(link);
           });
         } catch (error) {
+          console.error(error);
           container.innerHTML = `<div class="px-2 py-1 text-red-500 text-sm">Error loading results</div>`;
         }
       };
@@ -2583,7 +2587,7 @@ export default function PageEditor({
       // render navbar
       renderNavbar();
     }
-  }, [renderedHtml]);
+  }, [renderedHtml, content]);
 
   if (isPreview) {
     return (

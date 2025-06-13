@@ -51,7 +51,7 @@ export default function NewPage() {
           content: template.content,
         });
       });
-  }, [templateId]);
+  }, [templateId, pageData]);
 
   const onValidateSlug = async () => {
     if (!pageData.slug) {

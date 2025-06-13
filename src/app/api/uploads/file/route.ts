@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { writeFile } from "fs/promises";
 import path from "path";
 import { mkdir } from "fs/promises";
-import sharp from "sharp";
 
 export async function POST(req: NextRequest) {
   const formData = await req.formData();
@@ -25,6 +24,7 @@ export async function POST(req: NextRequest) {
   try {
     await writeFile(filePath, buffer);
   } catch (err) {
+    console.error(err);
     return NextResponse.json(
       { error: "Failed to process file" },
       { status: 500 },

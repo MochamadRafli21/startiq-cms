@@ -36,8 +36,9 @@ export default function FormNamesList() {
             </div>
           </div>
           <div className="flex w-full flex-col justify-evenly items-start gap-2">
-            {names.map((name) => (
+            {names.map((name, index) => (
               <Link
+                key={index}
                 href={`/admin/forms/${name}`}
                 className="flex flex-col px-4 py-2 w-full shadow-xl border border-gray-200 hover:bg-gray-300 transition-colors ease-in rounded-md"
               >

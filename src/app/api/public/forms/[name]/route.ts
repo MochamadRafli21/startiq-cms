@@ -1,6 +1,5 @@
 import { db } from "@/db/client";
 import { forms } from "@/db/schema";
-import { eq } from "drizzle-orm";
 
 export const dynamic = "force-dynamic";
 
@@ -10,11 +9,11 @@ export async function POST(
 ) {
   const { name } = await params;
 
-  const data: any = {};
+  const data: Record<string, string> = {};
   const formData = await req.formData();
 
   formData.forEach((value, key) => {
-    data[key] = value;
+    data[key] = value.toString();
   });
 
   await db

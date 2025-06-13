@@ -23,7 +23,7 @@ export default function TemplateInfo({
         title,
       });
     }
-  }, [title]);
+  }, [title, onChange, template]);
 
   const handleTitleChange = (value: string) => {
     setTitle(value);
