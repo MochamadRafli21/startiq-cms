@@ -3,12 +3,13 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { Home, Book, Link2 } from "lucide-react";
+import { Home, Book, Link2, Paperclip } from "lucide-react";
 
 const navItems = [
   { href: "/admin", label: "Pages", icon: <Home size={18} /> },
   { href: "/admin/templates", label: "Template", icon: <Book size={18} /> },
   { href: "/admin/links", label: "Link", icon: <Link2 size={18} /> },
+  { href: "/admin/forms", label: "Form", icon: <Paperclip size={18} /> },
 ];
 
 export function Sidebar() {

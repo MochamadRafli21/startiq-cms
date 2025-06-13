@@ -22,5 +22,6 @@ export const config = {
     "/api/links/:path*",
     "/api/uploads/:path*",
     "/api/templates/:path*",
+    "/api/forms/:path*",
   ],
 };
