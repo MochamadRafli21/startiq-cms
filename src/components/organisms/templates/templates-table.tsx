@@ -112,7 +112,12 @@ export default function TemplatesTable() {
             <TableBody>
               {templates?.map((template) => (
                 <TableRow key={template.id}>
-                  <TableCell>{template.title}</TableCell>
+                  <TableCell
+                    className="hover:text-primary hover:font-semibold transition-colors ease-in cursor-pointer"
+                    onClick={() => onOpenTemplate(template.id)}
+                  >
+                    {template.title}
+                  </TableCell>
                   <TableCell>
                     {template.createdAt &&
                       new Date(template.createdAt).toLocaleDateString()}
