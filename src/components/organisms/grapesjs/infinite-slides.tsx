@@ -40,6 +40,7 @@ export function InfiniteSlides({
             aria-hidden={index >= (images || []).length ? "true" : "false"}
           >
             <Image
+              fill
               src={src}
               alt={`Partner logo ${index + 1}`}
               className="w-full h-full object-contain rounded-md"
