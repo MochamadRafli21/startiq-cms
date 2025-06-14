@@ -31,6 +31,5 @@ export default function PublicPageClient({ pageData }: { pageData: Page }) {
   }, []);
 
   if (!ready) return <LoadingPage isLoading={true} />;
-
   return <PageEditor content={pageData.content} isPreview={true} />;
 }
