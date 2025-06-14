@@ -123,7 +123,7 @@ export default function PagesTable() {
       <CardContent>
         <div className="space-y-4 w-full">
           <div className="flex justify-between items-center">
-            <div>
+            <div className="flex items-center gap-4">
               <h1 className="text-xl font-semibold">Pages</h1>
               {tags.length > 0 && (
                 <div className="flex gap-2 bg-gray-100 rounded-lg divide-x-2 divide-gray-500">
