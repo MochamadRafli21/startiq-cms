@@ -1,0 +1,4534 @@
+{
+  "title": "About",
+  "slug": "about",
+  "tags": [],
+  "metaTitle": "Research Synergy Foundations | About",
+  "metaDescription": "Research Synergy Foundation is a digital social enterprise platform that focuses on developing the Global Research Ecosystem towards outstanding global scholars. We build collaborative networks among researchers, lecturers, scholars, and practitioners globally for the realization of knowledge acceleration and to contribute more to society and humanity.",
+  "metaImage": "/uploads/1749056491852-logo-rsf-transparent (3).webp",
+  "iconImage": "/uploads/1749056491852-logo-rsf-transparent (3).webp",
+  "isPublic": true,
+  "content": {
+    "pages": [
+      {
+        "id": "5eRsSrtQKrmeQ7rU",
+        "type": "main",
+        "frames": [
+          {
+            "id": "Z8nNXuQa9TOSGKju",
+            "component": {
+              "head": { "type": "head" },
+              "type": "wrapper",
+              "docEl": { "tagName": "html" },
+              "stylable": [
+                "background",
+                "background-color",
+                "background-image",
+                "background-repeat",
+                "background-attachment",
+                "background-position",
+                "background-size"
+              ],
+              "attributes": { "id": "i5ld" },
+              "components": [
+                {
+                  "type": "custom-navbar",
+                  "classes": ["w-full", "bg-white", "shadow-md"],
+                  "tagName": "header",
+                  "attributes": {
+                    "id": "ice5",
+                    "data-gjs-type": "custom-navbar"
+                  },
+                  "components": [
+                    {
+                      "classes": [
+                        "max-w-screen",
+                        "mx-auto",
+                        "px-4",
+                        "py-4",
+                        "flex",
+                        "items-center",
+                        "justify-between",
+                        "z-20"
+                      ],
+                      "components": [
+                        {
+                          "classes": [
+                            "flex",
+                            "items-center",
+                            "gap-4",
+                            "overflow-x-scroll"
+                          ],
+                          "components": [
+                            {
+                              "type": "image",
+                              "classes": ["h-10"],
+                              "resizable": { "ratioDefault": 1 },
+                              "attributes": {
+                                "alt": "Logo",
+                                "src": "/uploads/1749054189475-logo-rsf-transparent (3).webp"
+                              }
+                            },
+                            {
+                              "classes": [
+                                "hidden",
+                                "md:flex",
+                                "gap-6",
+                                "text-sm",
+                                "font-medium"
+                              ],
+                              "tagName": "nav",
+                              "components": [
+                                {
+                                  "type": "link",
+                                  "classes": [
+                                    "relative",
+                                    "after:absolute",
+                                    "after:left-0",
+                                    "after:-bottom-1",
+                                    "after:h-1",
+                                    "after:w-full"
+                                  ],
+                                  "attributes": { "href": "#" },
+                                  "components": [
+                                    { "type": "textnode", "content": "Home" }
+                                  ]
+                                },
+                                {
+                                  "type": "link",
+                                  "attributes": {
+                                    "id": "iyr3m",
+                                    "href": "/about"
+                                  },
+                                  "components": [
+                                    { "type": "textnode", "content": "About" }
+                                  ]
+                                },
+                                {
+                                  "type": "link",
+                                  "attributes": {
+                                    "id": "ifqtk",
+                                    "href": "https://researchsynergyfoundation.ning.com/"
+                                  },
+                                  "components": [
+                                    {
+                                      "type": "textnode",
+                                      "content": "Membership"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "link",
+                                  "attributes": {
+                                    "id": "ig70s",
+                                    "href": "/conferences"
+                                  },
+                                  "components": [
+                                    {
+                                      "type": "textnode",
+                                      "content": "Conferences"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "link",
+                                  "attributes": { "href": "/publications" },
+                                  "components": [
+                                    {
+                                      "type": "textnode",
+                                      "content": "Publication"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "link",
+                                  "attributes": { "href": "/learnings" },
+                                  "components": [
+                                    {
+                                      "type": "textnode",
+                                      "content": "Learning"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "link",
+                                  "attributes": { "href": "/articles" },
+                                  "components": [
+                                    { "type": "textnode", "content": "Updates" }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "classes": [
+                            "hidden",
+                            "md:flex",
+                            "items-center",
+                            "gap-4"
+                          ],
+                          "components": [
+                            {
+                              "classes": ["relative"],
+                              "components": [
+                                {
+                                  "type": "input",
+                                  "void": true,
+                                  "classes": [
+                                    "pl-10",
+                                    "pr-4",
+                                    "py-2",
+                                    "border",
+                                    "rounded-full"
+                                  ],
+                                  "attributes": {
+                                    "type": "text",
+                                    "placeholder": "Search"
+                                  }
+                                },
+                                {
+                                  "type": "svg",
+                                  "classes": [
+                                    "absolute",
+                                    "left-3",
+                                    "top-2.5",
+                                    "h-4",
+                                    "w-4",
+                                    "text-gray-500"
+                                  ],
+                                  "resizable": { "ratioDefault": true },
+                                  "attributes": {
+                                    "fill": "none",
+                                    "stroke": "currentColor",
+                                    "viewBox": "0 0 24 24"
+                                  },
+                                  "components": [
+                                    {
+                                      "type": "svg-in",
+                                      "tagName": "path",
+                                      "resizable": { "ratioDefault": true },
+                                      "attributes": {
+                                        "d": "M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z",
+                                        "stroke-width": "2",
+                                        "stroke-linecap": "round",
+                                        "stroke-linejoin": "round"
+                                      }
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        { "type": "comment", "content": " Burger " },
+                        {
+                          "classes": [
+                            "md:hidden",
+                            "text-gray-700",
+                            "burger-btn"
+                          ],
+                          "components": [
+                            {
+                              "type": "svg",
+                              "classes": [
+                                "lucide",
+                                "lucide-menu-icon",
+                                "lucide-menu"
+                              ],
+                              "resizable": { "ratioDefault": true },
+                              "attributes": {
+                                "fill": "none",
+                                "width": "24",
+                                "xmlns": "http://www.w3.org/2000/svg",
+                                "height": "24",
+                                "stroke": "currentColor",
+                                "viewBox": "0 0 24 24",
+                                "stroke-width": "2",
+                                "stroke-linecap": "round",
+                                "stroke-linejoin": "round"
+                              },
+                              "components": [
+                                {
+                                  "type": "svg-in",
+                                  "tagName": "path",
+                                  "resizable": { "ratioDefault": true },
+                                  "attributes": { "d": "M4 12h16" }
+                                },
+                                {
+                                  "type": "svg-in",
+                                  "tagName": "path",
+                                  "resizable": { "ratioDefault": true },
+                                  "attributes": { "d": "M4 18h16" }
+                                },
+                                {
+                                  "type": "svg-in",
+                                  "tagName": "path",
+                                  "resizable": { "ratioDefault": true },
+                                  "attributes": { "d": "M4 6h16" }
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    { "type": "comment", "content": " Mobile nav " },
+                    {
+                      "classes": [
+                        "mobile-menu",
+                        "hidden",
+                        "md:hidden",
+                        "flex-col",
+                        "gap-4",
+                        "px-4",
+                        "pb-4",
+                        "z-20"
+                      ],
+                      "components": [
+                        {
+                          "classes": [
+                            "flex",
+                            "flex-col",
+                            "gap-2",
+                            "text-sm",
+                            "font-medium"
+                          ],
+                          "tagName": "nav",
+                          "components": [
+                            {
+                              "type": "link",
+                              "attributes": { "id": "ifq9c", "href": "#" },
+                              "components": [
+                                { "type": "textnode", "content": "Home" }
+                              ]
+                            },
+                            {
+                              "type": "link",
+                              "attributes": { "id": "izxyp", "href": "/about" },
+                              "components": [
+                                { "type": "textnode", "content": "About" }
+                              ]
+                            },
+                            {
+                              "type": "link",
+                              "attributes": { "href": "#" },
+                              "components": [
+                                { "type": "textnode", "content": "Membership" }
+                              ]
+                            },
+                            {
+                              "type": "link",
+                              "attributes": { "href": "/conferneces" },
+                              "components": [
+                                { "type": "textnode", "content": "Conferences" }
+                              ]
+                            },
+                            {
+                              "type": "link",
+                              "attributes": { "href": "/publications" },
+                              "components": [
+                                { "type": "textnode", "content": "Publication" }
+                              ]
+                            },
+                            {
+                              "type": "link",
+                              "attributes": { "href": "/learning" },
+                              "components": [
+                                { "type": "textnode", "content": "Learning" }
+                              ]
+                            },
+                            {
+                              "type": "link",
+                              "attributes": { "href": "/articles" },
+                              "components": [
+                                { "type": "textnode", "content": "Updates" }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "classes": ["mt-3"],
+                          "components": [
+                            {
+                              "type": "input",
+                              "void": true,
+                              "classes": [
+                                "w-full",
+                                "pl-10",
+                                "pr-4",
+                                "py-2",
+                                "border",
+                                "rounded-full",
+                                "relative"
+                              ],
+                              "attributes": {
+                                "type": "text",
+                                "placeholder": "Search"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "Row",
+                  "classes": [{ "name": "gjs-row", "private": 1 }],
+                  "droppable": ".gjs-cell",
+                  "resizable": {
+                    "bl": 0,
+                    "br": 0,
+                    "cl": 0,
+                    "cr": 0,
+                    "tc": 0,
+                    "tl": 0,
+                    "tr": 0,
+                    "minDim": 1
+                  },
+                  "attributes": { "id": "ixzys" },
+                  "components": [
+                    {
+                      "name": "Cell",
+                      "classes": [{ "name": "gjs-cell", "private": 1 }],
+                      "draggable": ".gjs-row",
+                      "resizable": {
+                        "bc": 0,
+                        "bl": 0,
+                        "br": 0,
+                        "cl": 0,
+                        "cr": 1,
+                        "tc": 0,
+                        "tl": 0,
+                        "tr": 0,
+                        "step": 0.2,
+                        "minDim": 1,
+                        "currentUnit": 1
+                      },
+                      "attributes": { "id": "i7j3j" }
+                    }
+                  ]
+                },
+                {
+                  "name": "Row",
+                  "classes": [{ "name": "gjs-row", "private": 1 }],
+                  "droppable": ".gjs-cell",
+                  "resizable": {
+                    "bl": 0,
+                    "br": 0,
+                    "cl": 0,
+                    "cr": 0,
+                    "tc": 0,
+                    "tl": 0,
+                    "tr": 0,
+                    "minDim": 1
+                  },
+                  "attributes": { "id": "iajjg" },
+                  "components": [
+                    {
+                      "name": "Cell",
+                      "classes": [{ "name": "gjs-cell", "private": 1 }],
+                      "draggable": ".gjs-row",
+                      "resizable": {
+                        "bc": 0,
+                        "bl": 0,
+                        "br": 0,
+                        "cl": 0,
+                        "cr": 1,
+                        "tc": 0,
+                        "tl": 0,
+                        "tr": 0,
+                        "step": 0.2,
+                        "minDim": 1,
+                        "currentUnit": 1
+                      },
+                      "attributes": { "id": "i2e03" },
+                      "components": [
+                        {
+                          "classes": ["bdg-sect"],
+                          "tagName": "section",
+                          "components": [
+                            {
+                              "type": "text",
+                              "classes": ["heading"],
+                              "tagName": "h1",
+                              "components": [
+                                { "type": "textnode", "content": "Who we are?" }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "tagName": "p",
+                              "attributes": { "id": "i6158" },
+                              "components": [
+                                {
+                                  "type": "text",
+                                  "tagName": "span",
+                                  "attributes": { "id": "i25n6" },
+                                  "components": [
+                                    {
+                                      "type": "textnode",
+                                      "content": "Research Synergy Foundation is a digital social enterprise platform that focuses on developing the Global Research Ecosystem towards outstanding global scholars.\nWe build collaborative networks among researchers, lecturers, scholars, and practitioners globally for the realization of knowledge acceleration and to contribute more to society and humanity"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "Row",
+                  "classes": [{ "name": "gjs-row", "private": 1 }],
+                  "droppable": ".gjs-cell",
+                  "resizable": {
+                    "bl": 0,
+                    "br": 0,
+                    "cl": 0,
+                    "cr": 0,
+                    "tc": 0,
+                    "tl": 0,
+                    "tr": 0,
+                    "minDim": 1
+                  },
+                  "attributes": { "id": "im796" },
+                  "components": [
+                    {
+                      "name": "Cell",
+                      "classes": [{ "name": "gjs-cell", "private": 1 }],
+                      "draggable": ".gjs-row",
+                      "resizable": {
+                        "bc": 0,
+                        "bl": 0,
+                        "br": 0,
+                        "cl": 0,
+                        "cr": 1,
+                        "tc": 0,
+                        "tl": 0,
+                        "tr": 0,
+                        "step": 0.2,
+                        "minDim": 1,
+                        "currentUnit": 1
+                      },
+                      "attributes": { "id": "ik43p" },
+                      "components": [
+                        {
+                          "type": "text",
+                          "attributes": { "id": "i64xw" },
+                          "components": [
+                            { "type": "textnode", "content": "Our Achivement" }
+                          ]
+                        },
+                        {
+                          "type": "carousel-react",
+                          "autoplay": "true",
+                          "attributes": {
+                            "id": "icy9x",
+                            "data-gjs-type": "carousel-react"
+                          },
+                          "components": [
+                            {
+                              "name": "Row",
+                              "classes": [{ "name": "gjs-row", "private": 1 }],
+                              "droppable": ".gjs-cell",
+                              "resizable": {
+                                "bl": 0,
+                                "br": 0,
+                                "cl": 0,
+                                "cr": 0,
+                                "tc": 0,
+                                "tl": 0,
+                                "tr": 0,
+                                "minDim": 1
+                              },
+                              "attributes": { "id": "iw9wc" },
+                              "components": [
+                                {
+                                  "name": "Cell",
+                                  "classes": [
+                                    { "name": "gjs-cell", "private": 1 }
+                                  ],
+                                  "draggable": ".gjs-row",
+                                  "resizable": {
+                                    "bc": 0,
+                                    "bl": 0,
+                                    "br": 0,
+                                    "cl": 0,
+                                    "cr": 1,
+                                    "tc": 0,
+                                    "tl": 0,
+                                    "tr": 0,
+                                    "step": 0.2,
+                                    "minDim": 1,
+                                    "currentUnit": 1
+                                  },
+                                  "attributes": { "id": "ifcpr" },
+                                  "custom-name": "Cell"
+                                },
+                                {
+                                  "name": "Cell",
+                                  "classes": [
+                                    { "name": "gjs-cell", "private": 1 }
+                                  ],
+                                  "draggable": ".gjs-row",
+                                  "resizable": {
+                                    "bc": 0,
+                                    "bl": 0,
+                                    "br": 0,
+                                    "cl": 0,
+                                    "cr": 1,
+                                    "tc": 0,
+                                    "tl": 0,
+                                    "tr": 0,
+                                    "step": 0.2,
+                                    "minDim": 1,
+                                    "currentUnit": 1
+                                  },
+                                  "attributes": { "id": "ij8xi" },
+                                  "components": [
+                                    {
+                                      "tagName": "section",
+                                      "attributes": { "id": "iwxv3" },
+                                      "components": [
+                                        {
+                                          "type": "text",
+                                          "tagName": "h1",
+                                          "attributes": { "id": "ijyro" },
+                                          "components": [
+                                            {
+                                              "type": "textnode",
+                                              "content": "Achivement 1"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "text",
+                                          "tagName": "p",
+                                          "attributes": { "id": "i9im6" },
+                                          "components": [
+                                            {
+                                              "type": "textnode",
+                                              "content": "Deskripsi achivement 1"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "name": "Row",
+                              "classes": [{ "name": "gjs-row", "private": 1 }],
+                              "droppable": ".gjs-cell",
+                              "resizable": {
+                                "bl": 0,
+                                "br": 0,
+                                "cl": 0,
+                                "cr": 0,
+                                "tc": 0,
+                                "tl": 0,
+                                "tr": 0,
+                                "minDim": 1
+                              },
+                              "attributes": { "id": "ivw4nn" },
+                              "components": [
+                                {
+                                  "name": "Cell",
+                                  "classes": [
+                                    { "name": "gjs-cell", "private": 1 }
+                                  ],
+                                  "draggable": ".gjs-row",
+                                  "resizable": {
+                                    "bc": 0,
+                                    "bl": 0,
+                                    "br": 0,
+                                    "cl": 0,
+                                    "cr": 1,
+                                    "tc": 0,
+                                    "tl": 0,
+                                    "tr": 0,
+                                    "step": 0.2,
+                                    "minDim": 1,
+                                    "currentUnit": 1
+                                  },
+                                  "attributes": { "id": "ifcpr-3" },
+                                  "custom-name": "Cell"
+                                },
+                                {
+                                  "name": "Cell",
+                                  "classes": [
+                                    { "name": "gjs-cell", "private": 1 }
+                                  ],
+                                  "draggable": ".gjs-row",
+                                  "resizable": {
+                                    "bc": 0,
+                                    "bl": 0,
+                                    "br": 0,
+                                    "cl": 0,
+                                    "cr": 1,
+                                    "tc": 0,
+                                    "tl": 0,
+                                    "tr": 0,
+                                    "step": 0.2,
+                                    "minDim": 1,
+                                    "currentUnit": 1
+                                  },
+                                  "attributes": { "id": "ij8xi-3" },
+                                  "components": [
+                                    {
+                                      "tagName": "section",
+                                      "attributes": { "id": "iozj8l" },
+                                      "components": [
+                                        {
+                                          "type": "text",
+                                          "tagName": "h1",
+                                          "attributes": { "id": "ibbe7" },
+                                          "components": [
+                                            {
+                                              "type": "textnode",
+                                              "content": "Achivement 1"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "text",
+                                          "tagName": "p",
+                                          "attributes": { "id": "i1r88" },
+                                          "components": [
+                                            {
+                                              "type": "textnode",
+                                              "content": "Deskripsi achivement 1"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ],
+                              "custom-name": "Row"
+                            }
+                          ],
+                          "custom-name": "Carousel-react",
+                          "pauseOnHover": "true",
+                          "animationType": "pan",
+                          "showIndicators": "true",
+                          "showNavigation": "none"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "Row",
+                  "classes": [{ "name": "gjs-row", "private": 1 }],
+                  "droppable": ".gjs-cell",
+                  "resizable": {
+                    "bl": 0,
+                    "br": 0,
+                    "cl": 0,
+                    "cr": 0,
+                    "tc": 0,
+                    "tl": 0,
+                    "tr": 0,
+                    "minDim": 1
+                  },
+                  "attributes": { "id": "iv315l" },
+                  "components": [
+                    {
+                      "name": "Cell",
+                      "classes": [{ "name": "gjs-cell", "private": 1 }],
+                      "draggable": ".gjs-row",
+                      "resizable": {
+                        "bc": 0,
+                        "bl": 0,
+                        "br": 0,
+                        "cl": 0,
+                        "cr": 1,
+                        "tc": 0,
+                        "tl": 0,
+                        "tr": 0,
+                        "step": 0.2,
+                        "minDim": 1,
+                        "currentUnit": 1
+                      },
+                      "attributes": { "id": "i2pntf" },
+                      "components": [
+                        {
+                          "type": "text",
+                          "attributes": { "id": "iuc3ux" },
+                          "components": [
+                            {
+                              "type": "textnode",
+                              "content": "Creating Social Value And Impact Is Our Priority"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "attributes": { "id": "irr65f" },
+                          "components": [
+                            {
+                              "type": "textnode",
+                              "content": "Meet our dedicated leadership team working to transform the global research ecosystem"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Row",
+                          "classes": [{ "name": "gjs-row", "private": 1 }],
+                          "droppable": ".gjs-cell",
+                          "resizable": {
+                            "bl": 0,
+                            "br": 0,
+                            "cl": 0,
+                            "cr": 0,
+                            "tc": 0,
+                            "tl": 0,
+                            "tr": 0,
+                            "minDim": 1
+                          },
+                          "attributes": { "id": "iuot2h" },
+                          "components": [
+                            {
+                              "name": "Cell",
+                              "classes": [{ "name": "gjs-cell", "private": 1 }],
+                              "draggable": ".gjs-row",
+                              "resizable": {
+                                "bc": 0,
+                                "bl": 0,
+                                "br": 0,
+                                "cl": 0,
+                                "cr": 1,
+                                "tc": 0,
+                                "tl": 0,
+                                "tr": 0,
+                                "step": 0.2,
+                                "minDim": 1,
+                                "currentUnit": 1
+                              },
+                              "attributes": { "id": "i84m2a" },
+                              "components": [
+                                {
+                                  "name": "Row",
+                                  "classes": [
+                                    { "name": "gjs-row", "private": 1 }
+                                  ],
+                                  "droppable": ".gjs-cell",
+                                  "resizable": {
+                                    "bl": 0,
+                                    "br": 0,
+                                    "cl": 0,
+                                    "cr": 0,
+                                    "tc": 0,
+                                    "tl": 0,
+                                    "tr": 0,
+                                    "minDim": 1
+                                  },
+                                  "attributes": { "id": "izp1qr-2" },
+                                  "components": [
+                                    {
+                                      "name": "Cell",
+                                      "classes": [
+                                        { "name": "gjs-cell", "private": 1 }
+                                      ],
+                                      "draggable": ".gjs-row",
+                                      "resizable": {
+                                        "bc": 0,
+                                        "bl": 0,
+                                        "br": 0,
+                                        "cl": 0,
+                                        "cr": 1,
+                                        "tc": 0,
+                                        "tl": 0,
+                                        "tr": 0,
+                                        "step": 0.2,
+                                        "minDim": 1,
+                                        "currentUnit": 1
+                                      },
+                                      "attributes": { "id": "isdye3" },
+                                      "components": [
+                                        {
+                                          "type": "image",
+                                          "resizable": { "ratioDefault": 1 },
+                                          "attributes": {
+                                            "id": "isz0pf-2-3",
+                                            "src": "/uploads/1749447076873-2.webp"
+                                          }
+                                        },
+                                        {
+                                          "tagName": "section",
+                                          "attributes": { "id": "i1km0w" },
+                                          "components": [
+                                            {
+                                              "type": "text",
+                                              "tagName": "h1",
+                                              "attributes": { "id": "i6vgx5" },
+                                              "components": [
+                                                {
+                                                  "type": "textnode",
+                                                  "content": "Santi Rahmawati, S.T., M.S.M."
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "type": "text",
+                                              "tagName": "p",
+                                              "attributes": { "id": "i4g48t" },
+                                              "components": [
+                                                {
+                                                  "type": "textnode",
+                                                  "content": "Founder & Director of Global Network Operation, Research Synergy Foundation. Director of Scholarvein."
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "name": "Row",
+                                          "classes": [
+                                            { "name": "gjs-row", "private": 1 }
+                                          ],
+                                          "droppable": ".gjs-cell",
+                                          "resizable": {
+                                            "bl": 0,
+                                            "br": 0,
+                                            "cl": 0,
+                                            "cr": 0,
+                                            "tc": 0,
+                                            "tl": 0,
+                                            "tr": 0,
+                                            "minDim": 1
+                                          },
+                                          "attributes": { "id": "ibiljr" },
+                                          "components": [
+                                            {
+                                              "name": "Cell",
+                                              "classes": [
+                                                {
+                                                  "name": "gjs-cell",
+                                                  "private": 1
+                                                }
+                                              ],
+                                              "draggable": ".gjs-row",
+                                              "resizable": {
+                                                "bc": 0,
+                                                "bl": 0,
+                                                "br": 0,
+                                                "cl": 0,
+                                                "cr": 1,
+                                                "tc": 0,
+                                                "tl": 0,
+                                                "tr": 0,
+                                                "step": 0.2,
+                                                "minDim": 1,
+                                                "currentUnit": 1
+                                              },
+                                              "attributes": { "id": "iwk65a" },
+                                              "components": [
+                                                {
+                                                  "tagName": "section",
+                                                  "attributes": {
+                                                    "id": "inplsj"
+                                                  },
+                                                  "components": [
+                                                    {
+                                                      "type": "text",
+                                                      "tagName": "h1",
+                                                      "attributes": {
+                                                        "id": "ium5fx"
+                                                      },
+                                                      "components": [
+                                                        {
+                                                          "type": "textnode",
+                                                          "content": "Dr. Hendrati Dwi Mulyaningsih, S.E., M.M."
+                                                        }
+                                                      ]
+                                                    },
+                                                    {
+                                                      "type": "text",
+                                                      "classes": ["paragraph"],
+                                                      "tagName": "p",
+                                                      "components": [
+                                                        {
+                                                          "type": "textnode",
+                                                          "content": "Founder & Chairperson of Research Synergy Foundation"
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "name": "Row",
+                                  "classes": [
+                                    { "name": "gjs-row", "private": 1 }
+                                  ],
+                                  "droppable": ".gjs-cell",
+                                  "resizable": {
+                                    "bl": 0,
+                                    "br": 0,
+                                    "cl": 0,
+                                    "cr": 0,
+                                    "tc": 0,
+                                    "tl": 0,
+                                    "tr": 0,
+                                    "minDim": 1
+                                  },
+                                  "attributes": { "id": "izp1qr-2-2" },
+                                  "components": [
+                                    {
+                                      "name": "Cell",
+                                      "classes": [
+                                        { "name": "gjs-cell", "private": 1 }
+                                      ],
+                                      "draggable": ".gjs-row",
+                                      "resizable": {
+                                        "bc": 0,
+                                        "bl": 0,
+                                        "br": 0,
+                                        "cl": 0,
+                                        "cr": 1,
+                                        "tc": 0,
+                                        "tl": 0,
+                                        "tr": 0,
+                                        "step": 0.2,
+                                        "minDim": 1,
+                                        "currentUnit": 1
+                                      },
+                                      "attributes": { "id": "i4pd8a" },
+                                      "components": [
+                                        {
+                                          "type": "image",
+                                          "resizable": { "ratioDefault": 1 },
+                                          "attributes": {
+                                            "id": "isz0pf-2-2",
+                                            "src": "/uploads/1749447381372-4.webp"
+                                          }
+                                        },
+                                        {
+                                          "name": "Row",
+                                          "classes": [
+                                            { "name": "gjs-row", "private": 1 }
+                                          ],
+                                          "droppable": ".gjs-cell",
+                                          "resizable": {
+                                            "bl": 0,
+                                            "br": 0,
+                                            "cl": 0,
+                                            "cr": 0,
+                                            "tc": 0,
+                                            "tl": 0,
+                                            "tr": 0,
+                                            "minDim": 1
+                                          },
+                                          "attributes": { "id": "ibiljr-2" },
+                                          "components": [
+                                            {
+                                              "name": "Cell",
+                                              "classes": [
+                                                {
+                                                  "name": "gjs-cell",
+                                                  "private": 1
+                                                }
+                                              ],
+                                              "draggable": ".gjs-row",
+                                              "resizable": {
+                                                "bc": 0,
+                                                "bl": 0,
+                                                "br": 0,
+                                                "cl": 0,
+                                                "cr": 1,
+                                                "tc": 0,
+                                                "tl": 0,
+                                                "tr": 0,
+                                                "step": 0.2,
+                                                "minDim": 1,
+                                                "currentUnit": 1
+                                              },
+                                              "attributes": { "id": "ivo33h" },
+                                              "components": [
+                                                {
+                                                  "tagName": "section",
+                                                  "attributes": {
+                                                    "id": "i2oqvc"
+                                                  },
+                                                  "components": [
+                                                    {
+                                                      "type": "text",
+                                                      "tagName": "h1",
+                                                      "attributes": {
+                                                        "id": "iajh2f"
+                                                      },
+                                                      "components": [
+                                                        {
+                                                          "type": "textnode",
+                                                          "content": "Dr. Prameshwara Anggahegari"
+                                                        }
+                                                      ],
+                                                      "custom-name": "Text"
+                                                    },
+                                                    {
+                                                      "type": "text",
+                                                      "classes": ["paragraph"],
+                                                      "tagName": "p",
+                                                      "components": [
+                                                        {
+                                                          "type": "textnode",
+                                                          "content": "Director of Reviewer Track"
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "tagName": "section",
+                                          "attributes": { "id": "i4s029" },
+                                          "components": [
+                                            {
+                                              "type": "text",
+                                              "tagName": "h1",
+                                              "attributes": { "id": "i5ra9w" },
+                                              "components": [
+                                                {
+                                                  "type": "textnode",
+                                                  "content": "Director of Reviewer Track"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "type": "text",
+                                              "tagName": "p",
+                                              "attributes": { "id": "ib7zo8" },
+                                              "components": [
+                                                {
+                                                  "type": "textnode",
+                                                  "content": "Director of Reviewer Track"
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "name": "Row",
+                                  "classes": [
+                                    { "name": "gjs-row", "private": 1 }
+                                  ],
+                                  "droppable": ".gjs-cell",
+                                  "resizable": {
+                                    "bl": 0,
+                                    "br": 0,
+                                    "cl": 0,
+                                    "cr": 0,
+                                    "tc": 0,
+                                    "tl": 0,
+                                    "tr": 0,
+                                    "minDim": 1
+                                  },
+                                  "attributes": { "id": "izp1qr" },
+                                  "components": [
+                                    {
+                                      "name": "Cell",
+                                      "classes": [
+                                        { "name": "gjs-cell", "private": 1 }
+                                      ],
+                                      "draggable": ".gjs-row",
+                                      "resizable": {
+                                        "bc": 0,
+                                        "bl": 0,
+                                        "br": 0,
+                                        "cl": 0,
+                                        "cr": 1,
+                                        "tc": 0,
+                                        "tl": 0,
+                                        "tr": 0,
+                                        "step": 0.2,
+                                        "minDim": 1,
+                                        "currentUnit": 1
+                                      },
+                                      "attributes": { "id": "i7q1vo" },
+                                      "components": [
+                                        {
+                                          "type": "image",
+                                          "resizable": { "ratioDefault": 1 },
+                                          "attributes": {
+                                            "id": "isz0pf-2",
+                                            "src": "/uploads/1749446946711-3.webp"
+                                          }
+                                        },
+                                        {
+                                          "tagName": "section",
+                                          "attributes": { "id": "i74rrd" },
+                                          "components": [
+                                            {
+                                              "type": "text",
+                                              "tagName": "h1",
+                                              "attributes": { "id": "itikwf" },
+                                              "components": [
+                                                {
+                                                  "type": "textnode",
+                                                  "content": "Ani Wahyu Rachmawati, S.Psi., M.S.M."
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "type": "text",
+                                              "tagName": "p",
+                                              "attributes": { "id": "i2uk5p" },
+                                              "components": [
+                                                {
+                                                  "type": "textnode",
+                                                  "content": "Founder & Director of Publication, Research Synergy Foundation. Director of Research Synergy Institute. Director of Research Synergy Press."
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "name": "Row",
+                                          "classes": [
+                                            { "name": "gjs-row", "private": 1 }
+                                          ],
+                                          "droppable": ".gjs-cell",
+                                          "resizable": {
+                                            "bl": 0,
+                                            "br": 0,
+                                            "cl": 0,
+                                            "cr": 0,
+                                            "tc": 0,
+                                            "tl": 0,
+                                            "tr": 0,
+                                            "minDim": 1
+                                          },
+                                          "attributes": { "id": "iu9v96" },
+                                          "components": [
+                                            {
+                                              "name": "Cell",
+                                              "classes": [
+                                                {
+                                                  "name": "gjs-cell",
+                                                  "private": 1
+                                                }
+                                              ],
+                                              "draggable": ".gjs-row",
+                                              "resizable": {
+                                                "bc": 0,
+                                                "bl": 0,
+                                                "br": 0,
+                                                "cl": 0,
+                                                "cr": 1,
+                                                "tc": 0,
+                                                "tl": 0,
+                                                "tr": 0,
+                                                "step": 0.2,
+                                                "minDim": 1,
+                                                "currentUnit": 1
+                                              },
+                                              "attributes": { "id": "iv1t7z" },
+                                              "components": [
+                                                {
+                                                  "tagName": "section",
+                                                  "attributes": {
+                                                    "id": "isbh6k"
+                                                  },
+                                                  "components": [
+                                                    {
+                                                      "type": "text",
+                                                      "tagName": "h1",
+                                                      "attributes": {
+                                                        "id": "iptgnc"
+                                                      },
+                                                      "components": [
+                                                        {
+                                                          "type": "textnode",
+                                                          "content": "Dr. Hendrati Dwi Mulyaningsih, S.E., M.M."
+                                                        }
+                                                      ]
+                                                    },
+                                                    {
+                                                      "type": "text",
+                                                      "tagName": "p",
+                                                      "attributes": {
+                                                        "id": "iz7qaj"
+                                                      },
+                                                      "components": [
+                                                        {
+                                                          "type": "textnode",
+                                                          "content": "Founder & Chairperson of Research Synergy Foundation"
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ],
+                                          "__prev-display": "flex"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "name": "Row",
+                                  "classes": [
+                                    { "name": "gjs-row", "private": 1 }
+                                  ],
+                                  "droppable": ".gjs-cell",
+                                  "resizable": {
+                                    "bl": 0,
+                                    "br": 0,
+                                    "cl": 0,
+                                    "cr": 0,
+                                    "tc": 0,
+                                    "tl": 0,
+                                    "tr": 0,
+                                    "minDim": 1
+                                  },
+                                  "attributes": { "id": "ijkwk4" },
+                                  "components": [
+                                    {
+                                      "name": "Cell",
+                                      "classes": [
+                                        { "name": "gjs-cell", "private": 1 }
+                                      ],
+                                      "draggable": ".gjs-row",
+                                      "resizable": {
+                                        "bc": 0,
+                                        "bl": 0,
+                                        "br": 0,
+                                        "cl": 0,
+                                        "cr": 1,
+                                        "tc": 0,
+                                        "tl": 0,
+                                        "tr": 0,
+                                        "step": 0.2,
+                                        "minDim": 1,
+                                        "currentUnit": 1
+                                      },
+                                      "attributes": { "id": "igflg5" },
+                                      "components": [
+                                        {
+                                          "type": "image",
+                                          "resizable": { "ratioDefault": 1 },
+                                          "attributes": {
+                                            "id": "isz0pf",
+                                            "src": "/uploads/1749439240081-1 (1).webp"
+                                          }
+                                        },
+                                        {
+                                          "tagName": "section",
+                                          "attributes": { "id": "igoo04" },
+                                          "components": [
+                                            {
+                                              "type": "text",
+                                              "tagName": "h1",
+                                              "attributes": { "id": "i3gsil" },
+                                              "components": [
+                                                {
+                                                  "type": "textnode",
+                                                  "content": "Dr. Hendrati Dwi Mulyaningsih, S.E., M.M."
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "type": "text",
+                                              "tagName": "p",
+                                              "attributes": { "id": "iq8cfg" },
+                                              "components": [
+                                                {
+                                                  "type": "textnode",
+                                                  "content": "Founder & Chairperson of Research Synergy Foundation"
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "name": "Row",
+                                          "classes": [
+                                            { "name": "gjs-row", "private": 1 }
+                                          ],
+                                          "droppable": ".gjs-cell",
+                                          "resizable": {
+                                            "bl": 0,
+                                            "br": 0,
+                                            "cl": 0,
+                                            "cr": 0,
+                                            "tc": 0,
+                                            "tl": 0,
+                                            "tr": 0,
+                                            "minDim": 1
+                                          },
+                                          "attributes": { "id": "i8jcwp" },
+                                          "components": [
+                                            {
+                                              "name": "Cell",
+                                              "classes": [
+                                                {
+                                                  "name": "gjs-cell",
+                                                  "private": 1
+                                                }
+                                              ],
+                                              "draggable": ".gjs-row",
+                                              "resizable": {
+                                                "bc": 0,
+                                                "bl": 0,
+                                                "br": 0,
+                                                "cl": 0,
+                                                "cr": 1,
+                                                "tc": 0,
+                                                "tl": 0,
+                                                "tr": 0,
+                                                "step": 0.2,
+                                                "minDim": 1,
+                                                "currentUnit": 1
+                                              },
+                                              "attributes": { "id": "io7zoy" },
+                                              "components": [
+                                                {
+                                                  "tagName": "section",
+                                                  "attributes": {
+                                                    "id": "iqlmmp"
+                                                  },
+                                                  "components": [
+                                                    {
+                                                      "type": "text",
+                                                      "tagName": "h1",
+                                                      "attributes": {
+                                                        "id": "ik3zer"
+                                                      },
+                                                      "components": [
+                                                        {
+                                                          "type": "textnode",
+                                                          "content": "Dr. Hendrati Dwi Mulyaningsih, S.E., M.M."
+                                                        }
+                                                      ]
+                                                    },
+                                                    {
+                                                      "type": "text",
+                                                      "classes": ["paragraph"],
+                                                      "tagName": "p",
+                                                      "components": [
+                                                        {
+                                                          "type": "textnode",
+                                                          "content": "Founder & Chairperson of Research Synergy Foundation"
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "Row",
+                  "classes": [{ "name": "gjs-row", "private": 1 }],
+                  "droppable": ".gjs-cell",
+                  "resizable": {
+                    "bl": 0,
+                    "br": 0,
+                    "cl": 0,
+                    "cr": 0,
+                    "tc": 0,
+                    "tl": 0,
+                    "tr": 0,
+                    "minDim": 1
+                  },
+                  "attributes": { "id": "i7ymyj" },
+                  "components": [
+                    {
+                      "name": "Cell",
+                      "classes": [{ "name": "gjs-cell", "private": 1 }],
+                      "draggable": ".gjs-row",
+                      "resizable": {
+                        "bc": 0,
+                        "bl": 0,
+                        "br": 0,
+                        "cl": 0,
+                        "cr": 1,
+                        "tc": 0,
+                        "tl": 0,
+                        "tr": 0,
+                        "step": 0.2,
+                        "minDim": 1,
+                        "currentUnit": 1
+                      },
+                      "attributes": { "id": "iin76c" },
+                      "components": [
+                        {
+                          "type": "text",
+                          "attributes": { "id": "ikhaix" },
+                          "components": [
+                            {
+                              "type": "textnode",
+                              "content": "The Sientific Board Members"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Row",
+                          "classes": [{ "name": "gjs-row", "private": 1 }],
+                          "droppable": ".gjs-cell",
+                          "resizable": {
+                            "bl": 0,
+                            "br": 0,
+                            "cl": 0,
+                            "cr": 0,
+                            "tc": 0,
+                            "tl": 0,
+                            "tr": 0,
+                            "minDim": 1
+                          },
+                          "attributes": { "id": "iq46qb" },
+                          "components": [
+                            {
+                              "name": "Cell",
+                              "classes": [{ "name": "gjs-cell", "private": 1 }],
+                              "draggable": ".gjs-row",
+                              "resizable": {
+                                "bc": 0,
+                                "bl": 0,
+                                "br": 0,
+                                "cl": 0,
+                                "cr": 1,
+                                "tc": 0,
+                                "tl": 0,
+                                "tr": 0,
+                                "step": 0.2,
+                                "minDim": 1,
+                                "currentUnit": 1
+                              },
+                              "attributes": { "id": "igoo51" },
+                              "components": [
+                                {
+                                  "name": "Row",
+                                  "classes": [
+                                    { "name": "gjs-row", "private": 1 }
+                                  ],
+                                  "droppable": ".gjs-cell",
+                                  "resizable": {
+                                    "bl": 0,
+                                    "br": 0,
+                                    "cl": 0,
+                                    "cr": 0,
+                                    "tc": 0,
+                                    "tl": 0,
+                                    "tr": 0,
+                                    "minDim": 1
+                                  },
+                                  "attributes": { "id": "i5koyu-3" },
+                                  "components": [
+                                    {
+                                      "name": "Cell",
+                                      "classes": [
+                                        { "name": "gjs-cell", "private": 1 }
+                                      ],
+                                      "draggable": ".gjs-row",
+                                      "resizable": {
+                                        "bc": 0,
+                                        "bl": 0,
+                                        "br": 0,
+                                        "cl": 0,
+                                        "cr": 1,
+                                        "tc": 0,
+                                        "tl": 0,
+                                        "tr": 0,
+                                        "step": 0.2,
+                                        "minDim": 1,
+                                        "currentUnit": 1
+                                      },
+                                      "attributes": { "id": "iw8qfw" },
+                                      "components": [
+                                        {
+                                          "name": "Row",
+                                          "classes": [
+                                            { "name": "gjs-row", "private": 1 }
+                                          ],
+                                          "droppable": ".gjs-cell",
+                                          "resizable": {
+                                            "bl": 0,
+                                            "br": 0,
+                                            "cl": 0,
+                                            "cr": 0,
+                                            "tc": 0,
+                                            "tl": 0,
+                                            "tr": 0,
+                                            "minDim": 1
+                                          },
+                                          "attributes": { "id": "ifefdz" },
+                                          "components": [
+                                            {
+                                              "name": "Cell",
+                                              "classes": [
+                                                {
+                                                  "name": "gjs-cell",
+                                                  "private": 1
+                                                }
+                                              ],
+                                              "draggable": ".gjs-row",
+                                              "resizable": {
+                                                "bc": 0,
+                                                "bl": 0,
+                                                "br": 0,
+                                                "cl": 0,
+                                                "cr": 1,
+                                                "tc": 0,
+                                                "tl": 0,
+                                                "tr": 0,
+                                                "step": 0.2,
+                                                "minDim": 1,
+                                                "currentUnit": 1
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "text",
+                                          "attributes": { "id": "i2yyzp" },
+                                          "components": [
+                                            {
+                                              "type": "textnode",
+                                              "content": "Professor Dieter Bögenhold"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "text",
+                                          "attributes": { "id": "i8um1g" },
+                                          "components": [
+                                            {
+                                              "type": "textnode",
+                                              "content": "Klagenfurt University, Austria"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "name": "Row",
+                                  "classes": [
+                                    { "name": "gjs-row", "private": 1 }
+                                  ],
+                                  "droppable": ".gjs-cell",
+                                  "resizable": {
+                                    "bl": 0,
+                                    "br": 0,
+                                    "cl": 0,
+                                    "cr": 0,
+                                    "tc": 0,
+                                    "tl": 0,
+                                    "tr": 0,
+                                    "minDim": 1
+                                  },
+                                  "attributes": { "id": "i5koyu" },
+                                  "components": [
+                                    {
+                                      "name": "Cell",
+                                      "classes": [
+                                        { "name": "gjs-cell", "private": 1 }
+                                      ],
+                                      "draggable": ".gjs-row",
+                                      "resizable": {
+                                        "bc": 0,
+                                        "bl": 0,
+                                        "br": 0,
+                                        "cl": 0,
+                                        "cr": 1,
+                                        "tc": 0,
+                                        "tl": 0,
+                                        "tr": 0,
+                                        "step": 0.2,
+                                        "minDim": 1,
+                                        "currentUnit": 1
+                                      },
+                                      "attributes": { "id": "iazv0l" },
+                                      "components": [
+                                        {
+                                          "name": "Row",
+                                          "classes": [
+                                            { "name": "gjs-row", "private": 1 }
+                                          ],
+                                          "droppable": ".gjs-cell",
+                                          "resizable": {
+                                            "bl": 0,
+                                            "br": 0,
+                                            "cl": 0,
+                                            "cr": 0,
+                                            "tc": 0,
+                                            "tl": 0,
+                                            "tr": 0,
+                                            "minDim": 1
+                                          },
+                                          "attributes": { "id": "i6yx7z" },
+                                          "components": [
+                                            {
+                                              "name": "Cell",
+                                              "classes": [
+                                                {
+                                                  "name": "gjs-cell",
+                                                  "private": 1
+                                                }
+                                              ],
+                                              "draggable": ".gjs-row",
+                                              "resizable": {
+                                                "bc": 0,
+                                                "bl": 0,
+                                                "br": 0,
+                                                "cl": 0,
+                                                "cr": 1,
+                                                "tc": 0,
+                                                "tl": 0,
+                                                "tr": 0,
+                                                "step": 0.2,
+                                                "minDim": 1,
+                                                "currentUnit": 1
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "text",
+                                          "attributes": { "id": "ibxm5i" },
+                                          "components": [
+                                            {
+                                              "type": "textnode",
+                                              "content": "Professor Dieter Bögenhold"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "text",
+                                          "attributes": { "id": "iyrx81" },
+                                          "components": [
+                                            {
+                                              "type": "textnode",
+                                              "content": "Klagenfurt University, Austria"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "name": "Row",
+                                  "classes": [
+                                    { "name": "gjs-row", "private": 1 }
+                                  ],
+                                  "droppable": ".gjs-cell",
+                                  "resizable": {
+                                    "bl": 0,
+                                    "br": 0,
+                                    "cl": 0,
+                                    "cr": 0,
+                                    "tc": 0,
+                                    "tl": 0,
+                                    "tr": 0,
+                                    "minDim": 1
+                                  },
+                                  "attributes": { "id": "i5koyu-2" },
+                                  "components": [
+                                    {
+                                      "name": "Cell",
+                                      "classes": [
+                                        { "name": "gjs-cell", "private": 1 }
+                                      ],
+                                      "draggable": ".gjs-row",
+                                      "resizable": {
+                                        "bc": 0,
+                                        "bl": 0,
+                                        "br": 0,
+                                        "cl": 0,
+                                        "cr": 1,
+                                        "tc": 0,
+                                        "tl": 0,
+                                        "tr": 0,
+                                        "step": 0.2,
+                                        "minDim": 1,
+                                        "currentUnit": 1
+                                      },
+                                      "attributes": { "id": "ixmfpj" },
+                                      "components": [
+                                        {
+                                          "name": "Row",
+                                          "classes": [
+                                            { "name": "gjs-row", "private": 1 }
+                                          ],
+                                          "droppable": ".gjs-cell",
+                                          "resizable": {
+                                            "bl": 0,
+                                            "br": 0,
+                                            "cl": 0,
+                                            "cr": 0,
+                                            "tc": 0,
+                                            "tl": 0,
+                                            "tr": 0,
+                                            "minDim": 1
+                                          },
+                                          "attributes": { "id": "ij0plq" },
+                                          "components": [
+                                            {
+                                              "name": "Cell",
+                                              "classes": [
+                                                {
+                                                  "name": "gjs-cell",
+                                                  "private": 1
+                                                }
+                                              ],
+                                              "draggable": ".gjs-row",
+                                              "resizable": {
+                                                "bc": 0,
+                                                "bl": 0,
+                                                "br": 0,
+                                                "cl": 0,
+                                                "cr": 1,
+                                                "tc": 0,
+                                                "tl": 0,
+                                                "tr": 0,
+                                                "step": 0.2,
+                                                "minDim": 1,
+                                                "currentUnit": 1
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "text",
+                                          "attributes": { "id": "ihktoq" },
+                                          "components": [
+                                            {
+                                              "type": "textnode",
+                                              "content": "Professor Dieter Bögenhold"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "text",
+                                          "attributes": { "id": "i4kwll" },
+                                          "components": [
+                                            {
+                                              "type": "textnode",
+                                              "content": "Klagenfurt University, Austria"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "name": "Row",
+                                  "classes": [
+                                    { "name": "gjs-row", "private": 1 }
+                                  ],
+                                  "droppable": ".gjs-cell",
+                                  "resizable": {
+                                    "bl": 0,
+                                    "br": 0,
+                                    "cl": 0,
+                                    "cr": 0,
+                                    "tc": 0,
+                                    "tl": 0,
+                                    "tr": 0,
+                                    "minDim": 1
+                                  },
+                                  "attributes": { "id": "i5koyu-2-2" },
+                                  "components": [
+                                    {
+                                      "name": "Cell",
+                                      "classes": [
+                                        { "name": "gjs-cell", "private": 1 }
+                                      ],
+                                      "draggable": ".gjs-row",
+                                      "resizable": {
+                                        "bc": 0,
+                                        "bl": 0,
+                                        "br": 0,
+                                        "cl": 0,
+                                        "cr": 1,
+                                        "tc": 0,
+                                        "tl": 0,
+                                        "tr": 0,
+                                        "step": 0.2,
+                                        "minDim": 1,
+                                        "currentUnit": 1
+                                      },
+                                      "attributes": { "id": "i3o02j" },
+                                      "components": [
+                                        {
+                                          "name": "Row",
+                                          "classes": [
+                                            { "name": "gjs-row", "private": 1 }
+                                          ],
+                                          "droppable": ".gjs-cell",
+                                          "resizable": {
+                                            "bl": 0,
+                                            "br": 0,
+                                            "cl": 0,
+                                            "cr": 0,
+                                            "tc": 0,
+                                            "tl": 0,
+                                            "tr": 0,
+                                            "minDim": 1
+                                          },
+                                          "attributes": { "id": "ilkdko" },
+                                          "components": [
+                                            {
+                                              "name": "Cell",
+                                              "classes": [
+                                                {
+                                                  "name": "gjs-cell",
+                                                  "private": 1
+                                                }
+                                              ],
+                                              "draggable": ".gjs-row",
+                                              "resizable": {
+                                                "bc": 0,
+                                                "bl": 0,
+                                                "br": 0,
+                                                "cl": 0,
+                                                "cr": 1,
+                                                "tc": 0,
+                                                "tl": 0,
+                                                "tr": 0,
+                                                "step": 0.2,
+                                                "minDim": 1,
+                                                "currentUnit": 1
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "text",
+                                          "attributes": { "id": "ilv4wv" },
+                                          "components": [
+                                            {
+                                              "type": "textnode",
+                                              "content": "Professor Dieter Bögenhold"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "text",
+                                          "attributes": { "id": "inse5t" },
+                                          "components": [
+                                            {
+                                              "type": "textnode",
+                                              "content": "Klagenfurt University, Austria"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "name": "Row",
+                                  "classes": [
+                                    { "name": "gjs-row", "private": 1 }
+                                  ],
+                                  "droppable": ".gjs-cell",
+                                  "resizable": {
+                                    "bl": 0,
+                                    "br": 0,
+                                    "cl": 0,
+                                    "cr": 0,
+                                    "tc": 0,
+                                    "tl": 0,
+                                    "tr": 0,
+                                    "minDim": 1
+                                  },
+                                  "attributes": { "id": "i5koyu-2-3" },
+                                  "components": [
+                                    {
+                                      "name": "Cell",
+                                      "classes": [
+                                        { "name": "gjs-cell", "private": 1 }
+                                      ],
+                                      "draggable": ".gjs-row",
+                                      "resizable": {
+                                        "bc": 0,
+                                        "bl": 0,
+                                        "br": 0,
+                                        "cl": 0,
+                                        "cr": 1,
+                                        "tc": 0,
+                                        "tl": 0,
+                                        "tr": 0,
+                                        "step": 0.2,
+                                        "minDim": 1,
+                                        "currentUnit": 1
+                                      },
+                                      "attributes": { "id": "iaa7sp" },
+                                      "components": [
+                                        {
+                                          "name": "Row",
+                                          "classes": [
+                                            { "name": "gjs-row", "private": 1 }
+                                          ],
+                                          "droppable": ".gjs-cell",
+                                          "resizable": {
+                                            "bl": 0,
+                                            "br": 0,
+                                            "cl": 0,
+                                            "cr": 0,
+                                            "tc": 0,
+                                            "tl": 0,
+                                            "tr": 0,
+                                            "minDim": 1
+                                          },
+                                          "attributes": { "id": "ilmgsx" },
+                                          "components": [
+                                            {
+                                              "name": "Cell",
+                                              "classes": [
+                                                {
+                                                  "name": "gjs-cell",
+                                                  "private": 1
+                                                }
+                                              ],
+                                              "draggable": ".gjs-row",
+                                              "resizable": {
+                                                "bc": 0,
+                                                "bl": 0,
+                                                "br": 0,
+                                                "cl": 0,
+                                                "cr": 1,
+                                                "tc": 0,
+                                                "tl": 0,
+                                                "tr": 0,
+                                                "step": 0.2,
+                                                "minDim": 1,
+                                                "currentUnit": 1
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "text",
+                                          "attributes": { "id": "ijqf7j" },
+                                          "components": [
+                                            {
+                                              "type": "textnode",
+                                              "content": "Professor Dieter Bögenhold"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "text",
+                                          "attributes": { "id": "ikemn6" },
+                                          "components": [
+                                            {
+                                              "type": "textnode",
+                                              "content": "Klagenfurt University, Austria"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "Row",
+                  "classes": [{ "name": "gjs-row", "private": 1 }],
+                  "droppable": ".gjs-cell",
+                  "resizable": {
+                    "bl": 0,
+                    "br": 0,
+                    "cl": 0,
+                    "cr": 0,
+                    "tc": 0,
+                    "tl": 0,
+                    "tr": 0,
+                    "minDim": 1
+                  },
+                  "attributes": { "id": "is81a" },
+                  "components": [
+                    {
+                      "name": "Cell",
+                      "classes": [{ "name": "gjs-cell", "private": 1 }],
+                      "draggable": ".gjs-row",
+                      "resizable": {
+                        "bc": 0,
+                        "bl": 0,
+                        "br": 0,
+                        "cl": 0,
+                        "cr": 1,
+                        "tc": 0,
+                        "tl": 0,
+                        "tr": 0,
+                        "step": 0.2,
+                        "minDim": 1,
+                        "currentUnit": 1
+                      },
+                      "attributes": { "id": "i3r2g" },
+                      "components": [
+                        {
+                          "type": "text",
+                          "attributes": { "id": "ipjxjf" },
+                          "components": [
+                            { "type": "textnode", "content": "Life at RSF" }
+                          ]
+                        },
+                        {
+                          "src": "img/video2.webm",
+                          "type": "video",
+                          "sources": [],
+                          "resizable": { "ratioDefault": 1 },
+                          "attributes": {
+                            "id": "iik6zg",
+                            "allowfullscreen": "allowfullscreen"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "classes": ["bg-[#1e4c56]", "text-white", "px-8", "py-12"],
+                  "tagName": "footer",
+                  "components": [
+                    {
+                      "classes": [
+                        "grid",
+                        "grid-cols-1",
+                        "md:grid-cols-5",
+                        "gap-6",
+                        "text-sm"
+                      ],
+                      "components": [
+                        {
+                          "type": "comment",
+                          "content": " Logo + Contact Info "
+                        },
+                        {
+                          "classes": ["col-span-1", "space-y-4"],
+                          "components": [
+                            {
+                              "type": "image",
+                              "classes": ["mb-4"],
+                              "resizable": { "ratioDefault": 1 },
+                              "attributes": {
+                                "alt": "Logo",
+                                "src": "/uploads/1749054189475-logo-rsf-transparent (3).webp"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "tagName": "p",
+                              "components": [
+                                {
+                                  "type": "textnode",
+                                  "content": "123 Academic Avenue, Research Park, CA 94103"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "tagName": "p",
+                              "components": [
+                                {
+                                  "type": "textnode",
+                                  "content": "📞 +1 (555) 123-4567"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "tagName": "p",
+                              "components": [
+                                {
+                                  "type": "textnode",
+                                  "content": "✉️ contact@researchplatform.com"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        { "type": "comment", "content": " Ecosystem " },
+                        {
+                          "components": [
+                            {
+                              "type": "text",
+                              "classes": ["font-bold", "mb-2"],
+                              "tagName": "h4",
+                              "components": [
+                                { "type": "textnode", "content": "Ecosystem" }
+                              ]
+                            },
+                            {
+                              "classes": ["space-y-1"],
+                              "tagName": "ul",
+                              "components": [
+                                {
+                                  "tagName": "li",
+                                  "components": [
+                                    {
+                                      "type": "link",
+                                      "attributes": { "href": "#" },
+                                      "components": [
+                                        {
+                                          "type": "textnode",
+                                          "content": "Research Journals"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "tagName": "li",
+                                  "components": [
+                                    {
+                                      "type": "link",
+                                      "attributes": { "href": "#" },
+                                      "components": [
+                                        {
+                                          "type": "textnode",
+                                          "content": "Conference Papers"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "tagName": "li",
+                                  "components": [
+                                    {
+                                      "type": "link",
+                                      "attributes": { "href": "#" },
+                                      "components": [
+                                        {
+                                          "type": "textnode",
+                                          "content": "Data Repository"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "tagName": "li",
+                                  "components": [
+                                    {
+                                      "type": "link",
+                                      "attributes": { "href": "#" },
+                                      "components": [
+                                        {
+                                          "type": "textnode",
+                                          "content": "Research Tools"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        { "type": "comment", "content": " Join Us " },
+                        {
+                          "components": [
+                            {
+                              "type": "text",
+                              "classes": ["font-bold", "mb-2"],
+                              "tagName": "h4",
+                              "components": [
+                                { "type": "textnode", "content": "Join Us" }
+                              ]
+                            },
+                            {
+                              "classes": ["space-y-1"],
+                              "tagName": "ul",
+                              "components": [
+                                {
+                                  "tagName": "li",
+                                  "components": [
+                                    {
+                                      "type": "link",
+                                      "attributes": { "href": "#" },
+                                      "components": [
+                                        {
+                                          "type": "textnode",
+                                          "content": "For Researchers"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "tagName": "li",
+                                  "components": [
+                                    {
+                                      "type": "link",
+                                      "attributes": { "href": "#" },
+                                      "components": [
+                                        {
+                                          "type": "textnode",
+                                          "content": "For Reviewers"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "tagName": "li",
+                                  "components": [
+                                    {
+                                      "type": "link",
+                                      "attributes": { "href": "#" },
+                                      "components": [
+                                        {
+                                          "type": "textnode",
+                                          "content": "For Institutions"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "tagName": "li",
+                                  "components": [
+                                    {
+                                      "type": "link",
+                                      "attributes": { "href": "#" },
+                                      "components": [
+                                        {
+                                          "type": "textnode",
+                                          "content": "For Publishers"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        { "type": "comment", "content": " Menu " },
+                        {
+                          "components": [
+                            {
+                              "type": "text",
+                              "classes": ["font-bold", "mb-2"],
+                              "tagName": "h4",
+                              "components": [
+                                { "type": "textnode", "content": "Menu" }
+                              ]
+                            },
+                            {
+                              "classes": ["space-y-1"],
+                              "tagName": "ul",
+                              "components": [
+                                {
+                                  "tagName": "li",
+                                  "components": [
+                                    {
+                                      "type": "link",
+                                      "attributes": { "href": "#" },
+                                      "components": [
+                                        {
+                                          "type": "textnode",
+                                          "content": "About Us"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "tagName": "li",
+                                  "components": [
+                                    {
+                                      "type": "link",
+                                      "attributes": { "href": "#" },
+                                      "components": [
+                                        {
+                                          "type": "textnode",
+                                          "content": "Our Team"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "tagName": "li",
+                                  "components": [
+                                    {
+                                      "type": "link",
+                                      "attributes": { "href": "#" },
+                                      "components": [
+                                        {
+                                          "type": "textnode",
+                                          "content": "Blog"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "tagName": "li",
+                                  "components": [
+                                    {
+                                      "type": "link",
+                                      "attributes": { "href": "#" },
+                                      "components": [
+                                        {
+                                          "type": "textnode",
+                                          "content": "Contact"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        { "type": "comment", "content": " Social Icons " },
+                        {
+                          "components": [
+                            {
+                              "type": "text",
+                              "classes": ["font-bold", "mb-2"],
+                              "tagName": "h4",
+                              "components": [
+                                { "type": "textnode", "content": "Follow Us" }
+                              ]
+                            },
+                            {
+                              "classes": ["flex", "gap-4"],
+                              "components": [
+                                {
+                                  "type": "link",
+                                  "editable": false,
+                                  "attributes": { "href": "#" },
+                                  "components": [
+                                    {
+                                      "type": "image",
+                                      "classes": ["w-5", "h-5"],
+                                      "resizable": { "ratioDefault": 1 },
+                                      "attributes": {
+                                        "alt": "LinkedIn",
+                                        "src": "https://cdn-icons-png.flaticon.com/512/174/174857.png"
+                                      }
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "link",
+                                  "editable": false,
+                                  "attributes": { "href": "#" },
+                                  "components": [
+                                    {
+                                      "type": "image",
+                                      "classes": ["w-5", "h-5"],
+                                      "resizable": { "ratioDefault": 1 },
+                                      "attributes": {
+                                        "alt": "Instagram",
+                                        "src": "https://cdn-icons-png.flaticon.com/512/2111/2111463.png"
+                                      }
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "link",
+                                  "editable": false,
+                                  "attributes": { "href": "#" },
+                                  "components": [
+                                    {
+                                      "type": "image",
+                                      "classes": ["w-5", "h-5"],
+                                      "resizable": { "ratioDefault": 1 },
+                                      "attributes": {
+                                        "alt": "Facebook",
+                                        "src": "https://cdn-icons-png.flaticon.com/512/733/733547.png"
+                                      }
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "link",
+                                  "editable": false,
+                                  "attributes": { "href": "#" },
+                                  "components": [
+                                    {
+                                      "type": "image",
+                                      "classes": ["w-5", "h-5"],
+                                      "resizable": { "ratioDefault": 1 },
+                                      "attributes": {
+                                        "alt": "YouTube",
+                                        "src": "https://cdn-icons-png.flaticon.com/512/733/733646.png"
+                                      }
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "assets": [
+      {
+        "src": "/uploads/1749529713073-logo-rsf-transparent (3).webp",
+        "name": "1749529713073-logo-rsf-transparent (3).webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749541299427-logo-rsf-transparent (1).webp",
+        "name": "1749541299427-logo-rsf-transparent (1).webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749541758055-logo-rsf-transparent (1).webp",
+        "name": "1749541758055-logo-rsf-transparent (1).webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749543259832-RIS-maps.webp",
+        "name": "1749543259832-RIS-maps.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749615477272-cover-book-4TH-ICMRSI-01-scaled (1).webp",
+        "name": "1749615477272-cover-book-4TH-ICMRSI-01-scaled (1).webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749615597457-4th-ICMRSI-GRID.webp",
+        "name": "1749615597457-4th-ICMRSI-GRID.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749615734208-Screen-Shot-2024-02-07-at-10.webp",
+        "name": "1749615734208-Screen-Shot-2024-02-07-at-10.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749738131259-logo-rsf-press.webp",
+        "name": "1749738131259-logo-rsf-press.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749738161678-logo-rsf-transparent (1).webp",
+        "name": "1749738161678-logo-rsf-transparent (1).webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749526786417-IMG_5568.webp",
+        "name": "1749526786417-IMG_5568.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749447381372-4.webp",
+        "name": "1749447381372-4.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749447076873-2.webp",
+        "name": "1749447076873-2.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749446946711-3.webp",
+        "name": "1749446946711-3.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749439240081-1 (1).webp",
+        "name": "1749439240081-1 (1).webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1748945356924-logo-scholarvein.webp",
+        "name": "1748945356924-logo-scholarvein.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1748945361635-logo-rsi.webp",
+        "name": "1748945361635-logo-rsi.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1748955666166-logo-reviewer-track.webp",
+        "name": "1748955666166-logo-reviewer-track.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1748955752787-logo-grc.webp",
+        "name": "1748955752787-logo-grc.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1748956126265-logo-f1000.webp",
+        "name": "1748956126265-logo-f1000.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1748957964277-infografis-rsf.webp",
+        "name": "1748957964277-infografis-rsf.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1748958627457-logo-scholarvein-big.webp",
+        "name": "1748958627457-logo-scholarvein-big.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1748967752759-1.webp",
+        "name": "1748967752759-1.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1748967759679-11.webp",
+        "name": "1748967759679-11.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1748967780395-f1000-1.webp",
+        "name": "1748967780395-f1000-1.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1748967822872-taylorfrancis-1.webp",
+        "name": "1748967822872-taylorfrancis-1.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1748967830025-WhatsApp-Image-2022-11-30-at-9.webp",
+        "name": "1748967830025-WhatsApp-Image-2022-11-30-at-9.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1748967918985-873-8734069_mmu-logo-multimedia-university-e1669776556790.webp",
+        "name": "1748967918985-873-8734069_mmu-logo-multimedia-university-e1669776556790.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1748967925090-udju-13.webp",
+        "name": "1748967925090-udju-13.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1748967928903-ecu.webp",
+        "name": "1748967928903-ecu.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1748967931380-8.webp",
+        "name": "1748967931380-8.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1748967938413-ucsi.webp",
+        "name": "1748967938413-ucsi.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749042421461-circle-arrow-up.webp",
+        "name": "1749042421461-circle-arrow-up.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749053965132-logo-rsf-transparent (3).webp",
+        "name": "1749053965132-logo-rsf-transparent (3).webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749054189475-logo-rsf-transparent (3).webp",
+        "name": "1749054189475-logo-rsf-transparent (3).webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749054266817-logo-rsi.webp",
+        "name": "1749054266817-logo-rsi.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749054383874-logo-scholarvein-big.webp",
+        "name": "1749054383874-logo-scholarvein-big.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749054511469-product.webp",
+        "name": "1749054511469-product.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749054647136-logo-f1000.webp",
+        "name": "1749054647136-logo-f1000.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749054700043-f1000-1.webp",
+        "name": "1749054700043-f1000-1.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749054908251-logo-reviewer-track.webp",
+        "name": "1749054908251-logo-reviewer-track.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749054935387-product.webp",
+        "name": "1749054935387-product.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749056491852-logo-rsf-transparent (3).webp",
+        "name": "1749056491852-logo-rsf-transparent (3).webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749124933395-users.webp",
+        "name": "1749124933395-users.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749125112591-graduation-cap.webp",
+        "name": "1749125112591-graduation-cap.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749125311404-globe.webp",
+        "name": "1749125311404-globe.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749125443913-book-open-text.webp",
+        "name": "1749125443913-book-open-text.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749131431251-logo-reviewer-track (2).webp",
+        "name": "1749131431251-logo-reviewer-track (2).webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749131463630-logo-rsi (2).webp",
+        "name": "1749131463630-logo-rsi (2).webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749131492363-logo-rsf-press (3).webp",
+        "name": "1749131492363-logo-rsf-press (3).webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749132533151-logo-grc (2).webp",
+        "name": "1749132533151-logo-grc (2).webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749132675102-logo-f1000 (2).webp",
+        "name": "1749132675102-logo-f1000 (2).webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749137523577-chevron-right.webp",
+        "name": "1749137523577-chevron-right.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749205287059-cover-book-4TH-ICMRSI-01-scaled.webp",
+        "name": "1749205287059-cover-book-4TH-ICMRSI-01-scaled.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/logo-rsf-transparent.webp",
+        "name": "logo-rsf-transparent.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      }
+    ],
+    "styles": [
+      {
+        "style": { "color": "#1f4751", "font-weight": "600" },
+        "selectors": ["#iyr3m"]
+      },
+      {
+        "style": {
+          "top": "0px",
+          "width": "100vw",
+          "position": "absolute",
+          "max-width": "100vw"
+        },
+        "selectors": [
+          "max-w-screen",
+          "mx-auto",
+          "px-4",
+          "py-4",
+          "flex",
+          "items-center",
+          "justify-between"
+        ]
+      },
+      {
+        "style": { "top": "0px", "position": "absolute", "max-width": "100vw" },
+        "mediaText": "(max-width: 992px)",
+        "selectors": [
+          "max-w-screen",
+          "mx-auto",
+          "px-4",
+          "py-4",
+          "flex",
+          "items-center",
+          "justify-between"
+        ],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "width": "100%", "display": "table", "padding": "10px" },
+        "selectors": [{ "name": "gjs-row", "private": 1 }]
+      },
+      {
+        "style": { "width": "100%", "display": "block" },
+        "mediaText": "(max-width: 768px)",
+        "selectors": [{ "name": "gjs-cell", "private": 1 }],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "width": "100%", "display": "block" },
+        "mediaText": "(max-width: 768px)",
+        "selectors": ["gjs-cell30"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "width": "100%", "display": "block" },
+        "mediaText": "(max-width: 768px)",
+        "selectors": ["gjs-cell70"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "width": "8%", "height": "75px", "display": "table-cell" },
+        "selectors": [{ "name": "gjs-cell", "private": 1 }]
+      },
+      {
+        "style": { "height": "50px", "padding": "0 10px 10px 10px" },
+        "selectors": ["#ixzys"]
+      },
+      {
+        "style": {
+          "padding": "30px 10px 30px 10px",
+          "background-color": "#1f4751"
+        },
+        "selectors": ["#iajjg"]
+      },
+      {
+        "style": {
+          "color": "white",
+          "display": "flex",
+          "text-align": "center",
+          "align-items": "center",
+          "align-content": "center",
+          "flex-direction": "column",
+          "justify-content": "center"
+        },
+        "selectors": ["bdg-sect"]
+      },
+      {
+        "style": {
+          "color": "#ffffff",
+          "font-size": "32px",
+          "font-weight": "600"
+        },
+        "selectors": ["heading"]
+      },
+      {
+        "style": { "color": "#ffffff", "max-width": "50vw" },
+        "selectors": ["paragraph"]
+      },
+      {
+        "style": {
+          "font-size": "16px",
+          "font-family": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+          "white-space-collapse": "preserve"
+        },
+        "selectors": ["#i25n6"]
+      },
+      {
+        "style": { "height": "auto", "padding": "20px 0px 20px 0px" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#i2e03"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "max-width": "100vw" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["paragraph"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "max-width": "60vw" },
+        "mediaText": "(max-width: 992px)",
+        "selectors": ["#i6158"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "padding": "20px 10px 20px 10px" },
+        "mediaText": "(max-width: 992px)",
+        "selectors": ["#iajjg"],
+        "atRuleType": "media"
+      },
+      { "style": { "max-width": "60vw" }, "selectors": ["#i6158"] },
+      {
+        "style": {
+          "padding": "10px",
+          "font-size": "24px",
+          "max-width": "100vw",
+          "font-weight": "600"
+        },
+        "selectors": ["#i64xw"]
+      },
+      { "style": { "width": "30%" }, "selectors": ["gjs-cell30"] },
+      { "style": { "width": "70%" }, "selectors": ["gjs-cell70"] },
+      {
+        "style": {
+          "padding": "0px 0px 0px 0",
+          "border-radius": "25px 25px 25px 25px",
+          "background-color": "#eeeeee"
+        },
+        "selectors": ["#iw9wc"]
+      },
+      {
+        "style": { "padding": "14px 14px 14px 14px" },
+        "selectors": ["#iwxv3"]
+      },
+      {
+        "style": { "padding": "14px 14px 14px 14px" },
+        "selectors": ["#iwko5"]
+      },
+      {
+        "style": {
+          "padding": "0px 0px 0px 0",
+          "border-radius": "25px 25px 25px 25px",
+          "background-color": "#eeeeee"
+        },
+        "selectors": ["#i1fxt"]
+      },
+      {
+        "style": {
+          "width": "50%",
+          "height": "300px",
+          "border-radius": "25px 0px 0px 25px",
+          "background-size": "cover",
+          "background-image": "url('/uploads/1749054511469-product.webp')",
+          "__background-type": "image",
+          "background-repeat": "no-repeat",
+          "background-position": "center center",
+          "background-attachment": "scroll"
+        },
+        "selectors": ["#ifcpr-3"]
+      },
+      { "style": { "width": "30%" }, "selectors": ["#ij8xi"] },
+      {
+        "style": { "height": "300px", "display": "flex" },
+        "selectors": ["#icy9x"]
+      },
+      { "style": { "width": "100vw" }, "selectors": ["#ik43p"] },
+      {
+        "style": {
+          "width": "100%",
+          "height": "auto",
+          "display": "flex",
+          "flex-wrap": "wrap",
+          "align-items": "center",
+          "align-content": "center",
+          "justify-content": "space-evenly"
+        },
+        "selectors": ["#i3r2g"]
+      },
+      {
+        "style": {
+          "color": "#1f4751",
+          "padding": "10px",
+          "font-size": "24px",
+          "font-weight": "600"
+        },
+        "selectors": ["#ipjxjf"]
+      },
+      {
+        "style": { "width": "400px", "height": "250px" },
+        "selectors": ["#iik6zg"]
+      },
+      {
+        "style": { "height": "180px", "max-width": "80vw" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#iik6zg"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "width": "310px", "height": "auto", "max-width": "100vw" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#ik43p"],
+        "atRuleType": "media"
+      },
+      {
+        "style": {
+          "display": "flex",
+          "align-items": "center",
+          "align-content": "center",
+          "flex-direction": "column"
+        },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#iw9wc"],
+        "atRuleType": "media"
+      },
+      {
+        "style": {
+          "width": "310px",
+          "height": "250px",
+          "max-width": "100%",
+          "border-radius": "25px 25px 0px 0px"
+        },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#ifcpr-3"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "width": "310px", "height": "auto" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#ij8xi"],
+        "atRuleType": "media"
+      },
+      {
+        "style": {
+          "background-size": "cover",
+          "background-image": "url('/uploads/1749054511469-product.webp')",
+          "__background-type": "image",
+          "background-repeat": "no-repeat",
+          "background-position": "center center",
+          "background-attachment": "local"
+        },
+        "mediaText": "(max-width: 992px)",
+        "selectors": ["#ifcpr-3"],
+        "atRuleType": "media"
+      },
+      {
+        "style": {
+          "width": "60%",
+          "height": "300px",
+          "border-radius": "25px 0px 0px 25px",
+          "background-size": "auto",
+          "background-image": "url('/uploads/1749054511469-product.webp')",
+          "__background-type": "image",
+          "background-repeat": "repeat",
+          "background-position": "left top",
+          "background-attachment": "scroll"
+        },
+        "selectors": ["#ifcpr-3"]
+      },
+      {
+        "style": {
+          "width": "310px",
+          "height": "250px",
+          "border-radius": "25px 25px 0px 0px"
+        },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#ifcpr-3"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "padding": "14px 14px 14px 14px" },
+        "selectors": ["#iozj8l"]
+      },
+      { "style": { "width": "30%" }, "selectors": ["#ij8xi"] },
+      {
+        "style": { "width": "310px", "height": "auto" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#ij8xi"],
+        "atRuleType": "media"
+      },
+      {
+        "style": {
+          "padding": "0px 0px 0px 0",
+          "border-radius": "25px 25px 25px 25px",
+          "background-color": "#eeeeee"
+        },
+        "selectors": ["#ivw4nn"]
+      },
+      {
+        "style": {
+          "height": "auto",
+          "display": "flex",
+          "align-items": "center",
+          "align-content": "center",
+          "flex-direction": "column"
+        },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#ivw4nn"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "color": "#1f4751" },
+        "mediaText": "(max-width: 992px)",
+        "selectors": ["#ipjxjf"],
+        "atRuleType": "media"
+      },
+      {
+        "style": {
+          "padding": "10px 30px 10px 30px",
+          "max-width": "80vw",
+          "background-color": "#f9fafb"
+        },
+        "selectors": ["#iv315l"]
+      },
+      {
+        "style": {
+          "padding": "10px",
+          "font-size": "24px",
+          "text-align": "center",
+          "font-weight": "700"
+        },
+        "selectors": ["#iuc3ux"]
+      },
+      {
+        "style": {
+          "color": "#464646",
+          "padding": "10px",
+          "text-align": "center"
+        },
+        "selectors": ["#irr65f"]
+      },
+      {
+        "style": {
+          "font-family": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+          "border-color": "initial",
+          "margin-bottom": "48px",
+          "background-color": "oklch(0.985 0.002 247.839)"
+        },
+        "selectors": ["#i14okp"]
+      },
+      {
+        "style": {
+          "color": "oklch(0.446 0.03 256.802)",
+          "font-size": "18px",
+          "max-width": "768px",
+          "line-height": "1.55556",
+          "margin-left": "0px",
+          "border-color": "initial",
+          "margin-right": "0px"
+        },
+        "selectors": ["#irmpi2"]
+      },
+      {
+        "style": {
+          "max-width": "1152px",
+          "font-family": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+          "margin-left": "0px",
+          "border-color": "initial",
+          "margin-right": "0px",
+          "padding-left": "0px",
+          "padding-right": "0px",
+          "padding-inline": "8px",
+          "background-color": "oklch(0.985 0.002 247.839)"
+        },
+        "selectors": ["#ithzgl"]
+      },
+      {
+        "style": {
+          "gap": "32px",
+          "border-color": "initial",
+          "grid-template-columns": "repeat(4, minmax(0px, 1fr))"
+        },
+        "selectors": ["#is8a6l"]
+      },
+      {
+        "style": {
+          "border-color": "initial",
+          "--tw-duration": ".3s",
+          "border-radius": "8px"
+        },
+        "selectors": ["#iuisvd"]
+      },
+      {
+        "style": {
+          "height": "600px",
+          "margin": "0px auto 0px auto",
+          "max-width": "80vw",
+          "align-items": "flex-start",
+          "align-content": "flex-start"
+        },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#icy9x"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "height": "auto", "max-width": "90vw" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#i2pntf"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "padding": "0px 0px 0 0px", "max-width": "100vw" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#im796"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "height": "auto" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#ij8xi-3"],
+        "atRuleType": "media"
+      },
+      { "style": { "color": "black" }, "selectors": ["#isz0pf"] },
+      {
+        "style": { "width": "auto", "height": "auto" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#igflg5"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "height": "auto", "opacity": "1" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#igoo04"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "height": "0px", "opacity": "0" },
+        "mediaText": "(max-width: 992px)",
+        "selectors": ["#igoo04"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "height": "0px", "opacity": "0" },
+        "selectors": ["#igoo04"]
+      },
+      {
+        "style": {
+          "width": "200px",
+          "height": "auto",
+          "display": "block",
+          "position": "relative"
+        },
+        "selectors": ["#igflg5"]
+      },
+      {
+        "style": {
+          "left": "0px",
+          "bottom": "0px",
+          "height": "100%",
+          "display": "flex",
+          "opacity": "0",
+          "position": "absolute",
+          "transform": "unset",
+          "transition": "opacity 1s ease",
+          "align-items": "flex-end",
+          "justify-content": "flex-end"
+        },
+        "selectors": ["#i8jcwp"]
+      },
+      {
+        "style": {
+          "width": "100%",
+          "bottom": "0px",
+          "height": "auto",
+          "display": "block",
+          "text-align": "left"
+        },
+        "selectors": ["#io7zoy"]
+      },
+      { "style": { "width": "auto" }, "selectors": ["#ijkwk4"] },
+      {
+        "state": "hover",
+        "style": {
+          "opacity": "1",
+          "background-size": "unset",
+          "background-color": "rgba(0,0,0,0.53)",
+          "background-image": "unset",
+          "__background-type": "unset",
+          "background-repeat": "unset",
+          "background-position": "unset",
+          "background-attachment": "unset",
+          "background-image-color": "unset",
+          "background-image-gradient": "unset",
+          "background-image-gradient-dir": "unset",
+          "background-image-gradient-type": "unset"
+        },
+        "selectors": ["#i8jcwp"]
+      },
+      {
+        "state": "hover",
+        "style": { "color": "#ffffff" },
+        "selectors": ["paragraph"]
+      },
+      {
+        "state": "hover",
+        "style": { "color": "#ffffff" },
+        "selectors": ["heading"]
+      },
+      {
+        "style": {
+          "color": "#ffffff",
+          "font-size": "16px",
+          "font-weight": "700"
+        },
+        "selectors": ["#ik3zer"]
+      },
+      {
+        "state": "hover",
+        "style": {
+          "transform": "scaleY(1.1) scaleX(1.1)",
+          "transition": "width 1s ease"
+        },
+        "selectors": ["#isz0pf"]
+      },
+      {
+        "state": "hover",
+        "style": {
+          "transform": "scaleY(1.1) scaleX(1.1)",
+          "transition": "all 1s ease"
+        },
+        "selectors": ["#igflg5"]
+      },
+      {
+        "state": "hover",
+        "style": { "opacity": "0" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#i8jcwp"],
+        "atRuleType": "media"
+      },
+      {
+        "state": "hover",
+        "style": { "transform": "unset", "transition": "unset" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#igflg5"],
+        "atRuleType": "media"
+      },
+      {
+        "state": "hover",
+        "style": { "font-weight": "700" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#i3gsil"],
+        "atRuleType": "media"
+      },
+      {
+        "state": "hover",
+        "style": { "font-size": "14px" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#iq8cfg"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "font-size": "16px", "font-weight": "700" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#i3gsil"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "font-size": "12px" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#iq8cfg"],
+        "atRuleType": "media"
+      },
+      { "style": { "color": "black" }, "selectors": ["#isz0pf-2"] },
+      {
+        "state": "hover",
+        "style": {
+          "transform": "scaleY(1.1) scaleX(1.1)",
+          "transition": "width 1s ease"
+        },
+        "selectors": ["#isz0pf-2"]
+      },
+      {
+        "state": "hover",
+        "style": { "font-weight": "700" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#itikwf"],
+        "atRuleType": "media"
+      },
+      {
+        "style": {
+          "height": "auto",
+          "font-size": "16px",
+          "font-weight": "700"
+        },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#itikwf"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "height": "auto", "font-size": "12px" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#i2uk5p"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "height": "auto", "opacity": "1", "position": "static" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#i74rrd"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "display": "block", "opacity": "0", "position": "absolute" },
+        "mediaText": "(max-width: 992px)",
+        "selectors": ["#i74rrd"],
+        "atRuleType": "media"
+      },
+      {
+        "style": {
+          "left": "0px",
+          "bottom": "0px",
+          "height": "0px",
+          "opacity": "0",
+          "position": "absolute"
+        },
+        "selectors": ["#i74rrd"]
+      },
+      {
+        "style": {
+          "color": "#ffffff",
+          "font-size": "16px",
+          "font-weight": "700"
+        },
+        "selectors": ["#iptgnc"]
+      },
+      {
+        "style": {
+          "width": "100%",
+          "bottom": "0px",
+          "height": "auto",
+          "display": "block",
+          "text-align": "left"
+        },
+        "selectors": ["#iv1t7z"]
+      },
+      {
+        "style": {
+          "left": "0px",
+          "bottom": "0px",
+          "height": "100%",
+          "display": "flex",
+          "opacity": "0",
+          "position": "absolute",
+          "transform": "unset",
+          "transition": "opacity 1s ease",
+          "align-items": "flex-end",
+          "justify-content": "flex-end"
+        },
+        "selectors": ["#ibiljr-2"]
+      },
+      {
+        "state": "hover",
+        "style": {
+          "opacity": "1",
+          "background-size": "unset",
+          "background-color": "rgba(0,0,0,0.53)",
+          "background-image": "unset",
+          "__background-type": "unset",
+          "background-repeat": "unset",
+          "background-position": "unset",
+          "background-attachment": "unset",
+          "background-image-color": "unset",
+          "background-image-gradient": "unset",
+          "background-image-gradient-dir": "unset",
+          "background-image-gradient-type": "unset"
+        },
+        "selectors": ["#ibiljr-2"]
+      },
+      {
+        "state": "hover",
+        "style": { "opacity": "0" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#ibiljr-2"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "width": "100%", "height": "auto" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#i7q1vo"],
+        "atRuleType": "media"
+      },
+      {
+        "style": {
+          "width": "200px",
+          "height": "auto",
+          "display": "block",
+          "position": "relative"
+        },
+        "selectors": ["#i7q1vo"]
+      },
+      {
+        "state": "hover",
+        "style": {
+          "transform": "scaleY(1.1) scaleX(1.1)",
+          "transition": "all 1s ease"
+        },
+        "selectors": ["#i7q1vo"]
+      },
+      {
+        "state": "hover",
+        "style": { "transform": "unset", "transition": "unset" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#i7q1vo"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "width": "auto", "display": "block" },
+        "selectors": ["#izp1qr-2"]
+      },
+      { "style": { "color": "black" }, "selectors": ["#isz0pf-2-2"] },
+      {
+        "state": "hover",
+        "style": {
+          "transform": "scaleY(1.1) scaleX(1.1)",
+          "transition": "width 1s ease"
+        },
+        "selectors": ["#isz0pf-2-2"]
+      },
+      {
+        "state": "hover",
+        "style": { "font-weight": "700" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#i5ra9w"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "font-size": "16px", "font-weight": "700" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#i5ra9w"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "font-size": "12px" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#ib7zo8"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "height": "auto", "opacity": "1" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#i4s029"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "height": "0px", "opacity": "0" },
+        "mediaText": "(max-width: 992px)",
+        "selectors": ["#i4s029"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "height": "0px", "opacity": "0" },
+        "selectors": ["#i4s029"]
+      },
+      {
+        "style": {
+          "color": "#ffffff",
+          "font-size": "16px",
+          "font-weight": "700"
+        },
+        "selectors": ["#iajh2f"]
+      },
+      {
+        "style": {
+          "width": "100%",
+          "bottom": "0px",
+          "height": "auto",
+          "display": "block",
+          "text-align": "left"
+        },
+        "selectors": ["#ivo33h"]
+      },
+      {
+        "style": {
+          "left": "0px",
+          "bottom": "0px",
+          "height": "100%",
+          "display": "flex",
+          "opacity": "0",
+          "position": "absolute",
+          "transform": "unset",
+          "transition": "opacity 1s ease",
+          "align-items": "flex-end",
+          "justify-content": "flex-end"
+        },
+        "selectors": ["#ibiljr-2"]
+      },
+      {
+        "state": "hover",
+        "style": {
+          "opacity": "1",
+          "background-size": "unset",
+          "background-color": "rgba(0,0,0,0.53)",
+          "background-image": "unset",
+          "__background-type": "unset",
+          "background-repeat": "unset",
+          "background-position": "unset",
+          "background-attachment": "unset",
+          "background-image-color": "unset",
+          "background-image-gradient": "unset",
+          "background-image-gradient-dir": "unset",
+          "background-image-gradient-type": "unset"
+        },
+        "selectors": ["#ibiljr-2"]
+      },
+      {
+        "state": "hover",
+        "style": { "opacity": "0" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#ibiljr-2"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "width": "120px", "height": "auto" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#i4pd8a"],
+        "atRuleType": "media"
+      },
+      {
+        "style": {
+          "width": "200px",
+          "height": "auto",
+          "display": "block",
+          "position": "relative"
+        },
+        "selectors": ["#i4pd8a"]
+      },
+      {
+        "state": "hover",
+        "style": {
+          "transform": "scaleY(1.1) scaleX(1.1)",
+          "transition": "all 1s ease"
+        },
+        "selectors": ["#i4pd8a"]
+      },
+      {
+        "state": "hover",
+        "style": { "transform": "unset", "transition": "unset" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#i4pd8a"],
+        "atRuleType": "media"
+      },
+      { "style": { "width": "288px" }, "selectors": ["#izp1qr-2"] },
+      { "style": { "color": "black" }, "selectors": ["#isz0pf-2-3"] },
+      {
+        "state": "hover",
+        "style": {
+          "transform": "scaleY(1.1) scaleX(1.1)",
+          "transition": "width 1s ease"
+        },
+        "selectors": ["#isz0pf-2-3"]
+      },
+      {
+        "state": "hover",
+        "style": { "font-weight": "700" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#i6vgx5"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "font-size": "16px", "font-weight": "700" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#i6vgx5"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "font-size": "12px" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#i4g48t"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "height": "auto", "opacity": "1" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#i1km0w"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "height": "0px", "opacity": "0" },
+        "mediaText": "(max-width: 992px)",
+        "selectors": ["#i1km0w"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "height": "0px", "opacity": "0" },
+        "selectors": ["#i1km0w"]
+      },
+      {
+        "style": {
+          "color": "#ffffff",
+          "font-size": "16px",
+          "font-weight": "700"
+        },
+        "selectors": ["#ium5fx"]
+      },
+      {
+        "style": {
+          "width": "100%",
+          "bottom": "0px",
+          "height": "auto",
+          "display": "block",
+          "text-align": "left"
+        },
+        "selectors": ["#iwk65a"]
+      },
+      {
+        "style": { "width": "100%", "height": "auto" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#isdye3"],
+        "atRuleType": "media"
+      },
+      {
+        "style": {
+          "width": "200px",
+          "height": "auto",
+          "display": "block",
+          "position": "relative"
+        },
+        "selectors": ["#isdye3"]
+      },
+      {
+        "state": "hover",
+        "style": {
+          "transform": "scaleY(1.1) scaleX(1.1)",
+          "transition": "all 1s ease"
+        },
+        "selectors": ["#isdye3"]
+      },
+      {
+        "state": "hover",
+        "style": { "transform": "unset", "transition": "unset" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#isdye3"],
+        "atRuleType": "media"
+      },
+      {
+        "state": "hover",
+        "style": { "transform": "unset", "transition": "unset" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#isz0pf-2"],
+        "atRuleType": "media"
+      },
+      {
+        "state": "hover",
+        "style": { "transform": "unset", "transition": "unset" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#isz0pf-2-3"],
+        "atRuleType": "media"
+      },
+      {
+        "state": "hover",
+        "style": { "transform": "unset", "transition": "unset" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#isz0pf-2-2"],
+        "atRuleType": "media"
+      },
+      {
+        "style": {
+          "left": "0px",
+          "bottom": "0px",
+          "height": "100%",
+          "display": "block",
+          "opacity": "0",
+          "position": "absolute"
+        },
+        "selectors": ["#ibiljr"]
+      },
+      {
+        "state": "hover",
+        "style": {
+          "height": "100%",
+          "display": "flex",
+          "opacity": "1",
+          "transform": "unset",
+          "transition": "all 2s ease",
+          "align-items": "flex-end",
+          "align-content": "center",
+          "justify-content": "flex-end",
+          "background-color": "rgba(0,0,0,0.56)"
+        },
+        "selectors": ["#ibiljr"]
+      },
+      {
+        "state": "hover",
+        "style": {
+          "opacity": "0",
+          "background-size": "unset",
+          "background-image": "unset",
+          "__background-type": "unset",
+          "background-repeat": "unset",
+          "background-position": "unset",
+          "background-attachment": "unset",
+          "background-image-color": "unset",
+          "background-image-gradient": "unset",
+          "background-image-gradient-dir": "unset",
+          "background-image-gradient-type": "unset"
+        },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#ibiljr"],
+        "atRuleType": "media"
+      },
+      {
+        "state": "hover",
+        "style": {
+          "left": "0px",
+          "bottom": "0px",
+          "height": "100%",
+          "display": "flex",
+          "opacity": "1",
+          "position": "absolute",
+          "transform": "unset",
+          "transition": "opacity 1s ease-in",
+          "align-items": "flex-end",
+          "justify-content": "flex-end",
+          "background-color": "rgba(0,0,0,0.65)"
+        },
+        "selectors": ["#iu9v96"]
+      },
+      {
+        "style": { "width": "auto" },
+        "mediaText": "(max-width: 992px)",
+        "selectors": ["#izp1qr"],
+        "atRuleType": "media"
+      },
+      {
+        "style": {
+          "left": "0px",
+          "bottom": "0px",
+          "display": "block",
+          "opacity": "0",
+          "position": "absolute"
+        },
+        "mediaText": "(max-width: 992px)",
+        "selectors": ["#iu9v96"],
+        "atRuleType": "media"
+      },
+      {
+        "style": {
+          "left": "0px",
+          "bottom": "0px",
+          "height": "100%",
+          "display": "none",
+          "opacity": "0",
+          "position": "absolute"
+        },
+        "selectors": ["#iu9v96"]
+      },
+      {
+        "state": "hover",
+        "style": { "color": "#ffffff" },
+        "selectors": ["#iptgnc"]
+      },
+      { "style": { "color": "#ffffff" }, "selectors": ["#iz7qaj"] },
+      {
+        "state": "hover",
+        "style": { "color": "#ffffff" },
+        "selectors": ["#iz7qaj"]
+      },
+      {
+        "style": { "width": "100%", "max-width": "80vw" },
+        "selectors": ["#iuot2h"]
+      },
+      {
+        "style": {
+          "width": "100vw",
+          "height": "auto",
+          "display": "flex",
+          "flex-wrap": "wrap",
+          "max-width": "90vw",
+          "align-items": "center",
+          "align-content": "center",
+          "justify-content": "space-between"
+        },
+        "selectors": ["#i84m2a"]
+      },
+      { "style": { "width": "auto" }, "selectors": ["#izp1qr-2-2"] },
+      {
+        "style": { "width": "auto" },
+        "mediaText": "(max-width: 992px)",
+        "selectors": ["#izp1qr-2"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "width": "140px" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#izp1qr-2"],
+        "atRuleType": "media"
+      },
+      { "style": { "width": "auto" }, "selectors": ["#izp1qr"] },
+      {
+        "style": { "width": "140px" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#izp1qr-2-2"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "padding": "0px 0px 0px 0", "max-width": "90vw" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#iuot2h"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "max-width": "90vw" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#i84m2a"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "width": "144px", "display": "block" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#izp1qr"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "width": "144px", "display": "block" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#ijkwk4"],
+        "atRuleType": "media"
+      },
+      {
+        "style": {
+          "width": "100%",
+          "height": "auto",
+          "display": "block",
+          "max-width": "100vw"
+        },
+        "selectors": ["#i2pntf"]
+      },
+      {
+        "style": { "max-width": "80vw" },
+        "mediaText": "(max-width: 992px)",
+        "selectors": ["#iuot2h"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "height": "0px" },
+        "mediaText": "(max-width: 992px)",
+        "selectors": ["#itikwf"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "height": "0px" },
+        "mediaText": "(max-width: 992px)",
+        "selectors": ["#i2uk5p"],
+        "atRuleType": "media"
+      },
+      { "style": { "font-weight": "700" }, "selectors": ["#ibbe7"] },
+      {
+        "style": { "padding": "10px 30px 10px 30px" },
+        "selectors": ["#im796"]
+      },
+      {
+        "style": { "width": "30%", "height": "auto" },
+        "selectors": ["#ij8xi-3"]
+      },
+      { "style": { "width": "160px" }, "selectors": ["#i5koyu-2"] },
+      {
+        "style": {
+          "color": "#4d4c4c",
+          "padding": "0px 10px 10px 10px",
+          "font-size": "12px",
+          "text-align": "center"
+        },
+        "selectors": ["#i8um1g"]
+      },
+      {
+        "style": {
+          "padding": "10px 10px 0px 10px",
+          "text-align": "center",
+          "font-weight": "600"
+        },
+        "selectors": ["#i2yyzp"]
+      },
+      {
+        "style": {
+          "width": "160px",
+          "height": "auto",
+          "display": "flex",
+          "align-items": "center",
+          "flex-direction": "column"
+        },
+        "selectors": ["#iw8qfw"]
+      },
+      {
+        "style": {
+          "width": "160px",
+          "height": "160px",
+          "display": "block",
+          "border-radius": "50% 50% 50% 50%",
+          "background-size": "cover",
+          "background-image": "url('/uploads/1749526786417-IMG_5568.webp')",
+          "__background-type": "image",
+          "background-repeat": "no-repeat",
+          "background-position": "center center",
+          "background-attachment": "local"
+        },
+        "selectors": ["#ifefdz"]
+      },
+      {
+        "style": {
+          "color": "rgb(34, 34, 34)",
+          "font-size": "15px",
+          "font-family": "Arial, sans-serif"
+        },
+        "selectors": ["#i8cjbh"]
+      },
+      {
+        "style": {
+          "width": "100%",
+          "height": "auto",
+          "display": "flex",
+          "max-width": "100vw",
+          "align-items": "center",
+          "align-content": "space-around",
+          "justify-content": "space-around"
+        },
+        "selectors": ["#igoo51"]
+      },
+      {
+        "style": {
+          "width": "160px",
+          "height": "160px",
+          "display": "block",
+          "border-radius": "50% 50% 50% 50%",
+          "background-size": "cover",
+          "background-image": "url('/uploads/1749526786417-IMG_5568.webp')",
+          "__background-type": "image",
+          "background-repeat": "no-repeat",
+          "background-position": "center center",
+          "background-attachment": "local"
+        },
+        "selectors": ["#ij0plq"]
+      },
+      {
+        "style": {
+          "padding": "10px 10px 0px 10px",
+          "text-align": "center",
+          "font-weight": "600"
+        },
+        "selectors": ["#ihktoq"]
+      },
+      {
+        "style": {
+          "color": "#4d4c4c",
+          "padding": "0px 10px 10px 10px",
+          "font-size": "12px",
+          "text-align": "center"
+        },
+        "selectors": ["#i4kwll"]
+      },
+      {
+        "style": {
+          "width": "160px",
+          "height": "auto",
+          "display": "flex",
+          "align-items": "center",
+          "flex-direction": "column"
+        },
+        "selectors": ["#ixmfpj"]
+      },
+      { "style": { "width": "160px" }, "selectors": ["#i5koyu-2"] },
+      {
+        "style": {
+          "width": "160px",
+          "height": "160px",
+          "display": "block",
+          "border-radius": "50% 50% 50% 50%",
+          "background-size": "cover",
+          "background-image": "url('/uploads/1749526786417-IMG_5568.webp')",
+          "__background-type": "image",
+          "background-repeat": "no-repeat",
+          "background-position": "center center",
+          "background-attachment": "local"
+        },
+        "selectors": ["#i6yx7z"]
+      },
+      {
+        "style": {
+          "padding": "10px 10px 0px 10px",
+          "text-align": "center",
+          "font-weight": "600"
+        },
+        "selectors": ["#ibxm5i"]
+      },
+      {
+        "style": {
+          "color": "#4d4c4c",
+          "padding": "0px 10px 10px 10px",
+          "font-size": "12px",
+          "text-align": "center"
+        },
+        "selectors": ["#iyrx81"]
+      },
+      {
+        "style": {
+          "width": "160px",
+          "height": "auto",
+          "display": "flex",
+          "align-items": "center",
+          "flex-direction": "column"
+        },
+        "selectors": ["#iazv0l"]
+      },
+      {
+        "style": { "width": "160px", "display": "block" },
+        "selectors": ["#i5koyu-3"]
+      },
+      {
+        "style": {
+          "width": "160px",
+          "height": "160px",
+          "display": "block",
+          "border-radius": "50% 50% 50% 50%",
+          "background-size": "cover",
+          "background-image": "url('/uploads/1749526786417-IMG_5568.webp')",
+          "__background-type": "image",
+          "background-repeat": "no-repeat",
+          "background-position": "center center",
+          "background-attachment": "local"
+        },
+        "selectors": ["#ilkdko"]
+      },
+      {
+        "style": {
+          "padding": "10px 10px 0px 10px",
+          "text-align": "center",
+          "font-weight": "600"
+        },
+        "selectors": ["#ilv4wv"]
+      },
+      {
+        "style": {
+          "color": "#4d4c4c",
+          "padding": "0px 10px 10px 10px",
+          "font-size": "12px",
+          "text-align": "center"
+        },
+        "selectors": ["#inse5t"]
+      },
+      {
+        "style": {
+          "width": "160px",
+          "height": "auto",
+          "display": "flex",
+          "align-items": "center",
+          "flex-direction": "column"
+        },
+        "selectors": ["#i3o02j"]
+      },
+      { "style": { "width": "160px" }, "selectors": ["#i5koyu-2-2"] },
+      { "style": { "width": "160px" }, "selectors": ["#i5koyu-2-2"] },
+      {
+        "style": {
+          "width": "160px",
+          "height": "160px",
+          "display": "block",
+          "border-radius": "50% 50% 50% 50%",
+          "background-size": "cover",
+          "background-image": "url('/uploads/1749526786417-IMG_5568.webp')",
+          "__background-type": "image",
+          "background-repeat": "no-repeat",
+          "background-position": "center center",
+          "background-attachment": "local"
+        },
+        "selectors": ["#ilmgsx"]
+      },
+      {
+        "style": {
+          "padding": "10px 10px 0px 10px",
+          "text-align": "center",
+          "font-weight": "600"
+        },
+        "selectors": ["#ijqf7j"]
+      },
+      {
+        "style": {
+          "color": "#4d4c4c",
+          "padding": "0px 10px 10px 10px",
+          "font-size": "12px",
+          "text-align": "center"
+        },
+        "selectors": ["#ikemn6"]
+      },
+      {
+        "style": {
+          "width": "160px",
+          "height": "auto",
+          "display": "flex",
+          "align-items": "center",
+          "flex-direction": "column"
+        },
+        "selectors": ["#iaa7sp"]
+      },
+      { "style": { "width": "160px" }, "selectors": ["#i5koyu-2-3"] },
+      { "style": { "width": "160px" }, "selectors": ["#i5koyu-2-3"] },
+      {
+        "style": {
+          "padding": "10px",
+          "font-size": "24px",
+          "text-align": "center",
+          "font-weight": "700"
+        },
+        "selectors": ["#ikhaix"]
+      },
+      {
+        "style": { "width": "150px", "display": "block" },
+        "selectors": ["#i5koyu"]
+      },
+      {
+        "style": { "margin": "0px auto 0px auto" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#ikhaix"],
+        "atRuleType": "media"
+      },
+      {
+        "style": {
+          "height": "auto",
+          "margin": "0px auto 0px auto",
+          "max-width": "80vw"
+        },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#iin76c"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "max-width": "80vw" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#iq46qb"],
+        "atRuleType": "media"
+      },
+      {
+        "style": {
+          "margin": "0px auto 0px auto",
+          "display": "flex",
+          "flex-wrap": "wrap",
+          "max-width": "80vw"
+        },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#igoo51"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "width": "100%", "height": "auto", "max-width": "80vw" },
+        "mediaText": "(max-width: 992px)",
+        "selectors": ["#iin76c"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "max-width": "100vw" },
+        "mediaText": "(max-width: 992px)",
+        "selectors": ["#iq46qb"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "flex-wrap": "wrap", "max-width": "100vw" },
+        "mediaText": "(max-width: 992px)",
+        "selectors": ["#igoo51"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "max-width": "90vw" },
+        "mediaText": "(max-width: 992px)",
+        "selectors": ["#iv315l"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "position": "absolute" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": [
+          "mobile-menu",
+          "hidden",
+          "md:hidden",
+          "flex-col",
+          "gap-4",
+          "px-4",
+          "pb-4"
+        ],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "position": "static" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": [
+          "mobile-menu",
+          "hidden",
+          "md:hidden",
+          "flex-col",
+          "gap-4",
+          "px-4",
+          "pb-4",
+          "z-20"
+        ],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "top": "0px", "position": "absolute" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["w-full", "bg-white", "shadow-md"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "position": "static" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": [
+          "max-w-screen",
+          "mx-auto",
+          "px-4",
+          "py-4",
+          "flex",
+          "items-center",
+          "justify-between",
+          "z-20"
+        ],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "color": "#1f4751", "font-weight": "600" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#izxyp"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "position": "static" },
+        "mediaText": "(max-width: 992px)",
+        "selectors": [
+          "max-w-screen",
+          "mx-auto",
+          "px-4",
+          "py-4",
+          "flex",
+          "items-center",
+          "justify-between",
+          "z-20"
+        ],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "left": "0px", "position": "fixed" },
+        "mediaText": "(max-width: 992px)",
+        "selectors": ["w-full", "bg-white", "shadow-md"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "top": "0px", "position": "fixed" },
+        "selectors": ["w-full", "bg-white", "shadow-md"]
+      },
+      {
+        "style": { "position": "static" },
+        "selectors": [
+          "max-w-screen",
+          "mx-auto",
+          "px-4",
+          "py-4",
+          "flex",
+          "items-center",
+          "justify-between",
+          "z-20"
+        ]
+      }
+    ],
+    "symbols": [],
+    "dataSources": []
+  }
+}

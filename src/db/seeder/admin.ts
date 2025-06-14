@@ -7,8 +7,12 @@ import dotenv from "dotenv";
 dotenv.config();
 
 async function seedAdmin() {
-  const email = "admin@example.com";
-  const plainPassword = "admin123";
+  const email = process.env.ADMIN_EMAIL;
+  const plainPassword = process.env.ADMIN_PASSWORD;
+  if (!email || !plainPassword) {
+    console.error("❌ Missing ADMIN_EMAIL or ADMIN_PASSWORD in .env file.");
+    process.exit(1);
+  }
   const hashedPassword = await bcrypt.hash(plainPassword, 10);
 
   const [existingUser] = await db

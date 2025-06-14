@@ -1,0 +1,2759 @@
+{
+  "title": "Publications",
+  "slug": "publications",
+  "tags": [],
+  "metaTitle": "Research Synergy Foundations | Publications",
+  "metaDescription": "Research Synergy Foundation is a digital social enterprise platform that focuses on developing the Global Research Ecosystem towards outstanding global scholars. We build collaborative networks among researchers, lecturers, scholars, and practitioners globally for the realization of knowledge acceleration and to contribute more to society and humanity.",
+  "metaImage": "/uploads/1749056491852-logo-rsf-transparent (3).webp",
+  "iconImage": "/uploads/1749056491852-logo-rsf-transparent (3).webp",
+  "isPublic": true,
+  "content": {
+    "pages": [
+      {
+        "id": "bWq49lpkMPtRcyY3",
+        "type": "main",
+        "frames": [
+          {
+            "id": "pgnypvoLJTeAApfS",
+            "component": {
+              "head": { "type": "head" },
+              "type": "wrapper",
+              "docEl": { "tagName": "html" },
+              "stylable": [
+                "background",
+                "background-color",
+                "background-image",
+                "background-repeat",
+                "background-attachment",
+                "background-position",
+                "background-size"
+              ],
+              "attributes": { "id": "i4pi" },
+              "components": [
+                {
+                  "type": "custom-navbar",
+                  "classes": ["w-full", "bg-white", "shadow-md"],
+                  "tagName": "header",
+                  "attributes": {
+                    "id": "icz3",
+                    "data-gjs-type": "custom-navbar"
+                  },
+                  "components": [
+                    {
+                      "classes": [
+                        "max-w-screen",
+                        "mx-auto",
+                        "px-4",
+                        "py-4",
+                        "flex",
+                        "items-center",
+                        "justify-between"
+                      ],
+                      "components": [
+                        {
+                          "classes": [
+                            "flex",
+                            "items-center",
+                            "gap-4",
+                            "overflow-x-scroll"
+                          ],
+                          "components": [
+                            {
+                              "type": "image",
+                              "classes": ["h-10"],
+                              "resizable": { "ratioDefault": 1 },
+                              "attributes": {
+                                "alt": "Logo",
+                                "src": "/uploads/1749053965132-logo-rsf-transparent (3).webp"
+                              }
+                            },
+                            {
+                              "classes": [
+                                "hidden",
+                                "md:flex",
+                                "gap-6",
+                                "text-sm",
+                                "font-medium"
+                              ],
+                              "tagName": "nav",
+                              "components": [
+                                {
+                                  "type": "link",
+                                  "classes": ["relative"],
+                                  "attributes": {
+                                    "href": "https://globalresearchecosystem.com/"
+                                  },
+                                  "components": [
+                                    { "type": "textnode", "content": "Home" }
+                                  ]
+                                },
+                                {
+                                  "type": "link",
+                                  "attributes": { "href": "/about" },
+                                  "components": [
+                                    { "type": "textnode", "content": "About" }
+                                  ]
+                                },
+                                {
+                                  "type": "link",
+                                  "attributes": { "id": "ikw0k", "href": "" },
+                                  "components": [
+                                    {
+                                      "type": "textnode",
+                                      "content": "Membership"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "link",
+                                  "attributes": {
+                                    "id": "it35g",
+                                    "href": "/conferences"
+                                  },
+                                  "components": [
+                                    {
+                                      "type": "textnode",
+                                      "content": "Conferences"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "link",
+                                  "attributes": { "href": "/publications" },
+                                  "components": [
+                                    {
+                                      "type": "textnode",
+                                      "content": "Publication"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "link",
+                                  "attributes": { "href": "/learnings" },
+                                  "components": [
+                                    {
+                                      "type": "textnode",
+                                      "content": "Learning"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "link",
+                                  "attributes": { "href": "/articles" },
+                                  "components": [
+                                    { "type": "textnode", "content": "Updates" }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "classes": [
+                            "hidden",
+                            "md:flex",
+                            "items-center",
+                            "gap-4"
+                          ],
+                          "components": [
+                            {
+                              "classes": ["relative"],
+                              "components": [
+                                {
+                                  "type": "input",
+                                  "void": true,
+                                  "classes": [
+                                    "pl-10",
+                                    "pr-4",
+                                    "py-2",
+                                    "border",
+                                    "rounded-full"
+                                  ],
+                                  "attributes": {
+                                    "type": "text",
+                                    "placeholder": "Search"
+                                  }
+                                },
+                                {
+                                  "type": "svg",
+                                  "classes": [
+                                    "absolute",
+                                    "left-3",
+                                    "top-2.5",
+                                    "h-4",
+                                    "w-4",
+                                    "text-gray-500"
+                                  ],
+                                  "resizable": { "ratioDefault": true },
+                                  "attributes": {
+                                    "fill": "none",
+                                    "stroke": "currentColor",
+                                    "viewBox": "0 0 24 24"
+                                  },
+                                  "components": [
+                                    {
+                                      "type": "svg-in",
+                                      "tagName": "path",
+                                      "resizable": { "ratioDefault": true },
+                                      "attributes": {
+                                        "d": "M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z",
+                                        "stroke-width": "2",
+                                        "stroke-linecap": "round",
+                                        "stroke-linejoin": "round"
+                                      }
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        { "type": "comment", "content": " Burger " },
+                        {
+                          "classes": [
+                            "md:hidden",
+                            "text-gray-700",
+                            "burger-btn"
+                          ],
+                          "components": [
+                            {
+                              "type": "svg",
+                              "classes": [
+                                "lucide",
+                                "lucide-menu-icon",
+                                "lucide-menu"
+                              ],
+                              "resizable": { "ratioDefault": true },
+                              "attributes": {
+                                "fill": "none",
+                                "width": "24",
+                                "xmlns": "http://www.w3.org/2000/svg",
+                                "height": "24",
+                                "stroke": "currentColor",
+                                "viewBox": "0 0 24 24",
+                                "stroke-width": "2",
+                                "stroke-linecap": "round",
+                                "stroke-linejoin": "round"
+                              },
+                              "components": [
+                                {
+                                  "type": "svg-in",
+                                  "tagName": "path",
+                                  "resizable": { "ratioDefault": true },
+                                  "attributes": { "d": "M4 12h16" }
+                                },
+                                {
+                                  "type": "svg-in",
+                                  "tagName": "path",
+                                  "resizable": { "ratioDefault": true },
+                                  "attributes": { "d": "M4 18h16" }
+                                },
+                                {
+                                  "type": "svg-in",
+                                  "tagName": "path",
+                                  "resizable": { "ratioDefault": true },
+                                  "attributes": { "d": "M4 6h16" }
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    { "type": "comment", "content": " Mobile nav " },
+                    {
+                      "classes": [
+                        "mobile-menu",
+                        "hidden",
+                        "md:hidden",
+                        "flex-col",
+                        "gap-4",
+                        "px-4",
+                        "pb-4"
+                      ],
+                      "attributes": { "id": "izw8q" },
+                      "components": [
+                        {
+                          "classes": [
+                            "flex",
+                            "flex-col",
+                            "gap-2",
+                            "text-sm",
+                            "font-medium"
+                          ],
+                          "tagName": "nav",
+                          "components": [
+                            {
+                              "type": "link",
+                              "attributes": { "id": "if4cw", "href": "#" },
+                              "components": [
+                                { "type": "textnode", "content": "Home" }
+                              ]
+                            },
+                            {
+                              "type": "link",
+                              "attributes": { "href": "/about" },
+                              "components": [
+                                { "type": "textnode", "content": "About" }
+                              ]
+                            },
+                            {
+                              "type": "link",
+                              "attributes": { "href": "#" },
+                              "components": [
+                                { "type": "textnode", "content": "Membership" }
+                              ]
+                            },
+                            {
+                              "type": "link",
+                              "attributes": { "href": "/conferneces" },
+                              "components": [
+                                { "type": "textnode", "content": "Conferences" }
+                              ]
+                            },
+                            {
+                              "type": "link",
+                              "attributes": {
+                                "id": "ic92w",
+                                "href": "/publications"
+                              },
+                              "components": [
+                                { "type": "textnode", "content": "Publication" }
+                              ]
+                            },
+                            {
+                              "type": "link",
+                              "attributes": { "href": "/learning" },
+                              "components": [
+                                { "type": "textnode", "content": "Learning" }
+                              ]
+                            },
+                            {
+                              "type": "link",
+                              "attributes": { "href": "/articles" },
+                              "components": [
+                                { "type": "textnode", "content": "Updates" }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "classes": ["mt-3"],
+                          "components": [
+                            {
+                              "type": "input",
+                              "void": true,
+                              "classes": [
+                                "w-full",
+                                "pl-10",
+                                "pr-4",
+                                "py-2",
+                                "border",
+                                "rounded-full",
+                                "relative"
+                              ],
+                              "attributes": {
+                                "type": "text",
+                                "placeholder": "Search"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "Row",
+                  "classes": [{ "name": "gjs-row", "private": 1 }],
+                  "droppable": ".gjs-cell",
+                  "resizable": {
+                    "bl": 0,
+                    "br": 0,
+                    "cl": 0,
+                    "cr": 0,
+                    "tc": 0,
+                    "tl": 0,
+                    "tr": 0,
+                    "minDim": 1
+                  },
+                  "attributes": { "id": "i5u2b" },
+                  "components": [
+                    {
+                      "name": "Cell",
+                      "classes": [{ "name": "gjs-cell", "private": 1 }],
+                      "draggable": ".gjs-row",
+                      "resizable": {
+                        "bc": 0,
+                        "bl": 0,
+                        "br": 0,
+                        "cl": 0,
+                        "cr": 1,
+                        "tc": 0,
+                        "tl": 0,
+                        "tr": 0,
+                        "step": 0.2,
+                        "minDim": 1,
+                        "currentUnit": 1
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Row",
+                  "classes": [{ "name": "gjs-row", "private": 1 }],
+                  "droppable": ".gjs-cell",
+                  "resizable": {
+                    "bl": 0,
+                    "br": 0,
+                    "cl": 0,
+                    "cr": 0,
+                    "tc": 0,
+                    "tl": 0,
+                    "tr": 0,
+                    "minDim": 1
+                  },
+                  "attributes": { "id": "iemrj" },
+                  "components": [
+                    {
+                      "name": "Cell",
+                      "classes": [{ "name": "gjs-cell", "private": 1 }],
+                      "draggable": ".gjs-row",
+                      "resizable": {
+                        "bc": 0,
+                        "bl": 0,
+                        "br": 0,
+                        "cl": 0,
+                        "cr": 1,
+                        "tc": 0,
+                        "tl": 0,
+                        "tr": 0,
+                        "step": 0.2,
+                        "minDim": 1,
+                        "currentUnit": 1
+                      },
+                      "attributes": { "id": "icohx" },
+                      "components": [
+                        {
+                          "classes": ["bdg-sect"],
+                          "tagName": "section",
+                          "components": [
+                            {
+                              "type": "text",
+                              "tagName": "h1",
+                              "attributes": { "id": "ile7f" },
+                              "components": [
+                                { "type": "textnode", "content": "Publication" }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "tagName": "p",
+                              "attributes": { "id": "i7g6k" },
+                              "components": [
+                                {
+                                  "type": "textnode",
+                                  "content": "To make all scientific works accessible for all elements including academics, industry/ professionals, government, a community of society and media, the Research Synergy Foundation promotes the inclusiveness of knowledge dissemination among us. By combining the tools of science and information technologies, scientific enquiry and discovery can be sped up for the benefit of society. Open science reduces duplication in collecting, creating, transferring and re-using scientific material. You may find our previous member’s scientific publication comes from our prominent programs such as International Conferences, and Scientific and Academic Writing: Coaching Clinics. All the articles already published in the reputable international journals indexed by SCOPUS/ WOS/ Copernicus/ DOAJ/ Dimension/ Google Scholar."
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "classes": [{ "name": "row", "private": 1 }],
+                  "droppable": ".cell",
+                  "resizable": {
+                    "bl": 0,
+                    "br": 0,
+                    "cl": 0,
+                    "cr": 0,
+                    "tc": 0,
+                    "tl": 0,
+                    "tr": 0,
+                    "minDim": 1
+                  },
+                  "attributes": { "id": "iin7hl" },
+                  "components": [
+                    {
+                      "classes": [{ "name": "cell", "private": 1 }],
+                      "draggable": ".row",
+                      "resizable": {
+                        "bc": 0,
+                        "bl": 0,
+                        "br": 0,
+                        "cl": 0,
+                        "cr": 1,
+                        "tc": 0,
+                        "tl": 0,
+                        "tr": 0,
+                        "step": 0.2,
+                        "minDim": 1,
+                        "keyWidth": "flex-basis",
+                        "currentUnit": 1
+                      },
+                      "attributes": { "id": "i08ppc" },
+                      "components": [
+                        {
+                          "tagName": "section",
+                          "attributes": { "id": "ici56l" },
+                          "components": [
+                            {
+                              "type": "text",
+                              "tagName": "h1",
+                              "attributes": { "id": "iljt5p" },
+                              "components": [
+                                {
+                                  "type": "textnode",
+                                  "content": "Why Publish With Us"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "tagName": "p",
+                              "attributes": { "id": "i3qxdi" },
+                              "components": [
+                                {
+                                  "type": "textnode",
+                                  "content": "Experience excellence in academic publishing with our expert team and streamlined process."
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ],
+                      "unstylable": ["width"],
+                      "custom-name": "Column",
+                      "stylable-require": ["flex-basis"]
+                    },
+                    {
+                      "classes": [{ "name": "cell", "private": 1 }],
+                      "draggable": ".row",
+                      "resizable": {
+                        "bc": 0,
+                        "bl": 0,
+                        "br": 0,
+                        "cl": 0,
+                        "cr": 1,
+                        "tc": 0,
+                        "tl": 0,
+                        "tr": 0,
+                        "step": 0.2,
+                        "minDim": 1,
+                        "keyWidth": "flex-basis",
+                        "currentUnit": 1
+                      },
+                      "components": [
+                        {
+                          "type": "image",
+                          "resizable": { "ratioDefault": 1 },
+                          "attributes": {
+                            "id": "i9wxlj",
+                            "src": "/uploads/1749131492363-logo-rsf-press (3).webp"
+                          }
+                        }
+                      ],
+                      "unstylable": ["width"],
+                      "custom-name": "Column",
+                      "stylable-require": ["flex-basis"]
+                    }
+                  ],
+                  "custom-name": "Row"
+                },
+                {
+                  "name": "Row",
+                  "classes": [{ "name": "gjs-row", "private": 1 }],
+                  "droppable": ".gjs-cell",
+                  "resizable": {
+                    "bl": 0,
+                    "br": 0,
+                    "cl": 0,
+                    "cr": 0,
+                    "tc": 0,
+                    "tl": 0,
+                    "tr": 0,
+                    "minDim": 1
+                  },
+                  "attributes": { "id": "iwpap6" },
+                  "components": [
+                    {
+                      "name": "Cell",
+                      "classes": [{ "name": "gjs-cell", "private": 1 }],
+                      "draggable": ".gjs-row",
+                      "resizable": {
+                        "bc": 0,
+                        "bl": 0,
+                        "br": 0,
+                        "cl": 0,
+                        "cr": 1,
+                        "tc": 0,
+                        "tl": 0,
+                        "tr": 0,
+                        "step": 0.2,
+                        "minDim": 1,
+                        "currentUnit": 1
+                      },
+                      "attributes": { "id": "i69qzr" },
+                      "components": [
+                        {
+                          "classes": ["bdg-sect"],
+                          "tagName": "section",
+                          "components": [
+                            {
+                              "type": "text",
+                              "classes": ["heading"],
+                              "tagName": "h1",
+                              "components": [
+                                { "type": "textnode", "content": "Reason" }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "classes": ["paragraph"],
+                              "tagName": "p",
+                              "components": [
+                                {
+                                  "type": "textnode",
+                                  "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Cell",
+                      "classes": [{ "name": "gjs-cell", "private": 1 }],
+                      "draggable": ".gjs-row",
+                      "resizable": {
+                        "bc": 0,
+                        "bl": 0,
+                        "br": 0,
+                        "cl": 0,
+                        "cr": 1,
+                        "tc": 0,
+                        "tl": 0,
+                        "tr": 0,
+                        "step": 0.2,
+                        "minDim": 1,
+                        "currentUnit": 1
+                      },
+                      "attributes": { "id": "i1uvx9" },
+                      "components": [
+                        {
+                          "classes": ["bdg-sect"],
+                          "tagName": "section",
+                          "components": [
+                            {
+                              "type": "text",
+                              "classes": ["heading"],
+                              "tagName": "h1",
+                              "components": [
+                                {
+                                  "type": "text",
+                                  "classes": ["heading", "gjs-selected"],
+                                  "tagName": "h1",
+                                  "attributes": {
+                                    "id": "iv4k42-2",
+                                    "style": "border-color:rgb(229, 231, 235);--tw-shadow:0 0 #0000;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59, 130, 246, 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;",
+                                    "draggable": "false"
+                                  },
+                                  "components": [
+                                    { "type": "textnode", "content": "Reason" }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "classes": ["paragraph"],
+                              "tagName": "p",
+                              "components": [
+                                {
+                                  "type": "textnode",
+                                  "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Cell",
+                      "classes": [{ "name": "gjs-cell", "private": 1 }],
+                      "draggable": ".gjs-row",
+                      "resizable": {
+                        "bc": 0,
+                        "bl": 0,
+                        "br": 0,
+                        "cl": 0,
+                        "cr": 1,
+                        "tc": 0,
+                        "tl": 0,
+                        "tr": 0,
+                        "step": 0.2,
+                        "minDim": 1,
+                        "currentUnit": 1
+                      },
+                      "attributes": { "id": "i53ml9" },
+                      "components": [
+                        {
+                          "classes": ["bdg-sect"],
+                          "tagName": "section",
+                          "components": [
+                            {
+                              "type": "text",
+                              "classes": ["heading"],
+                              "tagName": "h1",
+                              "components": [
+                                {
+                                  "type": "text",
+                                  "classes": ["heading", "gjs-selected"],
+                                  "tagName": "h1",
+                                  "attributes": {
+                                    "id": "iv4k42-3",
+                                    "style": "border-color:rgb(229, 231, 235);--tw-shadow:0 0 #0000;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59, 130, 246, 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;",
+                                    "draggable": "false"
+                                  },
+                                  "components": [
+                                    { "type": "textnode", "content": "Reason" }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "classes": ["paragraph"],
+                              "tagName": "p",
+                              "components": [
+                                {
+                                  "type": "textnode",
+                                  "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "Row",
+                  "classes": [{ "name": "gjs-row", "private": 1 }],
+                  "droppable": ".gjs-cell",
+                  "resizable": {
+                    "bl": 0,
+                    "br": 0,
+                    "cl": 0,
+                    "cr": 0,
+                    "tc": 0,
+                    "tl": 0,
+                    "tr": 0,
+                    "minDim": 1
+                  },
+                  "attributes": { "id": "in7rag" },
+                  "components": [
+                    {
+                      "name": "Cell",
+                      "classes": [{ "name": "gjs-cell", "private": 1 }],
+                      "draggable": ".gjs-row",
+                      "resizable": {
+                        "bc": 0,
+                        "bl": 0,
+                        "br": 0,
+                        "cl": 0,
+                        "cr": 1,
+                        "tc": 0,
+                        "tl": 0,
+                        "tr": 0,
+                        "step": 0.2,
+                        "minDim": 1,
+                        "currentUnit": 1
+                      },
+                      "attributes": { "id": "iu3wzo" },
+                      "components": [
+                        {
+                          "type": "image",
+                          "resizable": { "ratioDefault": 1 },
+                          "attributes": {
+                            "id": "imhffs",
+                            "src": "/uploads/1749054935387-product.webp"
+                          }
+                        },
+                        {
+                          "classes": ["bdg-sect"],
+                          "tagName": "section",
+                          "components": [
+                            {
+                              "type": "text",
+                              "classes": ["heading"],
+                              "tagName": "h1",
+                              "components": [
+                                {
+                                  "type": "textnode",
+                                  "content": "Journal Affiliation"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "classes": ["paragraph"],
+                              "tagName": "p",
+                              "components": [
+                                {
+                                  "type": "textnode",
+                                  "content": "Research integrity is the cornerstone of ethical research practices, ensuring that research activities align with ethical principles and responsible conduct. "
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Cell",
+                      "classes": [{ "name": "gjs-cell", "private": 1 }],
+                      "draggable": ".gjs-row",
+                      "resizable": {
+                        "bc": 0,
+                        "bl": 0,
+                        "br": 0,
+                        "cl": 0,
+                        "cr": 1,
+                        "tc": 0,
+                        "tl": 0,
+                        "tr": 0,
+                        "step": 0.2,
+                        "minDim": 1,
+                        "currentUnit": 1
+                      },
+                      "attributes": { "id": "iujjkj" },
+                      "components": [
+                        {
+                          "type": "image",
+                          "resizable": { "ratioDefault": 1 },
+                          "attributes": {
+                            "id": "imhffs-3",
+                            "src": "/uploads/1749054935387-product.webp"
+                          }
+                        },
+                        {
+                          "classes": ["bdg-sect"],
+                          "tagName": "section",
+                          "components": [
+                            {
+                              "type": "text",
+                              "classes": ["heading"],
+                              "tagName": "h1",
+                              "components": [
+                                {
+                                  "type": "textnode",
+                                  "content": "Journal Affiliation"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "classes": ["paragraph"],
+                              "tagName": "p",
+                              "components": [
+                                {
+                                  "type": "textnode",
+                                  "content": "Research integrity is the cornerstone of ethical research practices, ensuring that research activities align with ethical principles and responsible conduct. "
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Cell",
+                      "classes": [{ "name": "gjs-cell", "private": 1 }],
+                      "draggable": ".gjs-row",
+                      "resizable": {
+                        "bc": 0,
+                        "bl": 0,
+                        "br": 0,
+                        "cl": 0,
+                        "cr": 1,
+                        "tc": 0,
+                        "tl": 0,
+                        "tr": 0,
+                        "step": 0.2,
+                        "minDim": 1,
+                        "currentUnit": 1
+                      },
+                      "attributes": { "id": "imc4d8" },
+                      "components": [
+                        {
+                          "type": "image",
+                          "resizable": { "ratioDefault": 1 },
+                          "attributes": {
+                            "id": "imhffs-2",
+                            "src": "/uploads/1749054935387-product.webp"
+                          }
+                        },
+                        {
+                          "classes": ["bdg-sect"],
+                          "tagName": "section",
+                          "components": [
+                            {
+                              "type": "text",
+                              "classes": ["heading"],
+                              "tagName": "h1",
+                              "components": [
+                                {
+                                  "type": "textnode",
+                                  "content": "Journal Affiliation"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "classes": ["paragraph"],
+                              "tagName": "p",
+                              "components": [
+                                {
+                                  "type": "textnode",
+                                  "content": "Research integrity is the cornerstone of ethical research practices, ensuring that research activities align with ethical principles and responsible conduct. "
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "Row",
+                  "classes": [{ "name": "gjs-row", "private": 1 }],
+                  "droppable": ".gjs-cell",
+                  "resizable": {
+                    "bl": 0,
+                    "br": 0,
+                    "cl": 0,
+                    "cr": 0,
+                    "tc": 0,
+                    "tl": 0,
+                    "tr": 0,
+                    "minDim": 1
+                  },
+                  "attributes": { "id": "iu3kdb" },
+                  "components": [
+                    {
+                      "name": "Cell",
+                      "classes": [{ "name": "gjs-cell", "private": 1 }],
+                      "draggable": ".gjs-row",
+                      "resizable": {
+                        "bc": 0,
+                        "bl": 0,
+                        "br": 0,
+                        "cl": 0,
+                        "cr": 1,
+                        "tc": 0,
+                        "tl": 0,
+                        "tr": 0,
+                        "step": 0.2,
+                        "minDim": 1,
+                        "currentUnit": 1
+                      },
+                      "attributes": { "id": "idjf8l" },
+                      "components": [
+                        {
+                          "type": "text",
+                          "attributes": { "id": "icxhya-2" },
+                          "components": [
+                            {
+                              "type": "textnode",
+                              "content": "Indexing and Reputation"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "attributes": { "id": "i4i5g4-2" },
+                          "components": [
+                            {
+                              "type": "textnode",
+                              "content": "Our publications are indexed in these reputable databases"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "infinite-slides",
+                          "speed": 100,
+                          "images": [
+                            "/uploads/1748958627457-logo-scholarvein-big.webp",
+                            "/uploads/1749131431251-logo-reviewer-track (2).webp",
+                            "/uploads/1749132533151-logo-grc (2).webp",
+                            "/uploads/1749132675102-logo-f1000 (2).webp",
+                            "/uploads/1749131431251-logo-reviewer-track (2).webp",
+                            "/uploads/1749131463630-logo-rsi (2).webp",
+                            "/uploads/1749131492363-logo-rsf-press (3).webp",
+                            "/uploads/1749132533151-logo-grc (2).webp",
+                            "/uploads/1749131431251-logo-reviewer-track (2).webp",
+                            "/uploads/1749131463630-logo-rsi (2).webp",
+                            "/uploads/1749131492363-logo-rsf-press (3).webp",
+                            "/uploads/1749131431251-logo-reviewer-track (2).webp",
+                            "/uploads/1749131463630-logo-rsi (2).webp",
+                            "/uploads/1749131431251-logo-reviewer-track (2).webp"
+                          ],
+                          "classes": ["overflow-x-hidden"],
+                          "direction": "right",
+                          "imageList": [
+                            "/uploads/1748958627457-logo-scholarvein-big.webp",
+                            "/uploads/1749131431251-logo-reviewer-track (2).webp",
+                            "/uploads/1749132533151-logo-grc (2).webp",
+                            "/uploads/1749132675102-logo-f1000 (2).webp",
+                            "/uploads/1749131431251-logo-reviewer-track (2).webp",
+                            "/uploads/1749131463630-logo-rsi (2).webp",
+                            "/uploads/1749131492363-logo-rsf-press (3).webp",
+                            "/uploads/1749132533151-logo-grc (2).webp",
+                            "/uploads/1749131431251-logo-reviewer-track (2).webp",
+                            "/uploads/1749131463630-logo-rsi (2).webp",
+                            "/uploads/1749131492363-logo-rsf-press (3).webp",
+                            "/uploads/1749131431251-logo-reviewer-track (2).webp",
+                            "/uploads/1749131463630-logo-rsi (2).webp",
+                            "/uploads/1749131431251-logo-reviewer-track (2).webp"
+                          ],
+                          "attributes": {
+                            "id": "iq52ah",
+                            "data-gjs-type": "infinite-slides"
+                          }
+                        },
+                        {
+                          "type": "infinite-slides",
+                          "speed": 100,
+                          "images": [
+                            "/uploads/1748958627457-logo-scholarvein-big.webp",
+                            "/uploads/1748967780395-f1000-1.webp",
+                            "/uploads/1749132533151-logo-grc (2).webp",
+                            "/uploads/1749131431251-logo-reviewer-track (2).webp",
+                            "/uploads/1748958627457-logo-scholarvein-big.webp",
+                            "/uploads/1748967780395-f1000-1.webp",
+                            "/uploads/1749132533151-logo-grc (2).webp",
+                            "/uploads/1748958627457-logo-scholarvein-big.webp",
+                            "/uploads/1748967780395-f1000-1.webp",
+                            "/uploads/1748958627457-logo-scholarvein-big.webp"
+                          ],
+                          "classes": ["overflow-x-hidden"],
+                          "imageList": [
+                            "/uploads/1748958627457-logo-scholarvein-big.webp",
+                            "/uploads/1748967780395-f1000-1.webp",
+                            "/uploads/1749132533151-logo-grc (2).webp",
+                            "/uploads/1749131431251-logo-reviewer-track (2).webp",
+                            "/uploads/1748958627457-logo-scholarvein-big.webp",
+                            "/uploads/1748967780395-f1000-1.webp",
+                            "/uploads/1749132533151-logo-grc (2).webp",
+                            "/uploads/1748958627457-logo-scholarvein-big.webp",
+                            "/uploads/1748967780395-f1000-1.webp",
+                            "/uploads/1748958627457-logo-scholarvein-big.webp"
+                          ],
+                          "attributes": {
+                            "id": "ist3tk",
+                            "data-gjs-type": "infinite-slides"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "Row",
+                  "classes": [{ "name": "gjs-row", "private": 1 }],
+                  "droppable": ".gjs-cell",
+                  "resizable": {
+                    "bl": 0,
+                    "br": 0,
+                    "cl": 0,
+                    "cr": 0,
+                    "tc": 0,
+                    "tl": 0,
+                    "tr": 0,
+                    "minDim": 1
+                  },
+                  "attributes": { "id": "ilrwm4" },
+                  "components": [
+                    {
+                      "name": "Cell",
+                      "classes": [{ "name": "gjs-cell", "private": 1 }],
+                      "draggable": ".gjs-row",
+                      "resizable": {
+                        "bc": 0,
+                        "bl": 0,
+                        "br": 0,
+                        "cl": 0,
+                        "cr": 1,
+                        "tc": 0,
+                        "tl": 0,
+                        "tr": 0,
+                        "step": 0.2,
+                        "minDim": 1,
+                        "currentUnit": 1
+                      },
+                      "attributes": { "id": "iytudc" },
+                      "components": [
+                        {
+                          "type": "text",
+                          "attributes": { "id": "icxhya" },
+                          "components": [
+                            { "type": "textnode", "content": "Our Partners" }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "attributes": { "id": "i4i5g4" },
+                          "components": [
+                            {
+                              "type": "textnode",
+                              "content": "We collaborate with leading organizations to advance research and knowledge sharing"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "infinite-slides",
+                          "speed": 100,
+                          "images": [
+                            "/uploads/1748967752759-1.webp",
+                            "/uploads/1748967759679-11.webp",
+                            "/uploads/1748967780395-f1000-1.webp",
+                            "/uploads/1748967822872-taylorfrancis-1.webp",
+                            "/uploads/1748967830025-WhatsApp-Image-2022-11-30-at-9.webp",
+                            "/uploads/1748967925090-udju-13.webp",
+                            "/uploads/1748967928903-ecu.webp",
+                            "/uploads/1748967931380-8.webp",
+                            "/uploads/1748967938413-ucsi.webp",
+                            "/uploads/1748967752759-1.webp",
+                            "/uploads/1748967759679-11.webp",
+                            "/uploads/1748967780395-f1000-1.webp",
+                            "/uploads/1748967822872-taylorfrancis-1.webp",
+                            "/uploads/1748967830025-WhatsApp-Image-2022-11-30-at-9.webp",
+                            "/uploads/1748967925090-udju-13.webp",
+                            "/uploads/1748967928903-ecu.webp",
+                            "/uploads/1748967931380-8.webp",
+                            "/uploads/1748967752759-1.webp",
+                            "/uploads/1748967759679-11.webp",
+                            "/uploads/1748967780395-f1000-1.webp",
+                            "/uploads/1748967822872-taylorfrancis-1.webp",
+                            "/uploads/1748967830025-WhatsApp-Image-2022-11-30-at-9.webp",
+                            "/uploads/1748967925090-udju-13.webp",
+                            "/uploads/1748967928903-ecu.webp",
+                            "/uploads/1748967752759-1.webp",
+                            "/uploads/1748967759679-11.webp",
+                            "/uploads/1748967780395-f1000-1.webp",
+                            "/uploads/1748967822872-taylorfrancis-1.webp",
+                            "/uploads/1748967830025-WhatsApp-Image-2022-11-30-at-9.webp",
+                            "/uploads/1748967925090-udju-13.webp",
+                            "/uploads/1748967752759-1.webp",
+                            "/uploads/1748967759679-11.webp",
+                            "/uploads/1748967780395-f1000-1.webp",
+                            "/uploads/1748967822872-taylorfrancis-1.webp",
+                            "/uploads/1748967830025-WhatsApp-Image-2022-11-30-at-9.webp",
+                            "/uploads/1748967752759-1.webp",
+                            "/uploads/1748967759679-11.webp",
+                            "/uploads/1748967780395-f1000-1.webp",
+                            "/uploads/1748967822872-taylorfrancis-1.webp",
+                            "/uploads/1748967752759-1.webp",
+                            "/uploads/1748967759679-11.webp",
+                            "/uploads/1748967780395-f1000-1.webp",
+                            "/uploads/1748967752759-1.webp",
+                            "/uploads/1748967759679-11.webp",
+                            "/uploads/1748967752759-1.webp"
+                          ],
+                          "classes": ["overflow-x-hidden"],
+                          "direction": "right",
+                          "imageList": [
+                            "/uploads/1748967752759-1.webp",
+                            "/uploads/1748967759679-11.webp",
+                            "/uploads/1748967780395-f1000-1.webp",
+                            "/uploads/1748967822872-taylorfrancis-1.webp",
+                            "/uploads/1748967830025-WhatsApp-Image-2022-11-30-at-9.webp",
+                            "/uploads/1748967925090-udju-13.webp",
+                            "/uploads/1748967928903-ecu.webp",
+                            "/uploads/1748967931380-8.webp",
+                            "/uploads/1748967938413-ucsi.webp",
+                            "/uploads/1748967752759-1.webp",
+                            "/uploads/1748967759679-11.webp",
+                            "/uploads/1748967780395-f1000-1.webp",
+                            "/uploads/1748967822872-taylorfrancis-1.webp",
+                            "/uploads/1748967830025-WhatsApp-Image-2022-11-30-at-9.webp",
+                            "/uploads/1748967925090-udju-13.webp",
+                            "/uploads/1748967928903-ecu.webp",
+                            "/uploads/1748967931380-8.webp",
+                            "/uploads/1748967752759-1.webp",
+                            "/uploads/1748967759679-11.webp",
+                            "/uploads/1748967780395-f1000-1.webp",
+                            "/uploads/1748967822872-taylorfrancis-1.webp",
+                            "/uploads/1748967830025-WhatsApp-Image-2022-11-30-at-9.webp",
+                            "/uploads/1748967925090-udju-13.webp",
+                            "/uploads/1748967928903-ecu.webp",
+                            "/uploads/1748967752759-1.webp",
+                            "/uploads/1748967759679-11.webp",
+                            "/uploads/1748967780395-f1000-1.webp",
+                            "/uploads/1748967822872-taylorfrancis-1.webp",
+                            "/uploads/1748967830025-WhatsApp-Image-2022-11-30-at-9.webp",
+                            "/uploads/1748967925090-udju-13.webp",
+                            "/uploads/1748967752759-1.webp",
+                            "/uploads/1748967759679-11.webp",
+                            "/uploads/1748967780395-f1000-1.webp",
+                            "/uploads/1748967822872-taylorfrancis-1.webp",
+                            "/uploads/1748967830025-WhatsApp-Image-2022-11-30-at-9.webp",
+                            "/uploads/1748967752759-1.webp",
+                            "/uploads/1748967759679-11.webp",
+                            "/uploads/1748967780395-f1000-1.webp",
+                            "/uploads/1748967822872-taylorfrancis-1.webp",
+                            "/uploads/1748967752759-1.webp",
+                            "/uploads/1748967759679-11.webp",
+                            "/uploads/1748967780395-f1000-1.webp",
+                            "/uploads/1748967752759-1.webp",
+                            "/uploads/1748967759679-11.webp",
+                            "/uploads/1748967752759-1.webp"
+                          ],
+                          "attributes": {
+                            "id": "iek9eb",
+                            "data-gjs-type": "infinite-slides"
+                          }
+                        },
+                        {
+                          "type": "infinite-slides",
+                          "speed": 100,
+                          "images": [
+                            "/uploads/1748967759679-11.webp",
+                            "/uploads/1748967780395-f1000-1.webp",
+                            "/uploads/1748967822872-taylorfrancis-1.webp",
+                            "/uploads/1748967830025-WhatsApp-Image-2022-11-30-at-9.webp",
+                            "/uploads/1748967925090-udju-13.webp",
+                            "/uploads/1748967928903-ecu.webp",
+                            "/uploads/1748967931380-8.webp",
+                            "/uploads/1748967938413-ucsi.webp",
+                            "/uploads/1748967759679-11.webp",
+                            "/uploads/1748967780395-f1000-1.webp",
+                            "/uploads/1748967822872-taylorfrancis-1.webp",
+                            "/uploads/1748967830025-WhatsApp-Image-2022-11-30-at-9.webp",
+                            "/uploads/1748967925090-udju-13.webp",
+                            "/uploads/1748967928903-ecu.webp",
+                            "/uploads/1748967931380-8.webp",
+                            "/uploads/1748967759679-11.webp",
+                            "/uploads/1748967780395-f1000-1.webp",
+                            "/uploads/1748967822872-taylorfrancis-1.webp",
+                            "/uploads/1748967830025-WhatsApp-Image-2022-11-30-at-9.webp",
+                            "/uploads/1748967759679-11.webp",
+                            "/uploads/1748967780395-f1000-1.webp",
+                            "/uploads/1748967822872-taylorfrancis-1.webp",
+                            "/uploads/1748967759679-11.webp",
+                            "/uploads/1748967780395-f1000-1.webp",
+                            "/uploads/1748967759679-11.webp"
+                          ],
+                          "classes": ["overflow-x-hidden"],
+                          "imageList": [
+                            "/uploads/1748967759679-11.webp",
+                            "/uploads/1748967780395-f1000-1.webp",
+                            "/uploads/1748967822872-taylorfrancis-1.webp",
+                            "/uploads/1748967830025-WhatsApp-Image-2022-11-30-at-9.webp",
+                            "/uploads/1748967925090-udju-13.webp",
+                            "/uploads/1748967928903-ecu.webp",
+                            "/uploads/1748967931380-8.webp",
+                            "/uploads/1748967938413-ucsi.webp",
+                            "/uploads/1748967759679-11.webp",
+                            "/uploads/1748967780395-f1000-1.webp",
+                            "/uploads/1748967822872-taylorfrancis-1.webp",
+                            "/uploads/1748967830025-WhatsApp-Image-2022-11-30-at-9.webp",
+                            "/uploads/1748967925090-udju-13.webp",
+                            "/uploads/1748967928903-ecu.webp",
+                            "/uploads/1748967931380-8.webp",
+                            "/uploads/1748967759679-11.webp",
+                            "/uploads/1748967780395-f1000-1.webp",
+                            "/uploads/1748967822872-taylorfrancis-1.webp",
+                            "/uploads/1748967830025-WhatsApp-Image-2022-11-30-at-9.webp",
+                            "/uploads/1748967759679-11.webp",
+                            "/uploads/1748967780395-f1000-1.webp",
+                            "/uploads/1748967822872-taylorfrancis-1.webp",
+                            "/uploads/1748967759679-11.webp",
+                            "/uploads/1748967780395-f1000-1.webp",
+                            "/uploads/1748967759679-11.webp"
+                          ],
+                          "attributes": {
+                            "id": "idyvjg",
+                            "data-gjs-type": "infinite-slides"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "tags": "publication",
+                  "type": "link-list",
+                  "classes": [
+                    "w-full",
+                    "max-w-6xl",
+                    "mx-auto",
+                    "py-10",
+                    "px-4"
+                  ],
+                  "tagName": "section",
+                  "attributes": {
+                    "id": "i0jhbm",
+                    "data-tags": "publication",
+                    "data-gjs-type": "link-list",
+                    "data-show-search": "false",
+                    "data-show-pagination": "true",
+                    "data-filter-attributes": "category,index,year"
+                  },
+                  "components": [
+                    {
+                      "classes": [
+                        "mb-4",
+                        "flex",
+                        "justify-between",
+                        "items-center"
+                      ],
+                      "components": [
+                        {
+                          "type": "input",
+                          "void": true,
+                          "classes": [
+                            "link-search",
+                            "border",
+                            "px-3",
+                            "py-1",
+                            "rounded",
+                            "w-full",
+                            "max-w-xs"
+                          ],
+                          "attributes": {
+                            "type": "text",
+                            "placeholder": "Search links..."
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "classes": [
+                        "mb-4",
+                        "flex",
+                        "flex-col",
+                        "md:flex-row",
+                        "flex-wrap",
+                        "justify-between",
+                        "items-center",
+                        "link-dynamic-filters"
+                      ],
+                      "components": [
+                        { "type": "textnode", "content": "\n            " }
+                      ]
+                    },
+                    {
+                      "classes": [
+                        "grid",
+                        "grid-cols-1",
+                        "md:grid-cols-2",
+                        "lg:grid-cols-3",
+                        "gap-6",
+                        "link-list-container"
+                      ],
+                      "components": [
+                        {
+                          "type": "text",
+                          "classes": [
+                            "col-span-full",
+                            "text-center",
+                            "text-gray-500"
+                          ],
+                          "tagName": "p",
+                          "components": [
+                            {
+                              "type": "textnode",
+                              "content": "Loading links..."
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "classes": [
+                        "mt-6",
+                        "flex",
+                        "justify-center",
+                        "gap-2",
+                        "link-pagination"
+                      ],
+                      "components": [
+                        {
+                          "type": "comment",
+                          "content": " Pagination buttons injected by script "
+                        }
+                      ]
+                    }
+                  ],
+                  "showSearch": false,
+                  "scriptUpdated": 1,
+                  "showPagination": true,
+                  "filterAttributes": "category,index,year"
+                },
+                {
+                  "name": "Row",
+                  "classes": [{ "name": "gjs-row", "private": 1 }],
+                  "droppable": ".gjs-cell",
+                  "resizable": {
+                    "bl": 0,
+                    "br": 0,
+                    "cl": 0,
+                    "cr": 0,
+                    "tc": 0,
+                    "tl": 0,
+                    "tr": 0,
+                    "minDim": 1
+                  },
+                  "attributes": { "id": "iw58n9" },
+                  "components": [
+                    {
+                      "name": "Cell",
+                      "classes": [{ "name": "gjs-cell", "private": 1 }],
+                      "draggable": ".gjs-row",
+                      "resizable": {
+                        "bc": 0,
+                        "bl": 0,
+                        "br": 0,
+                        "cl": 0,
+                        "cr": 1,
+                        "tc": 0,
+                        "tl": 0,
+                        "tr": 0,
+                        "step": 0.2,
+                        "minDim": 1,
+                        "currentUnit": 1
+                      },
+                      "attributes": { "id": "igrltj" },
+                      "components": [
+                        {
+                          "type": "text",
+                          "attributes": { "id": "ig8rdf" },
+                          "components": [
+                            {
+                              "type": "textnode",
+                              "content": "Intrested To Publish With Us?"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "link",
+                          "editable": false,
+                          "droppable": true,
+                          "attributes": { "id": "ixvycx" },
+                          "components": [
+                            {
+                              "text": "Learn More",
+                              "type": "button",
+                              "attributes": {
+                                "id": "in9h72",
+                                "type": "button"
+                              },
+                              "components": [
+                                { "type": "textnode", "content": "Learn More" }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "classes": ["bg-[#1e4c56]", "text-white", "px-8", "py-12"],
+                  "tagName": "footer",
+                  "components": [
+                    {
+                      "classes": [
+                        "grid",
+                        "grid-cols-1",
+                        "md:grid-cols-5",
+                        "gap-6",
+                        "text-sm"
+                      ],
+                      "components": [
+                        {
+                          "type": "comment",
+                          "content": " Logo + Contact Info "
+                        },
+                        {
+                          "classes": ["col-span-1", "space-y-4"],
+                          "components": [
+                            {
+                              "type": "image",
+                              "classes": ["mb-4"],
+                              "resizable": { "ratioDefault": 1 },
+                              "attributes": {
+                                "alt": "Logo",
+                                "src": "/uploads/1749054189475-logo-rsf-transparent (3).webp"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "tagName": "p",
+                              "components": [
+                                {
+                                  "type": "textnode",
+                                  "content": "123 Academic Avenue, Research Park, CA 94103"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "tagName": "p",
+                              "components": [
+                                {
+                                  "type": "textnode",
+                                  "content": "📞 +1 (555) 123-4567"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "tagName": "p",
+                              "components": [
+                                {
+                                  "type": "textnode",
+                                  "content": "✉️ contact@researchplatform.com"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        { "type": "comment", "content": " Ecosystem " },
+                        {
+                          "components": [
+                            {
+                              "type": "text",
+                              "classes": ["font-bold", "mb-2"],
+                              "tagName": "h4",
+                              "components": [
+                                { "type": "textnode", "content": "Ecosystem" }
+                              ]
+                            },
+                            {
+                              "classes": ["space-y-1"],
+                              "tagName": "ul",
+                              "components": [
+                                {
+                                  "tagName": "li",
+                                  "components": [
+                                    {
+                                      "type": "link",
+                                      "attributes": { "href": "#" },
+                                      "components": [
+                                        {
+                                          "type": "textnode",
+                                          "content": "Research Journals"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "tagName": "li",
+                                  "components": [
+                                    {
+                                      "type": "link",
+                                      "attributes": { "href": "#" },
+                                      "components": [
+                                        {
+                                          "type": "textnode",
+                                          "content": "Conference Papers"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "tagName": "li",
+                                  "components": [
+                                    {
+                                      "type": "link",
+                                      "attributes": { "href": "#" },
+                                      "components": [
+                                        {
+                                          "type": "textnode",
+                                          "content": "Data Repository"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "tagName": "li",
+                                  "components": [
+                                    {
+                                      "type": "link",
+                                      "attributes": { "href": "#" },
+                                      "components": [
+                                        {
+                                          "type": "textnode",
+                                          "content": "Research Tools"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        { "type": "comment", "content": " Join Us " },
+                        {
+                          "components": [
+                            {
+                              "type": "text",
+                              "classes": ["font-bold", "mb-2"],
+                              "tagName": "h4",
+                              "components": [
+                                { "type": "textnode", "content": "Join Us" }
+                              ]
+                            },
+                            {
+                              "classes": ["space-y-1"],
+                              "tagName": "ul",
+                              "components": [
+                                {
+                                  "tagName": "li",
+                                  "components": [
+                                    {
+                                      "type": "link",
+                                      "attributes": { "href": "#" },
+                                      "components": [
+                                        {
+                                          "type": "textnode",
+                                          "content": "For Researchers"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "tagName": "li",
+                                  "components": [
+                                    {
+                                      "type": "link",
+                                      "attributes": { "href": "#" },
+                                      "components": [
+                                        {
+                                          "type": "textnode",
+                                          "content": "For Reviewers"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "tagName": "li",
+                                  "components": [
+                                    {
+                                      "type": "link",
+                                      "attributes": { "href": "#" },
+                                      "components": [
+                                        {
+                                          "type": "textnode",
+                                          "content": "For Institutions"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "tagName": "li",
+                                  "components": [
+                                    {
+                                      "type": "link",
+                                      "attributes": { "href": "#" },
+                                      "components": [
+                                        {
+                                          "type": "textnode",
+                                          "content": "For Publishers"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        { "type": "comment", "content": " Menu " },
+                        {
+                          "components": [
+                            {
+                              "type": "text",
+                              "classes": ["font-bold", "mb-2"],
+                              "tagName": "h4",
+                              "components": [
+                                { "type": "textnode", "content": "Menu" }
+                              ]
+                            },
+                            {
+                              "classes": ["space-y-1"],
+                              "tagName": "ul",
+                              "components": [
+                                {
+                                  "tagName": "li",
+                                  "components": [
+                                    {
+                                      "type": "link",
+                                      "attributes": { "href": "#" },
+                                      "components": [
+                                        {
+                                          "type": "textnode",
+                                          "content": "About Us"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "tagName": "li",
+                                  "components": [
+                                    {
+                                      "type": "link",
+                                      "attributes": { "href": "#" },
+                                      "components": [
+                                        {
+                                          "type": "textnode",
+                                          "content": "Our Team"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "tagName": "li",
+                                  "components": [
+                                    {
+                                      "type": "link",
+                                      "attributes": { "href": "#" },
+                                      "components": [
+                                        {
+                                          "type": "textnode",
+                                          "content": "Blog"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "tagName": "li",
+                                  "components": [
+                                    {
+                                      "type": "link",
+                                      "attributes": { "href": "#" },
+                                      "components": [
+                                        {
+                                          "type": "textnode",
+                                          "content": "Contact"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        { "type": "comment", "content": " Social Icons " },
+                        {
+                          "components": [
+                            {
+                              "type": "text",
+                              "classes": ["font-bold", "mb-2"],
+                              "tagName": "h4",
+                              "components": [
+                                { "type": "textnode", "content": "Follow Us" }
+                              ]
+                            },
+                            {
+                              "classes": ["flex", "gap-4"],
+                              "components": [
+                                {
+                                  "type": "link",
+                                  "editable": false,
+                                  "attributes": { "href": "#" },
+                                  "components": [
+                                    {
+                                      "type": "image",
+                                      "classes": ["w-5", "h-5"],
+                                      "resizable": { "ratioDefault": 1 },
+                                      "attributes": {
+                                        "alt": "LinkedIn",
+                                        "src": "https://cdn-icons-png.flaticon.com/512/174/174857.png"
+                                      }
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "link",
+                                  "editable": false,
+                                  "attributes": { "href": "#" },
+                                  "components": [
+                                    {
+                                      "type": "image",
+                                      "classes": ["w-5", "h-5"],
+                                      "resizable": { "ratioDefault": 1 },
+                                      "attributes": {
+                                        "alt": "Instagram",
+                                        "src": "https://cdn-icons-png.flaticon.com/512/2111/2111463.png"
+                                      }
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "link",
+                                  "editable": false,
+                                  "attributes": { "href": "#" },
+                                  "components": [
+                                    {
+                                      "type": "image",
+                                      "classes": ["w-5", "h-5"],
+                                      "resizable": { "ratioDefault": 1 },
+                                      "attributes": {
+                                        "alt": "Facebook",
+                                        "src": "https://cdn-icons-png.flaticon.com/512/733/733547.png"
+                                      }
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "link",
+                                  "editable": false,
+                                  "attributes": { "href": "#" },
+                                  "components": [
+                                    {
+                                      "type": "image",
+                                      "classes": ["w-5", "h-5"],
+                                      "resizable": { "ratioDefault": 1 },
+                                      "attributes": {
+                                        "alt": "YouTube",
+                                        "src": "https://cdn-icons-png.flaticon.com/512/733/733646.png"
+                                      }
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "assets": [
+      {
+        "src": "/uploads/1749738131259-logo-rsf-press.webp",
+        "name": "1749738131259-logo-rsf-press.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749738161678-logo-rsf-transparent (1).webp",
+        "name": "1749738161678-logo-rsf-transparent (1).webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749529713073-logo-rsf-transparent (3).webp",
+        "name": "1749529713073-logo-rsf-transparent (3).webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749541299427-logo-rsf-transparent (1).webp",
+        "name": "1749541299427-logo-rsf-transparent (1).webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749541758055-logo-rsf-transparent (1).webp",
+        "name": "1749541758055-logo-rsf-transparent (1).webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749543259832-RIS-maps.webp",
+        "name": "1749543259832-RIS-maps.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749615477272-cover-book-4TH-ICMRSI-01-scaled (1).webp",
+        "name": "1749615477272-cover-book-4TH-ICMRSI-01-scaled (1).webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749615597457-4th-ICMRSI-GRID.webp",
+        "name": "1749615597457-4th-ICMRSI-GRID.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749615734208-Screen-Shot-2024-02-07-at-10.webp",
+        "name": "1749615734208-Screen-Shot-2024-02-07-at-10.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1748945356924-logo-scholarvein.webp",
+        "name": "1748945356924-logo-scholarvein.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1748945361635-logo-rsi.webp",
+        "name": "1748945361635-logo-rsi.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1748955666166-logo-reviewer-track.webp",
+        "name": "1748955666166-logo-reviewer-track.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1748955752787-logo-grc.webp",
+        "name": "1748955752787-logo-grc.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1748956126265-logo-f1000.webp",
+        "name": "1748956126265-logo-f1000.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1748957964277-infografis-rsf.webp",
+        "name": "1748957964277-infografis-rsf.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1748958627457-logo-scholarvein-big.webp",
+        "name": "1748958627457-logo-scholarvein-big.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1748967752759-1.webp",
+        "name": "1748967752759-1.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1748967759679-11.webp",
+        "name": "1748967759679-11.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1748967780395-f1000-1.webp",
+        "name": "1748967780395-f1000-1.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1748967822872-taylorfrancis-1.webp",
+        "name": "1748967822872-taylorfrancis-1.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1748967830025-WhatsApp-Image-2022-11-30-at-9.webp",
+        "name": "1748967830025-WhatsApp-Image-2022-11-30-at-9.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1748967918985-873-8734069_mmu-logo-multimedia-university-e1669776556790.webp",
+        "name": "1748967918985-873-8734069_mmu-logo-multimedia-university-e1669776556790.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1748967925090-udju-13.webp",
+        "name": "1748967925090-udju-13.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1748967928903-ecu.webp",
+        "name": "1748967928903-ecu.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1748967931380-8.webp",
+        "name": "1748967931380-8.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1748967938413-ucsi.webp",
+        "name": "1748967938413-ucsi.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749042421461-circle-arrow-up.webp",
+        "name": "1749042421461-circle-arrow-up.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749053965132-logo-rsf-transparent (3).webp",
+        "name": "1749053965132-logo-rsf-transparent (3).webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749054189475-logo-rsf-transparent (3).webp",
+        "name": "1749054189475-logo-rsf-transparent (3).webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749054266817-logo-rsi.webp",
+        "name": "1749054266817-logo-rsi.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749054383874-logo-scholarvein-big.webp",
+        "name": "1749054383874-logo-scholarvein-big.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749054511469-product.webp",
+        "name": "1749054511469-product.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749054647136-logo-f1000.webp",
+        "name": "1749054647136-logo-f1000.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749054700043-f1000-1.webp",
+        "name": "1749054700043-f1000-1.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749054908251-logo-reviewer-track.webp",
+        "name": "1749054908251-logo-reviewer-track.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749054935387-product.webp",
+        "name": "1749054935387-product.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749056491852-logo-rsf-transparent (3).webp",
+        "name": "1749056491852-logo-rsf-transparent (3).webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749124933395-users.webp",
+        "name": "1749124933395-users.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749125112591-graduation-cap.webp",
+        "name": "1749125112591-graduation-cap.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749125311404-globe.webp",
+        "name": "1749125311404-globe.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749125443913-book-open-text.webp",
+        "name": "1749125443913-book-open-text.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749131431251-logo-reviewer-track (2).webp",
+        "name": "1749131431251-logo-reviewer-track (2).webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749131463630-logo-rsi (2).webp",
+        "name": "1749131463630-logo-rsi (2).webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749131492363-logo-rsf-press (3).webp",
+        "name": "1749131492363-logo-rsf-press (3).webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749132533151-logo-grc (2).webp",
+        "name": "1749132533151-logo-grc (2).webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749132675102-logo-f1000 (2).webp",
+        "name": "1749132675102-logo-f1000 (2).webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749137523577-chevron-right.webp",
+        "name": "1749137523577-chevron-right.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749205287059-cover-book-4TH-ICMRSI-01-scaled.webp",
+        "name": "1749205287059-cover-book-4TH-ICMRSI-01-scaled.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749439240081-1 (1).webp",
+        "name": "1749439240081-1 (1).webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749446946711-3.webp",
+        "name": "1749446946711-3.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749447076873-2.webp",
+        "name": "1749447076873-2.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749447381372-4.webp",
+        "name": "1749447381372-4.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/1749526786417-IMG_5568.webp",
+        "name": "1749526786417-IMG_5568.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      },
+      {
+        "src": "/uploads/logo-rsf-transparent.webp",
+        "name": "logo-rsf-transparent.webp",
+        "type": "image",
+        "width": 0,
+        "height": 0,
+        "unitDim": "px"
+      }
+    ],
+    "styles": [
+      {
+        "style": {
+          "top": "0px",
+          "left": "0px",
+          "width": "100%",
+          "position": "absolute",
+          "max-width": "100vw"
+        },
+        "selectors": [
+          "max-w-screen",
+          "mx-auto",
+          "px-4",
+          "py-4",
+          "flex",
+          "items-center",
+          "justify-between"
+        ]
+      },
+      {
+        "style": { "width": "100%", "display": "table", "padding": "10px" },
+        "selectors": [{ "name": "gjs-row", "private": 1 }]
+      },
+      {
+        "style": { "width": "100%", "display": "block" },
+        "mediaText": "(max-width: 768px)",
+        "selectors": [{ "name": "gjs-cell", "private": 1 }],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "width": "100%", "display": "block" },
+        "mediaText": "(max-width: 768px)",
+        "selectors": ["gjs-cell30"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "width": "100%", "display": "block" },
+        "mediaText": "(max-width: 768px)",
+        "selectors": ["gjs-cell70"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "width": "8%", "height": "75px", "display": "table-cell" },
+        "selectors": [{ "name": "gjs-cell", "private": 1 }]
+      },
+      {
+        "style": { "height": "80px" },
+        "mediaText": "(max-width: 992px)",
+        "selectors": ["#i5u2b"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "height": "80px" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#i5u2b"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "height": "80px", "display": "block" },
+        "selectors": ["#i5u2b"]
+      },
+      {
+        "style": {
+          "padding": "30px 30px 30px 30px",
+          "background-color": "#1f4751"
+        },
+        "selectors": ["#iemrj"]
+      },
+      {
+        "style": { "width": "100%", "height": "auto", "display": "block" },
+        "selectors": ["#icohx"]
+      },
+      {
+        "style": { "color": "white", "text-align": "center" },
+        "selectors": ["#i7g6k"]
+      },
+      {
+        "style": {
+          "color": "white",
+          "font-size": "32px",
+          "text-align": "center",
+          "font-weight": "700"
+        },
+        "selectors": ["#ile7f"]
+      },
+      {
+        "style": {
+          "display": "flex",
+          "padding": "10px",
+          "flex-wrap": "nowrap",
+          "align-items": "stretch",
+          "justify-content": "flex-start"
+        },
+        "selectors": [{ "name": "row", "private": 1 }]
+      },
+      {
+        "style": { "flex-wrap": "wrap" },
+        "mediaText": "(max-width: 768px)",
+        "selectors": [{ "name": "row", "private": 1 }],
+        "atRuleType": "media"
+      },
+      {
+        "style": {
+          "flex-grow": "1",
+          "flex-basis": "100%",
+          "min-height": "75px"
+        },
+        "selectors": [{ "name": "cell", "private": 1 }]
+      },
+      { "style": { "align-self": "center" }, "selectors": ["#i08ppc"] },
+      {
+        "style": { "margin": "10px 10px 10px 10px" },
+        "selectors": ["bdg-sect"]
+      },
+      { "style": { "color": "black" }, "selectors": ["#i9wxlj"] },
+      {
+        "style": { "font-size": "24px", "font-weight": "600" },
+        "selectors": ["heading"]
+      },
+      {
+        "style": { "font-size": "32px", "font-weight": "600" },
+        "selectors": ["#iljt5p"]
+      },
+      {
+        "style": { "padding": "10px 32px 10px 32px" },
+        "selectors": ["#iin7hl"]
+      },
+      { "style": { "display": "block" }, "selectors": ["#iwpap6"] },
+      {
+        "style": {
+          "--tw-shadow": "0 0 #0000",
+          "border-color": "rgb(229, 231, 235)",
+          "--tw-ring-color": "rgba(59, 130, 246, 0.5)",
+          "--tw-ring-shadow": "0 0 #0000",
+          "--tw-ring-offset-color": "#fff",
+          "--tw-ring-offset-width": "0px",
+          "--tw-ring-offset-shadow": "0 0 #0000"
+        },
+        "selectors": ["#iv4k42-2"]
+      },
+      {
+        "style": {
+          "--tw-shadow": "0 0 #0000",
+          "border-color": "rgb(229, 231, 235)",
+          "--tw-ring-color": "rgba(59, 130, 246, 0.5)",
+          "--tw-ring-shadow": "0 0 #0000",
+          "--tw-ring-offset-color": "#fff",
+          "--tw-ring-offset-width": "0px",
+          "--tw-ring-offset-shadow": "0 0 #0000"
+        },
+        "selectors": ["#iv4k42-3"]
+      },
+      {
+        "style": { "font-size": "24px", "font-weight": "600" },
+        "selectors": ["heading", "gjs-selected"]
+      },
+      {
+        "style": { "height": "auto" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#i69qzr"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "height": "auto" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#i1uvx9"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "height": "auto" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#i53ml9"],
+        "atRuleType": "media"
+      },
+      {
+        "style": {
+          "display": "flex",
+          "flex-wrap": "wrap",
+          "justify-content": "space-around"
+        },
+        "selectors": ["#in7rag"]
+      },
+      {
+        "style": {
+          "color": "#ffffff",
+          "width": "auto",
+          "height": "auto",
+          "display": "block",
+          "padding": "0px 0px 14px 0px",
+          "max-width": "290px",
+          "min-height": "75px",
+          "border-radius": "14px 14px 14px 14px",
+          "background-color": "#1f4751"
+        },
+        "selectors": ["#iu3wzo"]
+      },
+      {
+        "style": { "color": "black", "border-radius": "14px 14px 0px 0px" },
+        "selectors": ["#imhffs"]
+      },
+      {
+        "style": { "color": "black", "border-radius": "14px 14px 0px 0px" },
+        "selectors": ["#imhffs-2"]
+      },
+      {
+        "style": {
+          "color": "#ffffff",
+          "width": "auto",
+          "height": "auto",
+          "display": "block",
+          "padding": "0px 0px 14px 0px",
+          "max-width": "290px",
+          "min-height": "75px",
+          "border-radius": "14px 14px 14px 14px",
+          "background-color": "#1f4751"
+        },
+        "selectors": ["#imc4d8"]
+      },
+      {
+        "style": { "color": "black", "border-radius": "14px 14px 0px 0px" },
+        "selectors": ["#imhffs-3"]
+      },
+      {
+        "style": {
+          "color": "#ffffff",
+          "width": "auto",
+          "height": "auto",
+          "display": "block",
+          "padding": "0px 0px 14px 0px",
+          "max-width": "290px",
+          "min-height": "75px",
+          "border-radius": "14px 14px 14px 14px",
+          "background-color": "#1f4751"
+        },
+        "selectors": ["#iujjkj"]
+      },
+      {
+        "state": "hover",
+        "style": {
+          "transform": "scaleY(1.02) scaleX(1.02)",
+          "transition": "all 1s ease"
+        },
+        "selectors": ["#imhffs"]
+      },
+      {
+        "state": "hover",
+        "style": {
+          "transform": "scaleY(1.02) scaleX(1.02)",
+          "transition": "transform 1s ease"
+        },
+        "selectors": ["#imhffs-3"]
+      },
+      {
+        "state": "hover",
+        "style": {
+          "transform": "scaleY(1.05) scaleX(1.02)",
+          "transition": "transform 1s ease"
+        },
+        "selectors": ["#imhffs-2"]
+      },
+      {
+        "style": { "align-items": "center", "align-content": "center" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#in7rag"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "margin": "14px 0px 14px 0px" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#iu3wzo"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "margin": "14px 0px 14px 0px" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#iujjkj"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "margin": "14px 0px 14px 0px" },
+        "mediaText": "(max-width: 992px)",
+        "selectors": ["#iujjkj"],
+        "atRuleType": "media"
+      },
+      {
+        "style": {
+          "align-items": "flex-start",
+          "align-content": "space-between"
+        },
+        "mediaText": "(max-width: 992px)",
+        "selectors": ["#in7rag"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "margin": "14px 0px 14px 0px" },
+        "mediaText": "(max-width: 992px)",
+        "selectors": ["#imc4d8"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "margin": "14px 0px 14px 0px" },
+        "mediaText": "(max-width: 992px)",
+        "selectors": ["#iu3wzo"],
+        "atRuleType": "media"
+      },
+      {
+        "style": {
+          "padding": "10px",
+          "font-size": "24px",
+          "text-align": "center",
+          "font-weight": "600"
+        },
+        "selectors": ["#icxhya-2"]
+      },
+      {
+        "style": {
+          "color": "#4a4848",
+          "padding": "10px",
+          "text-align": "center"
+        },
+        "selectors": ["#i4i5g4-2"]
+      },
+      { "style": { "max-width": "99vw" }, "selectors": ["#iek9eb"] },
+      { "style": { "max-width": "99vw" }, "selectors": ["overflow-x-hidden"] },
+      {
+        "style": {
+          "padding": "10px",
+          "font-size": "24px",
+          "text-align": "center",
+          "font-weight": "600"
+        },
+        "selectors": ["#icxhya-2"]
+      },
+      {
+        "style": {
+          "color": "#4a4848",
+          "padding": "10px",
+          "text-align": "center"
+        },
+        "selectors": ["#i4i5g4-2"]
+      },
+      { "style": { "max-width": "99vw" }, "selectors": ["#iq52ah"] },
+      {
+        "style": {
+          "font-size": "24px",
+          "text-align": "center",
+          "font-weight": "600"
+        },
+        "selectors": ["#icxhya"]
+      },
+      {
+        "style": { "color": "#4a4848", "text-align": "center" },
+        "selectors": ["#i4i5g4"]
+      },
+      {
+        "style": { "max-width": "90vw" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["overflow-x-hidden"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "height": "auto" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#idjf8l"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "height": "auto" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#iytudc"],
+        "atRuleType": "media"
+      },
+      {
+        "style": {
+          "color": "white",
+          "width": "100%",
+          "height": "auto",
+          "display": "flex",
+          "padding": "8px 8px 8px 8px",
+          "font-size": "24px",
+          "align-items": "center",
+          "font-weight": "600",
+          "align-content": "center",
+          "border-radius": "14px 14px 14px 14px",
+          "justify-content": "space-between",
+          "background-color": "#1f4751"
+        },
+        "selectors": ["#igrltj"]
+      },
+      { "style": { "padding": "10px" }, "selectors": ["#ig8rdf"] },
+      {
+        "style": {
+          "width": "auto",
+          "height": "auto",
+          "display": "inline-block",
+          "padding": "5px",
+          "min-width": "50px"
+        },
+        "selectors": ["#ixvycx"]
+      },
+      {
+        "style": {
+          "color": "black",
+          "padding": "4px 8px 4px 8px",
+          "font-size": "16px",
+          "font-weight": "600",
+          "border-radius": "14px 14px 14px 14px",
+          "background-color": "#f5cf48"
+        },
+        "selectors": ["#in9h72"]
+      },
+      {
+        "style": { "display": "flex", "flex-wrap": "wrap" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#igrltj"],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "color": "#1f4751", "font-weight": "600" },
+        "selectors": ["#it35g"]
+      },
+      {
+        "style": { "top": "0px", "position": "fixed" },
+        "selectors": ["w-full", "bg-white", "shadow-md"]
+      },
+      {
+        "style": { "position": "static" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": [
+          "max-w-screen",
+          "mx-auto",
+          "px-4",
+          "py-4",
+          "flex",
+          "items-center",
+          "justify-between"
+        ],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "position": "static" },
+        "mediaText": "(max-width: 992px)",
+        "selectors": [
+          "max-w-screen",
+          "mx-auto",
+          "px-4",
+          "py-4",
+          "flex",
+          "items-center",
+          "justify-between"
+        ],
+        "atRuleType": "media"
+      },
+      {
+        "style": { "color": "#1f4751", "font-weight": "600" },
+        "mediaText": "(max-width: 480px)",
+        "selectors": ["#ic92w"],
+        "atRuleType": "media"
+      }
+    ],
+    "symbols": [],
+    "dataSources": []
+  }
+}

@@ -1,0 +1,217 @@
+{
+  "title": "Startup Landing Template",
+  "content": {
+    "pages": [
+      {
+        "id": "startup-landing-page",
+        "type": "main",
+        "frames": [
+          {
+            "id": "frame-hero",
+            "component": {
+              "type": "wrapper",
+              "components": [
+                {
+                  "type": "section",
+                  "classes": ["bg-white", "text-center", "py-20", "px-6"],
+                  "components": [
+                    {
+                      "type": "text",
+                      "tagName": "h1",
+                      "classes": ["text-4xl", "font-bold", "mb-4"],
+                      "components": [
+                        {
+                          "type": "textnode",
+                          "content": "Launch Your Product Fast"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "tagName": "p",
+                      "classes": ["text-lg", "text-gray-600", "mb-6"],
+                      "components": [
+                        {
+                          "type": "textnode",
+                          "content": "A beautiful landing page template built with GrapesJS and TailwindCSS."
+                        }
+                      ]
+                    },
+                    {
+                      "type": "link",
+                      "classes": [
+                        "bg-blue-600",
+                        "text-white",
+                        "px-6",
+                        "py-3",
+                        "rounded-full",
+                        "inline-block"
+                      ],
+                      "attributes": { "href": "#features" },
+                      "components": [
+                        { "type": "textnode", "content": "Explore Features" }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "section",
+                  "classes": ["bg-gray-50", "py-16", "px-6"],
+                  "attributes": { "id": "features" },
+                  "components": [
+                    {
+                      "type": "text",
+                      "tagName": "h2",
+                      "classes": [
+                        "text-3xl",
+                        "font-semibold",
+                        "text-center",
+                        "mb-12"
+                      ],
+                      "components": [
+                        { "type": "textnode", "content": "Why Choose Us" }
+                      ]
+                    },
+                    {
+                      "type": "div",
+                      "classes": [
+                        "grid",
+                        "grid-cols-1",
+                        "md:grid-cols-3",
+                        "gap-6"
+                      ],
+                      "components": [
+                        {
+                          "type": "div",
+                          "classes": [
+                            "p-6",
+                            "bg-white",
+                            "rounded-lg",
+                            "shadow"
+                          ],
+                          "components": [
+                            {
+                              "type": "text",
+                              "tagName": "h3",
+                              "classes": ["text-xl", "font-bold", "mb-2"],
+                              "components": [
+                                { "type": "textnode", "content": "Easy to Use" }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "tagName": "p",
+                              "classes": ["text-gray-600"],
+                              "components": [
+                                {
+                                  "type": "textnode",
+                                  "content": "Simple drag-and-drop editing for rapid development."
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "div",
+                          "classes": [
+                            "p-6",
+                            "bg-white",
+                            "rounded-lg",
+                            "shadow"
+                          ],
+                          "components": [
+                            {
+                              "type": "text",
+                              "tagName": "h3",
+                              "classes": ["text-xl", "font-bold", "mb-2"],
+                              "components": [
+                                {
+                                  "type": "textnode",
+                                  "content": "Modern Design"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "tagName": "p",
+                              "classes": ["text-gray-600"],
+                              "components": [
+                                {
+                                  "type": "textnode",
+                                  "content": "Responsive, accessible, and clean UI powered by Tailwind."
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "div",
+                          "classes": [
+                            "p-6",
+                            "bg-white",
+                            "rounded-lg",
+                            "shadow"
+                          ],
+                          "components": [
+                            {
+                              "type": "text",
+                              "tagName": "h3",
+                              "classes": ["text-xl", "font-bold", "mb-2"],
+                              "components": [
+                                {
+                                  "type": "textnode",
+                                  "content": "Fully Customizable"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "tagName": "p",
+                              "classes": ["text-gray-600"],
+                              "components": [
+                                {
+                                  "type": "textnode",
+                                  "content": "Tweak the layout, styles, and content to suit your brand."
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "footer",
+                  "classes": [
+                    "bg-gray-800",
+                    "text-white",
+                    "text-center",
+                    "py-8"
+                  ],
+                  "components": [
+                    {
+                      "type": "text",
+                      "tagName": "p",
+                      "classes": ["text-sm"],
+                      "components": [
+                        {
+                          "type": "textnode",
+                          "content": "© 2025 Your Company. All rights reserved."
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "assets": [],
+    "styles": [],
+    "symbols": [],
+    "dataSources": []
+  }
+}
