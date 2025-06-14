@@ -5,6 +5,12 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 
+export const metadata = {
+  icons: {
+    icon: "/favicon.ico",
+  },
+};
+
 export default async function AdminLayout({
   children,
 }: {
