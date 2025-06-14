@@ -82,9 +82,9 @@ export default function NewTemplate() {
       >
         <div className="flex flex-col border-b border-gray-200">
           <div className="flex items-center gap-2 font-semibold p-4">
-            <Link href="/admin">
+            <Link href="/admin/templates">
               <Button size="sm">
-                <ChevronsLeft size="sm" />
+                <ChevronsLeft size={18} />
               </Button>
             </Link>
             <PanelsTopLeft />
@@ -97,7 +97,7 @@ export default function NewTemplate() {
             className="absolute bottom-[-24] rounded-none z-[1000] w-full py-1 px-1 flex flex-row items-center justify-center"
             onClick={() => setMinimizeInfo(false)}
           >
-            <SquareChevronDown /> Expand Info
+            <SquareChevronDown size={18} /> Expand Info
           </Button>
         </div>
         <div className="flex flex-col" hidden={minimizeInfo}>
@@ -108,7 +108,7 @@ export default function NewTemplate() {
               className="w-full py-3 px-2 flex flex-row items-center justify-center"
               onClick={() => setMinimizeInfo(true)}
             >
-              <SquareChevronUp /> Minimize Info
+              <SquareChevronUp size={18} /> Minimize Info
             </Button>
           </div>
         </div>

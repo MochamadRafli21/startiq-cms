@@ -22,8 +22,20 @@ export default function PageInfo({ page, onChange }: PageEditorProps) {
   const [isPublic, setIsPublic] = useState(page?.isPublic || false);
   const [newTag, setNewTag] = useState("");
   const [tags, setTags] = useState(page?.tags || []);
+  const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
+    if (!isInitialized && page) {
+      setTitle(page.title || "");
+      setSlug(page.slug || "");
+      setIsPublic(page.isPublic || false);
+      setTags(page.tags || []);
+      setIsInitialized(true);
+    }
+  }, [page, isInitialized]);
+
+  useEffect(() => {
+    if (!isInitialized) return;
     if (onChange) {
       onChange({
         ...page,
@@ -33,7 +45,7 @@ export default function PageInfo({ page, onChange }: PageEditorProps) {
         isPublic,
       });
     }
-  }, [title, slug, tags, isPublic, onChange, page]);
+  }, [title, slug, tags, isPublic]);
 
   const handleTagsPush = (value: string) => {
     if (!value) return;

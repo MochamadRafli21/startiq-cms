@@ -2508,7 +2508,7 @@ export default function PageEditor({
   }, [componentToHTML, findComponentById, content?.pages]);
 
   const renderNavbar = useCallback(() => {
-    const navbars = document.querySelectorAll(
+    const navbars = document?.querySelectorAll(
       '[data-gjs-type="custom-navbar"]',
     );
     // find model inside content
@@ -2522,7 +2522,7 @@ export default function PageEditor({
         });
       }
 
-      const searchInputs = navbar.querySelectorAll(
+      const searchInputs = navbar?.querySelectorAll(
         'input[placeholder="Search"]',
       );
 

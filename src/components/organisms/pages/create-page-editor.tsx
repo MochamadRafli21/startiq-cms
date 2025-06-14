@@ -43,15 +43,17 @@ export default function CreatePageEditor() {
   const templateId = searchParams.get("template");
 
   useEffect(() => {
-    fetch(`/api/templates/${templateId}`)
-      .then((res) => res.json())
-      .then((template: Template) => {
-        setPageData({
-          ...pageData,
-          content: template.content,
+    if (templateId) {
+      fetch(`/api/templates/${templateId}`)
+        .then((res) => res.json())
+        .then((template: Template) => {
+          setPageData((prev) => ({
+            ...prev,
+            content: template.content,
+          }));
         });
-      });
-  }, [templateId, pageData]);
+    }
+  }, [templateId]);
 
   const onValidateSlug = async () => {
     if (!pageData.slug) {
@@ -150,7 +152,7 @@ export default function CreatePageEditor() {
           <div className="flex items-center gap-2 font-semibold p-4">
             <Link href="/admin">
               <Button size="sm">
-                <ChevronsLeft size="sm" />
+                <ChevronsLeft size={18} />
               </Button>
             </Link>
             <PanelsTopLeft />
@@ -163,7 +165,7 @@ export default function CreatePageEditor() {
             className="absolute bottom-[-24] rounded-none z-[1000] w-full py-1 px-1 flex flex-row items-center justify-center"
             onClick={() => setMinimizeInfo(false)}
           >
-            <SquareChevronDown /> Expand Info
+            <SquareChevronDown size={18} /> Expand Info
           </Button>
         </div>
         <div className="flex flex-col" hidden={minimizeInfo}>
@@ -185,7 +187,7 @@ export default function CreatePageEditor() {
               className="w-full py-3 px-2 flex flex-row items-center justify-center"
               onClick={() => setMinimizeInfo(true)}
             >
-              <SquareChevronUp /> Minimize Info
+              <SquareChevronUp size={18} /> Minimize Info
             </Button>
           </div>
         </div>

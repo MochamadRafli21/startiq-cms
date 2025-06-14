@@ -121,19 +121,19 @@ export default function TemplatesTable() {
                     <Dialog>
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                          <Ellipsis />
+                          <Ellipsis size={18} />
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end" className="w-48">
                           <DialogTrigger asChild>
                             <DropdownMenuItem>
-                              <Trash color="red" />
+                              <Trash color="red" size={18} />
                               Delete
                             </DropdownMenuItem>
                           </DialogTrigger>
                           <DropdownMenuItem
                             onClick={() => onOpenTemplate(template.id)}
                           >
-                            <PenSquare color="blue" />
+                            <PenSquare color="blue" size={18} />
                             Edit
                           </DropdownMenuItem>
                         </DropdownMenuContent>
