@@ -137,7 +137,9 @@
   --gjs-left-width: 30%;
   /* You might need to identify more specific GrapesJS CSS variables
      by inspecting the editor in your browser's dev tools. */
-
+  .gjs-sm-btn {
+    color: var(--gjs-text-color) !important;
+  }
   /* Example for the main editor background */
   .gjs-two-color {
     color: var(--gjs-text-color);
