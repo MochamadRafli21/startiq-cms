@@ -186,7 +186,12 @@ export default function PagesTable() {
             <TableBody>
               {pages.map((page) => (
                 <TableRow key={page.id}>
-                  <TableCell>{page.title}</TableCell>
+                  <TableCell
+                    className="hover:text-primary hover:font-semibold transition-colors ease-in cursor-pointer"
+                    onClick={() => onOpenPage(page.id)}
+                  >
+                    {page.title}
+                  </TableCell>
                   <TableCell>{page.slug}</TableCell>
                   <TableCell>
                     {page.isPublic ? (

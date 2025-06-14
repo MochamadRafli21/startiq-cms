@@ -29,7 +29,10 @@ export function Header({ user }: HeaderProps) {
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-48">
           <DropdownMenuItem disabled>{user.email}</DropdownMenuItem>
-          <DropdownMenuItem onClick={() => signOut({ callbackUrl: "/login" })}>
+          <DropdownMenuItem
+            variant="destructive"
+            onClick={() => signOut({ callbackUrl: "/login" })}
+          >
             Logout
           </DropdownMenuItem>
         </DropdownMenuContent>

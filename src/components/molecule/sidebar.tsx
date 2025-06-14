@@ -1,5 +1,5 @@
 "use client";
-
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
@@ -20,8 +20,15 @@ export function Sidebar() {
       <div className="p-4 text-lg font-semibold">
         <Link
           href={"/admin"}
-          className="flex items-center text-primary gap-2 p-2 rounded hover:bg-primary-100 text-md"
+          className="flex items-center text-primary gap-2 p-2 rounded-md transition-colors ease-in hover:bg-violet-100 text-2xl font-semibold"
         >
+          <Image
+            width={24}
+            height={24}
+            alt="Link Banner"
+            className="rounded-full"
+            src="/logo.png"
+          />
           Startiq
         </Link>
       </div>
@@ -31,9 +38,9 @@ export function Sidebar() {
             key={item.href}
             href={item.href}
             className={cn(
-              "flex items-center gap-2 p-2 rounded hover:bg-primary-100 text-sm",
+              "flex items-center gap-2 p-2 rounded hover:bg-violet-300 text-sm transition-colors ease-linear",
               pathname === item.href &&
-                "bg-primary-100 text-primary font-medium",
+                "bg-primary hover:bg-primary text-white font-medium",
             )}
           >
             {item.icon}
