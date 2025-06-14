@@ -155,8 +155,8 @@ export default function EditPage() {
           minimizeInfo ? "absolute flex flex-col" : "relative flex flex-col"
         }
       >
-        <div className="flex flex-col border-b border-gray-200">
-          <div className="flex items-center gap-2 font-semibold p-4">
+        <div className="flex items-center border-b border-gray-200">
+          <div className="flex justify-center items-center gap-2 font-semibold p-4">
             <Link href="/admin">
               <Button size="sm">
                 <ChevronsLeft size="sm" />
@@ -169,7 +169,8 @@ export default function EditPage() {
           <Button
             hidden={!minimizeInfo}
             size="sm"
-            className="absolute bottom-[-24] rounded-none z-[1000] w-full py-1 px-1 flex flex-row items-center justify-center"
+            color="primary"
+            variant="ghost"
             onClick={() => setMinimizeInfo(false)}
           >
             <SquareChevronDown /> Expand Info
@@ -211,13 +212,7 @@ export default function EditPage() {
             Save
           </Button>
         </div>
-        <div
-          className={
-            minimizeInfo
-              ? "w-full min-h-screen hover:absolute hover:z-[1001] hover:bottom-[-48]"
-              : "w-full min-h-screen"
-          }
-        >
+        <div className={"w-full min-h-screen"}>
           <PageEditor
             content={pageData.content}
             onContentChange={handleContentChange}
