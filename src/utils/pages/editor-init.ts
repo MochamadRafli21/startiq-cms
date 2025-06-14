@@ -105,19 +105,19 @@ export const initEditor = async ({
     },
   });
 
+  editorRef.current = editor;
   const domComponents = editor.DomComponents;
   if (!domComponents) return;
 
-  await new Promise((resolve) => {
-    editor.on("load", () => {
-      const iframe = editor.Canvas.getFrameEl();
-      const head = iframe.contentDocument?.head;
-      const link = document.createElement("link");
-      link.rel = "stylesheet";
-      link.href =
-        "https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css";
+  editor.on("load", () => {
+    const iframe = editor.Canvas.getFrameEl();
+    const head = iframe.contentDocument?.head;
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href =
+      "https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css";
 
-      const animationCSS = `
+    const animationCSS = `
           @keyframes scroll-left {
             0% { transform: translateX(0%); }
             100% { transform: translateX(-50%); }
@@ -133,43 +133,35 @@ export const initEditor = async ({
             animation-name: scroll-right;
           }
         `;
-      if (head) {
-        const styleEl = document.createElement("style");
-        styleEl.innerHTML = animationCSS;
-        head.appendChild(styleEl);
-        head.appendChild(link);
-      }
+    if (head) {
+      const styleEl = document.createElement("style");
+      styleEl.innerHTML = animationCSS;
+      head.appendChild(styleEl);
+      head.appendChild(link);
+    }
 
-      // populate image selector
-      fetch("/api/assets") // Call your new API route
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          return response.json();
-        })
-        .then((assets) => {
-          if (assets && assets.length > 0) {
-            // Add the fetched assets to the GrapesJS Asset Manager
-            editor.AssetManager.add(assets);
-          }
-        })
-        .catch((error) =>
-          console.error("Error fetching existing assets:", error),
-        );
-      const defaultView = editor.Components.getType("default").view;
-      customPlugins.forEach((plugin) => plugin(editor, defaultView));
-      customTraitPlugins.forEach((plugin) => plugin(editor));
-      resolve(true);
-    });
+    // populate image selector
+    fetch("/api/assets") // Call your new API route
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((assets) => {
+        if (assets && assets.length > 0) {
+          // Add the fetched assets to the GrapesJS Asset Manager
+          editor.AssetManager.add(assets);
+        }
+      })
+      .catch((error) =>
+        console.error("Error fetching existing assets:", error),
+      );
   });
 
-  editorRef.current = editor;
+  const defaultView = editor.Components.getType("default").view;
+  customPlugins.forEach((plugin) => plugin(editor, defaultView));
+  customTraitPlugins.forEach((plugin) => plugin(editor));
 
   onInit(editor);
-  // move this to the component
-  // return () => {
-  //   editor.destroy();
-  //   editorRef.current = null;
-  // };
 };
