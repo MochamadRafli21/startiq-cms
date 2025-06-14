@@ -20,10 +20,9 @@ export function Sidebar() {
       <div className="p-4 text-lg font-semibold">
         <Link
           href={"/admin"}
-          className="flex items-center gap-2 p-2 rounded hover:bg-gray-100 text-sm"
+          className="flex items-center text-primary gap-2 p-2 rounded hover:bg-primary-100 text-md"
         >
-          <Home />
-          Admin Panel
+          Startiq
         </Link>
       </div>
       <nav className="flex flex-col gap-1 p-2">
@@ -32,8 +31,9 @@ export function Sidebar() {
             key={item.href}
             href={item.href}
             className={cn(
-              "flex items-center gap-2 p-2 rounded hover:bg-gray-100 text-sm",
-              pathname === item.href && "bg-gray-100 font-medium",
+              "flex items-center gap-2 p-2 rounded hover:bg-primary-100 text-sm",
+              pathname === item.href &&
+                "bg-primary-100 text-primary font-medium",
             )}
           >
             {item.icon}

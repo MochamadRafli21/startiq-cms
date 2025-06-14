@@ -5,7 +5,7 @@ import { useSwipeable } from "react-swipeable";
 
 export type AnimationType = "none" | "slide" | "pan" | "flip" | "coverflow";
 export type DisplayType = "always" | "hover" | "none";
-type Props = {
+export type CarouselProps = {
   children: React.ReactNode;
   autoplay?: boolean;
   showIndicators?: boolean;
@@ -16,7 +16,7 @@ type Props = {
   zoomOnHover?: boolean;
 };
 
-export const Carousel: React.FC<Props> = ({
+export const Carousel: React.FC<CarouselProps> = ({
   children,
   autoplay = false,
   showIndicators = false,
@@ -129,10 +129,8 @@ export const Carousel: React.FC<Props> = ({
     autoplay,
     interval,
     animation,
-    children,
     hovering,
     pauseOnHover,
-    slides,
     zoomOnHover,
   ]);
 
