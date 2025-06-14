@@ -1,15 +1,17 @@
 import React, { useMemo } from "react";
 import Image from "next/image";
 
+export type SlideProps = {
+  images?: string[];
+  speed: number;
+  direction: "left" | "right";
+};
+
 export function InfiniteSlides({
   images,
   speed = 30,
   direction = "right",
-}: {
-  images?: string[];
-  speed: number;
-  direction: "left" | "right";
-}) {
+}: SlideProps) {
   const duplicatedImages = [...(images || []), ...(images || [])];
 
   // Compute animation duration based on item count and speed
