@@ -31,13 +31,13 @@ export function registerSlider(
           {
             type: "selected-images-viewer", // This is the key
             label: "Manage Slider Images",
-            name: "imageList",
+            name: "images",
             changeProp: true, // IMPORTANT: This trait needs to update when 'images' property changes
             // It doesn't modify a prop directly, but `onUpdate` relies on prop changes.
           },
           {
             type: "button", // This is the key
-            name: "images",
+            name: "imageList",
             label: "Select Images",
             text: "Open Asset Manager",
             full: true, // Make it full width
@@ -78,14 +78,14 @@ export function registerSlider(
         const el = this.el; // The DOM element managed by GrapesJS for this component
         const model = this.model;
 
-        const imagesArray = model.get("images");
+        const imagesArray = model.get("images") || model.get("imageList");
         const direction = model.get("direction") === "right";
         const speed = parseInt(model.get("speed"), 10) || 100;
+        model.set("imageList", imagesArray);
 
         if (!this.root) {
           this.root = ReactDOM.createRoot(el);
         }
-
         mountInfiniteSlides(this.root, {
           speed,
           images: imagesArray,
@@ -100,7 +100,7 @@ export function registerSlider(
         // Listen to changes in specific traits (autoplay, interval)
         this.listenTo(
           this.model,
-          "change:speed change:direction change:images",
+          "change:speed change:direction change:imageList change:images",
           this.renderReactSlider,
         );
 
