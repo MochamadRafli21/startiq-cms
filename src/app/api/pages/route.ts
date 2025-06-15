@@ -76,6 +76,9 @@ export async function GET(req: Request) {
 }
 
 export async function POST(req: Request) {
+  const { error } = await requireSession();
+  if (error) return new Response("Unauthorized", { status: 401 });
+
   const body = await req.json();
   const [{ id }] = await db
     .insert(pages)
