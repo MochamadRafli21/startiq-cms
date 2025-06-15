@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState, useEffect, useRef } from "react";
 import Image from "next/image";
 
 export type SlideProps = {
@@ -12,7 +12,26 @@ export function InfiniteSlides({
   speed = 30,
   direction = "right",
 }: SlideProps) {
-  const duplicatedImages = [...(images || []), ...(images || [])];
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [repeatCount, setRepeatCount] = useState(2); // Initial duplication
+
+  // Compute how many times to duplicate to fill width
+  useEffect(() => {
+    if (!containerRef.current || images?.length === 0) {
+      setRepeatCount(2);
+      return;
+    }
+    const containerWidth = containerRef.current.offsetWidth;
+    const imageWidth = 150 + 32; // width + margin (mx-4 = 16px each side)
+    const minCount = Math.ceil(
+      containerWidth / (imageWidth * (images?.length || 0)),
+    );
+    setRepeatCount(minCount + 1); // +1 to avoid edge cutoff
+  }, [images]);
+
+  const duplicatedImages = useMemo(() => {
+    return Array(repeatCount).fill(images).flat();
+  }, [images, repeatCount, containerRef]);
 
   // Compute animation duration based on item count and speed
   const animationDuration = useMemo(() => {
@@ -21,7 +40,10 @@ export function InfiniteSlides({
   }, [duplicatedImages.length, speed]);
 
   return (
-    <div className="relative w-full overflow-hidden bg-white shadow-lg rounded-xl">
+    <div
+      ref={containerRef}
+      className="relative w-full overflow-hidden shadow-lg"
+    >
       <div
         className={`
           flex items-center whitespace-nowrap 
@@ -37,15 +59,15 @@ export function InfiniteSlides({
         {duplicatedImages.map((src, index) => (
           <div
             key={index}
-            className="inline-block mx-4 p-2 bg-gray-50 rounded-lg shadow-sm flex-shrink-0"
+            className="relative inline-flex items-center justify-center mx-4 p-2 rounded-lg shadow-sm flex-shrink-0"
             style={{ width: "150px", height: "80px" }}
             aria-hidden={index >= (images || []).length ? "true" : "false"}
           >
             <Image
-              fill
               src={src}
+              fill
               alt={`Partner logo ${index + 1}`}
-              className="w-full h-full object-contain rounded-md"
+              className="max-h-full max-w-full object-scale-down"
               onError={(e) => {
                 e.currentTarget.src = `https://placehold.co/150x80/CCCCCC/666666?text=Error`;
               }}

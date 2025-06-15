@@ -106,6 +106,7 @@ export function registerImagesSelector(editor: Editor) {
 
             // This still triggers onUpdate, so the UI will refresh
             currentComponent.set("images", newImages);
+            currentComponent.set("imageList", newImages);
 
             // If you implemented undo, you'd call it like:
             // (currentTrait as any).handleUndoLogic(currentComponent, prevImages, removedImage, indexToRemove);
@@ -131,6 +132,7 @@ export function registerImagesSelector(editor: Editor) {
         images.splice(indexToRemove, 1); // Remove the image at the given index
         // Crucially, set a new array to trigger GrapesJS reactivity
         component.set("images", [...images]);
+        component.set("imageList", [...images]);
       }
     },
 
@@ -172,8 +174,8 @@ export function registerImagesSelector(editor: Editor) {
           }
 
           if (complete && selectedAssets.length > 0) {
-            const prev = selected.get("images");
-            selected.set("images", [...selectedAssets, ...prev]);
+            selected.set("images", []);
+            selected.set("images", selectedAssets);
           }
         },
       });

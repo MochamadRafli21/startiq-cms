@@ -160,8 +160,8 @@ export const initEditor = async ({
   });
 
   const defaultView = editor.Components.getType("default").view;
-  customPlugins.forEach((plugin) => plugin(editor, defaultView));
   customTraitPlugins.forEach((plugin) => plugin(editor));
+  customPlugins.forEach((plugin) => plugin(editor, defaultView));
 
   onInit(editor);
 };
