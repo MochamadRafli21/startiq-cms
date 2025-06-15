@@ -27,7 +27,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { toast } from "sonner";
-import { Ellipsis, PenSquare, Trash } from "lucide-react";
+import { Ellipsis, PenSquare, Trash, Copy } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
@@ -55,6 +55,23 @@ export default function TemplatesTable() {
     };
     loadTemplates();
   }, [search, page, refetchTrigger]);
+
+  const handleDuplicate = async (id?: number) => {
+    if (!id) return;
+
+    const res = await fetch(`/api/templates/${id}/duplicate`, {
+      method: "POST",
+    });
+
+    const { id: newId } = await res.json();
+
+    if (res.ok && newId) {
+      toast.success("Success on Duplicating template");
+      router.push(`/templates/${newId}/edit`);
+    } else {
+      toast.error("Failed on Duplicating template");
+    }
+  };
 
   const handleDelete = async (id?: number) => {
     if (!id) return;
@@ -129,6 +146,12 @@ export default function TemplatesTable() {
                           <Ellipsis size={18} />
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end" className="w-48">
+                          <DropdownMenuItem
+                            onClick={() => handleDuplicate(template.id)}
+                          >
+                            <Copy color="yellow" />
+                            Duplicate
+                          </DropdownMenuItem>
                           <DialogTrigger asChild>
                             <DropdownMenuItem>
                               <Trash color="red" size={18} />

@@ -28,7 +28,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { CreatePageModal } from "./create-page-modal";
 import { toast } from "sonner";
-import { Ellipsis, Eye, PenSquare, Trash, Upload } from "lucide-react";
+import { Copy, Ellipsis, Eye, PenSquare, Trash, Upload } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -103,6 +103,22 @@ export default function PagesTable() {
       toast.success("Success on Publishing page");
     } else {
       toast.error("Failed on Publishing page");
+    }
+  };
+
+  const handleDuplicate = async (id?: number) => {
+    if (!id) return;
+
+    const res = await fetch(`/api/pages/${id}/duplicate`, {
+      method: "POST",
+    });
+
+    const { id: newId } = await res.json();
+    if (res.ok && newId) {
+      toast.success("Success on Duplicating page");
+      router.push(`/pages/${newId}/edit`);
+    } else {
+      toast.error("Failed on Duplicating page");
     }
   };
 
@@ -230,6 +246,12 @@ export default function PagesTable() {
                               Publish
                             </DropdownMenuItem>
                           )}
+                          <DropdownMenuItem
+                            onClick={() => handleDuplicate(page.id)}
+                          >
+                            <Copy color="yellow" />
+                            Duplicate
+                          </DropdownMenuItem>
                           <DialogTrigger asChild>
                             <DropdownMenuItem>
                               <Trash color="red" />
