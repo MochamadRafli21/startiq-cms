@@ -2,9 +2,12 @@ import { NextResponse } from "next/server";
 import { db } from "@/db/client";
 import { forms } from "@/db/schema";
 import { asc } from "drizzle-orm";
+import { requireSession } from "@/lib/guard";
 
 export async function GET() {
   try {
+    const { error } = await requireSession();
+    if (error) return new Response("Unauthorized", { status: 401 });
     const names = await db
       .selectDistinct({ name: forms.name })
       .from(forms)
