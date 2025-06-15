@@ -1,10 +1,14 @@
 import { db } from "@/db/client";
 import { pages } from "@/db/schema";
 import { like, count, eq, and, sql, or } from "drizzle-orm";
+import { requireSession } from "@/lib/guard";
 
 export const dynamic = "force-dynamic";
 
 export async function GET(req: Request) {
+  const { error } = await requireSession();
+  if (error) return new Response("Unauthorized", { status: 401 });
+
   const { searchParams } = new URL(req.url);
   const search = searchParams.get("search") ?? "";
   const page = parseInt(searchParams.get("page") ?? "1");
