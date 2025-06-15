@@ -2,8 +2,12 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/db/client";
 import { forms } from "@/db/schema";
 import { like, sql, count, and } from "drizzle-orm";
+import { requireSession } from "@/lib/guard";
 
 export async function GET(req: NextRequest) {
+  const { error } = await requireSession();
+  if (error) return new Response("Unauthorized", { status: 401 });
+
   const { searchParams } = new URL(req.url);
   const formName = searchParams.get("name");
   const page = parseInt(searchParams.get("page") ?? "1");

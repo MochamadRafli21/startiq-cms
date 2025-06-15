@@ -2,10 +2,14 @@ import { db } from "@/db/client";
 import { pages } from "@/db/schema";
 import { and, eq, ne } from "drizzle-orm";
 import { NextResponse } from "next/server";
+import { requireSession } from "@/lib/guard";
 
 const reservedSlugs = ["admin", "login"];
 
 export async function POST(req: Request) {
+  const { error } = await requireSession();
+  if (error) return new Response("Unauthorized", { status: 401 });
+
   const { slug, pageId } = await req.json();
 
   if (!slug || typeof slug !== "string") {
