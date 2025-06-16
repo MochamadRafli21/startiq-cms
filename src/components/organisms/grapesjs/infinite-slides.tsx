@@ -40,10 +40,7 @@ export function InfiniteSlides({
   }, [duplicatedImages.length, speed]);
 
   return (
-    <div
-      ref={containerRef}
-      className="relative w-full overflow-hidden shadow-lg"
-    >
+    <div ref={containerRef} className="relative w-full overflow-hidden ">
       <div
         className={`
           flex items-center whitespace-nowrap 
@@ -59,7 +56,7 @@ export function InfiniteSlides({
         {duplicatedImages.map((src, index) => (
           <div
             key={index}
-            className="relative inline-flex items-center justify-center mx-4 p-2 rounded-lg shadow-sm flex-shrink-0"
+            className="relative inline-flex items-center justify-center mx-4 p-2 rounded-lg  flex-shrink-0"
             style={{ width: "150px", height: "80px" }}
             aria-hidden={index >= (images || []).length ? "true" : "false"}
           >
