@@ -150,8 +150,9 @@
     color: #333333 !important;
   }
 
+  .gjs-pn-views,
   .gjs-pn-views-container {
-    min-width: 170px;
+    min-width: 160px;
   }
 
   .gjs-one-bg {
@@ -403,5 +404,6 @@
 
 .sp-container {
   top: 100px !important;
-  left: 0 !important;
+  left: auto !important;
+  right: 200px !important;
 }

@@ -52,9 +52,6 @@ export default function PageEditor({
           };
 
           editor.on("update", handleUpdate);
-
-          // editor.destroy();
-          // editorRef.current = null;
         },
         isPreview,
       });
@@ -62,10 +59,47 @@ export default function PageEditor({
   }, [content, isPreview]);
 
   useEffect(() => {
-    if (content) {
+    if (content && isPreview) {
       renderAllComponents(content);
     }
   }, [renderedHtml, content]);
+
+  useEffect(() => {
+    if (editorRef.current && !isPreview) {
+      const interval = setInterval(() => {
+        // Wait until iframe is mounted and accessible
+        const iframe = document.querySelector(
+          "iframe.gjs-frame",
+        ) as HTMLIFrameElement;
+        if (iframe && iframe.contentDocument?.head) {
+          // Inject Tailwind CSS
+          const link = document.createElement("link");
+          link.rel = "stylesheet";
+          link.href =
+            "https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css";
+
+          // Inject Custom Animation
+          const style = document.createElement("style");
+          style.textContent = `
+          @keyframes scroll-left {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+          }
+          .animate-scroll-left {
+            animation: scroll-left 10s linear infinite;
+          }
+        `;
+
+          const head = iframe.contentDocument.head;
+          head.appendChild(link);
+          head.appendChild(style);
+
+          clearInterval(interval); // Stop polling
+        }
+      }, 100);
+      return () => clearInterval(interval);
+    }
+  }, [editorRef.current]);
 
   if (isPreview) {
     return (
@@ -77,7 +111,7 @@ export default function PageEditor({
     );
   } else {
     return (
-      <div className="overflow-hidden min-h-screen w-full flex flex-col">
+      <div className="relative overflow-hidden min-h-screen w-full flex flex-col">
         <div ref={containerRef} className="grow relative" />
       </div>
     );

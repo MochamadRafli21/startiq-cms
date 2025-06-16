@@ -105,19 +105,24 @@ export const initEditor = async ({
     },
   });
 
-  editorRef.current = editor;
   const domComponents = editor.DomComponents;
   if (!domComponents) return;
 
-  editor.on("load", () => {
+  editor.on("canvas:ready", () => {
+    console.log("test");
     const iframe = editor.Canvas.getFrameEl();
     const head = iframe.contentDocument?.head;
-    const link = document.createElement("link");
+    const doc = editor.Canvas.getDocument();
+    const link = doc.createElement("link");
     link.rel = "stylesheet";
     link.href =
       "https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css";
 
     const animationCSS = `
+          @keyframes scroll-rafli {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+          }
           @keyframes scroll-left {
             0% { transform: translateX(0%); }
             100% { transform: translateX(-50%); }
@@ -134,7 +139,7 @@ export const initEditor = async ({
           }
         `;
     if (head) {
-      const styleEl = document.createElement("style");
+      const styleEl = doc.createElement("style");
       styleEl.innerHTML = animationCSS;
       head.appendChild(styleEl);
       head.appendChild(link);
@@ -159,6 +164,7 @@ export const initEditor = async ({
       );
   });
 
+  editorRef.current = editor;
   const defaultView = editor.Components.getType("default").view;
   customTraitPlugins.forEach((plugin) => plugin(editor));
   customPlugins.forEach((plugin) => plugin(editor, defaultView));
