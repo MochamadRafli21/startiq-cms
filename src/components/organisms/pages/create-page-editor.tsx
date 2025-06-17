@@ -108,6 +108,7 @@ export default function CreatePageEditor() {
         title: pageData.title,
         slug: pageData.slug,
         tags: pageData.tags,
+        category: pageData.category,
         isPublic: pageData.isPublic,
         content: pageData.content,
         metaTitle: pageData.metaTitle,

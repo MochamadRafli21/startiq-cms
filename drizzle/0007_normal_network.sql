@@ -1,0 +1,1 @@
+ALTER TABLE `pages` ADD `category` json DEFAULT ('[]') NOT NULL;

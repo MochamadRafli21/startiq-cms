@@ -50,6 +50,13 @@
       "when": 1749785760683,
       "tag": "0006_charming_lyja",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "5",
+      "when": 1750128687514,
+      "tag": "0007_normal_network",
+      "breakpoints": true
     }
   ]
 }

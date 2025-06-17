@@ -5,6 +5,7 @@ export interface Page {
   title?: string;
   slug?: string;
   tags?: string[];
+  category?: string[];
   content?: ProjectData;
   metaTitle?: string;
   metaDescription?: string;
