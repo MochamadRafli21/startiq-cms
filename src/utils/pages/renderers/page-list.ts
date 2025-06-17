@@ -13,7 +13,7 @@ export const renderPageList = (content: ProjectData) => {
     const urlParams = new URLSearchParams(window.location.search);
     let currentPage = parseInt(urlParams.get("page") || "1", 10);
     let searchQuery = urlParams.get("search") || "";
-    let categoryQuery = urlParams.get("category") || "";
+    const categoryQuery = urlParams.get("category") || "";
     let totalPages = 1;
 
     const pageContainer = container.querySelector(".page-list-container");
