@@ -81,14 +81,21 @@ export default function PageEditor({
           // Inject Custom Animation
           const style = document.createElement("style");
           style.textContent = `
-          @keyframes scroll-left {
-            0% { transform: translateX(0%); }
-            100% { transform: translateX(-50%); }
-          }
-          .animate-scroll-left {
-            animation: scroll-left 10s linear infinite;
-          }
-        `;
+            @keyframes scroll-left {
+              0% { transform: translateX(0%); }
+              100% { transform: translateX(-50%); }
+            }
+            @keyframes scroll-right {
+              0% { transform: translateX(0%); }
+              100% { transform: translateX(50%); }
+            }
+            .animate-scroll-left {
+              animation-name: scroll-left;
+            }
+            .animate-scroll-right {
+              animation-name: scroll-right;
+            }
+          `;
 
           const head = iframe.contentDocument.head;
           head.appendChild(link);
