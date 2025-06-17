@@ -176,6 +176,12 @@
     border-color: var(--gjs-primary-color);
   }
 
+  .gjs-btn-prim {
+    background-color: var(--gjs-primary-color);
+    color: var(--gjs-text-color); /* Text on button */
+    border-color: var(--gjs-primary-color);
+  }
+
   .gjs-btn:hover {
     background-color: var(--gjs-hover-color);
   }
@@ -406,4 +412,9 @@
   top: 100px !important;
   left: auto !important;
   right: 200px !important;
+}
+
+.gjs-radio-items {
+  display: flex;
+  flex-wrap: wrap;
 }
