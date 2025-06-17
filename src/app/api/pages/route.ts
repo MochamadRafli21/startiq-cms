@@ -86,6 +86,7 @@ export async function POST(req: Request) {
       title: body.title,
       slug: body.slug,
       tags: body.tags,
+      category: body.category,
       isPublic: body.isPublic,
       content: body.content,
       metaImage: body.metaImage,

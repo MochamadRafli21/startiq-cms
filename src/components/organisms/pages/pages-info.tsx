@@ -22,12 +22,15 @@ export default function PageInfo({ page, onChange }: PageEditorProps) {
   const [isPublic, setIsPublic] = useState(page?.isPublic || false);
   const [newTag, setNewTag] = useState("");
   const [tags, setTags] = useState(page?.tags || []);
+  const [newCategory, setNewCategory] = useState("");
+  const [category, setCategory] = useState(page?.category || []);
   const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
     if (!isInitialized && page) {
       setTitle(page.title || "");
       setSlug(page.slug || "");
+      setCategory(page.category || []);
       setIsPublic(page.isPublic || false);
       setTags(page.tags || []);
       setIsInitialized(true);
@@ -41,6 +44,7 @@ export default function PageInfo({ page, onChange }: PageEditorProps) {
         ...page,
         title,
         slug,
+        category,
         tags,
         isPublic,
       });
@@ -51,6 +55,12 @@ export default function PageInfo({ page, onChange }: PageEditorProps) {
     if (!value) return;
     const newTags = Array.from(new Set([...tags, value]));
     setTags(newTags);
+  };
+
+  const handleCategoryPush = (value: string) => {
+    if (!value) return;
+    const newCategory = Array.from(new Set([...category, value]));
+    setCategory(newCategory);
   };
 
   const handleTitleChange = (value: string) => {
@@ -143,9 +153,8 @@ export default function PageInfo({ page, onChange }: PageEditorProps) {
               handleTagsPush(newTag);
               setNewTag("");
             }}
-            variant="secondary"
           >
-            Add New Tag
+            Add
           </Button>
         </div>
         <div className="flex flex-wrap gap-1 mt-2">
@@ -158,6 +167,49 @@ export default function PageInfo({ page, onChange }: PageEditorProps) {
                   size="icon"
                   onClick={() => {
                     setTags(tags.filter((oldTag) => oldTag !== tag));
+                  }}
+                >
+                  <X />
+                </Button>
+              </Badge>
+            );
+          })}
+        </div>
+      </div>
+
+      <div>
+        <Label htmlFor="category" className="text-xs pb-2">
+          Category
+        </Label>
+        <div className="flex gap-1 justify-between items-center">
+          <Input
+            required
+            id="category"
+            value={newCategory}
+            onChange={(e) => setNewCategory(e.target.value)}
+            placeholder="Books"
+          />
+          <Button
+            onClick={() => {
+              handleCategoryPush(newCategory);
+              setNewCategory("");
+            }}
+          >
+            Add
+          </Button>
+        </div>
+        <div className="flex flex-wrap gap-1 mt-2">
+          {category.map((cat) => {
+            return (
+              <Badge variant="outline" key={cat}>
+                {cat}
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => {
+                    setCategory(
+                      category.filter((oldCategory) => oldCategory !== cat),
+                    );
                   }}
                 >
                   <X />

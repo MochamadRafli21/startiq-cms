@@ -31,6 +31,9 @@ export async function PUT(
   req: Request,
   { params }: { params: Promise<{ id: string }> },
 ) {
+  const { error } = await requireSession();
+  if (error) return new Response("Unauthorized", { status: 401 });
+
   const { id } = await params;
   const body = await req.json();
 
@@ -40,6 +43,7 @@ export async function PUT(
       title: body.title,
       slug: body.slug,
       tags: body.tags,
+      category: body.category,
       isPublic: body.isPublic,
       content: body.content,
       metaImage: body.metaImage,
@@ -62,6 +66,9 @@ export async function DELETE(
   _req: Request,
   { params }: { params: Promise<{ id: string }> },
 ) {
+  const { error } = await requireSession();
+  if (error) return new Response("Unauthorized", { status: 401 });
+
   const { id } = await params;
 
   await db.delete(pages).where(eq(pages.id, Number(id)));
