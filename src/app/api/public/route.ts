@@ -11,6 +11,8 @@ export async function GET(req: Request) {
   const limit = parseInt(searchParams.get("limit") ?? "10");
   const offset = (page - 1) * limit;
 
+  const whereConditions = [];
+
   const tagFilter = searchParams.get("tags");
   const tags = tagFilter
     ? tagFilter
@@ -19,7 +21,32 @@ export async function GET(req: Request) {
         .filter(Boolean)
     : [];
 
-  const whereConditions = [];
+  if (tags.length > 0) {
+    // Build MySQL JSON_CONTAINS expression for each tag
+    const tagConditions = tags.map(
+      (tag) => sql`JSON_CONTAINS(${pages.tags}, JSON_QUOTE(${tag}))`,
+    );
+    // Add all tag filters using AND (i.e. must match all tags)
+    whereConditions.push(or(...tagConditions));
+  }
+
+  const categoryFilter = searchParams.get("category");
+  const category = categoryFilter
+    ? categoryFilter
+        .split(",")
+        .map((c) => c.trim())
+        .filter(Boolean)
+    : [];
+
+  if (category.length > 0) {
+    // Build MySQL JSON_CONTAINS expression for each tag
+    const categoryConditions = category.map(
+      (cat) => sql`JSON_CONTAINS(${pages.category}, JSON_QUOTE(${cat}))`,
+    );
+    // Add all tag filters using AND (i.e. must match all tags)
+    whereConditions.push(or(...categoryConditions));
+  }
+
   if (search) {
     const searchLower = search.toLowerCase();
     whereConditions.push(
@@ -28,15 +55,6 @@ export async function GET(req: Request) {
         like(sql`LOWER(${pages.metaTitle})`, `%${searchLower}%`),
       ),
     );
-  }
-
-  if (tags.length > 0) {
-    // Build MySQL JSON_CONTAINS expression for each tag
-    const tagConditions = tags.map(
-      (tag) => sql`JSON_CONTAINS(${pages.tags}, JSON_QUOTE(${tag}))`,
-    );
-    // Add all tag filters using AND (i.e. must match all tags)
-    whereConditions.push(or(...tagConditions));
   }
 
   const whereClause =

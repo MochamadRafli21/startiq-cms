@@ -20,6 +20,7 @@ export const pages = mysqlTable("pages", {
   title: varchar("title", { length: 255 }).notNull(),
   slug: varchar("slug", { length: 255 }).notNull().unique(),
   tags: json("tags").default([]).notNull(),
+  category: json("category").default([]).notNull(),
   metaTitle: varchar("meta_title", { length: 255 }),
   metaDescription: varchar("meta_description", { length: 500 }),
   metaImage: varchar("meta_image", { length: 500 }),
