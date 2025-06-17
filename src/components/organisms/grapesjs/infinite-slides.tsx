@@ -13,7 +13,41 @@ export function InfiniteSlides({
   direction = "right",
 }: SlideProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const innerRef = useRef<HTMLDivElement>(null);
+
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
   const [repeatCount, setRepeatCount] = useState(2); // Initial duplication
+  const [isDragging, setIsDragging] = useState(false); // Initial duplication
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    setIsDragging(true);
+    setStartX(e.pageX - (containerRef.current?.offsetLeft || 0));
+    setScrollLeft(containerRef.current?.scrollLeft || 0);
+  };
+
+  const handleMouseMove = (e: MouseEvent) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - (containerRef.current?.offsetLeft || 0);
+    const walk = (x - startX) * 1; // multiply to control scroll speed
+    if (containerRef.current) {
+      containerRef.current.scrollLeft = scrollLeft - walk;
+    }
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  useEffect(() => {
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseup", handleMouseUp);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseup", handleMouseUp);
+    };
+  });
 
   // Compute how many times to duplicate to fill width
   useEffect(() => {
@@ -40,10 +74,16 @@ export function InfiniteSlides({
   }, [duplicatedImages.length, speed]);
 
   return (
-    <div ref={containerRef} className="relative w-full overflow-hidden ">
+    <div
+      ref={containerRef}
+      className="relative w-full overflow-hidden"
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
+    >
       <div
+        ref={innerRef}
         className={`
-          flex items-center whitespace-nowrap 
+          flex items-center whitespace-nowrap pointer-events-none 
           ${direction === "left" ? "animate-scroll-left" : "animate-scroll-right"}
           hover:[animation-play-state:paused]
         `}
@@ -56,7 +96,7 @@ export function InfiniteSlides({
         {duplicatedImages.map((src, index) => (
           <div
             key={index}
-            className="relative inline-flex items-center justify-center mx-4 p-2 rounded-lg  flex-shrink-0"
+            className="relative inline-flex items-center justify-center mx-4 p-2 rounded-lg  flex-shrink-0 pointer-events-none"
             style={{ width: "150px", height: "80px" }}
             aria-hidden={index >= (images || []).length ? "true" : "false"}
           >
@@ -64,7 +104,7 @@ export function InfiniteSlides({
               src={src}
               fill
               alt={`Partner logo ${index + 1}`}
-              className="max-h-full max-w-full object-scale-down"
+              className="max-h-full max-w-full object-scale-down pointer-events-none"
               onError={(e) => {
                 e.currentTarget.src = `https://placehold.co/150x80/CCCCCC/666666?text=Error`;
               }}
