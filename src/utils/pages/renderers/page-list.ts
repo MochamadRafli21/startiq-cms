@@ -4,26 +4,35 @@ import type { Page } from "@/types/page.type";
 
 export const renderPageList = (content: ProjectData) => {
   const containers = document?.querySelectorAll('[data-gjs-type="page-list"]');
+
   if (!containers) return;
   containers.forEach((container) => {
     const id = container.id;
     const component = findComponentById(content?.pages[0].frames, id);
     if (!component) return;
+    const urlParams = new URLSearchParams(window.location.search);
+    let currentPage = parseInt(urlParams.get("page") || "1", 10);
+    let searchQuery = urlParams.get("search") || "";
+    let categoryQuery = urlParams.get("category") || "";
+    let totalPages = 1;
+
     const pageContainer = container.querySelector(".page-list-container");
     const paginationContainer = container.querySelector(".page-pagination");
     const searchInput = container.querySelector(
       ".page-search",
     ) as HTMLInputElement;
-    let currentPage = 1;
-    let totalPages = 1;
     const tags = component.tags as string;
-    let searchQuery = "";
     const showSearch = component.showSearch;
     const showPagination = component.showPagination;
+
     if (!showSearch && searchInput) {
       searchInput.style.display = "none";
     } else if (searchInput) {
       searchInput.style.display = "block";
+    }
+
+    if (searchInput && searchQuery) {
+      searchInput.value = searchQuery;
     }
 
     const renderPages = () => {
@@ -42,6 +51,10 @@ export const renderPageList = (content: ProjectData) => {
 
       if (tags) {
         query.set("tags", tags);
+      }
+
+      if (categoryQuery) {
+        query.set("category", categoryQuery);
       }
 
       fetch(`/api/public?${query.toString()}`)
@@ -103,7 +116,7 @@ export const renderPageList = (content: ProjectData) => {
                 const img = document.createElement("img");
                 img.src = page.metaImage;
                 img.alt = page.metaTitle || page.title || "";
-                img.className = "w-full h-48 object-cover rounded-md mb-4";
+                img.className = "w-full h-16 object-cover rounded-md mb-4";
                 card.appendChild(img);
               }
 
