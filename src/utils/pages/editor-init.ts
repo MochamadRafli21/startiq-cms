@@ -109,7 +109,6 @@ export const initEditor = async ({
   if (!domComponents) return;
 
   editor.on("canvas:ready", () => {
-    console.log("test");
     const iframe = editor.Canvas.getFrameEl();
     const head = iframe.contentDocument?.head;
     const doc = editor.Canvas.getDocument();

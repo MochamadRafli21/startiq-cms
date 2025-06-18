@@ -6,7 +6,6 @@ async function getPageData() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/public/*`, {
     cache: "no-store",
   });
-
   if (!res.ok) return null;
   return res.json();
 }
