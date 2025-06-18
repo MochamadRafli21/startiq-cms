@@ -109,7 +109,6 @@ export const initEditor = async ({
   if (!domComponents) return;
 
   editor.on("canvas:ready", () => {
-    console.log("test");
     const iframe = editor.Canvas.getFrameEl();
     const head = iframe.contentDocument?.head;
     const doc = editor.Canvas.getDocument();
@@ -119,7 +118,7 @@ export const initEditor = async ({
       "https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css";
 
     const animationCSS = `
-          @keyframes scroll-rafli {
+          @keyframes scroll-right {
             0% { transform: translateX(0%); }
             100% { transform: translateX(-50%); }
           }
@@ -136,6 +135,31 @@ export const initEditor = async ({
           }
           .animate-scroll-right {
             animation-name: scroll-right;
+          }
+
+          .carousel-track {
+            transition: transform 0.5s ease-in-out;
+            display: flex;
+            width: 100%;
+          }
+          
+          .carousel-slide {
+            flex: 0 0 100%;
+            backface-visibility: hidden;
+          }
+          
+          [data-animation="flip"] .carousel-track {
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+          }
+          
+          [data-animation="coverflow"] .carousel-slide {
+            transition: transform 0.5s ease;
+            transform-origin: center center;
+          }
+          
+          [data-animation="pan"] .carousel-track {
+            transition: transform 1s ease-in-out;
           }
         `;
     if (head) {

@@ -95,6 +95,35 @@ export default function PageEditor({
             .animate-scroll-right {
               animation-name: scroll-right;
             }
+
+            .carousel-track {
+              perspective: 1000px;
+              transform-style: preserve-3d;
+              transition: transform 0.5s ease-in-out;
+              display: flex;
+              width: 100%;
+            }
+            
+            .carousel-slide {
+              flex: 0 0 100%;
+              backface-visibility: hidden;
+              transform-style: preserve-3d;
+              transition: transform 0.6s ease;
+            }
+            
+            [data-animation="flip"] .carousel-track {
+              transition: transform 0.8s;
+              transform-style: preserve-3d;
+            }
+            
+            [data-animation="coverflow"] .carousel-slide {
+              transition: transform 0.5s ease;
+              transform-origin: center center;
+            }
+            
+            [data-animation="pan"] .carousel-track {
+              transition: transform 1s ease-in-out;
+            }
           `;
 
           const head = iframe.contentDocument.head;
