@@ -8,6 +8,15 @@ import {
   json,
 } from "drizzle-orm/mysql-core";
 
+export const domains = mysqlTable("domains", {
+  id: int("id").primaryKey().autoincrement(),
+  domain: varchar("domain", { length: 255 }).notNull().unique(),
+  defaultPageId: int("page_id"),
+  isPrimary: boolean("is_primary").default(false),
+  verified: boolean("verified").default(false),
+  verificationCode: varchar("verification_code", { length: 64 }),
+});
+
 export const users = mysqlTable("users", {
   id: int("id").primaryKey().autoincrement(),
   name: varchar("name", { length: 255 }),
