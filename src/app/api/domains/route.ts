@@ -51,8 +51,10 @@ export async function GET(req: Request) {
   }
 }
 
-const NGINX_AVAILABLE = process.env.NGINX_AVAILABLE;
-const NGINX_ENABLED = process.env.NGINX_ENABLED;
+const APACHE_AVAILABLE =
+  process.env.APACHE_AVAILABLE ?? "/etc/apache2/sites-available";
+const SERVER_PORT = process.env.SERVER_PORT ?? "3000";
+const SERVER_IP = process.env.SERVER_IP;
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
 
 const runCommand = (cmd: string) =>
@@ -64,7 +66,7 @@ const runCommand = (cmd: string) =>
   });
 
 export async function POST(req: Request) {
-  if (!NGINX_AVAILABLE || !NGINX_ENABLED)
+  if (!APACHE_AVAILABLE || !SERVER_IP)
     return new Response(
       JSON.stringify({ error: "Custom Domain Is Not Configure Yet" }),
       {
@@ -90,32 +92,29 @@ export async function POST(req: Request) {
 
   // Try to register (optional: wrap in try/catch and update status)
   try {
-    const configPath = path.join(NGINX_AVAILABLE, domain.domain);
-    const symlinkPath = path.join(NGINX_ENABLED, domain.domain);
+    const configPath = path.join(APACHE_AVAILABLE, domain.domain);
 
     const configContent = `
-      server {
-        listen 80;
-        server_name ${domain.domain};
+      <VirtualHost *:80>
+          ServerName ${domain.domain}
+          ServerAlias www.${domain.domain}
       
-        location / {
-          proxy_pass ${process.env.SERVER_IP};
-          proxy_http_version 1.1;
-          proxy_set_header Upgrade $http_upgrade;
-          proxy_set_header Connection 'upgrade';
-          proxy_set_header Host $host;
-          proxy_cache_bypass $http_upgrade;
-        }
-      }
-      `;
+          ProxyPreserveHost On
+          ProxyPass / http://localhost:${SERVER_PORT}/
+          ProxyPassReverse / http://localhost:${SERVER_PORT}/
+      
+          ErrorLog \${APACHE_LOG_DIR}/${domain.domain}_error.log
+          CustomLog \${APACHE_LOG_DIR}/${domain.domain}_access.log combined
+      </VirtualHost>
+    `;
 
     await fs.writeFile(configPath, configContent, { mode: 0o644 });
-    await runCommand(`ln -sfn ${configPath} ${symlinkPath}`);
+    await runCommand(`a2ensite ${domain.domain}.conf`);
+    await runCommand(`sudo systemctl reload apache2`);
+
     await runCommand(
-      `certbot --nginx -d ${domain.domain} --non-interactive --agree-tos -m ${ADMIN_EMAIL}`,
+      `certbot --apache -d ${domain.domain} -d www.${domain.domain} --non-interactive --agree-tos -m ${ADMIN_EMAIL}`,
     );
-    await runCommand(`nginx -t`);
-    await runCommand(`sudo systemctl reload nginx`);
 
     await db
       .update(domains)
