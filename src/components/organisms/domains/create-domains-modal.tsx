@@ -21,7 +21,7 @@ export function CreateDomainModal({
   children: React.ReactNode;
   onAfterSubmit?: () => void;
 }) {
-  const VPS_IP = process.env.SERVER_IP || "123.123.123.123"; // fallback for safety
+  const VPS_IP = process.env.NEXT_PUBLIC_IP || "123.123.123.123"; // fallback for safety
 
   const [open, setOpen] = useState(false);
   const [domain, setDomain] = useState("");
@@ -63,7 +63,7 @@ export function CreateDomainModal({
   };
 
   return (
-    <Dialog open={open}>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
