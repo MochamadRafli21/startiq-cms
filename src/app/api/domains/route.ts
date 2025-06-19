@@ -6,49 +6,54 @@ import fs from "fs/promises";
 import path from "path";
 
 export async function GET(req: Request) {
-  const { searchParams } = new URL(req.url);
-  const search = searchParams.get("search") ?? "";
-  const page = parseInt(searchParams.get("page") ?? "1");
-  const limit = parseInt(searchParams.get("limit") ?? "10");
-  const offset = (page - 1) * limit;
+  try {
+    const { searchParams } = new URL(req.url);
+    const search = searchParams.get("search") ?? "";
+    const page = parseInt(searchParams.get("page") ?? "1");
+    const limit = parseInt(searchParams.get("limit") ?? "10");
+    const offset = (page - 1) * limit;
 
-  const whereConditions = [];
+    const whereConditions = [];
 
-  if (search) {
-    const searchLower = search.toLowerCase();
-    whereConditions.push(
-      and(or(like(sql`LOWER(${domains.domain})`, `%${searchLower}%`))),
-    );
+    if (search) {
+      const searchLower = search.toLowerCase();
+      whereConditions.push(
+        and(or(like(sql`LOWER(${domains.domain})`, `%${searchLower}%`))),
+      );
+    }
+
+    const whereClause =
+      whereConditions.length > 0 ? and(...whereConditions) : undefined;
+
+    const [totalResult] = await db
+      .select({ count: count() })
+      .from(domains)
+      .where(whereClause);
+
+    const results = await db
+      .select({
+        id: domains.id,
+        domain: domains.domain,
+        verified: domains.verified,
+        defaultPageId: domains.defaultPageId,
+      })
+      .from(domains)
+      .where(whereClause)
+      .limit(limit)
+      .offset(offset);
+
+    return Response.json({
+      domains: results,
+      total: Number(totalResult.count),
+    });
+  } catch (error) {
+    console.error(error);
   }
-
-  const whereClause =
-    whereConditions.length > 0 ? and(...whereConditions) : undefined;
-
-  const [totalResult] = await db
-    .select({ count: count() })
-    .from(domains)
-    .where(whereClause);
-
-  const results = await db
-    .select({
-      id: domains.id,
-      domain: domains.domain,
-      verified: domains.verified,
-      defaultPageId: domains.defaultPageId,
-    })
-    .from(domains)
-    .where(whereClause)
-    .limit(limit)
-    .offset(offset);
-
-  return Response.json({
-    domains: results,
-    total: Number(totalResult.count),
-  });
 }
 
-const NGINX_AVAILABLE = "/etc/nginx/sites-available";
-const NGINX_ENABLED = "/etc/nginx/sites-enabled";
+const NGINX_AVAILABLE = process.env.NGINX_AVAILABLE;
+const NGINX_ENABLED = process.env.NGINX_ENABLED;
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
 
 const runCommand = (cmd: string) =>
   new Promise<void>((resolve, reject) => {
@@ -59,6 +64,14 @@ const runCommand = (cmd: string) =>
   });
 
 export async function POST(req: Request) {
+  if (!NGINX_AVAILABLE || !NGINX_ENABLED)
+    return new Response(
+      JSON.stringify({ error: "Custom Domain Is Not Configure Yet" }),
+      {
+        status: 400,
+      },
+    );
+
   const body = await req.json();
   const [{ id }] = await db
     .insert(domains)
@@ -86,7 +99,7 @@ export async function POST(req: Request) {
         server_name ${domain.domain};
       
         location / {
-          proxy_pass http://localhost:3000;
+          proxy_pass ${process.env.SERVER_IP};
           proxy_http_version 1.1;
           proxy_set_header Upgrade $http_upgrade;
           proxy_set_header Connection 'upgrade';
@@ -98,6 +111,9 @@ export async function POST(req: Request) {
 
     await fs.writeFile(configPath, configContent, { mode: 0o644 });
     await runCommand(`ln -sfn ${configPath} ${symlinkPath}`);
+    await runCommand(
+      `certbot --nginx -d ${domain.domain} --non-interactive --agree-tos -m ${ADMIN_EMAIL}`,
+    );
     await runCommand(`nginx -t`);
     await runCommand(`sudo systemctl reload nginx`);
 

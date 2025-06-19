@@ -21,8 +21,12 @@ export function CreateDomainModal({
   children: React.ReactNode;
   onAfterSubmit?: () => void;
 }) {
+  const VPS_IP = process.env.SERVER_IP || "123.123.123.123"; // fallback for safety
+
+  const [open, setOpen] = useState(false);
   const [domain, setDomain] = useState("");
   const [pageId, setPageId] = useState("");
+  const [isSubmitLoading, setIsSubmitLoading] = useState(false);
 
   const onSelectPage = (id: string) => {
     setPageId(id);
@@ -36,7 +40,7 @@ export function CreateDomainModal({
     if (!domain || !pageId) {
       toast.error("Please Fill ALl Required Fields");
     }
-
+    setIsSubmitLoading(true);
     const res = await fetch("/api/domains", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -49,23 +53,77 @@ export function CreateDomainModal({
     if (res.ok) {
       toast.success("Success Registering Domain");
       if (onAfterSubmit) {
+        setOpen(false);
         onAfterSubmit();
       }
     } else {
       toast.error("Failed Registering Domain");
     }
+    setIsSubmitLoading(false);
   };
 
   return (
-    <Dialog>
+    <Dialog open={open}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent>
         <DialogHeader>
-          <DialogTitle>Pick Template</DialogTitle>
+          <DialogTitle>Register New Domain</DialogTitle>
           <DialogDescription>
-            Select Your Template for new Domain
+            Registering New Domain for you pages
           </DialogDescription>
         </DialogHeader>
+        <div className="overflow-y-scroll max-h-48">
+          <p>
+            Update your DNS settings in your domain registrar (e.g. GoDaddy,
+            Namecheap) with the following:
+          </p>
+
+          <div className="mt-4">
+            <p className="font-semibold mb-1">Required A Record:</p>
+            <div className="overflow-auto">
+              <table className="w-full text-left text-sm border">
+                <thead className="bg-gray-100">
+                  <tr>
+                    <th className="p-2 border">Type</th>
+                    <th className="p-2 border">Name</th>
+                    <th className="p-2 border">Value</th>
+                    <th className="p-2 border">TTL</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className="p-2 border">A</td>
+                    <td className="p-2 border">@</td>
+                    <td className="p-2 border">{VPS_IP}</td>
+                    <td className="p-2 border">Auto</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p className="mt-4 font-semibold">Optional CNAME for www:</p>
+            <div className="overflow-auto">
+              <table className="w-full text-left text-sm border">
+                <thead className="bg-gray-100">
+                  <tr>
+                    <th className="p-2 border">Type</th>
+                    <th className="p-2 border">Name</th>
+                    <th className="p-2 border">Value</th>
+                    <th className="p-2 border">TTL</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className="p-2 border">CNAME</td>
+                    <td className="p-2 border">www</td>
+                    <td className="p-2 border">yourdomain.com</td>
+                    <td className="p-2 border">Auto</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
         <Label htmlFor="domain" className="text-xs pb-2">
           Domain
         </Label>
@@ -91,7 +149,9 @@ export function CreateDomainModal({
             value: page.id?.toString() as string,
           })}
         />
-        <Button onClick={handleSubmit}>Submit Domain</Button>
+        <Button disabled={isSubmitLoading} onClick={handleSubmit}>
+          Submit Domain
+        </Button>
       </DialogContent>
     </Dialog>
   );
