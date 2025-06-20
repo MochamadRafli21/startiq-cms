@@ -110,6 +110,11 @@ export default function PageEditor({
               transform-style: preserve-3d;
               transition: transform 0.6s ease;
             }
+
+            .carousel-zoom {
+                transition: transform 0.3s ease;
+                transform: scale(1.05) !important;
+            }
             
             [data-animation="flip"] .carousel-track {
               transition: transform 0.8s;
