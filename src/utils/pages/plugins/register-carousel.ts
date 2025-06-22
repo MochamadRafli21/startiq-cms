@@ -1,8 +1,8 @@
 import { Editor, Component } from "grapesjs";
-import React from "react";
 import ReactDOM from "react-dom/client";
 import { mountCarousel } from "./mount-components/mount-carousel";
 import { DefaultComponentViewType } from "@/types/grapesjs-extra.type";
+import { renderGrapesComponentToReact } from "@/utils/models";
 
 export function registerCarousel(
   editor: Editor,
@@ -125,11 +125,11 @@ export function registerCarousel(
         // Use `function` to ensure `this` context
         const el = this.el; // The DOM element managed by GrapesJS for this component
         const model = this.model;
-        // Array.from(el.childNodes).forEach((child) => {
-        //   if ((child as { id: string }).id !== "unique") {
-        //     el.removeChild(child);
-        //   }
-        // });
+        Array.from(el.childNodes).forEach((child) => {
+          if ((child as { id: string }).id !== "unique") {
+            el.removeChild(child);
+          }
+        });
         const autoplay = model.get("autoplay") === "true";
         const showIndicators = model.get("showIndicators") === "true";
         const showNavigation = model.get("showNavigation");
@@ -141,33 +141,8 @@ export function registerCarousel(
         // Map each GrapesJS component (slide) to a React element
         const childrenReactElements =
           model?.get("components")?.map((comp: Component, index: number) => {
-            const componentHtml = comp.toHTML(); // Get the HTML of the GrapesJS component
-            // Wrap the HTML in a React element using dangerouslySetInnerHTML
-            return React.createElement("div", {
-              key: comp.cid || `gjs-carousel-slide-${index}`, // Unique key for React list rendering
-              // You can pass GrapesJS classes if needed
-              "data-gjs-type": comp.get("type"), // Useful for debugging
-              dangerouslySetInnerHTML: { __html: componentHtml },
-            });
+            return renderGrapesComponentToReact(comp, index);
           }) || [];
-
-        // Initialize or update the React root
-        // if (!this.root) {
-        //   this.root = ReactDOM.createRoot(el);
-        // }
-        // this.root.render(
-        //   <Carousel
-        //     autoplay={autoplay}
-        //     interval={interval}
-        //     animation={animationType}
-        //     showIndicators={showIndicators}
-        //     navButtons={showNavigation}
-        //     pauseOnHover={pauseOnHover}
-        //     zoomOnHover={zoomOnHover}
-        //   >
-        //     {childrenReactElements}
-        //   </Carousel>,
-        // );
 
         if (!this.root) {
           this.root = ReactDOM.createRoot(el);
