@@ -122,9 +122,10 @@ export async function POST(req: Request) {
         verified: true,
       })
       .where(eq(domains.domain, domain.domain));
+
+    return Response.json(domain);
   } catch (err) {
     console.error("Register failed", err);
+    if (err) return new Response("Failed to register domain", { status: 400 });
   }
-
-  return Response.json(domain);
 }
