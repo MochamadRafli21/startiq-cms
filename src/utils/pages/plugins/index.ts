@@ -1,4 +1,5 @@
 import { registerCarousel } from "./register-carousel";
+import { registerCarouselJs } from "./register-carousel-js";
 import { registerSlider } from "./register-slider";
 import { registerLinkList } from "./register-link-list";
 import { registerPageList } from "./register-page-list";
@@ -10,6 +11,7 @@ import { registerCountUp } from "./register-count-up";
 
 export const customPlugins = [
   registerCarousel,
+  registerCarouselJs,
   registerSlider,
   registerCountUp,
   registerLinkList,
