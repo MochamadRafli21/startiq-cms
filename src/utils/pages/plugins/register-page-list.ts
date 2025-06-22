@@ -11,9 +11,21 @@ export function registerPageList(editor: Editor) {
           "data-gjs-type": "page-list",
           "data-show-search": false,
           "data-show-pagination": false,
+          "data-layout": "news",
           "data-tags": "",
         },
         traits: [
+          {
+            type: "select",
+            label: "Layout",
+            name: "layout",
+            options: [
+              { id: "news", label: "News" },
+              { id: "list", label: "List" },
+              { id: "grid", label: "grid" },
+            ],
+            changeProp: true,
+          },
           {
             type: "checkbox",
             label: "Show Search Input",
@@ -33,6 +45,7 @@ export function registerPageList(editor: Editor) {
             changeProp: true,
           },
         ],
+        layout: "news",
         showSearch: "false",
         showPagination: "false",
         tags: "",
@@ -47,6 +60,7 @@ export function registerPageList(editor: Editor) {
           const showPagination =
             this.getAttribute("data-show-pagination") === "true";
           const tags = this.getAttribute("data-tags");
+          const layout = this.getAttribute("data-layout");
 
           if (!showSearch && searchInput) {
             searchInput.style.display = "none";
@@ -60,7 +74,7 @@ export function registerPageList(editor: Editor) {
 
             const query = new URLSearchParams({
               page: currentPage.toString(),
-              limit: "5",
+              limit: layout === "grid" ? "6" : "3",
               tags,
             });
 
@@ -81,45 +95,49 @@ export function registerPageList(editor: Editor) {
                 totalPages = Math.ceil(body.total / 5);
 
                 const pages = body.pages;
-                const firstPage = pages[0];
+                if (layout === "list") {
+                  pages.forEach((page: Page) => {
+                    const card = document.createElement("div");
+                    card.className =
+                      "bg-white md:col-span-full rounded-lg shadow-md p-4 flex items-start justify-between my-4";
 
-                const firstCard = document.createElement("div");
-                firstCard.className =
-                  "md:col-span-2 bg-white rounded-lg shadow-md p-4";
-                if (firstPage.metaImage) {
-                  const img = document.createElement("img");
-                  img.src = firstPage.metaImage;
-                  img.alt = firstPage.metaTitle || firstPage.title || "";
-                  img.className = "w-full h-48 object-cover rounded-md mb-4";
-                  firstCard.appendChild(img);
-                }
-                const title = document.createElement("h3");
-                title.textContent =
-                  firstPage.metaTitle || firstPage.title || "";
-                title.className = "text-lg font-semibold mb-2";
-                firstCard.appendChild(title);
+                    const textSection = document.createElement("div");
 
-                const excerpt = document.createElement("p");
-                excerpt.textContent = firstPage.metaDescription || "";
-                excerpt.className = "text-sm text-gray-600";
-                firstCard.appendChild(excerpt);
+                    const title = document.createElement("h3");
+                    title.textContent = page.metaTitle || page.title || "";
+                    title.className = "text-lg font-semibold mb-2";
+                    textSection.appendChild(title);
 
-                if (firstPage.slug) {
-                  const btn = document.createElement("a");
-                  btn.href = `/${firstPage.slug}`;
-                  btn.textContent = "Read More";
-                  btn.className =
-                    "mt-2 inline-block text-sm font-semibold hover:underline font-medium rounded-full bg-yellow-400 px-2 py-1";
-                  firstCard.appendChild(btn);
-                }
+                    const excerpt = document.createElement("p");
+                    excerpt.textContent = page.metaDescription || "";
+                    excerpt.className =
+                      "text-sm text-gray-600 line-clamp-4 text-sm text-ellipsis";
+                    textSection.appendChild(excerpt);
 
-                container.appendChild(firstCard);
+                    if (page.slug) {
+                      const btn = document.createElement("a");
+                      btn.href = `/${page.slug}`;
+                      btn.textContent = "Read More";
+                      btn.className =
+                        "mt-2 inline-block text-sm font-semibold hover:underline font-medium rounded-full bg-yellow-400 px-2 py-1";
+                      textSection.appendChild(btn);
+                    }
 
-                if (pages.length > 1) {
-                  const secondCard = document.createElement("div");
-                  secondCard.className = "lg:col-span-1";
+                    card.appendChild(textSection);
 
-                  pages.slice(1).forEach((page: Page) => {
+                    if (page.metaImage) {
+                      const img = document.createElement("img");
+                      img.src = page.metaImage;
+                      img.alt = page.metaTitle || page.title || "";
+                      img.className =
+                        "w-full h-48 object-cover rounded-md mb-4";
+                      card.appendChild(img);
+                    }
+
+                    container.appendChild(card);
+                  });
+                } else if (layout === "grid") {
+                  pages.forEach((page: Page) => {
                     const card = document.createElement("div");
                     card.className = "bg-white rounded-lg shadow-md p-4";
 
@@ -139,7 +157,8 @@ export function registerPageList(editor: Editor) {
 
                     const excerpt = document.createElement("p");
                     excerpt.textContent = page.metaDescription || "";
-                    excerpt.className = "text-sm text-gray-600";
+                    excerpt.className =
+                      "text-sm text-gray-600 line-clamp-4 text-sm text-ellipsis";
                     card.appendChild(excerpt);
 
                     if (page.slug) {
@@ -151,10 +170,86 @@ export function registerPageList(editor: Editor) {
                       card.appendChild(btn);
                     }
 
-                    secondCard.appendChild(card);
+                    container.appendChild(card);
                   });
+                } else {
+                  const firstPage = pages[0];
 
-                  container.appendChild(secondCard);
+                  const firstCard = document.createElement("div");
+                  firstCard.className =
+                    "md:col-span-2 bg-white rounded-lg shadow-md p-4 h-full flex flex-col flex-grow";
+                  if (firstPage.metaImage) {
+                    const img = document.createElement("img");
+                    img.src = firstPage.metaImage;
+                    img.alt = firstPage.metaTitle || firstPage.title || "";
+                    img.className = "w-full h-64 object-cover rounded-md mb-4";
+                    firstCard.appendChild(img);
+                  }
+                  const title = document.createElement("h3");
+                  title.textContent =
+                    firstPage.metaTitle || firstPage.title || "";
+                  title.className = "text-lg font-semibold mb-2";
+                  firstCard.appendChild(title);
+
+                  const excerpt = document.createElement("p");
+                  excerpt.textContent = firstPage.metaDescription || "";
+                  excerpt.className =
+                    "text-sm text-gray-600 flex-grow text-ellipsis";
+                  firstCard.appendChild(excerpt);
+
+                  if (firstPage.slug) {
+                    const btn = document.createElement("a");
+                    btn.href = `/${firstPage.slug}`;
+                    btn.textContent = "Read More";
+                    btn.className =
+                      "mt-2 inline-block text-sm font-semibold hover:underline font-medium rounded-full bg-yellow-400 px-2 py-1 w-fit";
+                    firstCard.appendChild(btn);
+                  }
+
+                  container.appendChild(firstCard);
+
+                  if (pages.length > 1) {
+                    const secondCard = document.createElement("div");
+                    secondCard.className = "lg:col-span-1";
+
+                    pages.slice(1).forEach((page: Page) => {
+                      const card = document.createElement("div");
+                      card.className = "bg-white rounded-lg shadow-md p-4";
+
+                      if (page.metaImage) {
+                        const img = document.createElement("img");
+                        img.src = page.metaImage;
+                        img.alt = page.metaTitle || page.title || "";
+                        img.className =
+                          "w-full h-48 object-cover rounded-md mb-4";
+                        card.appendChild(img);
+                      }
+
+                      const title = document.createElement("h3");
+                      title.textContent = page.metaTitle || page.title || "";
+                      title.className = "text-lg font-semibold mb-2";
+                      card.appendChild(title);
+
+                      const excerpt = document.createElement("p");
+                      excerpt.textContent = page.metaDescription || "";
+                      excerpt.className =
+                        "text-sm text-gray-600 line-clamp-4 text-sm text-ellipsis";
+                      card.appendChild(excerpt);
+
+                      if (page.slug) {
+                        const btn = document.createElement("a");
+                        btn.href = `/${page.slug}`;
+                        btn.textContent = "Read More";
+                        btn.className =
+                          "mt-2 inline-block text-sm font-semibold hover:underline font-medium rounded-full bg-yellow-400 px-2 py-1 w-fit";
+                        card.appendChild(btn);
+                      }
+
+                      secondCard.appendChild(card);
+                    });
+
+                    container.appendChild(secondCard);
+                  }
                 }
 
                 // Only render pagination if enabled
@@ -194,24 +289,29 @@ export function registerPageList(editor: Editor) {
         },
       },
       init() {
-        this.on("change:showSearch change:showPagination", () => {
-          const showSearch = this.get("showSearch");
-          const showPagination = this.get("showPagination");
-          const tags = this.get("tags");
-          this.addAttributes({
-            "data-show-search": `${showSearch}`,
-            "data-show-pagination": `${showPagination}`,
-            "data-tags": `${tags}`,
-          });
+        this.on(
+          "change:showSearch change:showPagination change:tags change:layout",
+          () => {
+            const showSearch = this.get("showSearch");
+            const showPagination = this.get("showPagination");
+            const tags = this.get("tags");
+            const layout = this.get("layout");
+            this.addAttributes({
+              "data-show-search": `${showSearch}`,
+              "data-show-pagination": `${showPagination}`,
+              "data-layout": `${layout}`,
+              "data-tags": `${tags}`,
+            });
 
-          if (
-            this.attributes.script &&
-            typeof this.attributes.script === "function" &&
-            this.view?.el
-          ) {
-            this.attributes.script.call(this.view?.el);
-          }
-        });
+            if (
+              this.attributes.script &&
+              typeof this.attributes.script === "function" &&
+              this.view?.el
+            ) {
+              this.attributes.script.call(this.view?.el);
+            }
+          },
+        );
       },
     },
   });
