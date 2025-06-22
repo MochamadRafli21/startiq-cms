@@ -376,7 +376,7 @@ export function registerLinkList(editor: Editor) {
     label: "Link List",
     category: "Custom",
     content: `
-          <section data-gjs-type="link-list" class="w-full max-w-6xl mx-auto py-10 px-4">
+          <section data-gjs-type="link-list" class="w-full max-w-6xl mx-auto py-10 px-4 min-h-44">
             <div class="mb-4 flex justify-between items-center">
               <input type="text" placeholder="Search links..." class="link-search border px-3 py-1 rounded w-full max-w-xs" />
             </div>
