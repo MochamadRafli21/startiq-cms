@@ -6,6 +6,7 @@ import {
   boolean,
   timestamp,
   json,
+  longtext,
 } from "drizzle-orm/mysql-core";
 
 export const users = mysqlTable("users", {
@@ -27,6 +28,8 @@ export const pages = mysqlTable("pages", {
   iconImage: varchar("icon_image", { length: 500 }),
   isPublic: boolean("is_public").default(false).notNull(),
   content: json("content").notNull(),
+  contentHtml: longtext("html"),
+  contentCss: longtext("css"),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow().onUpdateNow(),
 });

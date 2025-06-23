@@ -452,3 +452,26 @@
 [data-animation="pan"] .carousel-track {
   transition: transform 1s ease-in-out;
 }
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+@keyframes scroll-right {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(50%);
+  }
+}
+.animate-scroll-left {
+  animation-name: scroll-left;
+}
+.animate-scroll-right {
+  animation-name: scroll-right;
+}

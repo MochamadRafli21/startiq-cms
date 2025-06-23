@@ -46,6 +46,8 @@ export async function PUT(
       category: body.category,
       isPublic: body.isPublic,
       content: body.content,
+      contentHtml: body.html,
+      contentCss: body.css,
       metaImage: body.metaImage,
       metaTitle: body.metaTitle,
       metaDescription: body.metaDescription,

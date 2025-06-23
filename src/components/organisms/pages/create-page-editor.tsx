@@ -27,6 +27,7 @@ import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 import { Page } from "@/types/page.type";
 import { Template } from "@/types/template.type";
+import { ProjectData } from "grapesjs";
 
 export default function CreatePageEditor() {
   const searchParams = useSearchParams();
@@ -111,6 +112,8 @@ export default function CreatePageEditor() {
         category: pageData.category,
         isPublic: pageData.isPublic,
         content: pageData.content,
+        html: pageData.html,
+        css: pageData.css,
         metaTitle: pageData.metaTitle,
         metaDescription: pageData.metaDescription,
         metaImage: pageData.metaImage,
@@ -128,9 +131,13 @@ export default function CreatePageEditor() {
     }
   };
 
-  const handleContentChange = (content: Record<string, object>) => {
+  const handleContentChange = (
+    content: ProjectData,
+    html: string,
+    css?: string,
+  ) => {
     setPageData((prev) => {
-      const updated = { ...prev, content };
+      const updated = { ...prev, content, html, css };
       handleInfoChange(updated);
       return updated;
     });
