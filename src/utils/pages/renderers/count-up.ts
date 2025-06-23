@@ -7,12 +7,9 @@ export const renderCountUp = (content: ProjectData) => {
   counts.forEach((count) => {
     const id = count.id;
     const component = findComponentById(content?.pages[0].frames, id);
-    const duration = (component?.duration ||
-      component?.attributes?.duration ||
-      2000) as number;
-    const endValue = (component?.endValue ||
-      component?.attributes?.duration ||
-      2000) as number;
+    const duration = (component?.duration || 2000) as number;
+    const endValue = (component?.endValue || 2000) as number;
+
     const animateCount = () => {
       const startTime = performance.now();
 
