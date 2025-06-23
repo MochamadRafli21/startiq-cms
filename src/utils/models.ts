@@ -53,8 +53,6 @@ export function renderGrapesComponentToReact(
     "data-gjs-type": comp.get("type"),
   };
 
-  console.log(comp);
-
   if (VOID_TAGS.has(tagName)) {
     return React.createElement(tagName, combinedProps);
   }

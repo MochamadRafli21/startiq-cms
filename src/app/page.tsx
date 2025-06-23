@@ -1,15 +1,19 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import PublicPageClient from "@/components/organisms/pages/pages-public";
+import { cache } from "react";
+import dynamic from "next/dynamic";
+const PageRenderer = dynamic(
+  () => import("@/components/organisms/pages/page-renderer"),
+);
 
-async function getPageData() {
+const getPageData = cache(async () => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/public/*`, {
     cache: "no-store",
   });
 
   if (!res.ok) return null;
   return res.json();
-}
+});
 
 export async function generateMetadata(): Promise<Metadata> {
   const pageData = await getPageData();
@@ -38,5 +42,11 @@ export default async function Page() {
   const pageData = await getPageData();
   if (!pageData) return notFound();
 
-  return <PublicPageClient pageData={pageData} />;
+  return (
+    <PageRenderer
+      content={pageData.content}
+      html={pageData.contentHtml}
+      css={pageData.contentCss}
+    />
+  );
 }
