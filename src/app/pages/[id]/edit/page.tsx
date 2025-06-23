@@ -23,6 +23,7 @@ import { useParams } from "next/navigation";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { ConfirmationModal } from "@/components/molecule/confirmation-modal";
+import { ProjectData } from "grapesjs";
 
 const PageEditor = dynamic(
   () => import("@/components/organisms/pages/pages-editor"),
@@ -97,7 +98,6 @@ export default function EditPage() {
 
       return;
     }
-
     const res = await fetch(`/api/pages/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -116,9 +116,13 @@ export default function EditPage() {
 
   if (!pageData) return <LoadingPage isLoading={!pageData} />;
 
-  const handleContentChange = (content: Record<string, object>) => {
+  const handleContentChange = (
+    content: ProjectData,
+    html: string,
+    css?: string,
+  ) => {
     setPageData((prev: Page | null) => {
-      const updated = { ...prev, content };
+      const updated = { ...prev, content, html, css };
       handleInfoChange(updated);
       return updated;
     });
