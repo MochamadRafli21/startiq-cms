@@ -27,7 +27,7 @@ export async function GET(req: Request) {
       (tag) => sql`JSON_CONTAINS(${pages.tags}, JSON_QUOTE(${tag}))`,
     );
     // Add all tag filters using AND (i.e. must match all tags)
-    whereConditions.push(or(...tagConditions));
+    whereConditions.push(and(...tagConditions));
   }
 
   const categoryFilter = searchParams.get("category");
