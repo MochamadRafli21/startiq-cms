@@ -10,12 +10,12 @@ export const renderCountUp = (content: ProjectData) => {
     const duration = (component?.duration || 2000) as number;
     const endValue = (component?.endValue || 2000) as number;
 
-    const animateCount = () => {
+    const animateCount = (value: number) => {
       const startTime = performance.now();
 
       const step = (timestamp: number) => {
         const progress = Math.min((timestamp - startTime) / duration, 1);
-        const current = Math.floor(progress * endValue);
+        const current = Math.floor(progress * value);
         count.innerHTML = current.toLocaleString();
         if (progress < 1) requestAnimationFrame(step);
       };
@@ -27,7 +27,7 @@ export const renderCountUp = (content: ProjectData) => {
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          animateCount();
+          animateCount(endValue);
           observer.disconnect();
         }
       },
