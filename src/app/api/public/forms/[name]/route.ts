@@ -9,8 +9,18 @@ export async function POST(
 ) {
   const { name } = await params;
 
+  const allowedNamePattern = /^[a-zA-Z0-9_-]+$/;
+
+  if (!allowedNamePattern.test(name)) {
+    return new Response("Invalid form name", { status: 400 });
+  }
+
   const data: Record<string, string> = {};
   const formData = await req.formData();
+
+  if (formData.keys.length > 50) {
+    return new Response("Too much data", { status: 413 });
+  }
 
   formData.forEach((value, key) => {
     data[key] = value.toString();
