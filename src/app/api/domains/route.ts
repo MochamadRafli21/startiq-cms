@@ -4,8 +4,12 @@ import { domains } from "@/db/schema";
 import { or, and, count, like, sql, eq } from "drizzle-orm";
 import fs from "fs/promises";
 import path from "path";
+import { requireSession } from "@/lib/guard";
 
 export async function GET(req: Request) {
+  const { error } = await requireSession();
+  if (error) return new Response("Unauthorized", { status: 401 });
+
   try {
     const { searchParams } = new URL(req.url);
     const search = searchParams.get("search") ?? "";
@@ -66,6 +70,8 @@ const runCommand = (cmd: string) =>
   });
 
 export async function POST(req: Request) {
+  const { error } = await requireSession();
+  if (error) return new Response("Unauthorized", { status: 401 });
   if (!APACHE_AVAILABLE || !SERVER_IP)
     return new Response(
       JSON.stringify({ error: "Custom Domain Is Not Configure Yet" }),
