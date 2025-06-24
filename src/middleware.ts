@@ -1,5 +1,6 @@
 import { NextRequestWithAuth, withAuth } from "next-auth/middleware";
 import { NextFetchEvent, NextRequest, NextResponse } from "next/server";
+import { checkRateLimit } from "@/utils/rate-limit";
 
 const AUTH_PROTECTED_PATHS = [
   "/admin/:path*",
@@ -61,6 +62,21 @@ export default async function middleware(
   req: NextRequestWithAuth,
   event: NextFetchEvent,
 ) {
+  const ip =
+    req.headers.get("x-real-ip") ||
+    req.headers.get("x-forwarded-for")?.split(",")[0] ||
+    "unknown";
+
+  const { success, retryAfter } = checkRateLimit(ip);
+
+  if (!success) {
+    return new NextResponse("Too Many Requests", {
+      status: 429,
+      headers: {
+        "Retry-After": retryAfter.toString(),
+      },
+    });
+  }
   const pathname = req.nextUrl.pathname;
 
   if (pathname.startsWith("/api")) {
