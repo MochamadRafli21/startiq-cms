@@ -62,7 +62,7 @@ export function UpdateLinkPage({ linkId }: { linkId: string }) {
           <CardTitle>Update Link</CardTitle>
           <CardDescription>Fill information for your link</CardDescription>
         </CardHeader>
-        <div className="px-4">
+        <div className="px-4 w-full min-h-44  flex justify-center items-center">
           {linkData.title ? (
             <LinkForm link={linkData} onChange={handleLinkChange} />
           ) : (

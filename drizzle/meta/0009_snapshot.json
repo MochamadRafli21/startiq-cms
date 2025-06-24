@@ -1,83 +1,9 @@
 {
   "version": "5",
   "dialect": "mysql",
-<<<<<<< HEAD
-  "id": "b159a4bf-da81-4d26-81b2-49cf2700b4a0",
-  "prevId": "6831058a-c9e8-4de7-be3f-ccfa33495644",
+  "id": "a4d73b1a-0b94-4cf8-92a2-8945edd416de",
+  "prevId": "cea7852d-e031-492f-b64d-70d08f850a78",
   "tables": {
-    "domains": {
-      "name": "domains",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "int",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": true
-        },
-        "domain": {
-          "name": "domain",
-          "type": "varchar(255)",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "page_id": {
-          "name": "page_id",
-          "type": "int",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "is_primary": {
-          "name": "is_primary",
-          "type": "boolean",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false,
-          "default": false
-        },
-        "verified": {
-          "name": "verified",
-          "type": "boolean",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false,
-          "default": false
-        },
-        "verification_code": {
-          "name": "verification_code",
-          "type": "varchar(64)",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {},
-      "compositePrimaryKeys": {
-        "domains_id": {
-          "name": "domains_id",
-          "columns": [
-            "id"
-          ]
-        }
-      },
-      "uniqueConstraints": {
-        "domains_domain_unique": {
-          "name": "domains_domain_unique",
-          "columns": [
-            "domain"
-          ]
-        }
-      },
-      "checkConstraint": {}
-    },
-=======
-  "id": "cea7852d-e031-492f-b64d-70d08f850a78",
-  "prevId": "6831058a-c9e8-4de7-be3f-ccfa33495644",
-  "tables": {
->>>>>>> rsf
     "forms": {
       "name": "forms",
       "columns": {
@@ -301,23 +227,20 @@
           "notNull": true,
           "autoincrement": false
         },
-<<<<<<< HEAD
-=======
         "html": {
           "name": "html",
-          "type": "text",
+          "type": "longtext",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
         },
         "css": {
           "name": "css",
-          "type": "text",
+          "type": "longtext",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
         },
->>>>>>> rsf
         "created_at": {
           "name": "created_at",
           "type": "timestamp",

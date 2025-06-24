@@ -77,7 +77,7 @@ export async function POST(req: Request) {
     .insert(domains)
     .values({
       domain: body.domain,
-      defaultPageId: body.defaultPageId,
+      defaultPageId: body.defaultPageId || null,
       isPrimary: body.isPrimary,
     })
     .$returningId();
@@ -111,6 +111,7 @@ export async function POST(req: Request) {
 
     await fs.writeFile(configPath, configContent, { mode: 0o644 });
     await runCommand(`ln -sfn ${configPath} ${symlinkPath}`);
+    // TODO skip certbot on dev
     await runCommand(
       `certbot --nginx -d ${domain.domain} --non-interactive --agree-tos -m ${ADMIN_EMAIL}`,
     );

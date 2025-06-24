@@ -32,7 +32,7 @@ export function CreateLinkModal({
 
   const onSubmitLink = async () => {
     if (!linkData.target) {
-      toast.error("Failed on saving page, target cant be empty");
+      toast.error("Failed on saving link, target cant be empty");
 
       return;
     }
@@ -53,6 +53,7 @@ export function CreateLinkModal({
     if (res.ok) {
       toast.success("Success on creating link");
       setOpen(false);
+      setLinkData({} as Link);
       if (onAfterSubmit) {
         onAfterSubmit();
       }

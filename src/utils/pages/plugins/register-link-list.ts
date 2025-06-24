@@ -14,8 +14,20 @@ export function registerLinkList(editor: Editor) {
           "data-show-pagination": false,
           "data-tags": "",
           "data-filter-attributes": "",
+          "data-layout": "news",
         },
         traits: [
+          {
+            type: "select",
+            label: "Layout",
+            name: "layout",
+            options: [
+              { id: "news", label: "News" },
+              { id: "list", label: "List" },
+              { id: "grid", label: "grid" },
+            ],
+            changeProp: true,
+          },
           {
             type: "checkbox",
             label: "Show Search Input",
@@ -60,6 +72,7 @@ export function registerLinkList(editor: Editor) {
           const showPagination =
             this.getAttribute("data-show-pagination") === "true";
           const tags = this.getAttribute("data-tags");
+          const layout = this.getAttribute("data-layout");
           const filterAttrs = this.getAttribute("data-filter-attributes") || "";
           const filterKeys = filterAttrs
             .split(",")
@@ -107,7 +120,7 @@ export function registerLinkList(editor: Editor) {
 
             const query = new URLSearchParams({
               page: currentPage.toString(),
-              limit: "5",
+              limit: layout === "grid" ? "6" : "3",
               tags,
             });
 
@@ -134,44 +147,49 @@ export function registerLinkList(editor: Editor) {
                 totalPages = Math.ceil(body.total / 5);
 
                 const links = body.links;
-                const firstLink = links[0];
+                if (layout === "list") {
+                  links.forEach((link: Link) => {
+                    const card = document.createElement("div");
+                    card.className =
+                      "bg-white md:col-span-full rounded-lg shadow-md p-4 flex items-start justify-between my-4";
 
-                const firstCard = document.createElement("div");
-                firstCard.className =
-                  "md:col-span-2 bg-white rounded-lg shadow-md p-4";
-                if (firstLink.banner) {
-                  const img = document.createElement("img");
-                  img.src = firstLink.banner;
-                  img.alt = firstLink.title || "";
-                  img.className = "w-full h-48 object-cover rounded-md mb-4";
-                  firstCard.appendChild(img);
-                }
-                const title = document.createElement("h3");
-                title.textContent = firstLink.title || "";
-                title.className = "text-lg font-semibold mb-2";
-                firstCard.appendChild(title);
+                    const textSection = document.createElement("div");
 
-                const excerpt = document.createElement("p");
-                excerpt.textContent = firstLink.descriptions || "";
-                excerpt.className = "text-sm text-gray-600";
-                firstCard.appendChild(excerpt);
+                    const title = document.createElement("h3");
+                    title.textContent = link.title || "";
+                    title.className = "text-lg font-semibold mb-2";
+                    textSection.appendChild(title);
 
-                if (firstLink.target) {
-                  const btn = document.createElement("a");
-                  btn.href = `${firstLink.target}`;
-                  btn.textContent = "Read More";
-                  btn.className =
-                    "mt-2 inline-block text-sm font-semibold hover:underline font-medium rounded-full bg-yellow-400 px-2 py-1";
-                  firstCard.appendChild(btn);
-                }
+                    const excerpt = document.createElement("p");
+                    excerpt.textContent = link.descriptions || "";
+                    excerpt.className =
+                      "text-sm text-gray-600 line-clamp-4 text-sm text-ellipsis";
+                    textSection.appendChild(excerpt);
 
-                container.appendChild(firstCard);
+                    if (link.target) {
+                      const btn = document.createElement("a");
+                      btn.href = `${link.target}`;
+                      btn.textContent = "Read More";
+                      btn.className =
+                        "mt-2 inline-block text-sm font-semibold hover:underline font-medium rounded-full bg-yellow-400 px-2 py-1";
+                      textSection.appendChild(btn);
+                    }
 
-                if (links.length > 1) {
-                  const secondCard = document.createElement("div");
-                  secondCard.className = "lg:col-span-1";
+                    card.appendChild(textSection);
 
-                  links.slice(1).forEach((link: Link) => {
+                    if (link.banner) {
+                      const img = document.createElement("img");
+                      img.src = link.banner;
+                      img.alt = link.title || "";
+                      img.className =
+                        "w-full h-48 object-cover rounded-md mb-4";
+                      card.appendChild(img);
+                    }
+
+                    container.appendChild(card);
+                  });
+                } else if (layout === "grid") {
+                  links.forEach((link: Link) => {
                     const card = document.createElement("div");
                     card.className = "bg-white rounded-lg shadow-md p-4";
 
@@ -191,7 +209,8 @@ export function registerLinkList(editor: Editor) {
 
                     const excerpt = document.createElement("p");
                     excerpt.textContent = link.descriptions || "";
-                    excerpt.className = "text-sm text-gray-600";
+                    excerpt.className =
+                      "text-sm text-gray-600 line-clamp-4 text-sm text-ellipsis";
                     card.appendChild(excerpt);
 
                     if (link.target) {
@@ -203,10 +222,85 @@ export function registerLinkList(editor: Editor) {
                       card.appendChild(btn);
                     }
 
-                    secondCard.appendChild(card);
+                    container.appendChild(card);
                   });
+                } else {
+                  const firstLink = links[0];
 
-                  container.appendChild(secondCard);
+                  const firstCard = document.createElement("div");
+                  firstCard.className =
+                    "md:col-span-2 bg-white rounded-lg shadow-md p-4 h-full flex flex-col flex-grow";
+                  if (firstLink.banner) {
+                    const img = document.createElement("img");
+                    img.src = firstLink.banner;
+                    img.alt = firstLink.title || "";
+                    img.className = "w-full h-64 object-cover rounded-md mb-4";
+                    firstCard.appendChild(img);
+                  }
+                  const title = document.createElement("h3");
+                  title.textContent = firstLink.title || "";
+                  title.className = "text-lg font-semibold mb-2";
+                  firstCard.appendChild(title);
+
+                  const excerpt = document.createElement("p");
+                  excerpt.textContent = firstLink.descriptions || "";
+                  excerpt.className =
+                    "text-sm text-gray-600 flex-grow text-ellipsis";
+                  firstCard.appendChild(excerpt);
+
+                  if (firstLink.target) {
+                    const btn = document.createElement("a");
+                    btn.href = `${firstLink.target}`;
+                    btn.textContent = "Read More";
+                    btn.className =
+                      "mt-2 inline-block text-sm font-semibold hover:underline font-medium rounded-full bg-yellow-400 px-2 py-1 w-fit";
+                    firstCard.appendChild(btn);
+                  }
+
+                  container.appendChild(firstCard);
+
+                  if (links.length > 1) {
+                    const secondCard = document.createElement("div");
+                    secondCard.className = "lg:col-span-1";
+
+                    links.slice(1).forEach((link: Link) => {
+                      const card = document.createElement("div");
+                      card.className = "bg-white rounded-lg shadow-md p-4";
+
+                      if (link.banner) {
+                        const img = document.createElement("img");
+                        img.src = link.banner;
+                        img.alt = link.title || "";
+                        img.className =
+                          "w-full h-48 object-cover rounded-md mb-4";
+                        card.appendChild(img);
+                      }
+
+                      const title = document.createElement("h3");
+                      title.textContent = link.title || "";
+                      title.className = "text-lg font-semibold mb-2";
+                      card.appendChild(title);
+
+                      const excerpt = document.createElement("p");
+                      excerpt.textContent = link.descriptions || "";
+                      excerpt.className =
+                        "text-sm text-gray-600 line-clamp-4 text-sm text-ellipsis";
+                      card.appendChild(excerpt);
+
+                      if (link.target) {
+                        const btn = document.createElement("a");
+                        btn.href = `${link.target}`;
+                        btn.textContent = "Read More";
+                        btn.className =
+                          "mt-2 inline-block text-sm font-semibold hover:underline font-medium rounded-full bg-yellow-400 px-2 py-1 w-fit";
+                        card.appendChild(btn);
+                      }
+
+                      secondCard.appendChild(card);
+                    });
+
+                    container.appendChild(secondCard);
+                  }
                 }
 
                 // Only render pagination if enabled
@@ -248,17 +342,19 @@ export function registerLinkList(editor: Editor) {
       },
       init() {
         this.on(
-          "change:showSearch change:showPagination, change:tags, change:filterAttributes",
+          "change:showSearch change:showPagination, change:tags, change:filterAttributes, change:layout",
           () => {
             const showSearch = this.get("showSearch");
             const showPagination = this.get("showPagination");
             const tags = this.get("tags");
             const filterAttributes = this.get("filterAttributes");
+            const layout = this.get("layout");
             this.addAttributes({
               "data-show-search": `${showSearch}`,
               "data-show-pagination": `${showPagination}`,
               "data-tags": `${tags}`,
               "data-filter-attributes": filterAttributes,
+              "data-layout": layout,
             });
 
             if (
@@ -280,7 +376,7 @@ export function registerLinkList(editor: Editor) {
     label: "Link List",
     category: "Custom",
     content: `
-          <section data-gjs-type="link-list" class="w-full max-w-6xl mx-auto py-10 px-4">
+          <section data-gjs-type="link-list" class="w-full max-w-6xl mx-auto py-10 px-4 min-h-44">
             <div class="mb-4 flex justify-between items-center">
               <input type="text" placeholder="Search links..." class="link-search border px-3 py-1 rounded w-full max-w-xs" />
             </div>

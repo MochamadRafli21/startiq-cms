@@ -9,12 +9,14 @@ import { renderPageList } from "./page-list";
 import { renderSlider } from "./slider";
 
 export const renderAllComponents = (content: ProjectData) => {
-  renderNavbar();
-  renderTabs(content);
-  renderCarousel(content);
-  renderCarouselJs(content);
-  renderCountUp(content);
-  renderLinkList(content);
-  renderPageList(content);
-  renderSlider(content);
+  Promise.all([
+    renderNavbar(),
+    renderTabs(content),
+    renderCarousel(content),
+    renderCarouselJs(content),
+    renderCountUp(content),
+    renderLinkList(content),
+    renderPageList(content),
+    renderSlider(content),
+  ]);
 };
