@@ -2,11 +2,15 @@ import dns from "dns/promises";
 import { db } from "@/db/client";
 import { domains } from "@/db/schema";
 import { eq } from "drizzle-orm";
+import { requireSession } from "@/lib/guard";
 
 export async function GET(
   _req: Request,
   { params }: { params: Promise<{ id: string }> },
 ) {
+  const { error } = await requireSession();
+  if (error) return new Response("Unauthorized", { status: 401 });
+
   const { id } = await params;
   const [domain] = await db
     .select({
