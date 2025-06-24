@@ -101,10 +101,9 @@ export function registerFaqComponent(editor: Editor) {
           },
         ],
         script: function () {
-          const root = this;
-          const titleEl = root.querySelector(".faq-title");
-          const searchEl = root.querySelector(".faq-search");
-          const items = [...root.querySelectorAll(".faq-item")];
+          const titleEl = this.querySelector(".faq-title");
+          const searchEl = this.querySelector(".faq-search");
+          const items = [...this.querySelectorAll(".faq-item")];
           const enableSearch =
             this.getAttribute("data-enable-search") === "true";
 
