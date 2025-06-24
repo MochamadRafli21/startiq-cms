@@ -7,10 +7,12 @@ import { renderCountUp } from "./count-up";
 import { renderLinkList } from "./link-list";
 import { renderPageList } from "./page-list";
 import { renderSlider } from "./slider";
+import { renderFaq } from "./faq";
 
 export const renderAllComponents = (content: ProjectData) => {
   Promise.all([
     renderNavbar(),
+    renderFaq(content),
     renderTabs(content),
     renderCarousel(content),
     renderCarouselJs(content),
