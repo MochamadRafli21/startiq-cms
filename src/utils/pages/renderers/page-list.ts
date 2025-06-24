@@ -24,6 +24,7 @@ export const renderPageList = (content: ProjectData) => {
     const tags = component.tags as string;
     const showSearch = component.showSearch;
     const showPagination = component.showPagination;
+    const layout = component.layout;
 
     if (!showSearch && searchInput) {
       searchInput.style.display = "none";
@@ -42,7 +43,7 @@ export const renderPageList = (content: ProjectData) => {
 
       const query = new URLSearchParams({
         page: currentPage.toString(),
-        limit: "5",
+        limit: layout === "grid" ? "6" : "4",
       });
 
       if (showSearch && searchQuery) {
@@ -71,44 +72,48 @@ export const renderPageList = (content: ProjectData) => {
           totalPages = Math.ceil(body.total / 5);
 
           const pages = body.pages;
-          const firstPage = pages[0];
+          if (layout === "list") {
+            pages.forEach((page: Page) => {
+              const card = document.createElement("div");
+              card.className =
+                "bg-white md:col-span-full rounded-lg shadow-md p-4 flex items-start justify-between my-4";
 
-          const firstCard = document.createElement("div");
-          firstCard.className =
-            "md:col-span-2 bg-white rounded-lg shadow-md p-4";
-          if (firstPage.metaImage) {
-            const img = document.createElement("img");
-            img.src = firstPage.metaImage;
-            img.alt = firstPage.metaTitle || firstPage.title || "";
-            img.className = "w-full h-48 object-cover rounded-md mb-4";
-            firstCard.appendChild(img);
-          }
-          const title = document.createElement("h3");
-          title.textContent = firstPage.metaTitle || firstPage.title || "";
-          title.className = "text-lg font-semibold mb-2";
-          firstCard.appendChild(title);
+              const textSection = document.createElement("div");
 
-          const excerpt = document.createElement("p");
-          excerpt.textContent = firstPage.metaDescription || "";
-          excerpt.className = "text-sm text-gray-600";
-          firstCard.appendChild(excerpt);
+              const title = document.createElement("h3");
+              title.textContent = page.metaTitle || page.title || "";
+              title.className = "text-lg font-semibold mb-2";
+              textSection.appendChild(title);
 
-          if (firstPage.slug) {
-            const btn = document.createElement("a");
-            btn.href = `/${firstPage.slug}`;
-            btn.textContent = "Read More";
-            btn.className =
-              "mt-2 inline-block text-sm font-semibold hover:underline font-medium rounded-full bg-yellow-400 px-2 py-1";
-            firstCard.appendChild(btn);
-          }
+              const excerpt = document.createElement("p");
+              excerpt.textContent = page.metaDescription || "";
+              excerpt.className =
+                "text-sm text-gray-600 line-clamp-4 text-sm text-ellipsis";
+              textSection.appendChild(excerpt);
 
-          pageContainer.appendChild(firstCard);
+              if (page.slug) {
+                const btn = document.createElement("a");
+                btn.href = `/${page.slug}`;
+                btn.textContent = "Read More";
+                btn.className =
+                  "mt-2 inline-block text-sm font-semibold hover:underline font-medium rounded-full bg-yellow-400 px-2 py-1";
+                textSection.appendChild(btn);
+              }
 
-          if (pages.length > 1) {
-            const secondCard = document.createElement("div");
-            secondCard.className = "lg:col-span-1";
+              card.appendChild(textSection);
 
-            pages.slice(1).forEach((page: Page) => {
+              if (page.metaImage) {
+                const img = document.createElement("img");
+                img.src = page.metaImage;
+                img.alt = page.metaTitle || page.title || "";
+                img.className = "w-full h-24 object-cover rounded-md mb-4";
+                card.appendChild(img);
+              }
+
+              pageContainer.appendChild(card);
+            });
+          } else if (layout === "grid") {
+            pages.forEach((page: Page) => {
               const card = document.createElement("div");
               card.className = "bg-white rounded-lg shadow-md p-4";
 
@@ -116,7 +121,7 @@ export const renderPageList = (content: ProjectData) => {
                 const img = document.createElement("img");
                 img.src = page.metaImage;
                 img.alt = page.metaTitle || page.title || "";
-                img.className = "w-full h-16 object-cover rounded-md mb-4";
+                img.className = "w-full h-24 object-cover rounded-md mb-4";
                 card.appendChild(img);
               }
 
@@ -127,7 +132,8 @@ export const renderPageList = (content: ProjectData) => {
 
               const excerpt = document.createElement("p");
               excerpt.textContent = page.metaDescription || "";
-              excerpt.className = "text-sm text-gray-600";
+              excerpt.className =
+                "text-sm text-gray-600 line-clamp-4 text-sm text-ellipsis";
               card.appendChild(excerpt);
 
               if (page.slug) {
@@ -139,10 +145,83 @@ export const renderPageList = (content: ProjectData) => {
                 card.appendChild(btn);
               }
 
-              secondCard.appendChild(card);
+              pageContainer.appendChild(card);
             });
+          } else {
+            const firstPage = pages[0];
 
-            pageContainer.appendChild(secondCard);
+            const firstCard = document.createElement("div");
+            firstCard.className =
+              "md:col-span-2 bg-white rounded-lg shadow-md p-4 h-full flex flex-col flex-grow";
+            if (firstPage.metaImage) {
+              const img = document.createElement("img");
+              img.src = firstPage.metaImage;
+              img.alt = firstPage.metaTitle || firstPage.title || "";
+              img.className = "w-full h-48 object-cover rounded-md mb-4";
+              firstCard.appendChild(img);
+            }
+            const title = document.createElement("h3");
+            title.textContent = firstPage.metaTitle || firstPage.title || "";
+            title.className = "text-lg font-semibold mb-2";
+            firstCard.appendChild(title);
+
+            const excerpt = document.createElement("p");
+            excerpt.textContent = firstPage.metaDescription || "";
+            excerpt.className = "text-sm text-gray-600 flex-grow text-ellipsis";
+            firstCard.appendChild(excerpt);
+
+            if (firstPage.slug) {
+              const btn = document.createElement("a");
+              btn.href = `/${firstPage.slug}`;
+              btn.textContent = "Read More";
+              btn.className =
+                "mt-2 inline-block text-sm font-semibold hover:underline font-medium rounded-full bg-yellow-400 px-2 py-1 w-fit";
+              firstCard.appendChild(btn);
+            }
+
+            pageContainer.appendChild(firstCard);
+
+            if (pages.length > 1) {
+              const secondCard = document.createElement("div");
+              secondCard.className = "lg:col-span-1";
+
+              pages.slice(1).forEach((page: Page) => {
+                const card = document.createElement("div");
+                card.className = "bg-white rounded-lg shadow-md p-4";
+
+                if (page.metaImage) {
+                  const img = document.createElement("img");
+                  img.src = page.metaImage;
+                  img.alt = page.metaTitle || page.title || "";
+                  img.className = "w-full h-48 object-cover rounded-md mb-4";
+                  card.appendChild(img);
+                }
+
+                const title = document.createElement("h3");
+                title.textContent = page.metaTitle || page.title || "";
+                title.className = "text-lg font-semibold mb-2";
+                card.appendChild(title);
+
+                const excerpt = document.createElement("p");
+                excerpt.textContent = page.metaDescription || "";
+                excerpt.className =
+                  "text-sm text-gray-600 line-clamp-4 text-sm text-ellipsis";
+                card.appendChild(excerpt);
+
+                if (page.slug) {
+                  const btn = document.createElement("a");
+                  btn.href = `/${page.slug}`;
+                  btn.textContent = "Read More";
+                  btn.className =
+                    "mt-2 inline-block text-sm font-semibold hover:underline font-medium rounded-full bg-yellow-400 px-2 py-1";
+                  card.appendChild(btn);
+                }
+
+                secondCard.appendChild(card);
+              });
+
+              pageContainer.appendChild(secondCard);
+            }
           }
 
           // Only render pagination if enabled

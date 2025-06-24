@@ -6,6 +6,8 @@ export interface Page {
   slug?: string;
   tags?: string[];
   category?: string[];
+  html?: string;
+  css?: string;
   content?: ProjectData;
   metaTitle?: string;
   metaDescription?: string;

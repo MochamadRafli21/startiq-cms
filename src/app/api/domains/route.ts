@@ -79,7 +79,7 @@ export async function POST(req: Request) {
     .insert(domains)
     .values({
       domain: body.domain,
-      defaultPageId: body.defaultPageId,
+      defaultPageId: body.defaultPageId || null,
       isPrimary: body.isPrimary,
     })
     .$returningId();
@@ -112,6 +112,7 @@ export async function POST(req: Request) {
     await runCommand(`a2ensite ${domain.domain}.conf`);
     await runCommand(`sudo systemctl reload apache2`);
 
+    // TODO skip certbot on dev
     await runCommand(
       `certbot --apache -d ${domain.domain} -d www.${domain.domain} --non-interactive --agree-tos -m ${ADMIN_EMAIL}`,
     );

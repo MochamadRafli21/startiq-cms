@@ -230,9 +230,9 @@ export default function LinkForm({ link, onChange }: PageEditorProps) {
       >
         Add Attributes
       </Button>
-      {Object.keys(attributes).map((attribute) => {
+      {Object.keys(attributes).map((attribute, index) => {
         return (
-          <div key={attribute} className="flex items-center gap-2">
+          <div key={index} className="flex items-center gap-2">
             <Input
               value={attribute}
               onChange={(e) =>

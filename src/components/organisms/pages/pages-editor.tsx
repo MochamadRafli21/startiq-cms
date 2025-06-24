@@ -7,7 +7,7 @@ import { renderAllComponents } from "@/utils/pages/renderers";
 
 interface PageEditorProps {
   content?: ProjectData;
-  onContentChange?: (data: ProjectData) => void;
+  onContentChange?: (data: ProjectData, html: string, css?: string) => void;
   isPreview?: boolean;
 }
 
@@ -46,8 +46,10 @@ export default function PageEditor({
 
           const handleUpdate = () => {
             const json = editor.getProjectData();
+            const html = editor.getHtml();
+            const css = editor.getCss();
             if (onContentChange) {
-              onContentChange(json);
+              onContentChange(json, html, css);
             }
           };
 

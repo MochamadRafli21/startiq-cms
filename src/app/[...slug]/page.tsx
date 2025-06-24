@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import PublicPageClient from "@/components/organisms/pages/pages-public";
+import PageRenderer from "@/components/organisms/pages/page-renderer";
 
 async function getPageData(slug: string) {
   const res = await fetch(
@@ -9,7 +9,6 @@ async function getPageData(slug: string) {
       cache: "no-store",
     },
   );
-
   if (!res.ok) return null;
   return res.json();
 }
@@ -52,6 +51,11 @@ export default async function Page({
   const fullSlug = resolvedParams.slug?.join("/") ?? "";
   const pageData = await getPageData(fullSlug);
   if (!pageData) return notFound();
-
-  return <PublicPageClient pageData={pageData} />;
+  return (
+    <PageRenderer
+      content={pageData.content}
+      html={pageData.contentHtml}
+      css={pageData.contentCss}
+    />
+  );
 }

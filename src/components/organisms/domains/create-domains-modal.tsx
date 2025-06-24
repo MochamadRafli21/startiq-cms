@@ -37,8 +37,8 @@ export function CreateDomainModal({
   };
 
   const handleSubmit = async () => {
-    if (!domain || !pageId) {
-      toast.error("Please Fill ALl Required Fields");
+    if (!domain) {
+      toast.error("Please Fill All Required Fields");
     }
     setIsSubmitLoading(true);
     const res = await fetch("/api/domains", {
@@ -46,7 +46,7 @@ export function CreateDomainModal({
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         domain: domain,
-        defaultPageId: pageId,
+        defaultPageId: pageId || null,
       }),
     });
 
