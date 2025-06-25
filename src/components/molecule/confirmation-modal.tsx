@@ -34,7 +34,7 @@ export function ConfirmationModal({
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
-          <DialogClose>
+          <DialogClose asChild>
             <Button variant="outline">Cancel</Button>
           </DialogClose>
           <Button variant="destructive" onClick={() => onConfirm()}>

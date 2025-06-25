@@ -11,12 +11,14 @@ import {
   TableCell,
 } from "@/components/ui/table";
 import { CreateDomainModal } from "./create-domains-modal";
-import { Eye } from "lucide-react";
+import { Eye, Pen, Trash } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import type { Domain } from "@/types/domain.type";
+import { ConfirmationModal } from "@/components/molecule/confirmation-modal";
+import { toast } from "sonner";
 
 export default function DomainsTable() {
   const [search, setSearch] = useState("");
@@ -42,6 +44,20 @@ export default function DomainsTable() {
     // TODO: Handle after verify
     // show steps to make sure domain is ready to be verify
     await fetch(`/api/domains/${domain}/verify`);
+  };
+
+  const onDelete = async (id?: string) => {
+    if (!id) return;
+
+    const res = await fetch(`/api/domains/${id}`, {
+      method: "Delete",
+    });
+
+    if (res.ok) {
+      toast.success("Success on deleting domain");
+    } else {
+      toast.error("Failed on deleting domain");
+    }
   };
 
   return (
@@ -113,6 +129,36 @@ export default function DomainsTable() {
                       <Eye color="green" size={12} />
                       Check Verifications
                     </Button>
+                  </TableCell>
+                  <TableCell>
+                    <CreateDomainModal
+                      domainId={domain.id?.toString()}
+                      domain={domain.domain}
+                      defaultPageId={domain.defaultPageId?.toString()}
+                      onAfterSubmit={() => {
+                        setRefechTrigger((prev) => {
+                          return prev + 1;
+                        });
+                      }}
+                    >
+                      <Button>
+                        <Pen />
+                        Update Domain
+                      </Button>
+                    </CreateDomainModal>
+                  </TableCell>
+                  <TableCell>
+                    <ConfirmationModal
+                      onConfirm={() => onDelete(domain.id?.toString())}
+                    >
+                      <Button
+                        variant={"outline"}
+                        size="icon"
+                        className="text-red-600"
+                      >
+                        <Trash />
+                      </Button>
+                    </ConfirmationModal>
                   </TableCell>
                 </TableRow>
               ))}

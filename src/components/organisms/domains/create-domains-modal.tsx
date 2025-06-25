@@ -15,17 +15,23 @@ import type { Page } from "@/types/page.type";
 import { toast } from "sonner";
 
 export function CreateDomainModal({
+  domainId,
+  domain: domainName,
+  defaultPageId,
   children,
   onAfterSubmit,
 }: {
+  domainId?: string;
+  domain?: string;
+  defaultPageId?: string;
   children: React.ReactNode;
   onAfterSubmit?: () => void;
 }) {
   const VPS_IP = process.env.NEXT_PUBLIC_IP || "123.123.123.123"; // fallback for safety
 
   const [open, setOpen] = useState(false);
-  const [domain, setDomain] = useState("");
-  const [pageId, setPageId] = useState("");
+  const [domain, setDomain] = useState(domainName || "");
+  const [pageId, setPageId] = useState(defaultPageId || "");
   const [isSubmitLoading, setIsSubmitLoading] = useState(false);
 
   const onSelectPage = (id: string) => {
@@ -41,23 +47,46 @@ export function CreateDomainModal({
       toast.error("Please Fill All Required Fields");
     }
     setIsSubmitLoading(true);
-    const res = await fetch("/api/domains", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        domain: domain,
-        defaultPageId: pageId || null,
-      }),
-    });
 
-    if (res.ok) {
-      toast.success("Success Registering Domain");
-      if (onAfterSubmit) {
+    if (domainId) {
+      const res = await fetch(`/api/domains/${domainId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          defaultPageId: pageId || null,
+        }),
+      });
+
+      if (res.ok) {
+        toast.success("Success Updating Domain");
         setOpen(false);
-        onAfterSubmit();
+        setDomain("");
+        setPageId("");
+        if (onAfterSubmit) {
+          onAfterSubmit();
+        }
+      } else {
+        toast.error("Failed Updating Domain");
       }
     } else {
-      toast.error("Failed Registering Domain");
+      const res = await fetch("/api/domains", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          domain: domain,
+          defaultPageId: pageId || null,
+        }),
+      });
+
+      if (res.ok) {
+        toast.success("Success Registering Domain");
+        if (onAfterSubmit) {
+          setOpen(false);
+          onAfterSubmit();
+        }
+      } else {
+        toast.error("Failed Registering Domain");
+      }
     }
     setIsSubmitLoading(false);
   };
@@ -67,9 +96,9 @@ export function CreateDomainModal({
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Register New Domain</DialogTitle>
+          <DialogTitle>Register Domain</DialogTitle>
           <DialogDescription>
-            Registering New Domain for you pages
+            Registering Domain for you pages
           </DialogDescription>
         </DialogHeader>
         <div className="overflow-y-scroll max-h-48">
@@ -129,10 +158,11 @@ export function CreateDomainModal({
         </Label>
         <Input
           required
+          disabled={isSubmitLoading || (domainId || "")?.length > 0}
           id="domain"
           value={domain}
           onChange={(e) => handleDomainChange(e.target.value)}
-          placeholder="Page Title"
+          placeholder="placeholder.com"
         />
 
         <Label htmlFor="page" className="text-xs pb-2">
