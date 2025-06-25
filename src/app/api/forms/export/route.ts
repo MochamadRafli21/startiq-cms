@@ -47,7 +47,6 @@ export async function GET(req: Request) {
     });
 
     const csv = convertToCSV(flattenedData);
-
     return new NextResponse(csv, {
       status: 200,
       headers: {

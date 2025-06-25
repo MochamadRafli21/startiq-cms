@@ -14,6 +14,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import type { Form } from "@/types/form.type";
 import { DatePickerRange } from "@/components/molecule/date-picker/date-picker-range";
+import { toast } from "sonner";
+import { Download } from "lucide-react";
 
 export default function SubmissionsTable({ name }: { name?: string }) {
   const [search, setSearch] = useState("");
@@ -46,6 +48,32 @@ export default function SubmissionsTable({ name }: { name?: string }) {
     loadForms();
   }, [search, page, name, from, to]);
 
+  const onDownloadCsv = async () => {
+    let queryString = `name=${name}`;
+    if (from) {
+      queryString += `&startDate=${from.toISOString()}`;
+    }
+    if (to) {
+      queryString += `&endDate=${to.toISOString()}`;
+    }
+    const res = await fetch(`/api/forms/export?${queryString}`);
+    if (res.ok) {
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "submissions.csv";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+      toast.success("Success on download data");
+    } else {
+      toast.error("Failed on download data");
+    }
+  };
+
   return (
     <Card className="w-full h-fit shadow-xl rounded-2xl">
       <CardContent>
@@ -73,6 +101,9 @@ export default function SubmissionsTable({ name }: { name?: string }) {
                 }}
                 className="w-64"
               />
+              <Button onClick={onDownloadCsv}>
+                <Download />
+              </Button>
             </div>
           </div>
 
