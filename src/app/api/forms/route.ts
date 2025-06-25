@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/db/client";
 import { forms } from "@/db/schema";
-import { like, sql, count, and } from "drizzle-orm";
+import { like, sql, count, and, gte, lte } from "drizzle-orm";
 import { requireSession } from "@/lib/guard";
 
 export async function GET(req: NextRequest) {
@@ -10,6 +10,8 @@ export async function GET(req: NextRequest) {
 
   const { searchParams } = new URL(req.url);
   const formName = searchParams.get("name");
+  const startDate = searchParams.get("startDate");
+  const endDate = searchParams.get("endDate");
   const page = parseInt(searchParams.get("page") ?? "1");
   const limit = parseInt(searchParams.get("limit") ?? "10");
   const offset = (page - 1) * limit;
@@ -20,6 +22,20 @@ export async function GET(req: NextRequest) {
     if (formName) {
       const searchLower = formName.toLowerCase();
       whereConditions.push(like(sql`LOWER(${forms.name})`, `%${searchLower}%`));
+    }
+
+    if (startDate) {
+      const parsed = new Date(startDate);
+      if (!isNaN(parsed.getTime())) {
+        whereConditions.push(gte(forms.createdAt, parsed));
+      }
+    }
+
+    if (endDate) {
+      const parsed = new Date(endDate);
+      if (!isNaN(parsed.getTime())) {
+        whereConditions.push(lte(forms.createdAt, parsed));
+      }
     }
 
     const whereClause =
@@ -42,6 +58,7 @@ export async function GET(req: NextRequest) {
       .orderBy(forms.createdAt)
       .limit(limit)
       .offset(offset);
+
     return NextResponse.json({
       forms: results,
       total: Number(totalResult.count),
