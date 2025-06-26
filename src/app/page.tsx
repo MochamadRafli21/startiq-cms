@@ -2,7 +2,6 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { cache } from "react";
 import dynamic from "next/dynamic";
-import Head from "next/head";
 import { extractBodyContent, parseAttributes } from "@/utils/html/parser";
 
 const PageRenderer = dynamic(
