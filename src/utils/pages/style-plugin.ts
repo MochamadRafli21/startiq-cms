@@ -15,5 +15,6 @@ export function registerFontStyle(editor: Editor) {
   ];
 
   fontProperty?.setOptions(fonts);
+  fontProperty?.set("default", "Arial");
   styleManager.render();
 }
