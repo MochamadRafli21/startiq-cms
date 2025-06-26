@@ -56,6 +56,7 @@ export function registerFaqComponent(editor: Editor) {
         classes: ["faq-list", "max-w-3xl", "mx-auto", "py-10", "px-4"],
         attributes: {
           "data-title": "Frequently Asked Questions",
+          "data-gjs-type": "faq-list", // Custom type attribute for GrapesJS
           "data-enable-search": "false",
         },
         traits: [
