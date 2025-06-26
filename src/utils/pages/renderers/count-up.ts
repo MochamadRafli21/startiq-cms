@@ -16,7 +16,7 @@ export const renderCountUp = (content: ProjectData) => {
       const step = (timestamp: number) => {
         const progress = Math.min((timestamp - startTime) / duration, 1);
         const current = Math.floor(progress * value);
-        count.innerHTML = current.toString();
+        count.innerHTML = current.toLocaleString();
         if (progress < 1) requestAnimationFrame(step);
       };
 

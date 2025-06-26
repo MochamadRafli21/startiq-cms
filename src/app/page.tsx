@@ -2,9 +2,6 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { cache } from "react";
 import dynamic from "next/dynamic";
-import Head from "next/head";
-import { extractBodyContent, parseAttributes } from "@/utils/html/parser";
-
 const PageRenderer = dynamic(
   () => import("@/components/organisms/pages/page-renderer"),
 );
@@ -45,19 +42,11 @@ export default async function Page() {
   const pageData = await getPageData();
   if (!pageData) return notFound();
 
-  const { attributes, inner } = extractBodyContent(pageData.contentHtml);
-
   return (
-    <>
-      <Head>
-        <style>{pageData.contentCss}</style>
-      </Head>
-      <main
-        id="root"
-        {...parseAttributes(attributes)}
-        dangerouslySetInnerHTML={{ __html: inner }}
-      />
-      <PageRenderer content={pageData.content} />
-    </>
+    <PageRenderer
+      content={pageData.content}
+      html={pageData.contentHtml}
+      css={pageData.contentCss}
+    />
   );
 }
