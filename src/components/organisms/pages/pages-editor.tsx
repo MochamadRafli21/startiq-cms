@@ -79,6 +79,18 @@ export default function PageEditor({
           link.rel = "stylesheet";
           link.href =
             "https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css";
+          // adding fonts
+          const linkGoogleFont = document.createElement("link");
+          linkGoogleFont.rel = "preconnect";
+          linkGoogleFont.href = "https://fonts.googleapis.com";
+          const linkGoogleStatic = document.createElement("link");
+          linkGoogleStatic.rel = "preconnect";
+          linkGoogleStatic.href = "https://fonts.gstatic.com";
+          linkGoogleStatic.crossOrigin = "true";
+          const linkOpenSans = document.createElement("link");
+          linkOpenSans.rel = "stylesheet";
+          linkOpenSans.href =
+            "https://fonts.googleapis.com/css2?family=Arial&family=Open+Sans&family=Helvetica&family=Geist&display=swap";
 
           // Inject Custom Animation
           const style = document.createElement("style");
@@ -135,6 +147,8 @@ export default function PageEditor({
 
           const head = iframe.contentDocument.head;
           head.appendChild(link);
+          head.appendChild(linkGoogleFont);
+          head.appendChild(linkOpenSans);
           head.appendChild(style);
 
           clearInterval(interval); // Stop polling
