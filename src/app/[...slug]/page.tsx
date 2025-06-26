@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { extractBodyContent, parseAttributes } from "@/utils/html/parser";
 import PageRenderer from "@/components/organisms/pages/page-renderer";
 
 async function getPageData(slug: string) {
@@ -51,11 +52,16 @@ export default async function Page({
   const fullSlug = resolvedParams.slug?.join("/") ?? "";
   const pageData = await getPageData(fullSlug);
   if (!pageData) return notFound();
+  const { attributes, inner } = extractBodyContent(pageData.contentHtml);
   return (
-    <PageRenderer
-      content={pageData.content}
-      html={pageData.contentHtml}
-      css={pageData.contentCss}
-    />
+    <>
+      <style>{pageData.contentCss}</style>
+      <main
+        id="root"
+        {...parseAttributes(attributes)}
+        dangerouslySetInnerHTML={{ __html: inner }}
+      />
+      <PageRenderer content={pageData.content} />
+    </>
   );
 }
