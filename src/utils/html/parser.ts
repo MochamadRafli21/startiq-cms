@@ -5,7 +5,7 @@ export function extractBodyContent(html: string) {
     return { attributes: "", inner: html };
   }
 
-  const attrs = bodyMatch[1].trim();
+  const attrs = bodyMatch[1].trim().replaceAll("class", "className");
   const inner = bodyMatch[2];
 
   return {

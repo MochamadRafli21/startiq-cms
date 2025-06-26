@@ -49,9 +49,7 @@ export default async function Page() {
 
   return (
     <>
-      <Head>
-        <style>{pageData.contentCss}</style>
-      </Head>
+      <style>{pageData.contentCss}</style>
       <main
         id="root"
         {...parseAttributes(attributes)}
