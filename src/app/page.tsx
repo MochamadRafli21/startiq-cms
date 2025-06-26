@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import { cache } from "react";
 import dynamic from "next/dynamic";
 import { extractBodyContent, parseAttributes } from "@/utils/html/parser";
-
 const PageRenderer = dynamic(
   () => import("@/components/organisms/pages/page-renderer"),
 );
@@ -43,9 +42,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Page() {
   const pageData = await getPageData();
   if (!pageData) return notFound();
-
   const { attributes, inner } = extractBodyContent(pageData.contentHtml);
-
   return (
     <>
       <style>{pageData.contentCss}</style>
