@@ -3,7 +3,6 @@ import { findComponentById } from "../tools";
 
 export const renderFaq = (content: ProjectData) => {
   const faqs = document?.querySelectorAll('[data-gjs-type="faq-list"]');
-
   faqs.forEach((faq) => {
     const titleEl = faq.querySelector(".faq-title");
     const searchEl = faq.querySelector(".faq-search") as HTMLInputElement;

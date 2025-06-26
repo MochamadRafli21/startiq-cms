@@ -1,30 +1,19 @@
 "use client";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { ProjectData } from "grapesjs";
 import "grapesjs/dist/css/grapes.min.css";
 import { renderAllComponents } from "@/utils/pages/renderers";
 
 interface PageRendererProps {
   content: ProjectData;
-  html: string;
-  css: string;
 }
 
-export default function PageRenderer({
-  content,
-  html,
-  css,
-}: PageRendererProps) {
+export default function PageRenderer({ content }: PageRendererProps) {
   useEffect(() => {
     if (content) {
       renderAllComponents(content);
     }
-  }, [html, content]);
+  }, [content]);
 
-  return (
-    <>
-      <style>{css}</style>
-      <main id="root" dangerouslySetInnerHTML={{ __html: html }} />
-    </>
-  );
+  return null;
 }
