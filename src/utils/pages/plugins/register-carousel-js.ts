@@ -312,28 +312,28 @@ export function registerCarouselJs(editor: Editor) {
               mouseLeave,
             };
           }
+          // dont listen to touch on edit mode
+          // root.addEventListener("touchstart", (e: TouchEvent) => {
+          //   startX = e.touches[0].clientX;
+          // });
 
-          root.addEventListener("touchstart", (e: TouchEvent) => {
-            startX = e.touches[0].clientX;
-          });
+          // root.addEventListener("touchmove", (e: TouchEvent) => {
+          //   endX = e.touches[0].clientX;
+          // });
 
-          root.addEventListener("touchmove", (e: TouchEvent) => {
-            endX = e.touches[0].clientX;
-          });
-
-          root.addEventListener("touchend", () => {
-            const diffX = endX - startX;
-            if (Math.abs(diffX) > 50) {
-              if (diffX > 0) {
-                goToSlide(index - 1); // Swipe right
-              } else {
-                goToSlide(index + 1); // Swipe left
-              }
-            }
-            // Reset values
-            startX = 0;
-            endX = 0;
-          });
+          // root.addEventListener("touchend", () => {
+          //   const diffX = endX - startX;
+          //   if (Math.abs(diffX) > 50) {
+          //     if (diffX > 0) {
+          //       goToSlide(index - 1); // Swipe right
+          //     } else {
+          //       goToSlide(index + 1); // Swipe left
+          //     }
+          //   }
+          //   // Reset values
+          //   startX = 0;
+          //   endX = 0;
+          // });
 
           root.addEventListener("mousedown", (e: MouseEvent) => {
             isDragging = true;
