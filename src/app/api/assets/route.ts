@@ -1,24 +1,18 @@
 import { NextResponse } from "next/server";
-import { readdir } from "fs/promises";
-import path from "path";
+import cloudinary from "@/lib/cloudinary";
+import type { CloudinaryFile } from "@/types/cloudinary.type";
 
 export async function GET() {
-  const uploadsDir = path.join(process.cwd(), "public", "uploads");
-  let files = [];
-
   try {
-    const filenames = await readdir(uploadsDir);
-    // Filter out directories and only include image files (optional, but good practice)
-    // You might want to enhance this to check for actual image types if there are other files
-    files = filenames.filter((name) =>
-      /\.(webp|jpeg|jpg|png|gif|svg)$/i.test(name),
-    );
-
-    // Map files to the format GrapesJS expects for src
-    const assets = files.map((filename) => ({
-      src: `/uploads/${filename}`,
-      name: filename, // Optional: for display in GrapesJS
-      type: "image", // Assuming they are all images in this folder
+    const result = await cloudinary.search
+      .expression("folder:uploads AND resource_type:image")
+      .sort_by("created_at", "desc")
+      .max_results(100) // Adjust as needed
+      .execute();
+    const assets = result.resources.map((resource: CloudinaryFile) => ({
+      src: resource.secure_url,
+      name: resource.display_name,
+      type: resource.resource_type,
     }));
 
     return NextResponse.json(assets);
