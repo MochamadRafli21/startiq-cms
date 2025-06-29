@@ -1,4 +1,4 @@
-import type { Page } from "@/types/page.type";
+import type { Content } from "@/types/content.type";
 
 export const renderNavbar = () => {
   const navbars = document?.querySelectorAll('[data-gjs-type="custom-navbar"]');
@@ -37,16 +37,15 @@ export const renderNavbar = () => {
       const queryString = new URLSearchParams({
         page: "1",
         limit: "5",
-        tags: "article,conferences",
       });
 
       if (query) {
         queryString.set("search", encodeURIComponent(query));
       }
       try {
-        const res = await fetch(`/api/public?${queryString}`);
+        const res = await fetch(`/api/public/contents?${queryString}`);
         const data = await res.json();
-        const pages = data.pages;
+        const pages = data.contents;
         const total = data.total;
 
         container.innerHTML = "";
@@ -59,10 +58,11 @@ export const renderNavbar = () => {
           return;
         }
 
-        pages.forEach((page: Page) => {
+        pages.forEach((page: Content) => {
           const link = document.createElement("a");
-          link.href = page.slug || "#";
-          link.textContent = page.metaTitle || page.title || "Untitled";
+          link.href =
+            page.type === "page" ? `/${page.target}` : page.target || "#";
+          link.textContent = page.title || "Untitled";
           link.className = "block px-2 py-1 hover:bg-gray-100 text-sm";
           container.appendChild(link);
         });

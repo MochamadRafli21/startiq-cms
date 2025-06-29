@@ -1,7 +1,7 @@
 import { Editor, Component } from "grapesjs";
 
-export function registerTagsSelector(editor: Editor) {
-  editor.TraitManager.addType("tags-selector", {
+export function registerPageTagsSelector(editor: Editor) {
+  editor.TraitManager.addType("page-tags-selector", {
     createInput() {
       const el = document.createElement("select");
       el.multiple = true;
@@ -10,21 +10,6 @@ export function registerTagsSelector(editor: Editor) {
       el.style.padding = "4px";
 
       fetch("/api/pages/tags")
-        .then((res) => res.json())
-        .then((body: { tags: string[] }) => {
-          const tags = body.tags;
-          tags.forEach((tag) => {
-            const opt = document.createElement("option");
-            opt.value = tag;
-            opt.textContent = tag;
-            el.appendChild(opt);
-          });
-        })
-        .catch((err) => {
-          console.error("Failed to load tags:", err);
-        });
-
-      fetch("/api/links/tags")
         .then((res) => res.json())
         .then((body: { tags: string[] }) => {
           const tags = body.tags;
