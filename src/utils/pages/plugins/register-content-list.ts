@@ -155,6 +155,8 @@ export function registerContentList(editor: Editor) {
 
                     const textSection = document.createElement("div");
 
+                    textSection.className = "max-w-[300px]";
+
                     const title = document.createElement("h3");
                     title.textContent = link.title || "";
                     title.className = "text-lg font-semibold mb-2";
@@ -185,7 +187,7 @@ export function registerContentList(editor: Editor) {
                       img.src = link.banner;
                       img.alt = link.title || "";
                       img.className =
-                        "w-full h-48 object-cover rounded-md mb-4";
+                        "w-full max-w-[300px] h-48 object-contain rounded-md mb-4";
                       card.appendChild(img);
                     }
 
@@ -194,7 +196,8 @@ export function registerContentList(editor: Editor) {
                 } else if (layout === "grid") {
                   contents.forEach((link: Content) => {
                     const card = document.createElement("div");
-                    card.className = "bg-white rounded-lg shadow-md p-4";
+                    card.className =
+                      "bg-white rounded-lg shadow-md p-4 flex flex-col";
 
                     if (link.banner) {
                       const img = document.createElement("img");
@@ -221,7 +224,7 @@ export function registerContentList(editor: Editor) {
                       btn.href = `${link.target}`;
                       btn.textContent = "Read More";
                       btn.className =
-                        "mt-2 inline-block text-sm font-semibold hover:underline font-medium rounded-full bg-yellow-400 px-2 py-1";
+                        "mt-2 inline-block w-fit text-sm font-semibold hover:underline font-medium rounded-full bg-yellow-400 px-2 py-1";
                       card.appendChild(btn);
                     }
 
@@ -268,7 +271,8 @@ export function registerContentList(editor: Editor) {
 
                     contents.slice(1).forEach((link: Content) => {
                       const card = document.createElement("div");
-                      card.className = "bg-white rounded-lg shadow-md p-4";
+                      card.className =
+                        "bg-white rounded-lg flex flex-col shadow-md p-4";
 
                       if (link.banner) {
                         const img = document.createElement("img");

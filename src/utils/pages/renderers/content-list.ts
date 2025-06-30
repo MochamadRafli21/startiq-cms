@@ -112,9 +112,11 @@ export const renderContentList = (content: ProjectData) => {
             links.forEach((link: Content) => {
               const card = document.createElement("div");
               card.className =
-                "bg-white md:col-span-full rounded-lg shadow-md p-4 flex items-start justify-between my-4";
+                "bg-white md:col-span-full rounded-lg shadow-md p-4 flex flex-wrap-reverse items-start justify-between my-4";
 
               const textSection = document.createElement("div");
+
+              textSection.className = "max-w-[300px]";
 
               const title = document.createElement("h3");
               title.textContent = link.title || "";
@@ -142,7 +144,8 @@ export const renderContentList = (content: ProjectData) => {
                 const img = document.createElement("img");
                 img.src = link.banner;
                 img.alt = link.title || "";
-                img.className = "w-full h-48 object-cover rounded-md mb-4";
+                img.className =
+                  "w-full max-w-[300px] h-48 object-contain rounded-md mb-4";
                 card.appendChild(img);
               }
 
@@ -151,7 +154,8 @@ export const renderContentList = (content: ProjectData) => {
           } else if (layout === "grid") {
             links.forEach((link: Content) => {
               const card = document.createElement("div");
-              card.className = "bg-white rounded-lg shadow-md p-4";
+              card.className =
+                "bg-white rounded-lg shadow-md p-4 flex flex-col";
 
               if (link.banner) {
                 const img = document.createElement("img");
@@ -177,7 +181,7 @@ export const renderContentList = (content: ProjectData) => {
                 btn.href = `${link.target}`;
                 btn.textContent = "Read More";
                 btn.className =
-                  "mt-2 inline-block text-sm font-semibold hover:underline font-medium rounded-full bg-yellow-400 px-2 py-1";
+                  "mt-2 inline-block w-fit text-sm font-semibold hover:underline font-medium rounded-full bg-yellow-400 px-2 py-1";
                 card.appendChild(btn);
               }
 
@@ -223,7 +227,8 @@ export const renderContentList = (content: ProjectData) => {
 
               links.slice(1).forEach((link: Content) => {
                 const card = document.createElement("div");
-                card.className = "bg-white rounded-lg shadow-md p-4";
+                card.className =
+                  "bg-white rounded-lg flex flex-col shadow-md p-4";
 
                 if (link.banner) {
                   const img = document.createElement("img");
