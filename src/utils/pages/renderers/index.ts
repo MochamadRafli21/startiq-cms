@@ -8,6 +8,7 @@ import { renderLinkList } from "./link-list";
 import { renderPageList } from "./page-list";
 import { renderSlider } from "./slider";
 import { renderFaq } from "./faq";
+import { renderContentList } from "./content-list";
 
 export const renderAllComponents = (content: ProjectData) => {
   Promise.all([
@@ -18,6 +19,7 @@ export const renderAllComponents = (content: ProjectData) => {
     renderCarouselJs(content),
     renderCountUp(content),
     renderLinkList(content),
+    renderContentList(content),
     renderPageList(content),
     renderSlider(content),
   ]);

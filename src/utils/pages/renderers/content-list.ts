@@ -1,20 +1,22 @@
 import { ProjectData } from "grapesjs";
 import { findComponentById } from "../tools";
-import type { Link } from "@/types/link.type";
+import type { Content } from "@/types/content.type";
 
-export const renderLinkList = (content: ProjectData) => {
-  const containers = document?.querySelectorAll('[data-gjs-type="link-list"]');
+export const renderContentList = (content: ProjectData) => {
+  const containers = document?.querySelectorAll(
+    '[data-gjs-type="content-list"]',
+  );
   if (!containers) return;
   containers.forEach((children) => {
     const id = children.id;
     const component = findComponentById(content?.pages[0].frames, id);
-    const container = children.querySelector(".link-list-container");
+    const container = children.querySelector(".content-list-container");
     if (!container || !component) return;
-    const paginationContainer = children.querySelector(".link-pagination");
+    const paginationContainer = children.querySelector(".content-pagination");
     const searchInput = children.querySelector(
-      ".link-search",
+      ".content-search",
     ) as HTMLInputElement;
-    const dynamicFilters = children.querySelector(".link-dynamic-filters");
+    const dynamicFilters = children.querySelector(".content-dynamic-filters");
     let currentPage = 1;
     let totalPages = 1;
     let searchQuery = "";
@@ -65,7 +67,7 @@ export const renderLinkList = (content: ProjectData) => {
         input.addEventListener("input", (e) => {
           dynamicAttributes[key] = (e.target as HTMLInputElement).value;
           currentPage = 1;
-          renderLinks();
+          renderContents();
         });
 
         wrapper.appendChild(input);
@@ -73,9 +75,9 @@ export const renderLinkList = (content: ProjectData) => {
       });
     };
 
-    const renderLinks = () => {
+    const renderContents = () => {
       container.innerHTML =
-        '<p class="col-span-full text-center text-gray-500">Loading links...</p>';
+        '<p class="col-span-full text-center text-gray-500">Loading data...</p>';
 
       const query = new URLSearchParams({
         page: currentPage.toString(),
@@ -93,21 +95,21 @@ export const renderLinkList = (content: ProjectData) => {
         }
       });
 
-      fetch(`/api/public/links?${query.toString()}`)
+      fetch(`/api/public/contents?${query.toString()}`)
         .then((res) => res.json())
-        .then((body: { links: Link[]; total: number }) => {
+        .then((body: { contents: Content[]; total: number }) => {
           container.innerHTML = "";
-          if (!Array.isArray(body?.links) || body.total === 0) {
+          if (!Array.isArray(body?.contents) || body.total === 0) {
             container.innerHTML =
-              '<p class="col-span-full text-center text-gray-400 italic">No links found.</p>';
+              '<p class="col-span-full text-center text-gray-400 italic">No data found.</p>';
             return;
           }
 
           totalPages = Math.ceil(body.total / 5);
 
-          const links = body.links;
+          const links = body.contents;
           if (layout === "list") {
-            links.forEach((link: Link) => {
+            links.forEach((link: Content) => {
               const card = document.createElement("div");
               card.className =
                 "bg-white md:col-span-full rounded-lg shadow-md p-4 flex items-start justify-between my-4";
@@ -122,7 +124,7 @@ export const renderLinkList = (content: ProjectData) => {
               const excerpt = document.createElement("p");
               excerpt.textContent = link.descriptions || "";
               excerpt.className =
-                "text-sm text-gray-600 line-clamp-4 grow text-sm text-ellipsis";
+                "text-sm text-gray-600 grow line-clamp-4 text-sm text-ellipsis";
               textSection.appendChild(excerpt);
 
               if (link.target) {
@@ -147,7 +149,7 @@ export const renderLinkList = (content: ProjectData) => {
               container.appendChild(card);
             });
           } else if (layout === "grid") {
-            links.forEach((link: Link) => {
+            links.forEach((link: Content) => {
               const card = document.createElement("div");
               card.className = "bg-white rounded-lg shadow-md p-4";
 
@@ -167,7 +169,7 @@ export const renderLinkList = (content: ProjectData) => {
               const excerpt = document.createElement("p");
               excerpt.textContent = link.descriptions || "";
               excerpt.className =
-                "text-sm text-gray-600 line-clamp-4 grow text-sm text-ellipsis";
+                "text-sm text-gray-600 grow line-clamp-4 text-sm text-ellipsis";
               card.appendChild(excerpt);
 
               if (link.target) {
@@ -219,7 +221,7 @@ export const renderLinkList = (content: ProjectData) => {
               const secondCard = document.createElement("div");
               secondCard.className = "lg:col-span-1";
 
-              links.slice(1).forEach((link: Link) => {
+              links.slice(1).forEach((link: Content) => {
                 const card = document.createElement("div");
                 card.className = "bg-white rounded-lg shadow-md p-4";
 
@@ -269,7 +271,7 @@ export const renderLinkList = (content: ProjectData) => {
                 btn.className = `px-3 py-1 border rounded ${i === currentPage ? "bg-yellow-400" : "bg-white"}`;
                 btn.addEventListener("click", () => {
                   currentPage = i;
-                  renderLinks();
+                  renderContents();
                 });
                 paginationContainer.appendChild(btn);
               }
@@ -278,7 +280,7 @@ export const renderLinkList = (content: ProjectData) => {
         })
         .catch((err) => {
           container.innerHTML =
-            '<p class="col-span-full text-center text-red-500">Failed to load links.</p>';
+            '<p class="col-span-full text-center text-red-500">Failed to load data.</p>';
           console.error(err);
         });
     };
@@ -287,11 +289,11 @@ export const renderLinkList = (content: ProjectData) => {
       searchInput.addEventListener("input", (e) => {
         searchQuery = (e.target as HTMLInputElement)?.value;
         currentPage = 1;
-        renderLinks();
+        renderContents();
       });
     }
 
     renderDynamicInputs();
-    renderLinks();
+    renderContents();
   });
 };
