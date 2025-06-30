@@ -163,7 +163,7 @@ export function registerContentList(editor: Editor) {
                     const excerpt = document.createElement("p");
                     excerpt.textContent = link.descriptions || "";
                     excerpt.className =
-                      "text-sm text-gray-600 line-clamp-4 grow-1 text-sm text-ellipsis";
+                      "text-sm text-gray-600 line-clamp-4 grow text-sm text-ellipsis";
                     textSection.appendChild(excerpt);
 
                     if (link.target) {
@@ -213,7 +213,7 @@ export function registerContentList(editor: Editor) {
                     const excerpt = document.createElement("p");
                     excerpt.textContent = link.descriptions || "";
                     excerpt.className =
-                      "text-sm text-gray-600 line-clamp-4 grow-1 text-sm text-ellipsis";
+                      "text-sm text-gray-600 line-clamp-4 grow text-sm text-ellipsis";
                     card.appendChild(excerpt);
 
                     if (link.target) {
@@ -232,7 +232,7 @@ export function registerContentList(editor: Editor) {
 
                   const firstCard = document.createElement("div");
                   firstCard.className =
-                    "md:col-span-2 bg-white rounded-lg shadow-md p-4 h-full flex flex-col grow-1";
+                    "md:col-span-2 bg-white rounded-lg shadow-md p-4 h-full flex flex-col grow";
                   if (firstLink.banner) {
                     const img = document.createElement("img");
                     img.src = firstLink.banner;
@@ -248,7 +248,7 @@ export function registerContentList(editor: Editor) {
                   const excerpt = document.createElement("p");
                   excerpt.textContent = firstLink.descriptions || "";
                   excerpt.className =
-                    "text-sm text-gray-600 grow-1 text-ellipsis";
+                    "text-sm text-gray-600 grow text-ellipsis";
                   firstCard.appendChild(excerpt);
 
                   if (firstLink.target) {
@@ -287,7 +287,7 @@ export function registerContentList(editor: Editor) {
                       const excerpt = document.createElement("p");
                       excerpt.textContent = link.descriptions || "";
                       excerpt.className =
-                        "text-sm text-gray-600 grow-1 line-clamp-4 text-sm text-ellipsis";
+                        "text-sm text-gray-600 grow line-clamp-4 text-sm text-ellipsis";
                       card.appendChild(excerpt);
 
                       if (link.target) {

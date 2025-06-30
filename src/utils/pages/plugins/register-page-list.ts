@@ -111,7 +111,7 @@ export function registerPageList(editor: Editor) {
                     const excerpt = document.createElement("p");
                     excerpt.textContent = page.metaDescription || "";
                     excerpt.className =
-                      "text-sm text-gray-600 grow-1 line-clamp-4 text-sm text-ellipsis";
+                      "text-sm text-gray-600 grow line-clamp-4 text-sm text-ellipsis";
                     textSection.appendChild(excerpt);
 
                     if (page.slug) {
@@ -177,7 +177,7 @@ export function registerPageList(editor: Editor) {
 
                   const firstCard = document.createElement("div");
                   firstCard.className =
-                    "md:col-span-2 bg-white rounded-lg shadow-md p-4 h-full flex flex-col grow-1";
+                    "md:col-span-2 bg-white rounded-lg shadow-md p-4 h-full flex flex-col grow";
                   if (firstPage.metaImage) {
                     const img = document.createElement("img");
                     img.src = firstPage.metaImage;
@@ -194,7 +194,7 @@ export function registerPageList(editor: Editor) {
                   const excerpt = document.createElement("p");
                   excerpt.textContent = firstPage.metaDescription || "";
                   excerpt.className =
-                    "text-sm text-gray-600 grow-1 text-ellipsis";
+                    "text-sm text-gray-600 grow text-ellipsis";
                   firstCard.appendChild(excerpt);
 
                   if (firstPage.slug) {
@@ -233,7 +233,7 @@ export function registerPageList(editor: Editor) {
                       const excerpt = document.createElement("p");
                       excerpt.textContent = page.metaDescription || "";
                       excerpt.className =
-                        "text-sm text-gray-600 grow-1 line-clamp-4 text-sm text-ellipsis";
+                        "text-sm text-gray-600 grow line-clamp-4 text-sm text-ellipsis";
                       card.appendChild(excerpt);
 
                       if (page.slug) {

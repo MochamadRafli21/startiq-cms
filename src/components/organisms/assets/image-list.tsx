@@ -96,7 +96,7 @@ export default function AssetsList() {
                       </div>
                     </div>
                   </div>
-                  <div className="object-contain grow-1">
+                  <div className="object-contain grow">
                     {asset.src ? (
                       <Image
                         src={asset.src}
