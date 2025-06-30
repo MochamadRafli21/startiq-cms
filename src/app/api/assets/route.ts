@@ -1,26 +1,19 @@
 import { NextResponse } from "next/server";
-import { readdir, unlink, access } from "fs/promises";
-import { constants } from "fs";
-import path from "path";
 import { requireSession } from "@/lib/guard";
+import cloudinary from "@/lib/cloudinary";
+import type { CloudinaryFile } from "@/types/cloudinary.type";
 
 export async function GET() {
-  const uploadsDir = path.join(process.cwd(), "public", "uploads");
-  let files = [];
-
   try {
-    const filenames = await readdir(uploadsDir);
-    // Filter out directories and only include image files (optional, but good practice)
-    // You might want to enhance this to check for actual image types if there are other files
-    files = filenames.filter((name) =>
-      /\.(webp|jpeg|jpg|png|gif|svg)$/i.test(name),
-    );
-
-    // Map files to the format GrapesJS expects for src
-    const assets = files.map((filename) => ({
-      src: `/uploads/${filename}`,
-      name: filename, // Optional: for display in GrapesJS
-      type: "image", // Assuming they are all images in this folder
+    const result = await cloudinary.search
+      .expression("folder:uploads AND resource_type:image")
+      .sort_by("created_at", "desc")
+      .max_results(100) // Adjust as needed
+      .execute();
+    const assets = result.resources.map((resource: CloudinaryFile) => ({
+      src: resource.secure_url,
+      name: resource.display_name,
+      type: resource.resource_type,
     }));
 
     return NextResponse.json(assets);
@@ -39,36 +32,38 @@ export async function DELETE(req: Request) {
 
   try {
     const { searchParams } = new URL(req.url);
-    const filename = searchParams.get("name");
+    const publicId = searchParams.get("name");
 
-    if (!filename) {
+    if (!publicId) {
       return NextResponse.json(
         { error: "Missing 'name' query parameter" },
         { status: 400 },
       );
     }
 
-    // Sanitize filename to prevent path traversal attacks
-    if (filename.includes("..") || path.isAbsolute(filename)) {
-      return NextResponse.json({ error: "Invalid file name" }, { status: 400 });
+    // Optional: validate input to avoid unexpected deletions
+    if (
+      publicId.includes("..") ||
+      publicId.includes("/") ||
+      publicId.includes("\\")
+    ) {
+      return NextResponse.json({ error: "Invalid public_id" }, { status: 400 });
     }
 
-    const filePath = path.join(process.cwd(), "public", "uploads", filename);
+    const result = await cloudinary.uploader.destroy(publicId);
 
-    // Check if file exists
-    try {
-      await access(filePath, constants.F_OK);
-    } catch {
-      return NextResponse.json({ error: "File not found" }, { status: 404 });
+    if (result.result !== "ok") {
+      return NextResponse.json(
+        { error: "File not found or failed to delete" },
+        { status: 404 },
+      );
     }
-
-    await unlink(filePath);
 
     return NextResponse.json({ success: true });
-  } catch (error) {
-    console.error("Failed to delete file:", error);
+  } catch (err) {
+    console.error("Failed to delete from Cloudinary:", err);
     return NextResponse.json(
-      { error: "Failed to delete file" },
+      { error: "Internal server error" },
       { status: 500 },
     );
   }
