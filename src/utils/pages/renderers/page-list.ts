@@ -88,7 +88,7 @@ export const renderPageList = (content: ProjectData) => {
               const excerpt = document.createElement("p");
               excerpt.textContent = page.metaDescription || "";
               excerpt.className =
-                "text-sm text-gray-600 line-clamp-4 text-sm text-ellipsis";
+                "text-sm text-gray-600 line-clamp-4 grow text-sm text-ellipsis";
               textSection.appendChild(excerpt);
 
               if (page.slug) {
@@ -133,7 +133,7 @@ export const renderPageList = (content: ProjectData) => {
               const excerpt = document.createElement("p");
               excerpt.textContent = page.metaDescription || "";
               excerpt.className =
-                "text-sm text-gray-600 line-clamp-4 text-sm text-ellipsis";
+                "text-sm text-gray-600 line-clamp-4 grow text-sm text-ellipsis";
               card.appendChild(excerpt);
 
               if (page.slug) {
@@ -167,7 +167,7 @@ export const renderPageList = (content: ProjectData) => {
 
             const excerpt = document.createElement("p");
             excerpt.textContent = firstPage.metaDescription || "";
-            excerpt.className = "text-sm text-gray-600 flex-grow text-ellipsis";
+            excerpt.className = "text-sm text-gray-600 grow text-ellipsis";
             firstCard.appendChild(excerpt);
 
             if (firstPage.slug) {
@@ -205,7 +205,7 @@ export const renderPageList = (content: ProjectData) => {
                 const excerpt = document.createElement("p");
                 excerpt.textContent = page.metaDescription || "";
                 excerpt.className =
-                  "text-sm text-gray-600 line-clamp-4 text-sm text-ellipsis";
+                  "text-sm text-gray-600 line-clamp-4 grow text-sm text-ellipsis";
                 card.appendChild(excerpt);
 
                 if (page.slug) {
