@@ -1,36 +1,101 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+🌟 Startiq CMS
 
-## Getting Started
+A modern, customizable, and performance-focused CMS web builder built with Next.js and GrapesJS – inspired by the power of WordPress but with a faster and more developer-friendly foundation.
 
-First, run the development server:
+> ✅ Already used to migrate real client websites from WordPress to Next.js with significantly improved SEO and performance scores.
 
-```bash
-npm run dev
-# or
+
+✨ Features
+
+🧱 Visual Page Builder powered by GrapesJS
+
+⚡ Next.js for high performance, server-side rendering (SSR), and SEO
+
+🪄 Built-in support for dynamic content like forms, FAQs, sliders, etc.
+
+💾 Custom CMS data structure stored via JSON in SQL (MySQL/PostgreSQL compatible)
+
+🌐 Public-facing page renderer from saved JSON content
+
+🧩 Extendable block/component system
+
+
+
+🔧 Tech Stack
+
+Frontend: Next.js 14 App Router, Tailwind CSS, shadcn/ui
+
+Editor: GrapesJS
+
+Backend: API Routes (Next.js), Drizzle ORM, MySQL/PostgreSQL
+
+Auth: Auth.js (NextAuth)
+
+State Management: Jotai/Zustand (optional)
+
+Image Hosting: Cloudinary (optional)
+
+Email: Nodemailer (planned)
+
+
+🚀 Getting Started
+
+git clone https://github.com/MochamadRafli21/startiq-cms
+cd startiq-cms
+cp .env.example .env.local
+# Fill in your database and auth details
+
+yarn install
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+🌍 Live Demo
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+📌 Portfolio Website (built using this CMS):
+https://startiq.space/rafli
 
-## Learn More
+> Note: Uses free tier DB — may show 404. Try refreshing.
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+🧠 Motivation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+This project was created to:
 
-## Deploy on Vercel
+Help agencies and freelancers deliver fast, SEO-optimized websites
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Give developers more control than WordPress while still providing visual editing
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Be easily hosted on VPS, Vercel, or any modern infra
+
+Serve as a foundation for future SaaS CMS solutions
+
+
+📦 Roadmap
+
+[x] Basic Page Builder Integration
+
+[x] Page CRUD + JSON Rendering
+
+[x] Custom Domain Support
+
+[x] Form Handling
+
+[ ] Theme Templates
+
+[ ] Multi-Tenant Support
+
+[ ] Built-in Analytics
+
+
+🤝 Contributing
+
+Open to collaboration and contributions. Feel free to open an issue or reach out!
+
+
+📫 Contact
+
+Portfolio: startiq.space/rafli
+
+GitHub: @MochamadRafli21
+
+Email: mochrafli@gmail.com
