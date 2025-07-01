@@ -46,6 +46,7 @@ cp .env.example .env.local
 # Fill in your database and auth details
 
 yarn install
+
 yarn dev
 
 
