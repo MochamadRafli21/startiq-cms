@@ -99,4 +99,4 @@ Portfolio: startiq.space/rafli
 
 GitHub: @MochamadRafli21
 
-Email: mochrafli@gmail.com
+Email: rafliforbusiness@gmail.com
