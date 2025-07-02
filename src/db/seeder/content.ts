@@ -2,7 +2,7 @@ import { db } from "@/db/client";
 import { pages, templates } from "@/db/schema";
 import fs from "fs/promises";
 import path from "path";
-import type { Page } from "@/types/page.type";
+import type { PageBodyInput } from "@/types/page.type";
 import type { Template } from "@/types/template.type";
 
 async function seedFromFolder(
@@ -19,7 +19,8 @@ async function seedFromFolder(
     const raw = await fs.readFile(filePath, "utf-8");
     const data = JSON.parse(raw);
 
-    const title = "title" in data ? (data as Page | Template).title : file;
+    const title =
+      "title" in data ? (data as PageBodyInput | Template).title : file;
 
     try {
       await db.insert(table).values(data);

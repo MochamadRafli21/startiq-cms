@@ -3,13 +3,13 @@
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import type { Page } from "@/types/page.type";
+import type { PageBodyInput } from "@/types/page.type";
 import { Textarea } from "@/components/ui/textarea";
 import Image from "next/image";
 
 interface PageEditorProps {
-  page?: Page;
-  onChange?: (data: Page) => void;
+  page?: PageBodyInput;
+  onChange?: (data: PageBodyInput) => void;
 }
 
 export default function PageInfo({ page, onChange }: PageEditorProps) {
@@ -22,8 +22,8 @@ export default function PageInfo({ page, onChange }: PageEditorProps) {
   const [iconImage, setIconImage] = useState(page?.iconImage ?? "");
   const [uploadingIcon, setUploadingIcon] = useState(false);
 
-  const handleUpdate = (updated: Partial<Page>) => {
-    const updatedPage: Page = {
+  const handleUpdate = (updated: Partial<PageBodyInput>) => {
+    const updatedPage: PageBodyInput = {
       ...page!,
       metaTitle,
       metaDescription,

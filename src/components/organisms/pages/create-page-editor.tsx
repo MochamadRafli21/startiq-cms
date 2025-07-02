@@ -25,7 +25,7 @@ import {
 
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
-import { Page } from "@/types/page.type";
+import { PageBodyInput } from "@/types/page.type";
 import { Template } from "@/types/template.type";
 import { ProjectData } from "grapesjs";
 
@@ -34,11 +34,11 @@ export default function CreatePageEditor() {
   const [minimizeInfo, setMinimizeInfo] = useState<boolean>(false);
   const [saving, setSaving] = useState(false);
   const [slugError, setSlugError] = useState("");
-  const [pageData, setPageData] = useState<Page>({
+  const [pageData, setPageData] = useState<PageBodyInput>({
     title: "",
     slug: "",
     isPublic: false,
-  } as Page);
+  } as PageBodyInput);
   const router = useRouter();
 
   const templateId = searchParams.get("template");
@@ -50,7 +50,7 @@ export default function CreatePageEditor() {
         .then((template: Template) => {
           setPageData((prev) => ({
             ...prev,
-            content: template.content,
+            content: template.content as ProjectData,
           }));
         });
     }
@@ -112,8 +112,8 @@ export default function CreatePageEditor() {
         category: pageData.category,
         isPublic: pageData.isPublic,
         content: pageData.content,
-        html: pageData.html,
-        css: pageData.css,
+        contentHtml: pageData.contentHtml,
+        contentCss: pageData.contentCss,
         metaTitle: pageData.metaTitle,
         metaDescription: pageData.metaDescription,
         metaImage: pageData.metaImage,
@@ -143,7 +143,7 @@ export default function CreatePageEditor() {
     });
   };
 
-  const handleInfoChange = (info: Page) => {
+  const handleInfoChange = (info: PageBodyInput) => {
     setPageData(info);
   };
 

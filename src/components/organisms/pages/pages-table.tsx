@@ -33,12 +33,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
-import type { Page } from "@/types/page.type";
+import type { PageFullRecord } from "@/types/page.type";
 import { useRouter } from "next/navigation";
 
 export default function PagesTable() {
   const [search, setSearch] = useState("");
-  const [pages, setPages] = useState<Page[]>([]);
+  const [pages, setPages] = useState<PageFullRecord[]>([]);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const [tags, setTags] = useState([] as string[]);
@@ -142,7 +142,7 @@ export default function PagesTable() {
             <div className="flex items-center gap-4">
               <h1 className="text-xl font-semibold">Pages</h1>
               {tags.length > 0 && (
-                <div className="flex gap-2 bg-gray-100 rounded-lg divide-x-2 divide-gray-500">
+                <div className="flex overflow-x-auto max-w-xl gap-2 bg-gray-100 rounded-lg divide-x-2 divide-gray-500">
                   <div className="px-2 py-1">
                     <Button
                       variant="secondary"

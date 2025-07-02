@@ -17,17 +17,23 @@ export async function GET(req: Request) {
         .filter(Boolean)
     : [];
 
-  const whereConditions = [];
+  const linkWhereConditions = [];
+  const pageWhereConditions = [];
 
   if (search) {
-    whereConditions.push(like(links.title, `%${search}%`));
+    linkWhereConditions.push(like(links.title, `%${search}%`));
+    pageWhereConditions.push(like(pages.title, `%${search}%`));
   }
 
   if (tags.length > 0) {
-    const tagConditions = tags.map(
+    const linkTagConditions = tags.map(
       (tag) => sql`JSON_CONTAINS(${links.tags}, JSON_QUOTE(${tag}))`,
     );
-    whereConditions.push(and(...tagConditions));
+    linkWhereConditions.push(and(...linkTagConditions));
+    const pageTagConditions = tags.map(
+      (tag) => sql`JSON_CONTAINS(${pages.tags}, JSON_QUOTE(${tag}))`,
+    );
+    pageWhereConditions.push(and(...pageTagConditions));
   }
 
   const attributeEntries = Array.from(searchParams.entries()).filter(
@@ -37,24 +43,26 @@ export async function GET(req: Request) {
   for (const [fullKey, value] of attributeEntries) {
     const key = fullKey.slice(11, -1);
     if (value) {
-      whereConditions.push(
+      linkWhereConditions.push(
         sql`JSON_UNQUOTE(JSON_EXTRACT(${links.attributes}, ${sql.raw(`'$.${key}'`)})) = ${value}`,
       );
     }
   }
 
-  const whereClause =
-    whereConditions.length > 0 ? and(...whereConditions) : undefined;
+  const linkWhereClause =
+    linkWhereConditions.length > 0 ? and(...linkWhereConditions) : undefined;
+  const pageWhereClause =
+    pageWhereConditions.length > 0 ? and(...pageWhereConditions) : undefined;
 
   // Count totals
   const [totalLinks] = await db
     .select({ count: count() })
     .from(links)
-    .where(whereClause);
+    .where(linkWhereClause);
   const [totalPages] = await db
     .select({ count: count() })
     .from(pages)
-    .where(whereClause);
+    .where(pageWhereClause);
   const totalResult = totalLinks.count + totalPages.count;
 
   // Fetch more than necessary, then slice
@@ -71,7 +79,7 @@ export async function GET(req: Request) {
       type: sql`'link'`.as("type"),
     })
     .from(links)
-    .where(whereClause)
+    .where(linkWhereClause)
     .orderBy(links.createdAt)
     .limit(pageLimit);
 
@@ -86,7 +94,7 @@ export async function GET(req: Request) {
       type: sql`'page'`.as("type"),
     })
     .from(pages)
-    .where(whereClause)
+    .where(pageWhereClause)
     .orderBy(pages.createdAt)
     .limit(pageLimit);
 
