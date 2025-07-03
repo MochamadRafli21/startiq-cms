@@ -23,6 +23,21 @@ export function registerTagsSelector(editor: Editor) {
         .catch((err) => {
           console.error("Failed to load tags:", err);
         });
+
+      fetch("/api/links/tags")
+        .then((res) => res.json())
+        .then((body: { tags: string[] }) => {
+          const tags = body.tags;
+          tags.forEach((tag) => {
+            const opt = document.createElement("option");
+            opt.value = tag;
+            opt.textContent = tag;
+            el.appendChild(opt);
+          });
+        })
+        .catch((err) => {
+          console.error("Failed to load tags:", err);
+        });
       return el;
     },
     onEvent({

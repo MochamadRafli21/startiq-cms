@@ -17,7 +17,7 @@ import {
 import { validateSlugViaApi, validateSlug } from "@/utils/pages/slugs";
 import { useRouter } from "next/navigation";
 
-import { Page } from "@/types/page.type";
+import { PageBodyInput, PageFullRecord } from "@/types/page.type";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import dynamic from "next/dynamic";
@@ -35,7 +35,7 @@ const PageEditor = dynamic(
 export default function EditPage() {
   const { id } = useParams();
   const [minimizeInfo, setMinimizeInfo] = useState<boolean>(false);
-  const [pageData, setPageData] = useState<Page | null>(null);
+  const [pageData, setPageData] = useState<PageFullRecord | null>(null);
   const [slugError, setSlugError] = useState("");
   const [saving, setSaving] = useState(false);
   const [refetchTrigger, setRefetchTrigger] = useState(0);
@@ -121,14 +121,19 @@ export default function EditPage() {
     html: string,
     css?: string,
   ) => {
-    setPageData((prev: Page | null) => {
-      const updated = { ...prev, content, html, css };
+    setPageData((prev) => {
+      const updated = {
+        ...prev,
+        content,
+        contentHtml: html,
+        contentCss: css,
+      } as PageFullRecord;
       handleInfoChange(updated);
       return updated;
     });
   };
 
-  const handleInfoChange = (info: Page) => {
+  const handleInfoChange = (info: PageBodyInput) => {
     setPageData({
       ...pageData,
       ...info,
@@ -180,7 +185,10 @@ export default function EditPage() {
             <SquareChevronDown /> Expand Info
           </Button>
         </div>
-        <div className="flex flex-col" hidden={minimizeInfo}>
+        <div
+          className="flex flex-col max-h-screen overflow-y-auto"
+          hidden={minimizeInfo}
+        >
           <Tabs defaultValue="general" className="w-full">
             <TabsList className="w-full">
               <TabsTrigger value="general">General</TabsTrigger>

@@ -1,5 +1,6 @@
 import { db } from "@/db/client";
 import { pages } from "@/db/schema";
+import { PageResponse } from "@/types/page.type";
 import { like, count, and, sql, or } from "drizzle-orm";
 
 export const dynamic = "force-dynamic";
@@ -82,9 +83,10 @@ export async function GET(req: Request) {
     .orderBy(pages.createdAt)
     .limit(limit)
     .offset(offset);
-
-  return Response.json({
+  const response: PageResponse = {
     pages: results,
     total: Number(totalResult.count),
-  });
+  };
+
+  return Response.json(response);
 }

@@ -2,6 +2,8 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { cache } from "react";
 import dynamic from "next/dynamic";
+import { extractBodyContent, parseAttributes } from "@/utils/html/parser";
+import { PageFullRecord } from "@/types/page.type";
 const PageRenderer = dynamic(
   () => import("@/components/organisms/pages/page-renderer"),
 );
@@ -11,7 +13,8 @@ const getPageData = cache(async () => {
     cache: "no-store",
   });
   if (!res.ok) return null;
-  return res.json();
+  const response: PageFullRecord = await res.json();
+  return response;
 });
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -19,7 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
   if (!pageData) return { title: "Page Not Found" };
   return {
     icons: {
-      icon: pageData.iconImage || pageData.metaImage,
+      icon: pageData.iconImage || pageData.metaImage || "",
     },
     title: pageData.metaTitle || pageData.title,
     description: pageData.metaDescription || "",
@@ -40,12 +43,16 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Page() {
   const pageData = await getPageData();
   if (!pageData) return notFound();
-
+  const { attributes, inner } = extractBodyContent(pageData.contentHtml || "");
   return (
-    <PageRenderer
-      content={pageData.content}
-      html={pageData.contentHtml}
-      css={pageData.contentCss}
-    />
+    <>
+      <style>{pageData.contentCss}</style>
+      <main
+        id="root"
+        {...parseAttributes(attributes)}
+        dangerouslySetInnerHTML={{ __html: inner }}
+      />
+      <PageRenderer content={pageData.content} />
+    </>
   );
 }

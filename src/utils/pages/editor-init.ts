@@ -5,6 +5,7 @@ import tailwindPlugin from "grapesjs-tailwindcss-plugin";
 
 import { customPlugins } from "@/utils/pages/plugins";
 import { customTraitPlugins } from "@/utils/pages/trait-plugins";
+import { registerFontStyle } from "./style-plugin";
 
 export const initEditor = async ({
   containerRef,
@@ -100,6 +101,7 @@ export const initEditor = async ({
         ],
         style: [
           "https://cdn.jsdelivr.net/npm/tui-image-editor@3.15.2/dist/tui-image-editor.min.css",
+          "https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap",
         ],
       },
     },
@@ -107,6 +109,10 @@ export const initEditor = async ({
 
   const domComponents = editor.DomComponents;
   if (!domComponents) return;
+
+  editor.on("load", () => {
+    registerFontStyle(editor);
+  });
 
   editor.on("canvas:ready", () => {
     const iframe = editor.Canvas.getFrameEl();

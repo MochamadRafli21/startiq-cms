@@ -13,10 +13,15 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import type { Form } from "@/types/form.type";
+import { DatePickerRange } from "@/components/molecule/date-picker/date-picker-range";
+import { toast } from "sonner";
+import { Download } from "lucide-react";
 
 export default function SubmissionsTable({ name }: { name?: string }) {
   const [search, setSearch] = useState("");
   const [forms, setForms] = useState<Form[]>([]);
+  const [from, setFrom] = useState<Date>();
+  const [to, setTo] = useState<Date>();
   const [keys, setKeys] = useState<string[]>([]);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
@@ -24,9 +29,14 @@ export default function SubmissionsTable({ name }: { name?: string }) {
 
   useEffect(() => {
     const loadForms = async () => {
-      const res = await fetch(
-        `/api/forms?search=${search}&page=${page}&name=${name}&limit=${limit}`,
-      );
+      let queryString = `search=${search}&page=${page}&name=${name}&limit=${limit}`;
+      if (from) {
+        queryString += `&startDate=${from.toISOString()}`;
+      }
+      if (to) {
+        queryString += `&endDate=${to.toISOString()}`;
+      }
+      const res = await fetch(`/api/forms?${queryString}`);
       const data = await res.json();
       setForms(data.forms);
       setTotal(data.total);
@@ -36,7 +46,33 @@ export default function SubmissionsTable({ name }: { name?: string }) {
       setKeys(allKeys);
     };
     loadForms();
-  }, [search, page, name]);
+  }, [search, page, name, from, to]);
+
+  const onDownloadCsv = async () => {
+    let queryString = `name=${name}`;
+    if (from) {
+      queryString += `&startDate=${from.toISOString()}`;
+    }
+    if (to) {
+      queryString += `&endDate=${to.toISOString()}`;
+    }
+    const res = await fetch(`/api/forms/export?${queryString}`);
+    if (res.ok) {
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "submissions.csv";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+      toast.success("Success on download data");
+    } else {
+      toast.error("Failed on download data");
+    }
+  };
 
   return (
     <Card className="w-full h-fit shadow-xl rounded-2xl">
@@ -47,6 +83,15 @@ export default function SubmissionsTable({ name }: { name?: string }) {
               <h1 className="text-xl font-semibold">Forms</h1>
             </div>
             <div className="flex flex-row items-center gap-2">
+              <DatePickerRange
+                placeholder="Filter by Created At"
+                from={from}
+                to={to}
+                onChange={(from, to) => {
+                  setFrom(from);
+                  setTo(to);
+                }}
+              />
               <Input
                 placeholder="Search forms..."
                 value={search}
@@ -56,6 +101,9 @@ export default function SubmissionsTable({ name }: { name?: string }) {
                 }}
                 className="w-64"
               />
+              <Button onClick={onDownloadCsv}>
+                <Download />
+              </Button>
             </div>
           </div>
 
