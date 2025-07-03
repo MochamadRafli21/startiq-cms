@@ -1,4 +1,4 @@
-import AssetList from "@/components/organisms/assets/image-list";
+import AssetList from "@/components/organisms/assets/assets-list";
 
 export default function AdminForms() {
   return (
