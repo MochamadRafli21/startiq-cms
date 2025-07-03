@@ -8,11 +8,11 @@ import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { X } from "lucide-react";
 import { validateSlugViaApi, validateSlug, slugify } from "@/utils/pages/slugs";
-import type { Page } from "@/types/page.type";
+import type { PageBodyInput } from "@/types/page.type";
 
 interface PageEditorProps {
-  page?: Page;
-  onChange?: (data: Page) => void;
+  page?: PageBodyInput;
+  onChange?: (data: PageBodyInput) => void;
 }
 
 export default function PageInfo({ page, onChange }: PageEditorProps) {
@@ -47,7 +47,7 @@ export default function PageInfo({ page, onChange }: PageEditorProps) {
         category,
         tags,
         isPublic,
-      });
+      } as PageBodyInput);
     }
   }, [title, slug, tags, isPublic]);
 

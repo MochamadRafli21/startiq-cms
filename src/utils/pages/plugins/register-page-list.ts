@@ -1,6 +1,6 @@
 import { Editor } from "grapesjs";
 import { ChangeEvent } from "react";
-import type { Page } from "@/types/page.type";
+import type { PageFullRecord } from "@/types/page.type";
 
 export function registerPageList(editor: Editor) {
   editor.DomComponents.addType("page-list", {
@@ -84,7 +84,7 @@ export function registerPageList(editor: Editor) {
 
             fetch(`/api/public?${query.toString()}`)
               .then((res) => res.json())
-              .then((body: { pages: Page[]; total: number }) => {
+              .then((body: { pages: PageFullRecord[]; total: number }) => {
                 container.innerHTML = "";
                 if (!Array.isArray(body?.pages) || body.total === 0) {
                   container.innerHTML =
@@ -96,7 +96,7 @@ export function registerPageList(editor: Editor) {
 
                 const pages = body.pages;
                 if (layout === "list") {
-                  pages.forEach((page: Page) => {
+                  pages.forEach((page: PageFullRecord) => {
                     const card = document.createElement("div");
                     card.className =
                       "bg-white md:col-span-full rounded-lg shadow-md p-4 flex items-start justify-between my-4";
@@ -137,7 +137,7 @@ export function registerPageList(editor: Editor) {
                     container.appendChild(card);
                   });
                 } else if (layout === "grid") {
-                  pages.forEach((page: Page) => {
+                  pages.forEach((page: PageFullRecord) => {
                     const card = document.createElement("div");
                     card.className = "bg-white rounded-lg shadow-md p-4";
 
@@ -212,7 +212,7 @@ export function registerPageList(editor: Editor) {
                     const secondCard = document.createElement("div");
                     secondCard.className = "lg:col-span-1";
 
-                    pages.slice(1).forEach((page: Page) => {
+                    pages.slice(1).forEach((page: PageFullRecord) => {
                       const card = document.createElement("div");
                       card.className = "bg-white rounded-lg shadow-md p-4";
 

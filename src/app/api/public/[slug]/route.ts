@@ -1,10 +1,11 @@
 import { db } from "@/db/client";
 import { pages } from "@/db/schema";
+import { PageFullRecord, PagePublicParams } from "@/types/page.type";
 import { eq, and } from "drizzle-orm";
 
 export async function GET(
   _req: Request,
-  { params }: { params: Promise<{ slug: string }> },
+  { params }: { params: Promise<PagePublicParams> },
 ) {
   const { slug } = await params;
 
@@ -20,5 +21,5 @@ export async function GET(
     });
   }
 
-  return Response.json(page);
+  return Response.json(page as PageFullRecord);
 }

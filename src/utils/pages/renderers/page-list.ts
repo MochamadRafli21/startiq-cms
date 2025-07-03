@@ -1,6 +1,6 @@
 import { ProjectData } from "grapesjs";
 import { findComponentById } from "../tools";
-import type { Page } from "@/types/page.type";
+import type { PageFullRecord } from "@/types/page.type";
 
 export const renderPageList = (content: ProjectData) => {
   const containers = document?.querySelectorAll('[data-gjs-type="page-list"]');
@@ -60,7 +60,7 @@ export const renderPageList = (content: ProjectData) => {
 
       fetch(`/api/public?${query.toString()}`)
         .then((res) => res.json())
-        .then((body: { pages: Page[]; total: number }) => {
+        .then((body: { pages: PageFullRecord[]; total: number }) => {
           if (!pageContainer) return;
           pageContainer.innerHTML = "";
           if (!Array.isArray(body?.pages) || body.total === 0) {
@@ -73,7 +73,7 @@ export const renderPageList = (content: ProjectData) => {
 
           const pages = body.pages;
           if (layout === "list") {
-            pages.forEach((page: Page) => {
+            pages.forEach((page: PageFullRecord) => {
               const card = document.createElement("div");
               card.className =
                 "bg-white md:col-span-full rounded-lg shadow-md p-4 flex items-start justify-between my-4";
@@ -113,7 +113,7 @@ export const renderPageList = (content: ProjectData) => {
               pageContainer.appendChild(card);
             });
           } else if (layout === "grid") {
-            pages.forEach((page: Page) => {
+            pages.forEach((page: PageFullRecord) => {
               const card = document.createElement("div");
               card.className = "bg-white rounded-lg shadow-md p-4";
 
@@ -185,7 +185,7 @@ export const renderPageList = (content: ProjectData) => {
               const secondCard = document.createElement("div");
               secondCard.className = "lg:col-span-1";
 
-              pages.slice(1).forEach((page: Page) => {
+              pages.slice(1).forEach((page: PageFullRecord) => {
                 const card = document.createElement("div");
                 card.className = "bg-white rounded-lg shadow-md p-4";
 

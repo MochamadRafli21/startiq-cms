@@ -2,10 +2,12 @@ import { db } from "@/db/client";
 import { pages } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { requireSession } from "@/lib/guard";
+import { PageFullRecord } from "@/types/page.type";
+import { ProjectData } from "grapesjs";
 
 export async function POST(
   _req: Request,
-  { params }: { params: Promise<{ id: string }> },
+  { params }: { params: Promise<PageFullRecord> },
 ) {
   const { error } = await requireSession();
   if (error) return new Response("Unauthorized", { status: 401 });
@@ -25,7 +27,7 @@ export async function POST(
       slug: body.slug + "-duplicated",
       tags: body.tags,
       isPublic: false,
-      content: body.content,
+      content: body.content as ProjectData,
       metaImage: body.metaImage,
       metaTitle: body.metaTitle,
       iconImage: body.iconImage,
@@ -39,5 +41,5 @@ export async function POST(
     .where(eq(pages.id, newId))
     .limit(1);
 
-  return Response.json(page);
+  return Response.json(page as PageFullRecord);
 }

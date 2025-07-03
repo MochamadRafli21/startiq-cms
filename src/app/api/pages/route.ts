@@ -2,6 +2,7 @@ import { db } from "@/db/client";
 import { pages } from "@/db/schema";
 import { like, count, eq, and, sql, or } from "drizzle-orm";
 import { requireSession } from "@/lib/guard";
+import type { PageQuery, PageResponse, PageBodyInput } from "@/types/page.type";
 
 export const dynamic = "force-dynamic";
 
@@ -10,10 +11,13 @@ export async function GET(req: Request) {
   if (error) return new Response("Unauthorized", { status: 401 });
 
   const { searchParams } = new URL(req.url);
-  const search = searchParams.get("search") ?? "";
-  const page = parseInt(searchParams.get("page") ?? "1");
-  const limit = parseInt(searchParams.get("limit") ?? "10");
-  const offset = (page - 1) * limit;
+  const query: PageQuery = {
+    search: searchParams.get("search") ?? "",
+    page: parseInt(searchParams.get("page") ?? "1"),
+    limit: parseInt(searchParams.get("limit") ?? "10"),
+  };
+
+  const offset = ((query.page || 1) - 1) * (query.limit || 10);
 
   const tagFilter = searchParams.get("tags");
   const tags = tagFilter
@@ -25,8 +29,8 @@ export async function GET(req: Request) {
 
   const whereConditions = [];
 
-  if (search) {
-    const searchLower = search.toLowerCase();
+  if (query.search) {
+    const searchLower = query.search.toLowerCase();
     whereConditions.push(
       and(
         or(
@@ -66,20 +70,22 @@ export async function GET(req: Request) {
     .from(pages)
     .where(whereClause)
     .orderBy(pages.createdAt)
-    .limit(limit)
+    .limit(query.limit || 10)
     .offset(offset);
 
-  return Response.json({
+  const response: PageResponse = {
     pages: results,
     total: Number(totalResult.count),
-  });
+  };
+
+  return Response.json(response);
 }
 
 export async function POST(req: Request) {
   const { error } = await requireSession();
   if (error) return new Response("Unauthorized", { status: 401 });
 
-  const body = await req.json();
+  const body: PageBodyInput = await req.json();
   const [{ id }] = await db
     .insert(pages)
     .values({
@@ -89,8 +95,8 @@ export async function POST(req: Request) {
       category: body.category,
       isPublic: body.isPublic,
       content: body.content,
-      contentCss: body.css,
-      contentHtml: body.html,
+      contentCss: body.contentCss,
+      contentHtml: body.contentHtml,
       metaImage: body.metaImage,
       metaTitle: body.metaTitle,
       iconImage: body.iconImage,
