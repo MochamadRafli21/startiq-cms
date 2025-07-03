@@ -25,12 +25,14 @@ export function SelectMenu({
   setIsOpen,
   options,
   setSelected,
+  placeholder,
 }: {
   selected: { key: string; value: string };
   options: { key: string; value: string }[];
   setSelected?: (key: string) => void;
-  isOpen: boolean;
+  isOpen?: boolean;
   setIsOpen?: (state: boolean) => void;
+  placeholder?: string;
 }) {
   return (
     <Popover open={isOpen} onOpenChange={setIsOpen}>
@@ -48,9 +50,12 @@ export function SelectMenu({
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
         <Command>
-          <CommandInput placeholder="Search framework..." className="h-9" />
+          <CommandInput
+            placeholder={placeholder || "Search Data ..."}
+            className="h-9"
+          />
           <CommandList>
-            <CommandEmpty>No framework found.</CommandEmpty>
+            <CommandEmpty>No data found.</CommandEmpty>
             <CommandGroup>
               {options.map((option) => (
                 <CommandItem
