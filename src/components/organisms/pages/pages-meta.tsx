@@ -2,14 +2,16 @@
 
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import type { Page } from "@/types/page.type";
 import { Textarea } from "@/components/ui/textarea";
 import Image from "next/image";
+import { AssetModal } from "../assets/assets-modal";
+import type { PageBodyInput } from "@/types/page.type";
 
 interface PageEditorProps {
-  page?: Page;
-  onChange?: (data: Page) => void;
+  page?: PageBodyInput;
+  onChange?: (data: PageBodyInput) => void;
 }
 
 export default function PageInfo({ page, onChange }: PageEditorProps) {
@@ -17,13 +19,14 @@ export default function PageInfo({ page, onChange }: PageEditorProps) {
   const [metaDescription, setMetaDescription] = useState(
     page?.metaDescription ?? "",
   );
-  const [metaImage, setMetaImage] = useState(page?.metaImage ?? "");
-  const [uploading, setUploading] = useState(false);
+  const [openIconModal, setOpenIconModal] = useState(false);
   const [iconImage, setIconImage] = useState(page?.iconImage ?? "");
-  const [uploadingIcon, setUploadingIcon] = useState(false);
 
-  const handleUpdate = (updated: Partial<Page>) => {
-    const updatedPage: Page = {
+  const [openMetaModal, setOpenMetaModal] = useState(false);
+  const [metaImage, setMetaImage] = useState(page?.metaImage ?? "");
+
+  const handleUpdate = (updated: Partial<PageBodyInput>) => {
+    const updatedPage: PageBodyInput = {
       ...page!,
       metaTitle,
       metaDescription,
@@ -33,64 +36,16 @@ export default function PageInfo({ page, onChange }: PageEditorProps) {
     onChange?.(updatedPage);
   };
 
-  const onMetaImageFileChange = async (
-    e: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    const formData = new FormData();
-    formData.append("file", file);
-    setUploading(true);
-
-    try {
-      const res = await fetch("/api/uploads", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (!res.ok) throw new Error("Upload failed");
-
-      const { data } = await res.json();
-      const url = data?.at(0)?.src;
-      setMetaImage(url);
-      handleUpdate({ metaImage: url });
-    } catch (err) {
-      console.error("Image upload failed:", err);
-      // Optionally show an error toast here
-    } finally {
-      setUploading(false);
-    }
+  const handleMetaImageChange = (url: string) => {
+    setMetaImage(url);
+    handleUpdate({ metaImage: url });
+    setOpenMetaModal(false);
   };
 
-  const onIconImageFileChange = async (
-    e: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    const formData = new FormData();
-    formData.append("file", file);
-    setUploadingIcon(true);
-
-    try {
-      const res = await fetch("/api/uploads/file", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (!res.ok) throw new Error("Upload failed");
-
-      const { data } = await res.json();
-      const url = data?.at(0)?.src;
-      setIconImage(url);
-      handleUpdate({ metaImage: url });
-    } catch (err) {
-      console.error("Image upload failed:", err);
-      // Optionally show an error toast here
-    } finally {
-      setUploadingIcon(false);
-    }
+  const handleIconImageChange = (url: string) => {
+    setIconImage(url);
+    handleUpdate({ iconImage: url });
+    setOpenIconModal(false);
   };
 
   return (
@@ -138,16 +93,13 @@ export default function PageInfo({ page, onChange }: PageEditorProps) {
             />
           </div>
         )}
-        <Input
-          type="file"
-          id="metaImage"
-          accept="image/*"
-          onChange={onMetaImageFileChange}
-          disabled={uploading}
-        />
-        {uploading && (
-          <p className="text-xs text-muted-foreground">Uploading...</p>
-        )}
+        <AssetModal
+          open={openMetaModal}
+          onOpenChange={setOpenMetaModal}
+          onSelect={handleMetaImageChange}
+        >
+          <Button variant="outline">Select Meta Image</Button>
+        </AssetModal>
 
         {iconImage && (
           <div className="mb-2">
@@ -162,19 +114,14 @@ export default function PageInfo({ page, onChange }: PageEditorProps) {
         )}
       </div>
       <div>
-        <Label htmlFor="iconImage" className="text-xs pb-2">
-          Icon Image
-        </Label>
-        <Input
-          type="file"
-          id="iconImage"
-          accept="image/png, .ico"
-          onChange={onIconImageFileChange}
-          disabled={uploadingIcon}
-        />
-        {uploadingIcon && (
-          <p className="text-xs text-muted-foreground">Uploading...</p>
-        )}
+        <Label className="text-xs pb-2">Icon Image</Label>
+        <AssetModal
+          open={openIconModal}
+          onOpenChange={setOpenIconModal}
+          onSelect={handleIconImageChange}
+        >
+          <Button variant="outline">Select Icon Image</Button>
+        </AssetModal>
       </div>
     </div>
   );

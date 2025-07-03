@@ -1,6 +1,6 @@
 import { Editor } from "grapesjs";
 import { ChangeEvent } from "react";
-import type { Page } from "@/types/page.type";
+import type { PageFullRecord } from "@/types/page.type";
 
 export function registerPageList(editor: Editor) {
   editor.DomComponents.addType("page-list", {
@@ -39,7 +39,7 @@ export function registerPageList(editor: Editor) {
             changeProp: true,
           },
           {
-            type: "tags-selector",
+            type: "page-tags-selector",
             label: "Filter by Tags",
             name: "tags",
             changeProp: true,
@@ -84,7 +84,7 @@ export function registerPageList(editor: Editor) {
 
             fetch(`/api/public?${query.toString()}`)
               .then((res) => res.json())
-              .then((body: { pages: Page[]; total: number }) => {
+              .then((body: { pages: PageFullRecord[]; total: number }) => {
                 container.innerHTML = "";
                 if (!Array.isArray(body?.pages) || body.total === 0) {
                   container.innerHTML =
@@ -96,7 +96,7 @@ export function registerPageList(editor: Editor) {
 
                 const pages = body.pages;
                 if (layout === "list") {
-                  pages.forEach((page: Page) => {
+                  pages.forEach((page: PageFullRecord) => {
                     const card = document.createElement("div");
                     card.className =
                       "bg-white md:col-span-full rounded-lg shadow-md p-4 flex items-start justify-between my-4";
@@ -111,7 +111,7 @@ export function registerPageList(editor: Editor) {
                     const excerpt = document.createElement("p");
                     excerpt.textContent = page.metaDescription || "";
                     excerpt.className =
-                      "text-sm text-gray-600 line-clamp-4 text-sm text-ellipsis";
+                      "text-sm text-gray-600 grow line-clamp-4 text-sm text-ellipsis";
                     textSection.appendChild(excerpt);
 
                     if (page.slug) {
@@ -137,7 +137,7 @@ export function registerPageList(editor: Editor) {
                     container.appendChild(card);
                   });
                 } else if (layout === "grid") {
-                  pages.forEach((page: Page) => {
+                  pages.forEach((page: PageFullRecord) => {
                     const card = document.createElement("div");
                     card.className = "bg-white rounded-lg shadow-md p-4";
 
@@ -177,7 +177,7 @@ export function registerPageList(editor: Editor) {
 
                   const firstCard = document.createElement("div");
                   firstCard.className =
-                    "md:col-span-2 bg-white rounded-lg shadow-md p-4 h-full flex flex-col flex-grow";
+                    "md:col-span-2 bg-white rounded-lg shadow-md p-4 h-full flex flex-col grow";
                   if (firstPage.metaImage) {
                     const img = document.createElement("img");
                     img.src = firstPage.metaImage;
@@ -194,7 +194,7 @@ export function registerPageList(editor: Editor) {
                   const excerpt = document.createElement("p");
                   excerpt.textContent = firstPage.metaDescription || "";
                   excerpt.className =
-                    "text-sm text-gray-600 flex-grow text-ellipsis";
+                    "text-sm text-gray-600 grow text-ellipsis";
                   firstCard.appendChild(excerpt);
 
                   if (firstPage.slug) {
@@ -212,7 +212,7 @@ export function registerPageList(editor: Editor) {
                     const secondCard = document.createElement("div");
                     secondCard.className = "lg:col-span-1";
 
-                    pages.slice(1).forEach((page: Page) => {
+                    pages.slice(1).forEach((page: PageFullRecord) => {
                       const card = document.createElement("div");
                       card.className = "bg-white rounded-lg shadow-md p-4";
 
@@ -233,7 +233,7 @@ export function registerPageList(editor: Editor) {
                       const excerpt = document.createElement("p");
                       excerpt.textContent = page.metaDescription || "";
                       excerpt.className =
-                        "text-sm text-gray-600 line-clamp-4 text-sm text-ellipsis";
+                        "text-sm text-gray-600 grow line-clamp-4 text-sm text-ellipsis";
                       card.appendChild(excerpt);
 
                       if (page.slug) {

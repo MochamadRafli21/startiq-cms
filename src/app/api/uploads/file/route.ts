@@ -3,6 +3,7 @@ import { writeFile } from "fs/promises";
 import path from "path";
 import { mkdir } from "fs/promises";
 import { requireSession } from "@/lib/guard";
+import { getFolderSize } from "@/utils/files";
 
 export async function POST(req: NextRequest) {
   const { error } = await requireSession();
@@ -24,6 +25,17 @@ export async function POST(req: NextRequest) {
   const baseName = file.name.replace(/\.[^/.]+$/, "");
   const filename = `${Date.now()}-${baseName}`;
   const filePath = path.join(uploadDir, filename);
+
+  const folderSize = await getFolderSize(uploadDir);
+  if (folderSize > 2 * 1024 * 1024 * 1024) {
+    return NextResponse.json(
+      {
+        error:
+          "Failed to process file, your asset is to full. remove some asset to continue",
+      },
+      { status: 400 },
+    );
+  }
 
   try {
     await writeFile(filePath, buffer);

@@ -3,6 +3,7 @@ import { writeFile } from "fs/promises";
 import path from "path";
 import { mkdir } from "fs/promises";
 import sharp from "sharp";
+import { getFolderSize } from "@/utils/files";
 import { requireSession } from "@/lib/guard";
 
 export async function POST(req: NextRequest) {
@@ -30,6 +31,17 @@ export async function POST(req: NextRequest) {
   if (!file.type.startsWith("image/")) {
     return NextResponse.json(
       { error: "Only image uploads are allowed" },
+      { status: 400 },
+    );
+  }
+
+  const folderSize = await getFolderSize(uploadDir);
+  if (folderSize > 2 * 1024 * 1024 * 1024) {
+    return NextResponse.json(
+      {
+        error:
+          "Failed to process file, your asset is to full. remove some asset to continue",
+      },
       { status: 400 },
     );
   }

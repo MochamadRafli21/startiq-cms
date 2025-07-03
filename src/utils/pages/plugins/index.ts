@@ -9,6 +9,7 @@ import { registerFooter } from "./register-footer";
 import { registerPartnerLogos } from "./register-partner-logos";
 import { registerCountUp } from "./register-count-up";
 import { registerFaqComponent } from "./register-faq";
+import { registerContentList } from "./register-content-list";
 
 export const customPlugins = [
   registerCarousel,
@@ -17,6 +18,7 @@ export const customPlugins = [
   registerCountUp,
   registerLinkList,
   registerPageList,
+  registerContentList,
   registerTabs,
   registerNavbar,
   registerFooter,

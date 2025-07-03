@@ -3,12 +3,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { Home, Book, Link2, Paperclip, Settings } from "lucide-react";
+import { Home, Book, Link2, Paperclip, Settings, Folder } from "lucide-react";
 
 const navItems = [
   { href: "/admin", label: "Pages", icon: <Home size={18} /> },
   { href: "/admin/templates", label: "Template", icon: <Book size={18} /> },
   { href: "/admin/links", label: "Link", icon: <Link2 size={18} /> },
+  { href: "/admin/assets", label: "Asset", icon: <Folder size={18} /> },
   { href: "/admin/forms", label: "Form", icon: <Paperclip size={18} /> },
 ];
 
