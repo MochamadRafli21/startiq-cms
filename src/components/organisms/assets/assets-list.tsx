@@ -15,15 +15,18 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { toast } from "sonner";
-import { Plus, Trash } from "lucide-react";
+import { Link, Plus, Trash } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import type { Asset } from "@/types/asset.type";
 
 export default function AssetsList({
   onSelect,
+  isFromModal = false,
 }: {
   onSelect?: (selectedSrc: string) => void;
+  isFromModal?: boolean;
 }) {
   const [search, setSearch] = useState("");
   const [uploading, setUploading] = useState(false);
@@ -94,7 +97,9 @@ export default function AssetsList({
     }
   };
   return (
-    <Card className="w-full h-fit shadow-xl rounded-2xl">
+    <Card
+      className={cn("w-full h-fit rounded-2xl", isFromModal && "shadow-xl")}
+    >
       <CardContent>
         <div className="space-y-4 w-full">
           <div className="flex justify-between items-center">
@@ -138,6 +143,15 @@ export default function AssetsList({
                         {asset.name}
                       </span>
                       <div className="text-right">
+                        <Button
+                          variant="ghost"
+                          onClick={() => {
+                            navigator.clipboard.writeText(asset.src);
+                            toast.success("Success copy asset url");
+                          }}
+                        >
+                          <Link />
+                        </Button>
                         <Dialog>
                           <DialogTrigger>
                             <Trash color="red" size={18} />
