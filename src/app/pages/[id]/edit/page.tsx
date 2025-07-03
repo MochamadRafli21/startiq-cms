@@ -185,7 +185,10 @@ export default function EditPage() {
             <SquareChevronDown /> Expand Info
           </Button>
         </div>
-        <div className="flex flex-col" hidden={minimizeInfo}>
+        <div
+          className="flex flex-col max-h-screen overflow-y-auto"
+          hidden={minimizeInfo}
+        >
           <Tabs defaultValue="general" className="w-full">
             <TabsList className="w-full">
               <TabsTrigger value="general">General</TabsTrigger>
