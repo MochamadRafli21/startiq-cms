@@ -35,6 +35,7 @@ import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import type { PageFullRecord } from "@/types/page.type";
 import { useRouter } from "next/navigation";
+import { SelectMenu } from "@/components/molecule/select-menu";
 
 export default function PagesTable() {
   const [search, setSearch] = useState("");
@@ -63,7 +64,7 @@ export default function PagesTable() {
     const loadTags = async () => {
       const res = await fetch(`/api/pages/tags`);
       const data = await res.json();
-      setTags(data.tags);
+      setTags([...data.tags, "All"]);
     };
     loadTags();
   }, [refetchTrigger]);
@@ -141,34 +142,20 @@ export default function PagesTable() {
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-4">
               <h1 className="text-xl font-semibold">Pages</h1>
-              {tags.length > 0 && (
-                <div className="flex overflow-x-auto max-w-xl gap-2 bg-gray-100 rounded-lg divide-x-2 divide-gray-500">
-                  <div className="px-2 py-1">
-                    <Button
-                      variant="secondary"
-                      size="sm"
-                      className="hover:bg-gray-300"
-                      onClick={() => setSelectedTag("All")}
-                    >
-                      All
-                    </Button>
-                  </div>
-                  {tags.map((tag) => {
-                    return (
-                      <div key={tag} className="px-2 py-1">
-                        <Button
-                          variant="secondary"
-                          size="sm"
-                          className="hover:bg-gray-300"
-                          onClick={() => setSelectedTag(tag)}
-                        >
-                          {tag}
-                        </Button>
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
+              <SelectMenu
+                placeholder="Filter By Tag"
+                selected={{
+                  key: selectedTag,
+                  value: selectedTag,
+                }}
+                options={tags.map((tag) => {
+                  return {
+                    key: tag,
+                    value: tag,
+                  };
+                })}
+                setSelected={setSelectedTag}
+              />
             </div>
             <div className="flex flex-row items-center gap-2">
               <Input
