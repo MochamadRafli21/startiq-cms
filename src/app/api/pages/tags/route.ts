@@ -6,14 +6,14 @@ export async function GET() {
   const { error } = await requireSession();
   if (error) return new Response("Unauthorized", { status: 401 });
 
-  const [tagsResult] = await db.execute(
+  const tagsResult = await db.execute(
     sql`
-    SELECT DISTINCT JSON_UNQUOTE(tag) as tag
-    FROM pages,
-    JSON_TABLE(pages.tags, '$[*]' COLUMNS(tag JSON PATH '$')) AS jt
+    SELECT DISTINCT jsonb_array_elements_text(tags::jsonb) AS tag
+    FROM pages
   `,
   );
-  const tags = (tagsResult as unknown as { tag: string }[]).map(
+
+  const tags = (tagsResult.rows as unknown as { tag: string }[]).map(
     (row) => row.tag,
   );
 

@@ -24,7 +24,7 @@ export async function POST(
       title: body.title + "-duplicated",
       content: body.content,
     })
-    .$returningId();
+    .returning();
 
   const [template] = await db
     .select()

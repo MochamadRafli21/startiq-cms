@@ -32,7 +32,12 @@ export async function GET(req: Request) {
   if (tags.length > 0) {
     // Build MySQL JSON_CONTAINS expression for each tag
     const tagConditions = tags.map(
-      (tag) => sql`JSON_CONTAINS(${links.tags}, JSON_QUOTE(${tag}))`,
+      (tag) => sql`
+        EXISTS (
+          SELECT 1 FROM json_array_elements_text(${links.tags}) AS tag
+          WHERE tag = ${tag}
+        )
+      `,
     );
 
     // Add all tag filters using AND (i.e. must match all tags)
@@ -81,7 +86,7 @@ export async function POST(req: Request) {
       tags: body.tags,
       attributes: body.attributes,
     })
-    .$returningId();
+    .returning();
 
   const [link] = await db.select().from(links).where(eq(links.id, id)).limit(1);
 

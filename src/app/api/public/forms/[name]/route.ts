@@ -32,7 +32,7 @@ export async function POST(
       name,
       data,
     })
-    .$returningId();
+    .returning();
 
   const html = `
     <!DOCTYPE html>

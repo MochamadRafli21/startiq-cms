@@ -1,1 +1,0 @@
-ALTER TABLE `links` ADD `target` varchar(255) NOT NULL;

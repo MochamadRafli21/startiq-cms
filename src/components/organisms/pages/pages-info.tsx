@@ -49,7 +49,7 @@ export default function PageInfo({ page, onChange }: PageEditorProps) {
         isPublic,
       } as PageBodyInput);
     }
-  }, [title, slug, tags, isPublic]);
+  }, [title, slug, tags, category, isPublic]);
 
   const handleTagsPush = (value: string) => {
     if (!value) return;

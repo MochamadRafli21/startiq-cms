@@ -51,7 +51,7 @@ export async function POST(req: Request) {
       title: body.title,
       content: body.content,
     })
-    .$returningId();
+    .returning();
 
   const [template] = await db
     .select()
