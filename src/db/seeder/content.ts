@@ -25,6 +25,11 @@ async function seedFromFolder(
       data.forEach(async (innerData) => {
         const title =
           "title" in innerData ? (innerData as ContentTypes).title : file;
+
+        if (innerData.id) {
+          delete innerData.id;
+        }
+
         try {
           await db.insert(table).values(innerData);
           console.log(`✅ Seeded: ${title}`);
@@ -34,6 +39,9 @@ async function seedFromFolder(
       });
     } else {
       const title = "title" in data ? (data as ContentTypes).title : file;
+      if (data.id) {
+        delete data.id;
+      }
       try {
         await db.insert(table).values(data);
         console.log(`✅ Seeded: ${title}`);
@@ -53,6 +61,7 @@ async function seed() {
 
   console.log("🌱 Seeding links...");
   await seedFromFolder("data/links", links);
+  console.log(`✅ Seed Completed`);
 }
 
 seed().catch((err) => {
