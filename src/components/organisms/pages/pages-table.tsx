@@ -136,7 +136,7 @@ export default function PagesTable() {
   };
 
   return (
-    <Card className="w-full h-fit shadow-xl rounded-2xl">
+    <Card className="w-full max-w-[75vw] h-fit shadow-xl rounded-2xl">
       <CardContent>
         <div className="space-y-4 w-full">
           <div className="flex justify-between items-center">
