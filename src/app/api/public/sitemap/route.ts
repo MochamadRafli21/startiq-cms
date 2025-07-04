@@ -1,17 +1,23 @@
 import { db } from "@/db/client"; // replace with your actual db import
 import { pages } from "@/db/schema";
+import { PageFullRecord } from "@/types/page.type";
 import { eq } from "drizzle-orm";
 
 const DOMAIN = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
 export async function GET() {
-  const publicPages = await db
-    .select({
-      slug: pages.slug,
-      updatedAt: pages.updatedAt,
-    })
-    .from(pages)
-    .where(eq(pages.isPublic, true));
+  let publicPages = [] as { slug: string; updatedAt: Date | null }[];
+  try {
+    publicPages = await db
+      .select({
+        slug: pages.slug,
+        updatedAt: pages.updatedAt,
+      })
+      .from(pages)
+      .where(eq(pages.isPublic, true));
+  } catch (error) {
+    console.error("failed to get data sitemap", error);
+  }
 
   const urls = publicPages.map((page) => {
     return `
