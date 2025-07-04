@@ -25,7 +25,12 @@ export async function GET(req: Request) {
   if (tags.length > 0) {
     // Build MySQL JSON_CONTAINS expression for each tag
     const tagConditions = tags.map(
-      (tag) => sql`JSON_CONTAINS(${pages.tags}, JSON_QUOTE(${tag}))`,
+      (tag) => sql`
+        EXISTS (
+          SELECT 1 FROM json_array_elements_text(${pages.tags}) AS tag
+          WHERE tag = ${tag}
+        )
+      `,
     );
     // Add all tag filters using AND (i.e. must match all tags)
     whereConditions.push(and(...tagConditions));
@@ -42,10 +47,15 @@ export async function GET(req: Request) {
   if (category.length > 0) {
     // Build MySQL JSON_CONTAINS expression for each tag
     const categoryConditions = category.map(
-      (cat) => sql`JSON_CONTAINS(${pages.category}, JSON_QUOTE(${cat}))`,
+      (cat) => sql`
+        EXISTS (
+          SELECT 1 FROM json_array_elements_text(${pages.category}) AS cat
+          WHERE cat = ${cat}
+        )
+      `,
     );
     // Add all tag filters using AND (i.e. must match all tags)
-    whereConditions.push(or(...categoryConditions));
+    whereConditions.push(and(...categoryConditions));
   }
 
   if (search) {

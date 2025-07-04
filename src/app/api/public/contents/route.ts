@@ -27,11 +27,22 @@ export async function GET(req: Request) {
 
   if (tags.length > 0) {
     const linkTagConditions = tags.map(
-      (tag) => sql`JSON_CONTAINS(${links.tags}, JSON_QUOTE(${tag}))`,
+      (tag) => sql`
+        EXISTS (
+          SELECT 1 FROM json_array_elements_text(${links.tags}) AS tag
+          WHERE tag = ${tag}
+        )
+      `,
     );
     linkWhereConditions.push(and(...linkTagConditions));
+
     const pageTagConditions = tags.map(
-      (tag) => sql`JSON_CONTAINS(${pages.tags}, JSON_QUOTE(${tag}))`,
+      (tag) => sql`
+        EXISTS (
+          SELECT 1 FROM json_array_elements_text(${pages.tags}) AS tag
+          WHERE tag = ${tag}
+        )
+      `,
     );
     pageWhereConditions.push(and(...pageTagConditions));
   }
@@ -42,9 +53,10 @@ export async function GET(req: Request) {
 
   for (const [fullKey, value] of attributeEntries) {
     const key = fullKey.slice(11, -1);
+    const safeKey = key.replace(/[^a-zA-Z0-9_]/g, "");
     if (value) {
       linkWhereConditions.push(
-        sql`JSON_UNQUOTE(JSON_EXTRACT(${links.attributes}, ${sql.raw(`'$.${key}'`)})) = ${value}`,
+        sql`${sql.raw(`(${links.attributes} ->> ${safeKey})`)} = ${value}`,
       );
     }
   }

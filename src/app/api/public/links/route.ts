@@ -25,8 +25,14 @@ export async function GET(req: Request) {
 
   if (tags.length > 0) {
     const tagConditions = tags.map(
-      (tag) => sql`JSON_CONTAINS(${links.tags}, JSON_QUOTE(${tag}))`,
+      (tag) => sql`
+        EXISTS (
+          SELECT 1 FROM json_array_elements_text(${links.tags}) AS tag
+          WHERE tag = ${tag}
+        )
+      `,
     );
+
     whereConditions.push(and(...tagConditions));
   }
 

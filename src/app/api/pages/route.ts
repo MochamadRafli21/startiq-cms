@@ -44,7 +44,12 @@ export async function GET(req: Request) {
   if (tags.length > 0) {
     // Build MySQL JSON_CONTAINS expression for each tag
     const tagConditions = tags.map(
-      (tag) => sql`JSON_CONTAINS(${pages.tags}, JSON_QUOTE(${tag}))`,
+      (tag) => sql`
+        EXISTS (
+          SELECT 1 FROM json_array_elements_text(${pages.tags}) AS tag
+          WHERE tag = ${tag}
+        )
+      `,
     );
 
     // Add all tag filters using AND (i.e. must match all tags)
@@ -86,6 +91,7 @@ export async function POST(req: Request) {
   if (error) return new Response("Unauthorized", { status: 401 });
 
   const body: PageBodyInput = await req.json();
+  console.log(body.category);
   const [{ id }] = await db
     .insert(pages)
     .values({
@@ -102,7 +108,7 @@ export async function POST(req: Request) {
       iconImage: body.iconImage,
       metaDescription: body.metaDescription,
     })
-    .$returningId();
+    .returning();
 
   const [page] = await db.select().from(pages).where(eq(pages.id, id)).limit(1);
 

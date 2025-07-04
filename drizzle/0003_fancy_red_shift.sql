@@ -1,1 +1,0 @@
-ALTER TABLE `pages` ADD `icon_image` varchar(500);
