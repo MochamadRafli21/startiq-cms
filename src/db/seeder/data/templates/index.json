@@ -1,0 +1,1031 @@
+[
+  {
+    "id": 3,
+    "title": "Default",
+    "content": {
+      "pages": [
+        {
+          "id": "TJdobPdp7W92uiBG",
+          "type": "main",
+          "frames": [
+            {
+              "id": "7ftAJwt4fXo1kwLl",
+              "component": {
+                "head": { "type": "head" },
+                "type": "wrapper",
+                "docEl": { "tagName": "html" },
+                "stylable": [
+                  "background",
+                  "background-color",
+                  "background-image",
+                  "background-repeat",
+                  "background-attachment",
+                  "background-position",
+                  "background-size"
+                ],
+                "attributes": { "id": "isyy" },
+                "components": [
+                  {
+                    "type": "custom-navbar",
+                    "classes": ["w-full", "shadow-md"],
+                    "tagName": "header",
+                    "attributes": {
+                      "id": "i1lj",
+                      "data-gjs-type": "custom-navbar"
+                    },
+                    "components": [
+                      {
+                        "classes": [
+                          "max-w-screen",
+                          "mx-auto",
+                          "px-4",
+                          "py-4",
+                          "flex",
+                          "items-center",
+                          "absolute",
+                          "top-0",
+                          "justify-between"
+                        ],
+                        "components": [
+                          {
+                            "classes": ["flex", "items-center", "gap-4"],
+                            "components": [
+                              {
+                                "type": "image",
+                                "classes": ["h-10"],
+                                "resizable": { "ratioDefault": 1 },
+                                "attributes": {
+                                  "alt": "Logo",
+                                  "src": "https://res.cloudinary.com/dzyotifpv/image/upload/v1749928088/uploads/pevisaov0nefva5rsvqk.webp"
+                                }
+                              },
+                              {
+                                "classes": [
+                                  "hidden",
+                                  "md:flex",
+                                  "gap-6",
+                                  "text-sm",
+                                  "font-medium"
+                                ],
+                                "tagName": "nav",
+                                "components": [
+                                  {
+                                    "type": "link",
+                                    "attributes": {
+                                      "id": "iaqet",
+                                      "href": "/articles"
+                                    },
+                                    "components": [
+                                      {
+                                        "type": "textnode",
+                                        "content": "Consulting"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "link",
+                                    "attributes": {
+                                      "id": "i7iud9",
+                                      "href": "/articles"
+                                    },
+                                    "components": [
+                                      {
+                                        "type": "textnode",
+                                        "content": "Development"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "link",
+                                    "attributes": {
+                                      "id": "iwd13a",
+                                      "href": "/articles"
+                                    },
+                                    "components": [
+                                      {
+                                        "type": "textnode",
+                                        "content": "Contact Us"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "link",
+                                    "attributes": {
+                                      "id": "i68xw",
+                                      "href": "/articles"
+                                    },
+                                    "components": [
+                                      {
+                                        "type": "textnode",
+                                        "content": "Get Started"
+                                      },
+                                      { "void": true, "tagName": "br" }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "classes": [
+                              "hidden",
+                              "md:flex",
+                              "items-center",
+                              "gap-4"
+                            ],
+                            "components": [{ "classes": ["relative"] }]
+                          },
+                          { "type": "comment", "content": " Burger " },
+                          {
+                            "classes": [
+                              "md:hidden",
+                              "text-gray-700",
+                              "burger-btn"
+                            ],
+                            "components": [
+                              {
+                                "type": "svg",
+                                "classes": [
+                                  "lucide",
+                                  "lucide-menu-icon",
+                                  "lucide-menu"
+                                ],
+                                "resizable": { "ratioDefault": true },
+                                "attributes": {
+                                  "fill": "none",
+                                  "width": "24",
+                                  "xmlns": "http://www.w3.org/2000/svg",
+                                  "height": "24",
+                                  "stroke": "currentColor",
+                                  "viewBox": "0 0 24 24",
+                                  "stroke-width": "2",
+                                  "stroke-linecap": "round",
+                                  "stroke-linejoin": "round"
+                                },
+                                "components": [
+                                  {
+                                    "type": "svg-in",
+                                    "tagName": "path",
+                                    "resizable": { "ratioDefault": true },
+                                    "attributes": { "d": "M4 12h16" }
+                                  },
+                                  {
+                                    "type": "svg-in",
+                                    "tagName": "path",
+                                    "resizable": { "ratioDefault": true },
+                                    "attributes": { "d": "M4 18h16" }
+                                  },
+                                  {
+                                    "type": "svg-in",
+                                    "tagName": "path",
+                                    "resizable": { "ratioDefault": true },
+                                    "attributes": { "d": "M4 6h16" }
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      { "type": "comment", "content": " Mobile nav " },
+                      {
+                        "classes": [
+                          "mobile-menu",
+                          "hidden",
+                          "md:hidden",
+                          "flex-col",
+                          "gap-4",
+                          "px-4",
+                          "pb-4"
+                        ],
+                        "components": [
+                          {
+                            "classes": [
+                              "flex",
+                              "flex-col",
+                              "gap-2",
+                              "text-sm",
+                              "font-medium"
+                            ],
+                            "tagName": "nav",
+                            "components": [
+                              {
+                                "type": "link",
+                                "classes": ["text-blue-900"],
+                                "attributes": { "href": "#" },
+                                "components": [
+                                  { "type": "textnode", "content": "Home" }
+                                ]
+                              },
+                              {
+                                "type": "link",
+                                "attributes": { "href": "/about" },
+                                "components": [
+                                  { "type": "textnode", "content": "About" }
+                                ]
+                              },
+                              {
+                                "type": "link",
+                                "attributes": { "href": "#" },
+                                "components": [
+                                  {
+                                    "type": "textnode",
+                                    "content": "Membership"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "link",
+                                "attributes": { "href": "/conferneces" },
+                                "components": [
+                                  {
+                                    "type": "textnode",
+                                    "content": "Conferences"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "link",
+                                "attributes": { "href": "/publications" },
+                                "components": [
+                                  {
+                                    "type": "textnode",
+                                    "content": "Publication"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "link",
+                                "attributes": { "href": "/learning" },
+                                "components": [
+                                  { "type": "textnode", "content": "Learning" }
+                                ]
+                              },
+                              {
+                                "type": "link",
+                                "attributes": { "href": "/articles" },
+                                "components": [
+                                  { "type": "textnode", "content": "Updates" }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "classes": ["mt-3"],
+                            "components": [
+                              {
+                                "type": "input",
+                                "void": true,
+                                "classes": [
+                                  "w-full",
+                                  "pl-10",
+                                  "pr-4",
+                                  "py-2",
+                                  "border",
+                                  "rounded-full",
+                                  "relative"
+                                ],
+                                "attributes": {
+                                  "type": "text",
+                                  "placeholder": "Search"
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Row",
+                    "classes": [{ "name": "gjs-row", "private": 1 }],
+                    "droppable": ".gjs-cell",
+                    "resizable": {
+                      "bl": 0,
+                      "br": 0,
+                      "cl": 0,
+                      "cr": 0,
+                      "tc": 0,
+                      "tl": 0,
+                      "tr": 0,
+                      "minDim": 1
+                    },
+                    "attributes": { "id": "ioath" },
+                    "components": [
+                      {
+                        "name": "Cell",
+                        "classes": [{ "name": "gjs-cell", "private": 1 }],
+                        "draggable": ".gjs-row",
+                        "resizable": {
+                          "bc": 0,
+                          "bl": 0,
+                          "br": 0,
+                          "cl": 0,
+                          "cr": 1,
+                          "tc": 0,
+                          "tl": 0,
+                          "tr": 0,
+                          "step": 0.2,
+                          "minDim": 1,
+                          "currentUnit": 1
+                        },
+                        "attributes": { "id": "iliug" }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Row",
+                    "classes": [{ "name": "gjs-row", "private": 1 }],
+                    "droppable": ".gjs-cell",
+                    "resizable": {
+                      "bl": 0,
+                      "br": 0,
+                      "cl": 0,
+                      "cr": 0,
+                      "tc": 0,
+                      "tl": 0,
+                      "tr": 0,
+                      "minDim": 1
+                    },
+                    "attributes": { "id": "iwpsw" },
+                    "components": [
+                      {
+                        "name": "Cell",
+                        "classes": [{ "name": "gjs-cell", "private": 1 }],
+                        "draggable": ".gjs-row",
+                        "resizable": {
+                          "bc": 0,
+                          "bl": 0,
+                          "br": 0,
+                          "cl": 0,
+                          "cr": 1,
+                          "tc": 0,
+                          "tl": 0,
+                          "tr": 0,
+                          "step": 0.2,
+                          "minDim": 1,
+                          "currentUnit": 1
+                        },
+                        "attributes": { "id": "i0m6k" }
+                      }
+                    ]
+                  },
+                  {
+                    "classes": ["text-white", "px-8", "py-12"],
+                    "tagName": "footer",
+                    "components": [
+                      {
+                        "classes": [
+                          "grid",
+                          "grid-cols-1",
+                          "md:grid-cols-5",
+                          "gap-6",
+                          "text-sm"
+                        ],
+                        "components": [
+                          {
+                            "type": "comment",
+                            "content": " Logo + Contact Info "
+                          },
+                          {
+                            "classes": ["col-span-1", "space-y-4"],
+                            "components": [
+                              {
+                                "type": "image",
+                                "classes": ["mb-4"],
+                                "resizable": { "ratioDefault": 1 },
+                                "attributes": {
+                                  "alt": "Logo",
+                                  "src": "https://res.cloudinary.com/dzyotifpv/image/upload/v1749905644/uploads/xpxutxdwr5dflfi9rbjq.webp"
+                                }
+                              },
+                              {
+                                "type": "text",
+                                "tagName": "p",
+                                "components": [
+                                  {
+                                    "type": "textnode",
+                                    "content": "123 Academic Avenue, Research Park, CA 94103"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "text",
+                                "tagName": "p",
+                                "components": [
+                                  {
+                                    "type": "textnode",
+                                    "content": "📞 +1 (555) 123-4567"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "text",
+                                "tagName": "p",
+                                "components": [
+                                  {
+                                    "type": "textnode",
+                                    "content": "✉️ contact@researchplatform.com"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          { "type": "comment", "content": " Ecosystem " },
+                          {
+                            "components": [
+                              {
+                                "type": "text",
+                                "classes": ["font-bold", "mb-2"],
+                                "tagName": "h4",
+                                "components": [
+                                  { "type": "textnode", "content": "Startiq" }
+                                ]
+                              },
+                              {
+                                "classes": ["space-y-1"],
+                                "tagName": "ul",
+                                "components": [
+                                  {
+                                    "tagName": "li",
+                                    "components": [
+                                      {
+                                        "type": "link",
+                                        "attributes": {
+                                          "id": "iwcj4",
+                                          "href": "#"
+                                        },
+                                        "components": [
+                                          {
+                                            "type": "textnode",
+                                            "content": "Home"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "tagName": "li",
+                                    "components": [
+                                      {
+                                        "type": "link",
+                                        "attributes": {
+                                          "id": "ia6vl",
+                                          "href": "#"
+                                        },
+                                        "components": [
+                                          {
+                                            "type": "textnode",
+                                            "content": "Careers"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "tagName": "li",
+                                    "components": [
+                                      {
+                                        "type": "link",
+                                        "attributes": {
+                                          "id": "idebb",
+                                          "href": "#"
+                                        },
+                                        "components": [
+                                          {
+                                            "type": "textnode",
+                                            "content": "Customer Support"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "tagName": "li",
+                                    "components": [
+                                      {
+                                        "type": "link",
+                                        "attributes": {
+                                          "id": "iyoc4",
+                                          "href": "#"
+                                        },
+                                        "components": [
+                                          {
+                                            "type": "textnode",
+                                            "content": "Teams"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          { "type": "comment", "content": " Join Us " },
+                          {
+                            "components": [
+                              {
+                                "type": "text",
+                                "classes": ["font-bold", "mb-2"],
+                                "tagName": "h4",
+                                "components": [
+                                  { "type": "textnode", "content": "Product" }
+                                ]
+                              },
+                              {
+                                "classes": ["space-y-1"],
+                                "tagName": "ul",
+                                "components": [
+                                  {
+                                    "tagName": "li",
+                                    "components": [
+                                      {
+                                        "type": "link",
+                                        "attributes": {
+                                          "id": "ik4af",
+                                          "href": "#"
+                                        },
+                                        "components": [
+                                          {
+                                            "type": "textnode",
+                                            "content": "Web Development"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "tagName": "li",
+                                    "components": [
+                                      {
+                                        "type": "link",
+                                        "attributes": {
+                                          "id": "isc7f",
+                                          "href": "#"
+                                        },
+                                        "components": [
+                                          {
+                                            "type": "textnode",
+                                            "content": "SEO Optimizations"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "tagName": "li",
+                                    "components": [
+                                      {
+                                        "type": "link",
+                                        "attributes": {
+                                          "id": "iezly",
+                                          "href": "#"
+                                        },
+                                        "components": [
+                                          {
+                                            "type": "textnode",
+                                            "content": "Ads Consulting"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "tagName": "li",
+                                    "components": [
+                                      {
+                                        "type": "link",
+                                        "attributes": {
+                                          "id": "iw5t7",
+                                          "href": "#"
+                                        },
+                                        "components": [
+                                          {
+                                            "type": "textnode",
+                                            "content": "Social Media Management"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          { "type": "comment", "content": " Menu " },
+                          {
+                            "attributes": { "id": "i4l382" },
+                            "components": [
+                              {
+                                "classes": ["space-y-1"],
+                                "tagName": "ul",
+                                "components": [{ "tagName": "li" }]
+                              }
+                            ]
+                          },
+                          { "type": "comment", "content": " Social Icons " },
+                          {
+                            "components": [
+                              {
+                                "type": "text",
+                                "classes": ["font-bold", "mb-2"],
+                                "tagName": "h4",
+                                "components": [
+                                  { "type": "textnode", "content": "Follow Us" }
+                                ]
+                              },
+                              {
+                                "classes": ["flex", "gap-4"],
+                                "components": [
+                                  {
+                                    "type": "link",
+                                    "editable": false,
+                                    "attributes": { "href": "#" },
+                                    "components": [
+                                      {
+                                        "type": "image",
+                                        "classes": ["w-5", "h-5"],
+                                        "resizable": { "ratioDefault": 1 },
+                                        "attributes": {
+                                          "alt": "LinkedIn",
+                                          "src": "https://cdn-icons-png.flaticon.com/512/174/174857.png"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "link",
+                                    "editable": false,
+                                    "attributes": { "href": "#" },
+                                    "components": [
+                                      {
+                                        "type": "image",
+                                        "classes": ["w-5", "h-5"],
+                                        "resizable": { "ratioDefault": 1 },
+                                        "attributes": {
+                                          "alt": "Instagram",
+                                          "src": "https://cdn-icons-png.flaticon.com/512/2111/2111463.png"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "link",
+                                    "editable": false,
+                                    "attributes": { "href": "#" },
+                                    "components": [
+                                      {
+                                        "type": "image",
+                                        "classes": ["w-5", "h-5"],
+                                        "resizable": { "ratioDefault": 1 },
+                                        "attributes": {
+                                          "alt": "Facebook",
+                                          "src": "https://cdn-icons-png.flaticon.com/512/733/733547.png"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "link",
+                                    "editable": false,
+                                    "attributes": { "href": "#" },
+                                    "components": [
+                                      {
+                                        "type": "image",
+                                        "classes": ["w-5", "h-5"],
+                                        "resizable": { "ratioDefault": 1 },
+                                        "attributes": {
+                                          "alt": "YouTube",
+                                          "src": "https://cdn-icons-png.flaticon.com/512/733/733646.png"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "src": "https://res.cloudinary.com/dzyotifpv/image/upload/v1749928155/uploads/phmfwzh4ej6mikm28uwo.webp",
+          "name": "phmfwzh4ej6mikm28uwo",
+          "type": "image",
+          "width": 0,
+          "height": 0,
+          "unitDim": "px"
+        },
+        {
+          "src": "https://res.cloudinary.com/dzyotifpv/image/upload/v1749928088/uploads/pevisaov0nefva5rsvqk.webp",
+          "name": "pevisaov0nefva5rsvqk",
+          "type": "image",
+          "width": 0,
+          "height": 0,
+          "unitDim": "px"
+        },
+        {
+          "src": "https://res.cloudinary.com/dzyotifpv/image/upload/v1749908818/uploads/nc6pauzyafdsyqksstun.webp",
+          "name": "nc6pauzyafdsyqksstun",
+          "type": "image",
+          "width": 0,
+          "height": 0,
+          "unitDim": "px"
+        },
+        {
+          "src": "https://res.cloudinary.com/dzyotifpv/image/upload/v1749907786/uploads/c2ofs8g5x8yiwtckix7u.webp",
+          "name": "c2ofs8g5x8yiwtckix7u",
+          "type": "image",
+          "width": 0,
+          "height": 0,
+          "unitDim": "px"
+        },
+        {
+          "src": "https://res.cloudinary.com/dzyotifpv/image/upload/v1749905644/uploads/xpxutxdwr5dflfi9rbjq.webp",
+          "name": "xpxutxdwr5dflfi9rbjq",
+          "type": "image",
+          "width": 0,
+          "height": 0,
+          "unitDim": "px"
+        },
+        {
+          "src": "https://res.cloudinary.com/dzyotifpv/image/upload/v1749898030/uploads/plukjj9x2o3uerkgbgmt.webp",
+          "name": "plukjj9x2o3uerkgbgmt",
+          "type": "image",
+          "width": 0,
+          "height": 0,
+          "unitDim": "px"
+        },
+        {
+          "src": "https://res.cloudinary.com/dzyotifpv/image/upload/v1749897614/uploads/yvchytebzrdmgtghzsvo.webp",
+          "name": "yvchytebzrdmgtghzsvo",
+          "type": "image",
+          "width": 0,
+          "height": 0,
+          "unitDim": "px"
+        },
+        {
+          "src": "https://res.cloudinary.com/dzyotifpv/image/upload/v1749897314/uploads/rhsp6pl61mqealmrdwah.webp",
+          "name": "rhsp6pl61mqealmrdwah",
+          "type": "image",
+          "width": 0,
+          "height": 0,
+          "unitDim": "px"
+        },
+        {
+          "src": "https://res.cloudinary.com/dzyotifpv/image/upload/v1749896840/uploads/jrszgolcqcw1onfhspru.webp",
+          "name": "jrszgolcqcw1onfhspru",
+          "type": "image",
+          "width": 0,
+          "height": 0,
+          "unitDim": "px"
+        },
+        {
+          "src": "https://res.cloudinary.com/dzyotifpv/image/upload/v1749895917/uploads/m6wgssnrthj3chtrq0rg.webp",
+          "name": "m6wgssnrthj3chtrq0rg",
+          "type": "image",
+          "width": 0,
+          "height": 0,
+          "unitDim": "px"
+        },
+        {
+          "src": "https://res.cloudinary.com/dzyotifpv/image/upload/v1749895865/uploads/vmlipt9man08ixqgsqqs.webp",
+          "name": "vmlipt9man08ixqgsqqs",
+          "type": "image",
+          "width": 0,
+          "height": 0,
+          "unitDim": "px"
+        },
+        {
+          "src": "https://res.cloudinary.com/dzyotifpv/image/upload/v1749893191/uploads/pukoiswjtg3m9mlht6zp.webp",
+          "name": "pukoiswjtg3m9mlht6zp",
+          "type": "image",
+          "width": 0,
+          "height": 0,
+          "unitDim": "px"
+        },
+        {
+          "src": "https://res.cloudinary.com/dzyotifpv/image/upload/v1749892844/uploads/ptva2quhzvh95a7ucmfx.webp",
+          "name": "ptva2quhzvh95a7ucmfx",
+          "type": "image",
+          "width": 0,
+          "height": 0,
+          "unitDim": "px"
+        },
+        {
+          "src": "https://res.cloudinary.com/dzyotifpv/image/upload/v1749892822/uploads/jmrtljrrfvmoa4w7hycy.webp",
+          "name": "jmrtljrrfvmoa4w7hycy",
+          "type": "image",
+          "width": 0,
+          "height": 0,
+          "unitDim": "px"
+        },
+        {
+          "src": "https://res.cloudinary.com/dzyotifpv/image/upload/v1749892804/uploads/bmofhjrpuponolx7e1yc.webp",
+          "name": "bmofhjrpuponolx7e1yc",
+          "type": "image",
+          "width": 0,
+          "height": 0,
+          "unitDim": "px"
+        }
+      ],
+      "styles": [
+        {
+          "style": { "width": "100vw" },
+          "selectors": [
+            "max-w-screen",
+            "mx-auto",
+            "px-4",
+            "py-4",
+            "flex",
+            "items-center",
+            "bg-gray-300",
+            "absolute",
+            "top-0",
+            "justify-between"
+          ]
+        },
+        {
+          "style": { "top": "0px", "width": "100vw", "position": "fixed" },
+          "selectors": ["w-full", "shadow-md"]
+        },
+        {
+          "style": {
+            "width": "100vw",
+            "display": "flex",
+            "max-width": "100vw",
+            "align-self": "center",
+            "align-items": "center",
+            "align-content": "center",
+            "justify-content": "space-between"
+          },
+          "selectors": ["flex", "items-center", "gap-4"]
+        },
+        {
+          "style": {
+            "width": "100vw",
+            "background-size": "auto",
+            "background-image": "linear-gradient(to left, white 0%, #f5eaff 100%)",
+            "__background-type": "grad",
+            "background-repeat": "repeat",
+            "background-position": "left top",
+            "background-attachment": "scroll"
+          },
+          "selectors": [
+            "max-w-screen",
+            "mx-auto",
+            "px-4",
+            "py-4",
+            "flex",
+            "items-center",
+            "absolute",
+            "top-0",
+            "justify-between"
+          ]
+        },
+        {
+          "style": { "width": "100%", "display": "table", "padding": "10px" },
+          "selectors": [{ "name": "gjs-row", "private": 1 }]
+        },
+        {
+          "style": { "width": "100%", "display": "block" },
+          "mediaText": "(max-width: 768px)",
+          "selectors": [{ "name": "gjs-cell", "private": 1 }],
+          "atRuleType": "media"
+        },
+        {
+          "style": { "width": "100%", "display": "block" },
+          "mediaText": "(max-width: 768px)",
+          "selectors": ["gjs-cell30"],
+          "atRuleType": "media"
+        },
+        {
+          "style": { "width": "100%", "display": "block" },
+          "mediaText": "(max-width: 768px)",
+          "selectors": ["gjs-cell70"],
+          "atRuleType": "media"
+        },
+        {
+          "style": { "width": "8%", "height": "75px", "display": "table-cell" },
+          "selectors": [{ "name": "gjs-cell", "private": 1 }]
+        },
+        { "style": { "height": "20px" }, "selectors": ["#ioath"] },
+        {
+          "style": { "width": "100%", "height": "30px", "display": "block" },
+          "selectors": ["#iliug"]
+        },
+        {
+          "style": {
+            "color": "#000000",
+            "padding": "8px 16px 8px 16px",
+            "font-size": "14px",
+            "font-weight": "700",
+            "border-radius": "24px 24px 24px 24px"
+          },
+          "selectors": ["#iaqet"]
+        },
+        {
+          "style": {
+            "color": "white",
+            "padding": "8px 16px 8px 16px",
+            "font-size": "16px",
+            "font-weight": "800",
+            "border-radius": "24px 24px 24px 24px",
+            "background-color": "#5735a7"
+          },
+          "selectors": ["#i68xw"]
+        },
+        { "style": { "min-height": "100vh" }, "selectors": ["#iwpsw"] },
+        {
+          "style": {
+            "background-size": "auto",
+            "background-image": "linear-gradient(to right, #110038 0%, #43009c 100%)",
+            "__background-type": "grad",
+            "background-repeat": "repeat",
+            "background-position": "left top",
+            "background-attachment": "scroll"
+          },
+          "selectors": ["text-white", "px-8", "py-12"]
+        },
+        {
+          "state": "hover",
+          "style": {
+            "opacity": "1",
+            "box-shadow": "0px 0px 35px -5px rgba(56,0,145,0.53) ",
+            "transition": "all 0.5s ease",
+            "font-weight": "700"
+          },
+          "selectors": ["#iaqet"]
+        },
+        {
+          "style": {
+            "color": "#000000",
+            "padding": "8px 16px 8px 16px",
+            "font-size": "14px",
+            "font-weight": "700",
+            "border-radius": "24px 24px 24px 24px"
+          },
+          "selectors": ["#iwd13a"]
+        },
+        {
+          "state": "hover",
+          "style": {
+            "opacity": "1",
+            "box-shadow": "0px 0px 35px -5px rgba(56,0,145,0.53) ",
+            "transition": "all 0.5s ease",
+            "font-weight": "700"
+          },
+          "selectors": ["#iwd13a"]
+        },
+        {
+          "style": {
+            "color": "#000000",
+            "padding": "8px 16px 8px 16px",
+            "font-size": "14px",
+            "font-weight": "700",
+            "border-radius": "24px 24px 24px 24px"
+          },
+          "selectors": ["#i7iud9"]
+        },
+        {
+          "state": "hover",
+          "style": {
+            "opacity": "1",
+            "box-shadow": "0px 0px 35px -5px rgba(56,0,145,0.53) ",
+            "transition": "all 0.5s ease",
+            "font-weight": "700"
+          },
+          "selectors": ["#i7iud9"]
+        },
+        {
+          "state": "hover",
+          "style": {
+            "color": "#ffffff",
+            "box-shadow": "0 0 47px 5px rgba(56,0,145,0.38) ",
+            "transition": "all 0.2s ease",
+            "background-size": "auto",
+            "background-image": "linear-gradient(to right, #470096 23%, #0853c1 100%)",
+            "__background-type": "grad",
+            "background-repeat": "repeat",
+            "background-position": "left top",
+            "background-attachment": "scroll"
+          },
+          "selectors": ["#i68xw"]
+        }
+      ],
+      "symbols": [],
+      "dataSources": []
+    },
+    "created_at": "2025-06-14 19:13:14",
+    "updated_at": "2025-06-14 19:40:25"
+  }
+]
