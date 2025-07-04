@@ -31,6 +31,7 @@ export default function PageInfo({ page, onChange }: PageEditorProps) {
       metaTitle,
       metaDescription,
       metaImage,
+      iconImage,
       ...updated,
     };
     onChange?.(updatedPage);
