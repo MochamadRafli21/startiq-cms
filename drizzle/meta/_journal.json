@@ -1,75 +1,19 @@
 {
   "version": "7",
-  "dialect": "mysql",
+  "dialect": "postgresql",
   "entries": [
     {
       "idx": 0,
-      "version": "5",
-      "when": 1748447256546,
-      "tag": "0000_fair_boomerang",
+      "version": "7",
+      "when": 1751600208099,
+      "tag": "0000_magical_vulcan",
       "breakpoints": true
     },
     {
       "idx": 1,
-      "version": "5",
-      "when": 1749052209301,
-      "tag": "0001_flowery_post",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "5",
-      "when": 1749221293422,
-      "tag": "0002_futuristic_alex_power",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "5",
-      "when": 1749540519107,
-      "tag": "0003_fancy_red_shift",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "5",
-      "when": 1749592066595,
-      "tag": "0004_nappy_nighthawk",
-      "breakpoints": true
-    },
-    {
-      "idx": 5,
-      "version": "5",
-      "when": 1749596014220,
-      "tag": "0005_graceful_taskmaster",
-      "breakpoints": true
-    },
-    {
-      "idx": 6,
-      "version": "5",
-      "when": 1749785760683,
-      "tag": "0006_charming_lyja",
-      "breakpoints": true
-    },
-    {
-      "idx": 7,
-      "version": "5",
-      "when": 1750128687514,
-      "tag": "0007_normal_network",
-      "breakpoints": true
-    },
-    {
-      "idx": 8,
-      "version": "5",
-      "when": 1750647735786,
-      "tag": "0008_shocking_inhumans",
-      "breakpoints": true
-    },
-    {
-      "idx": 9,
-      "version": "5",
-      "when": 1750648957107,
-      "tag": "0009_hot_iron_fist",
+      "version": "7",
+      "when": 1751611243447,
+      "tag": "0001_public_scarecrow",
       "breakpoints": true
     }
   ]

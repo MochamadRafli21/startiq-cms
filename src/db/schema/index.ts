@@ -1,23 +1,22 @@
 import {
-  mysqlTable,
+  pgTable,
   varchar,
-  int,
-  serial,
+  integer,
   boolean,
   timestamp,
   json,
-  longtext,
-} from "drizzle-orm/mysql-core";
+  text,
+} from "drizzle-orm/pg-core";
 
-export const users = mysqlTable("users", {
-  id: int("id").primaryKey().autoincrement(),
+export const users = pgTable("users", {
+  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
   name: varchar("name", { length: 255 }),
   email: varchar("email", { length: 255 }).notNull(),
   password: varchar("password", { length: 255 }).notNull(),
 });
 
-export const pages = mysqlTable("pages", {
-  id: serial("id").primaryKey(),
+export const pages = pgTable("pages", {
+  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
   title: varchar("title", { length: 255 }).notNull(),
   slug: varchar("slug", { length: 255 }).notNull().unique(),
   tags: json("tags").default([]).notNull(),
@@ -28,22 +27,26 @@ export const pages = mysqlTable("pages", {
   iconImage: varchar("icon_image", { length: 500 }),
   isPublic: boolean("is_public").default(false).notNull(),
   content: json("content").notNull(),
-  contentHtml: longtext("html"),
-  contentCss: longtext("css"),
+  contentHtml: text("html"),
+  contentCss: text("css"),
   createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at").defaultNow().onUpdateNow(),
+  updatedAt: timestamp("updated_at")
+    .defaultNow()
+    .$onUpdate(() => new Date()),
 });
 
-export const templates = mysqlTable("templates", {
-  id: serial("id").primaryKey(),
+export const templates = pgTable("templates", {
+  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
   title: varchar("title", { length: 255 }).notNull(),
   content: json("content").notNull(),
   createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at").defaultNow().onUpdateNow(),
+  updatedAt: timestamp("updated_at")
+    .defaultNow()
+    .$onUpdate(() => new Date()),
 });
 
-export const links = mysqlTable("links", {
-  id: serial("id").primaryKey(),
+export const links = pgTable("links", {
+  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
   title: varchar("title", { length: 255 }).notNull(),
   target: varchar("target", { length: 255 }).notNull(),
   descriptions: varchar("descriptions", { length: 500 }),
@@ -51,13 +54,17 @@ export const links = mysqlTable("links", {
   tags: json("tags").default([]).notNull(),
   attributes: json("attributes").default({}).notNull(),
   createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at").defaultNow().onUpdateNow(),
+  updatedAt: timestamp("updated_at")
+    .defaultNow()
+    .$onUpdate(() => new Date()),
 });
 
-export const forms = mysqlTable("forms", {
-  id: int("id").primaryKey().autoincrement(),
+export const forms = pgTable("forms", {
+  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
   name: varchar("name", { length: 255 }),
   data: json("data").notNull(),
   createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at").defaultNow().onUpdateNow(),
+  updatedAt: timestamp("updated_at")
+    .defaultNow()
+    .$onUpdate(() => new Date()),
 });

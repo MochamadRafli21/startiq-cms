@@ -1,0 +1,7 @@
+ALTER TABLE "forms" ALTER COLUMN "id" ADD GENERATED ALWAYS AS IDENTITY (sequence name "forms_id_seq" INCREMENT BY 1 MINVALUE 1 MAXVALUE 2147483647 START WITH 1 CACHE 1);--> statement-breakpoint
+ALTER TABLE "links" ALTER COLUMN "id" SET DATA TYPE integer;--> statement-breakpoint
+ALTER TABLE "links" ALTER COLUMN "id" ADD GENERATED ALWAYS AS IDENTITY (sequence name "links_id_seq" INCREMENT BY 1 MINVALUE 1 MAXVALUE 2147483647 START WITH 1 CACHE 1);--> statement-breakpoint
+ALTER TABLE "pages" ALTER COLUMN "id" SET DATA TYPE integer;--> statement-breakpoint
+ALTER TABLE "pages" ALTER COLUMN "id" ADD GENERATED ALWAYS AS IDENTITY (sequence name "pages_id_seq" INCREMENT BY 1 MINVALUE 1 MAXVALUE 2147483647 START WITH 1 CACHE 1);--> statement-breakpoint
+ALTER TABLE "templates" ALTER COLUMN "id" SET DATA TYPE integer;--> statement-breakpoint
+ALTER TABLE "templates" ALTER COLUMN "id" ADD GENERATED ALWAYS AS IDENTITY (sequence name "templates_id_seq" INCREMENT BY 1 MINVALUE 1 MAXVALUE 2147483647 START WITH 1 CACHE 1);

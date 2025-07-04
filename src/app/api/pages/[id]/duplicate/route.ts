@@ -33,7 +33,7 @@ export async function POST(
       iconImage: body.iconImage,
       metaDescription: body.metaDescription,
     })
-    .$returningId();
+    .returning();
 
   const [page] = await db
     .select()
