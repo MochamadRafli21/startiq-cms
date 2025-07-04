@@ -133,11 +133,16 @@ export default function CreatePageEditor() {
 
   const handleContentChange = (
     content: ProjectData,
-    html: string,
-    css?: string,
+    contentHtml: string,
+    contentCss?: string,
   ) => {
     setPageData((prev) => {
-      const updated = { ...prev, content, html, css };
+      const updated = {
+        ...prev,
+        content,
+        contentHtml,
+        contentCss: contentCss || "",
+      };
       handleInfoChange(updated);
       return updated;
     });
