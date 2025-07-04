@@ -1,6 +1,5 @@
 import { db } from "@/db/client"; // replace with your actual db import
 import { pages } from "@/db/schema";
-import { PageFullRecord } from "@/types/page.type";
 import { eq } from "drizzle-orm";
 
 const DOMAIN = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
