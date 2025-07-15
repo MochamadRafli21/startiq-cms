@@ -255,15 +255,36 @@ export function registerPageList(editor: Editor) {
                 // Only render pagination if enabled
                 paginationContainer.innerHTML = "";
                 if (showPagination && totalPages > 1) {
-                  for (let i = 1; i <= totalPages; i++) {
-                    const btn = document.createElement("button");
-                    btn.textContent = i.toString();
-                    btn.className = `px-3 py-1 border rounded ${i === currentPage ? "bg-yellow-400" : "bg-white"}`;
-                    btn.addEventListener("click", () => {
-                      currentPage = i;
+                  // Previous button
+                  if (currentPage > 1) {
+                    const prevBtn = document.createElement("button");
+                    prevBtn.textContent = (currentPage - 1).toString();
+                    prevBtn.className = "px-3 py-1 border rounded bg-white";
+                    prevBtn.addEventListener("click", () => {
+                      currentPage = currentPage - 1;
                       renderPages();
                     });
-                    paginationContainer.appendChild(btn);
+                    paginationContainer.appendChild(prevBtn);
+                  }
+
+                  // Current page button
+                  const currentBtn = document.createElement("button");
+                  currentBtn.textContent = currentPage.toString();
+                  currentBtn.className =
+                    "px-3 py-1 border rounded bg-yellow-400";
+                  currentBtn.disabled = true; // Optional: disable current page button
+                  paginationContainer.appendChild(currentBtn);
+
+                  // Next button
+                  if (currentPage < totalPages) {
+                    const nextBtn = document.createElement("button");
+                    nextBtn.textContent = (currentPage + 1).toString();
+                    nextBtn.className = "px-3 py-1 border rounded bg-white";
+                    nextBtn.addEventListener("click", () => {
+                      currentPage = currentPage + 1;
+                      renderPages();
+                    });
+                    paginationContainer.appendChild(nextBtn);
                   }
                 }
               })
