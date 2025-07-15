@@ -87,27 +87,27 @@ export async function GET(req: Request) {
       target: links.target,
       banner: links.banner,
       descriptions: links.descriptions,
-      createdAt: links.createdAt,
+      createdAt: links.created_at,
       type: sql`'link'`.as("type"),
     })
     .from(links)
     .where(linkWhereClause)
-    .orderBy(links.createdAt)
+    .orderBy(links.created_at)
     .limit(pageLimit);
 
   const rawPages = await db
     .select({
       id: pages.id,
-      title: pages.metaTitle || pages.title,
+      title: pages.meta_title || pages.title,
       target: pages.slug,
-      banner: pages.metaImage || pages.iconImage,
-      descriptions: pages.metaDescription,
-      createdAt: pages.createdAt,
+      banner: pages.meta_image || pages.icon_image,
+      descriptions: pages.meta_description,
+      createdAt: pages.created_at,
       type: sql`'page'`.as("type"),
     })
     .from(pages)
     .where(pageWhereClause)
-    .orderBy(pages.createdAt)
+    .orderBy(pages.created_at)
     .limit(pageLimit);
 
   // Merge and sort by createdAt

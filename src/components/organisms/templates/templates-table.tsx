@@ -136,8 +136,8 @@ export default function TemplatesTable() {
                     {template.title}
                   </TableCell>
                   <TableCell>
-                    {template.createdAt &&
-                      new Date(template.createdAt).toLocaleDateString()}
+                    {template.created_at &&
+                      new Date(template.created_at).toLocaleDateString()}
                   </TableCell>
                   <TableCell className="text-right">
                     <Dialog>

@@ -63,7 +63,7 @@ export async function GET(req: Request) {
     whereConditions.push(
       or(
         like(sql`LOWER(${pages.title})`, `%${searchLower}%`),
-        like(sql`LOWER(${pages.metaTitle})`, `%${searchLower}%`),
+        like(sql`LOWER(${pages.meta_title})`, `%${searchLower}%`),
       ),
     );
   }
@@ -81,16 +81,16 @@ export async function GET(req: Request) {
       id: pages.id,
       title: pages.title,
       slug: pages.slug,
-      metaTitle: pages.metaTitle,
-      metaDescription: pages.metaDescription,
-      metaImage: pages.metaImage,
-      iconImage: pages.iconImage,
-      isPublic: pages.isPublic,
-      createdAt: pages.createdAt,
+      meta_title: pages.meta_title,
+      meta_description: pages.meta_description,
+      meta_image: pages.meta_image,
+      icon_image: pages.icon_image,
+      is_public: pages.is_public,
+      created_at: pages.created_at,
     })
     .from(pages)
     .where(whereClause)
-    .orderBy(pages.createdAt)
+    .orderBy(pages.created_at)
     .limit(limit)
     .offset(offset);
   const response: PageResponse = {

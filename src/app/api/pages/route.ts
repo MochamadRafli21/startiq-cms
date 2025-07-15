@@ -35,7 +35,7 @@ export async function GET(req: Request) {
       and(
         or(
           like(sql`LOWER(${pages.title})`, `%${searchLower}%`),
-          like(sql`LOWER(${pages.metaTitle})`, `%${searchLower}%`),
+          like(sql`LOWER(${pages.meta_title})`, `%${searchLower}%`),
         ),
       ),
     );
@@ -69,12 +69,12 @@ export async function GET(req: Request) {
       id: pages.id,
       title: pages.title,
       slug: pages.slug,
-      isPublic: pages.isPublic,
-      createdAt: pages.createdAt,
+      is_public: pages.is_public,
+      created_at: pages.created_at,
     })
     .from(pages)
     .where(whereClause)
-    .orderBy(pages.createdAt)
+    .orderBy(pages.created_at)
     .limit(query.limit || 10)
     .offset(offset);
 
@@ -91,7 +91,6 @@ export async function POST(req: Request) {
   if (error) return new Response("Unauthorized", { status: 401 });
 
   const body: PageBodyInput = await req.json();
-  console.log(body.category);
   const [{ id }] = await db
     .insert(pages)
     .values({
@@ -99,14 +98,14 @@ export async function POST(req: Request) {
       slug: body.slug,
       tags: body.tags,
       category: body.category,
-      isPublic: body.isPublic,
+      is_public: body.is_public,
       content: body.content,
-      contentCss: body.contentCss,
-      contentHtml: body.contentHtml,
-      metaImage: body.metaImage,
-      metaTitle: body.metaTitle,
-      iconImage: body.iconImage,
-      metaDescription: body.metaDescription,
+      css: body.css,
+      html: body.html,
+      meta_image: body.meta_image,
+      meta_title: body.meta_title,
+      icon_image: body.icon_image,
+      meta_description: body.meta_description,
     })
     .returning();
 

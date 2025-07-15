@@ -197,7 +197,7 @@ export default function PagesTable() {
                   </TableCell>
                   <TableCell>{page.slug}</TableCell>
                   <TableCell>
-                    {page.isPublic ? (
+                    {page.is_public ? (
                       <Badge className="bg-green-200 text-green-800">
                         Publish
                       </Badge>
@@ -208,8 +208,8 @@ export default function PagesTable() {
                     )}
                   </TableCell>
                   <TableCell>
-                    {page.createdAt &&
-                      new Date(page.createdAt).toLocaleDateString()}
+                    {page.created_at &&
+                      new Date(page.created_at).toLocaleDateString()}
                   </TableCell>
                   <TableCell className="text-right">
                     <Dialog>
@@ -218,7 +218,7 @@ export default function PagesTable() {
                           <Ellipsis />
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end" className="w-48">
-                          {page.isPublic ? (
+                          {page.is_public ? (
                             <DropdownMenuItem
                               onClick={() => openPreview(page.id)}
                             >

@@ -6,5 +6,5 @@ export interface Link {
   target?: string;
   attributes?: Record<string, string>;
   tags?: string[];
-  createdAt?: string | Date;
+  created_at?: string | Date;
 }

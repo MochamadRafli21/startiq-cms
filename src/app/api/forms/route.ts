@@ -27,14 +27,14 @@ export async function GET(req: NextRequest) {
     if (startDate) {
       const parsed = new Date(startDate);
       if (!isNaN(parsed.getTime())) {
-        whereConditions.push(gte(forms.createdAt, parsed));
+        whereConditions.push(gte(forms.created_at, parsed));
       }
     }
 
     if (endDate) {
       const parsed = new Date(endDate);
       if (!isNaN(parsed.getTime())) {
-        whereConditions.push(lte(forms.createdAt, parsed));
+        whereConditions.push(lte(forms.created_at, parsed));
       }
     }
 
@@ -51,11 +51,11 @@ export async function GET(req: NextRequest) {
         id: forms.id,
         name: forms.name,
         data: forms.data,
-        createdAt: forms.createdAt,
+        created_at: forms.created_at,
       })
       .from(forms)
       .where(whereClause)
-      .orderBy(forms.createdAt)
+      .orderBy(forms.created_at)
       .limit(limit)
       .offset(offset);
 

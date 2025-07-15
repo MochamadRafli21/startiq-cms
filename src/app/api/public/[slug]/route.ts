@@ -12,7 +12,7 @@ export async function GET(
   const [page] = await db
     .select()
     .from(pages)
-    .where(and(eq(pages.slug, slug), eq(pages.isPublic, true)))
+    .where(and(eq(pages.slug, slug), eq(pages.is_public, true)))
     .limit(1);
 
   if (!page) {
