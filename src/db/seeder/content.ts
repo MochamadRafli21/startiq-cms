@@ -21,29 +21,28 @@ async function seedFromFolder(
     const filePath = path.join(absolutePath, file);
     const raw = await fs.readFile(filePath, "utf-8");
     const data = JSON.parse(raw);
+
+    const cleanData = (item: any) => {
+      const { id, created_at, updated_at, ...rest } = item;
+      return rest;
+    };
+
     if (Array.isArray(data)) {
-      data.forEach(async (innerData) => {
+      for (const innerData of data) {
         const title =
           "title" in innerData ? (innerData as ContentTypes).title : file;
 
-        if (innerData.id) {
-          delete innerData.id;
-        }
-
         try {
-          await db.insert(table).values(innerData);
+          await db.insert(table).values(cleanData(innerData));
           console.log(`✅ Seeded: ${title}`);
         } catch (err) {
           console.error(`❌ Failed to seed ${title}:`, err);
         }
-      });
+      }
     } else {
       const title = "title" in data ? (data as ContentTypes).title : file;
-      if (data.id) {
-        delete data.id;
-      }
       try {
-        await db.insert(table).values(data);
+        await db.insert(table).values(cleanData(data));
         console.log(`✅ Seeded: ${title}`);
       } catch (err) {
         console.error(`❌ Failed to seed ${title}:`, err);
