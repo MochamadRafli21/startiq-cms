@@ -24,20 +24,20 @@ export async function generateMetadata({
   if (!pageData) return { title: "Page Not Found" };
   return {
     icons: {
-      icon: pageData.iconImage,
+      icon: pageData.icon_image,
     },
-    title: pageData.metaTitle || pageData.title,
-    description: pageData.metaDescription || "",
+    title: pageData.meta_title || pageData.title,
+    description: pageData.meta_description || "",
     openGraph: {
-      title: pageData.metaTitle || pageData.title,
-      description: pageData.metaDescription || "",
-      images: pageData.metaImage ? [{ url: pageData.metaImage }] : [],
+      title: pageData.meta_title || pageData.title,
+      description: pageData.meta_description || "",
+      images: pageData.meta_image ? [{ url: pageData.meta_image }] : [],
     },
     twitter: {
       card: "summary_large_image",
-      title: pageData.metaTitle || pageData.title,
-      description: pageData.metaDescription || "",
-      images: pageData.metaImage ? [pageData.metaImage] : [],
+      title: pageData.meta_title || pageData.title,
+      description: pageData.meta_description || "",
+      images: pageData.meta_image ? [pageData.meta_image] : [],
     },
   };
 }

@@ -4,5 +4,5 @@ export interface Template {
   id?: number;
   title?: string;
   content?: ProjectData;
-  created_at?: string | Date;
+  created_at?: string;
 }

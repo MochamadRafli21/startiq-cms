@@ -81,12 +81,12 @@ export const renderPageList = (content: ProjectData) => {
               const textSection = document.createElement("div");
 
               const title = document.createElement("h3");
-              title.textContent = page.metaTitle || page.title || "";
+              title.textContent = page.meta_title || page.title || "";
               title.className = "text-lg font-semibold mb-2";
               textSection.appendChild(title);
 
               const excerpt = document.createElement("p");
-              excerpt.textContent = page.metaDescription || "";
+              excerpt.textContent = page.meta_description || "";
               excerpt.className =
                 "text-sm text-gray-600 line-clamp-4 grow text-sm text-ellipsis";
               textSection.appendChild(excerpt);
@@ -102,10 +102,10 @@ export const renderPageList = (content: ProjectData) => {
 
               card.appendChild(textSection);
 
-              if (page.metaImage) {
+              if (page.meta_image) {
                 const img = document.createElement("img");
-                img.src = page.metaImage;
-                img.alt = page.metaTitle || page.title || "";
+                img.src = page.meta_image;
+                img.alt = page.meta_title || page.title || "";
                 img.className = "w-full h-24 object-cover rounded-md mb-4";
                 card.appendChild(img);
               }
@@ -117,21 +117,21 @@ export const renderPageList = (content: ProjectData) => {
               const card = document.createElement("div");
               card.className = "bg-white rounded-lg shadow-md p-4";
 
-              if (page.metaImage) {
+              if (page.meta_image) {
                 const img = document.createElement("img");
-                img.src = page.metaImage;
-                img.alt = page.metaTitle || page.title || "";
+                img.src = page.meta_image;
+                img.alt = page.meta_title || page.title || "";
                 img.className = "w-full h-24 object-cover rounded-md mb-4";
                 card.appendChild(img);
               }
 
               const title = document.createElement("h3");
-              title.textContent = page.metaTitle || page.title || "";
+              title.textContent = page.meta_title || page.title || "";
               title.className = "text-lg font-semibold mb-2";
               card.appendChild(title);
 
               const excerpt = document.createElement("p");
-              excerpt.textContent = page.metaDescription || "";
+              excerpt.textContent = page.meta_description || "";
               excerpt.className =
                 "text-sm text-gray-600 line-clamp-4 grow text-sm text-ellipsis";
               card.appendChild(excerpt);
@@ -153,20 +153,20 @@ export const renderPageList = (content: ProjectData) => {
             const firstCard = document.createElement("div");
             firstCard.className =
               "md:col-span-2 bg-white rounded-lg shadow-md p-4 h-full flex flex-col flex-grow";
-            if (firstPage.metaImage) {
+            if (firstPage.meta_image) {
               const img = document.createElement("img");
-              img.src = firstPage.metaImage;
-              img.alt = firstPage.metaTitle || firstPage.title || "";
+              img.src = firstPage.meta_image;
+              img.alt = firstPage.meta_title || firstPage.title || "";
               img.className = "w-full h-48 object-cover rounded-md mb-4";
               firstCard.appendChild(img);
             }
             const title = document.createElement("h3");
-            title.textContent = firstPage.metaTitle || firstPage.title || "";
+            title.textContent = firstPage.meta_title || firstPage.title || "";
             title.className = "text-lg font-semibold mb-2";
             firstCard.appendChild(title);
 
             const excerpt = document.createElement("p");
-            excerpt.textContent = firstPage.metaDescription || "";
+            excerpt.textContent = firstPage.meta_description || "";
             excerpt.className = "text-sm text-gray-600 grow text-ellipsis";
             firstCard.appendChild(excerpt);
 
@@ -189,21 +189,21 @@ export const renderPageList = (content: ProjectData) => {
                 const card = document.createElement("div");
                 card.className = "bg-white rounded-lg shadow-md p-4";
 
-                if (page.metaImage) {
+                if (page.meta_image) {
                   const img = document.createElement("img");
-                  img.src = page.metaImage;
-                  img.alt = page.metaTitle || page.title || "";
+                  img.src = page.meta_image;
+                  img.alt = page.meta_title || page.title || "";
                   img.className = "w-full h-48 object-cover rounded-md mb-4";
                   card.appendChild(img);
                 }
 
                 const title = document.createElement("h3");
-                title.textContent = page.metaTitle || page.title || "";
+                title.textContent = page.meta_title || page.title || "";
                 title.className = "text-lg font-semibold mb-2";
                 card.appendChild(title);
 
                 const excerpt = document.createElement("p");
-                excerpt.textContent = page.metaDescription || "";
+                excerpt.textContent = page.meta_description || "";
                 excerpt.className =
                   "text-sm text-gray-600 line-clamp-4 grow text-sm text-ellipsis";
                 card.appendChild(excerpt);

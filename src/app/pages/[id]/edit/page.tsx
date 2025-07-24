@@ -125,8 +125,8 @@ export default function EditPage() {
       const updated = {
         ...prev,
         content,
-        contentHtml: html,
-        contentCss: css,
+        html,
+        css,
       } as PageFullRecord;
       handleInfoChange(updated);
       return updated;
