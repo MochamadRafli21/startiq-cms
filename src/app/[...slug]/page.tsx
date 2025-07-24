@@ -25,20 +25,20 @@ export async function generateMetadata({
   if (!pageData) return { title: "Page Not Found" };
   return {
     icons: {
-      icon: pageData.iconImage || pageData.metaImage,
+      icon: pageData.icon_image || pageData.meta_image,
     },
-    title: pageData.metaTitle || pageData.title,
-    description: pageData.metaDescription || "",
+    title: pageData.meta_title || pageData.title,
+    description: pageData.meta_description || "",
     openGraph: {
-      title: pageData.metaTitle || pageData.title,
-      description: pageData.metaDescription || "",
-      images: pageData.metaImage ? [{ url: pageData.metaImage }] : [],
+      title: pageData.meta_title || pageData.title,
+      description: pageData.meta_description || "",
+      images: pageData.meta_image ? [{ url: pageData.meta_image }] : [],
     },
     twitter: {
       card: "summary_large_image",
-      title: pageData.metaTitle || pageData.title,
-      description: pageData.metaDescription || "",
-      images: pageData.metaImage ? [pageData.metaImage] : [],
+      title: pageData.meta_title || pageData.title,
+      description: pageData.meta_dscription || "",
+      images: pageData.meta_image ? [pageData.meta_image] : [],
     },
   };
 }
@@ -52,10 +52,10 @@ export default async function Page({
   const fullSlug = resolvedParams.slug?.join("/") ?? "";
   const pageData = await getPageData(fullSlug);
   if (!pageData) return notFound();
-  const { attributes, inner } = extractBodyContent(pageData.contentHtml);
+  const { attributes, inner } = extractBodyContent(pageData.html);
   return (
     <>
-      <style>{pageData.contentCss}</style>
+      <style>{pageData.css}</style>
       <main
         id="root"
         {...parseAttributes(attributes)}
