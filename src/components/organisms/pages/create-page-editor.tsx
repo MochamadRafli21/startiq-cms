@@ -37,7 +37,7 @@ export default function CreatePageEditor() {
   const [pageData, setPageData] = useState<PageBodyInput>({
     title: "",
     slug: "",
-    isPublic: false,
+    is_public: false,
   } as PageBodyInput);
   const router = useRouter();
 
@@ -110,13 +110,13 @@ export default function CreatePageEditor() {
         slug: pageData.slug,
         tags: pageData.tags,
         category: pageData.category,
-        isPublic: pageData.isPublic,
+        is_public: pageData.is_public,
         content: pageData.content,
-        contentHtml: pageData.contentHtml,
-        contentCss: pageData.contentCss,
-        metaTitle: pageData.metaTitle,
-        metaDescription: pageData.metaDescription,
-        metaImage: pageData.metaImage,
+        html: pageData.html,
+        css: pageData.css,
+        meta_title: pageData.meta_title,
+        meta_description: pageData.meta_description,
+        meta_image: pageData.meta_image,
       }),
     });
 

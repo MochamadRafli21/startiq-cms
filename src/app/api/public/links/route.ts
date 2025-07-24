@@ -66,11 +66,11 @@ export async function GET(req: Request) {
       banner: links.banner,
       descriptions: links.descriptions,
       attributes: links.attributes,
-      createdAt: links.createdAt,
+      createdAt: links.created_at,
     })
     .from(links)
     .where(whereClause)
-    .orderBy(links.createdAt)
+    .orderBy(links.created_at)
     .limit(limit)
     .offset(offset);
 

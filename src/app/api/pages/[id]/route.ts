@@ -49,14 +49,14 @@ export async function PUT(
       slug: body.slug,
       tags: body.tags,
       category: body.category,
-      isPublic: body.isPublic,
+      is_public: body.is_public,
       content: body.content,
-      contentHtml: body.contentHtml,
-      contentCss: body.contentCss,
-      metaImage: body.metaImage,
-      metaTitle: body.metaTitle,
-      metaDescription: body.metaDescription,
-      iconImage: body.iconImage,
+      html: body.html,
+      css: body.css,
+      meta_image: body.meta_image,
+      meta_title: body.meta_title,
+      meta_description: body.meta_description,
+      icon_image: body.icon_image,
     })
     .where(eq(pages.id, Number(id)));
 

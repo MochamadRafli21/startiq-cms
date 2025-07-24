@@ -15,23 +15,23 @@ interface PageEditorProps {
 }
 
 export default function PageInfo({ page, onChange }: PageEditorProps) {
-  const [metaTitle, setMetaTitle] = useState(page?.metaTitle ?? "");
+  const [metaTitle, setMetaTitle] = useState(page?.meta_title ?? "");
   const [metaDescription, setMetaDescription] = useState(
-    page?.metaDescription ?? "",
+    page?.meta_description ?? "",
   );
   const [openIconModal, setOpenIconModal] = useState(false);
-  const [iconImage, setIconImage] = useState(page?.iconImage ?? "");
+  const [iconImage, setIconImage] = useState(page?.icon_image ?? "");
 
   const [openMetaModal, setOpenMetaModal] = useState(false);
-  const [metaImage, setMetaImage] = useState(page?.metaImage ?? "");
+  const [metaImage, setMetaImage] = useState(page?.meta_image ?? "");
 
   const handleUpdate = (updated: Partial<PageBodyInput>) => {
     const updatedPage: PageBodyInput = {
       ...page!,
-      metaTitle,
-      metaDescription,
-      metaImage,
-      iconImage,
+      meta_title: metaTitle,
+      meta_description: metaDescription,
+      meta_image: metaImage,
+      icon_image: iconImage,
       ...updated,
     };
     onChange?.(updatedPage);
@@ -39,13 +39,13 @@ export default function PageInfo({ page, onChange }: PageEditorProps) {
 
   const handleMetaImageChange = (url: string) => {
     setMetaImage(url);
-    handleUpdate({ metaImage: url });
+    handleUpdate({ meta_image: url });
     setOpenMetaModal(false);
   };
 
   const handleIconImageChange = (url: string) => {
     setIconImage(url);
-    handleUpdate({ iconImage: url });
+    handleUpdate({ icon_image: url });
     setOpenIconModal(false);
   };
 
@@ -60,7 +60,7 @@ export default function PageInfo({ page, onChange }: PageEditorProps) {
           value={metaTitle}
           onChange={(e) => {
             setMetaTitle(e.target.value);
-            handleUpdate({ metaTitle: e.target.value });
+            handleUpdate({ meta_title: e.target.value });
           }}
           placeholder="Title"
         />
@@ -74,7 +74,7 @@ export default function PageInfo({ page, onChange }: PageEditorProps) {
           value={metaDescription}
           onChange={(e) => {
             setMetaDescription(e.target.value);
-            handleUpdate({ metaDescription: e.target.value });
+            handleUpdate({ meta_description: e.target.value });
           }}
           placeholder="Short description for SEO"
         />

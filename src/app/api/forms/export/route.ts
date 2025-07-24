@@ -20,14 +20,14 @@ export async function GET(req: Request) {
     if (startDate) {
       const parsed = new Date(startDate);
       if (!isNaN(parsed.getTime())) {
-        conditions.push(gte(forms.createdAt, parsed));
+        conditions.push(gte(forms.created_at, parsed));
       }
     }
 
     if (endDate) {
       const parsed = new Date(endDate);
       if (!isNaN(parsed.getTime())) {
-        conditions.push(lte(forms.createdAt, parsed));
+        conditions.push(lte(forms.created_at, parsed));
       }
     }
 
@@ -41,8 +41,8 @@ export async function GET(req: Request) {
         id: form.id.toString(),
         name: form.name || "",
         ...parsedData,
-        createdAt: form.createdAt?.toLocaleString() || "",
-        updatedAt: form.updatedAt?.toLocaleString() || "",
+        createdAt: form.created_at?.toLocaleString() || "",
+        updatedAt: form.updated_at?.toLocaleString() || "",
       };
     });
 

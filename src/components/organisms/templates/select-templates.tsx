@@ -49,8 +49,8 @@ export default function TemplatesSelect({
             >
               <span className="font-semibold text-md">{template.title}</span>
               <span>
-                {template.createdAt &&
-                  new Date(template.createdAt).toLocaleDateString()}
+                {template.created_at &&
+                  new Date(template.created_at).toLocaleDateString()}
               </span>
             </Button>
           </div>

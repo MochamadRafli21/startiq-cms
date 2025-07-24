@@ -130,8 +130,8 @@ export default function SubmissionsTable({ name }: { name?: string }) {
                     </TableCell>
                   ))}
                   <TableCell>
-                    {form.createdAt &&
-                      new Date(form.createdAt).toLocaleDateString()}
+                    {form.created_at &&
+                      new Date(form.created_at).toLocaleDateString()}
                   </TableCell>
                 </TableRow>
               ))}

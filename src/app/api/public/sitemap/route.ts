@@ -10,10 +10,10 @@ export async function GET() {
     publicPages = await db
       .select({
         slug: pages.slug,
-        updatedAt: pages.updatedAt,
+        updatedAt: pages.updated_at,
       })
       .from(pages)
-      .where(eq(pages.isPublic, true));
+      .where(eq(pages.is_public, true));
   } catch (error) {
     console.error("failed to get data sitemap", error);
   }

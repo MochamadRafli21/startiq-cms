@@ -33,7 +33,7 @@ export async function GET(req: Request) {
     .select()
     .from(templates)
     .where(whereClause)
-    .orderBy(templates.createdAt)
+    .orderBy(templates.created_at)
     .limit(limit)
     .offset(offset);
 

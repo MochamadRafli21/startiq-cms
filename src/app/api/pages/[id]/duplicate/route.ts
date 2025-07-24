@@ -26,12 +26,12 @@ export async function POST(
       title: body.title,
       slug: body.slug + "-duplicated",
       tags: body.tags,
-      isPublic: false,
+      is_public: false,
       content: body.content as ProjectData,
-      metaImage: body.metaImage,
-      metaTitle: body.metaTitle,
-      iconImage: body.iconImage,
-      metaDescription: body.metaDescription,
+      meta_image: body.meta_image,
+      meta_title: body.meta_title,
+      icon_image: body.icon_image,
+      meta_description: body.meta_description,
     })
     .returning();
 

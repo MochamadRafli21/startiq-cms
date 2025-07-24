@@ -19,7 +19,7 @@ export default function PageInfo({ page, onChange }: PageEditorProps) {
   const [title, setTitle] = useState(page?.title || "");
   const [slug, setSlug] = useState(page?.slug || "");
   const [slugError, setSlugError] = useState("");
-  const [isPublic, setIsPublic] = useState(page?.isPublic || false);
+  const [isPublic, setIsPublic] = useState(page?.is_public || false);
   const [newTag, setNewTag] = useState("");
   const [tags, setTags] = useState(page?.tags || []);
   const [newCategory, setNewCategory] = useState("");
@@ -31,7 +31,7 @@ export default function PageInfo({ page, onChange }: PageEditorProps) {
       setTitle(page.title || "");
       setSlug(page.slug || "");
       setCategory(page.category || []);
-      setIsPublic(page.isPublic || false);
+      setIsPublic(page.is_public || false);
       setTags(page.tags || []);
       setIsInitialized(true);
     }

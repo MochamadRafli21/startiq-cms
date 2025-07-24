@@ -182,8 +182,8 @@ export default function LinksList() {
                     </div>
                     <div className="w-full flex justify-end mt-4">
                       <span className="text-xs text-gray-400 text-right">
-                        {link.createdAt &&
-                          new Date(link.createdAt).toLocaleDateString()}
+                        {link.created_at &&
+                          new Date(link.created_at).toLocaleDateString()}
                       </span>
                     </div>
                   </div>

@@ -21,16 +21,16 @@ export const pages = pgTable("pages", {
   slug: varchar("slug", { length: 255 }).notNull().unique(),
   tags: json("tags").default([]).notNull(),
   category: json("category").default([]).notNull(),
-  metaTitle: varchar("meta_title", { length: 255 }),
-  metaDescription: varchar("meta_description", { length: 500 }),
-  metaImage: varchar("meta_image", { length: 500 }),
-  iconImage: varchar("icon_image", { length: 500 }),
-  isPublic: boolean("is_public").default(false).notNull(),
+  meta_title: varchar("meta_title", { length: 255 }),
+  meta_description: varchar("meta_description", { length: 500 }),
+  meta_image: varchar("meta_image", { length: 500 }),
+  icon_image: varchar("icon_image", { length: 500 }),
+  is_public: boolean("is_public").default(false).notNull(),
   content: json("content").notNull(),
-  contentHtml: text("html"),
-  contentCss: text("css"),
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at")
+  html: text("html"),
+  css: text("css"),
+  created_at: timestamp("created_at").defaultNow(),
+  updated_at: timestamp("updated_at")
     .defaultNow()
     .$onUpdate(() => new Date()),
 });
@@ -39,8 +39,8 @@ export const templates = pgTable("templates", {
   id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
   title: varchar("title", { length: 255 }).notNull(),
   content: json("content").notNull(),
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at")
+  created_at: timestamp("created_at").defaultNow(),
+  updated_at: timestamp("updated_at")
     .defaultNow()
     .$onUpdate(() => new Date()),
 });
@@ -53,8 +53,8 @@ export const links = pgTable("links", {
   banner: varchar("banner", { length: 500 }),
   tags: json("tags").default([]).notNull(),
   attributes: json("attributes").default({}).notNull(),
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at")
+  created_at: timestamp("created_at").defaultNow(),
+  updated_at: timestamp("updated_at")
     .defaultNow()
     .$onUpdate(() => new Date()),
 });
@@ -63,8 +63,8 @@ export const forms = pgTable("forms", {
   id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
   name: varchar("name", { length: 255 }),
   data: json("data").notNull(),
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at")
+  created_at: timestamp("created_at").defaultNow(),
+  updated_at: timestamp("updated_at")
     .defaultNow()
     .$onUpdate(() => new Date()),
 });

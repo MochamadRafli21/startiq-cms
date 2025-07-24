@@ -5,5 +5,5 @@ export interface Content {
   banner?: string;
   target?: string;
   type: "page" | "link";
-  createdAt?: string | Date;
+  created_at?: string | Date;
 }
